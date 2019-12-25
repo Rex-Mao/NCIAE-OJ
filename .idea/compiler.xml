@@ -6,11 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="registry" />
         <module name="user-center" />
+        <module name="content-center" />
+        <module name="registry" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="content-center" target="1.5" />
       <module name="NCIAE-OJ" target="1.5" />
       <module name="registry" target="1.5" />
       <module name="user-center" target="1.5" />
@@ -19,6 +21,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="NCIAE-OJ" options="" />
+      <module name="content-center" options="" />
       <module name="registry" options="" />
       <module name="user-center" options="" />
     </option>
