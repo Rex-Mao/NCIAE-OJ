@@ -19,7 +19,9 @@
     </properties>
 
     <modules>
+        <module>registry-center</module>
         <module>user-center</module>
+        <module>content-center</module>
     </modules>
 
     <dependencies>
