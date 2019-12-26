@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.nciae.contentcenter.mapper.RecordMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.edu.nciae.contentcenter.entity.Record">
+        <id column="record_id" property="recordId" />
+        <result column="commit_uid" property="commitUid" />
+        <result column="pid" property="pid" />
+        <result column="cid" property="cid" />
+        <result column="source_code" property="sourceCode" />
+        <result column="commit_time" property="commitTime" />
+        <result column="status" property="status" />
+        <result column="used_time" property="usedTime" />
+        <result column="used_memory" property="usedMemory" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        record_id, commit_uid, pid, cid, source_code, commit_time, status, used_time, used_memory
+    </sql>
+
+</mapper>

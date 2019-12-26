@@ -16,6 +16,7 @@
         <spring-cloud-alibaba.version>2.1.0.RELEASE</spring-cloud-alibaba.version>
         <spring-platform.version>Cairo-SR8</spring-platform.version>
         <lombok.version>1.18.10</lombok.version>
+        <mybatis-plus.version>3.3.0</mybatis-plus.version>
     </properties>
 
     <modules>
