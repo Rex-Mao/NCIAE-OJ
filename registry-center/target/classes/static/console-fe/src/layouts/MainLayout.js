@@ -12,14 +12,14 @@
  */
 
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { ConfigProvider, Icon } from '@alifd/next';
+import {ConfigProvider, Icon} from '@alifd/next';
 import Header from './Header';
 import $ from 'jquery';
-import { connect } from 'react-redux';
-import { setParams } from '../globalLib';
-import { getState } from '../reducers/base';
+import {connect} from 'react-redux';
+import {setParams} from '../globalLib';
+import {getState} from '../reducers/base';
 import _menu from '../menu';
 
 import './index.scss';

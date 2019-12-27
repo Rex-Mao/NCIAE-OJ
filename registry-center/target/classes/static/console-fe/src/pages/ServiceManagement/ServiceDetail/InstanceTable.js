@@ -13,9 +13,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { request } from '../../../globalLib';
-import { Button, ConfigProvider, Message, Pagination, Table } from '@alifd/next';
-import { HEALTHY_COLOR_MAPPING } from './constant';
+import {request} from '../../../globalLib';
+import {Button, ConfigProvider, Message, Pagination, Table} from '@alifd/next';
+import {HEALTHY_COLOR_MAPPING} from './constant';
 import EditInstanceDialog from './EditInstanceDialog';
 
 @ConfigProvider.config

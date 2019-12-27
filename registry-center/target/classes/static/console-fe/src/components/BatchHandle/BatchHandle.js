@@ -13,8 +13,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Dialog, Pagination, Transfer } from '@alifd/next';
-import { request } from '../../globalLib';
+import {Dialog, Pagination, Transfer} from '@alifd/next';
+import {request} from '../../globalLib';
 import './index.scss';
 
 class BatchHandle extends React.Component {

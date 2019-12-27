@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/NCIAE-OJ.iml" filepath="$PROJECT_DIR$/NCIAE-OJ.iml" />
       <module fileurl="file://$PROJECT_DIR$/content-center/content-center.iml" filepath="$PROJECT_DIR$/content-center/content-center.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gateway/gateway.iml" filepath="$PROJECT_DIR$/gateway/gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/registry-center/registry-center.iml" filepath="$PROJECT_DIR$/registry-center/registry-center.iml" />
       <module fileurl="file://$PROJECT_DIR$/user-center/user-center.iml" filepath="$PROJECT_DIR$/user-center/user-center.iml" />
     </modules>

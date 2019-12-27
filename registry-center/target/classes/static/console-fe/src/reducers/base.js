@@ -12,7 +12,7 @@
  */
 
 import request from '../utils/request';
-import { GET_STATE } from '../constants';
+import {GET_STATE} from '../constants';
 
 const initialState = {
   version: null,

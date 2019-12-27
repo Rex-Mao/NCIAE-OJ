@@ -22,26 +22,26 @@ import {
   Dropdown,
   Field,
   Form,
+  Grid,
   Icon,
   Input,
   Loading,
   Menu,
+  Message,
   Pagination,
   Select,
   Table,
-  Grid,
   Upload,
-  Message,
 } from '@alifd/next';
 import BatchHandle from 'components/BatchHandle';
 import RegionGroup from 'components/RegionGroup';
 import ShowCodeing from 'components/ShowCodeing';
 import DeleteDialog from 'components/DeleteDialog';
 import DashboardCard from './DashboardCard';
-import { getParams, setParams, request, aliwareIntl } from '@/globalLib';
+import {getParams, request, setParams} from '@/globalLib';
 
 import './index.scss';
-import { LANGUAGE_KEY } from '../../../constants';
+import {LANGUAGE_KEY} from '../../../constants';
 
 const { Panel } = Collapse;
 const { Row, Col } = Grid;

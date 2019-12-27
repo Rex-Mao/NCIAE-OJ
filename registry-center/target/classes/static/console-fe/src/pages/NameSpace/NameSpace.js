@@ -13,11 +13,11 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, ConfigProvider, Dialog, Loading, Table } from '@alifd/next';
+import {Button, ConfigProvider, Dialog, Loading, Table} from '@alifd/next';
 import RegionGroup from '../../components/RegionGroup';
 import NewNameSpace from '../../components/NewNameSpace';
 import EditorNameSpace from '../../components/EditorNameSpace';
-import { getParams, setParams, request } from '../../globalLib';
+import {getParams, request, setParams} from '../../globalLib';
 
 import './index.scss';
 

@@ -13,8 +13,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ConfigProvider, Dialog } from '@alifd/next';
-import { getParams, setParams, request } from '../../globalLib';
+import {ConfigProvider, Dialog} from '@alifd/next';
+import {getParams, request, setParams} from '../../globalLib';
 
 import './index.scss';
 

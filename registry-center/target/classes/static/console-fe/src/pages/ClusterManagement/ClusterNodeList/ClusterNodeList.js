@@ -13,18 +13,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Button,
-  Field,
-  Form,
-  Grid,
-  Input,
-  Loading,
-  Pagination,
-  Table,
-  ConfigProvider,
-} from '@alifd/next';
-import { request } from '../../../globalLib';
+import {Button, ConfigProvider, Field, Form, Grid, Input, Loading, Pagination, Table,} from '@alifd/next';
+import {request} from '../../../globalLib';
 import RegionGroup from '../../../components/RegionGroup';
 
 import './ClusterNodeList.scss';

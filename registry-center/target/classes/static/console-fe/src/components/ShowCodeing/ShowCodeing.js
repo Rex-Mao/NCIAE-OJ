@@ -13,8 +13,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getParams } from '../../globalLib';
-import { ConfigProvider, Dialog, Loading, Tab } from '@alifd/next';
+import {getParams} from '../../globalLib';
+import {ConfigProvider, Dialog, Loading, Tab} from '@alifd/next';
 
 import './index.scss';
 
@@ -142,7 +142,7 @@ import com.alibaba.nacos.api.exception.NacosException;
 
 /**
  * Config service example
- * 
+ *
  * @author Nacos
  *
  */
@@ -168,10 +168,10 @@ public class ConfigExample {
 				return null;
 			}
 		});
-		
+
 		boolean isPublishOk = configService.publishConfig(dataId, group, "content");
 		System.out.println(isPublishOk);
-		
+
 		Thread.sleep(3000);
 		content = configService.getConfig(dataId, group, 5000);
 		System.out.println(content);

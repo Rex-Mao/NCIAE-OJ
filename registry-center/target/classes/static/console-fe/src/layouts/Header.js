@@ -12,12 +12,11 @@
  */
 
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { ConfigProvider, Dropdown, Menu } from '@alifd/next';
-import siteConfig from '../config';
-import { changeLanguage } from '@/reducers/locale';
+import {connect} from 'react-redux';
+import {ConfigProvider, Dropdown, Menu} from '@alifd/next';
+import {changeLanguage} from '@/reducers/locale';
 
 import './index.scss';
 

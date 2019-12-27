@@ -13,9 +13,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ConfigProvider, Field, Form, Input, Loading, Pagination, Table } from '@alifd/next';
+import {ConfigProvider, Field, Form, Input, Loading, Pagination, Table} from '@alifd/next';
 import RegionGroup from 'components/RegionGroup';
-import { getParams, setParams, request, aliwareIntl } from '@/globalLib';
+import {aliwareIntl, getParams, request, setParams} from '@/globalLib';
 
 import './index.scss';
 

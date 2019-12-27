@@ -13,9 +13,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { request } from '../../../globalLib';
-import { Dialog, Form, Input, Select, Message, ConfigProvider } from '@alifd/next';
-import { DIALOG_FORM_LAYOUT, METADATA_SEPARATOR, METADATA_ENTER } from './constant';
+import {request} from '../../../globalLib';
+import {ConfigProvider, Dialog, Form, Input, Message, Select} from '@alifd/next';
+import {DIALOG_FORM_LAYOUT} from './constant';
 import MonacoEditor from 'components/MonacoEditor';
 
 @ConfigProvider.config

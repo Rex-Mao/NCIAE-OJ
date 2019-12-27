@@ -14,24 +14,24 @@
 import $ from 'jquery';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getParams, request } from '../../../globalLib';
+import {getParams, request} from '../../../globalLib';
 import DiffEditorDialog from '../../../components/DiffEditorDialog';
 import SuccessDialog from '../../../components/SuccessDialog';
 import validateContent from 'utils/validateContent';
 import {
   Balloon,
   Button,
+  ConfigProvider,
   Dialog,
   Field,
   Form,
   Icon,
   Input,
   Loading,
+  Message,
   Radio,
   Select,
   Tab,
-  Message,
-  ConfigProvider,
 } from '@alifd/next';
 
 import './index.scss';

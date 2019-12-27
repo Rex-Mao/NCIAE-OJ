@@ -14,18 +14,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import RegionGroup from '../../../components/RegionGroup';
-import { getParams, request } from '../../../globalLib';
-import {
-  ConfigProvider,
-  Field,
-  Form,
-  Grid,
-  Input,
-  Loading,
-  Pagination,
-  Select,
-  Table,
-} from '@alifd/next';
+import {getParams, request} from '../../../globalLib';
+import {ConfigProvider, Field, Form, Grid, Input, Loading, Pagination, Select, Table,} from '@alifd/next';
 
 import './index.scss';
 

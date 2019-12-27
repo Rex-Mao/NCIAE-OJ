@@ -15,19 +15,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Button,
+  ConfigProvider,
+  Dialog,
   Field,
   Form,
   Grid,
   Input,
   Loading,
-  Pagination,
-  Table,
-  Dialog,
   Message,
-  ConfigProvider,
+  Pagination,
   Switch,
+  Table,
 } from '@alifd/next';
-import { request } from '../../../globalLib';
+import {request} from '../../../globalLib';
 import RegionGroup from '../../../components/RegionGroup';
 import EditServiceDialog from '../ServiceDetail/EditServiceDialog';
 import ShowServiceCodeing from 'components/ShowCodeing/ShowServiceCodeing';

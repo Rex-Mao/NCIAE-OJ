@@ -12,7 +12,7 @@
  */
 
 import * as React from 'react';
-import { MONACO_OPTIONS } from './constant';
+import {MONACO_OPTIONS} from './constant';
 import './index.scss';
 
 interface PropsType {

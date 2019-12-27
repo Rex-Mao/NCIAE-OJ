@@ -23,6 +23,7 @@
         <module>registry-center</module>
         <module>user-center</module>
         <module>content-center</module>
+        <module>gateway</module>
     </modules>
 
     <dependencies>

@@ -12,8 +12,8 @@
  */
 
 import React from 'react';
-import { Button, ConfigProvider, Dialog, Field, Form, Input, Loading, Tab } from '@alifd/next';
-import { getParams, request } from '../../../globalLib';
+import {Button, ConfigProvider, Dialog, Field, Form, Input, Loading, Tab} from '@alifd/next';
+import {getParams, request} from '../../../globalLib';
 
 import './index.scss';
 import PropTypes from 'prop-types';

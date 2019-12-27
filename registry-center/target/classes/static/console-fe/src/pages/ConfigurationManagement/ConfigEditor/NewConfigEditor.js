@@ -13,7 +13,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getParams } from '../../../globalLib';
+import {getParams} from '../../../globalLib';
 import request from '../../../utils/request';
 import validateContent from 'utils/validateContent';
 import SuccessDialog from '../../../components/SuccessDialog';
@@ -22,22 +22,19 @@ import './index.scss';
 import {
   Balloon,
   Button,
-  Dialog,
-  Field,
-  Form,
   Checkbox,
+  ConfigProvider,
+  Dialog,
+  Form,
+  Grid,
   Icon,
   Input,
   Loading,
+  Message,
   Radio,
-  Switch,
   Select,
   Tab,
-  Message,
-  Grid,
-  ConfigProvider,
 } from '@alifd/next';
-import { resolve } from 'url';
 
 const { Row, Col } = Grid;
 

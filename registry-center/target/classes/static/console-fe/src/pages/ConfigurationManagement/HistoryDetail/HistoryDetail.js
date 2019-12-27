@@ -13,8 +13,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, ConfigProvider, Field, Form, Input } from '@alifd/next';
-import { getParams, request } from '@/globalLib';
+import {Button, ConfigProvider, Field, Form, Input} from '@alifd/next';
+import {getParams, request} from '@/globalLib';
 
 import './index.scss';
 

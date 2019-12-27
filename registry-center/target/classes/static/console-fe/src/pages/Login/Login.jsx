@@ -1,10 +1,10 @@
 import React from 'react';
-import { Card, Form, Input, Message, ConfigProvider, Field } from '@alifd/next';
-import { withRouter } from 'react-router-dom';
+import {Card, ConfigProvider, Field, Form, Input, Message} from '@alifd/next';
+import {withRouter} from 'react-router-dom';
 
 import './index.scss';
 import Header from '../../layouts/Header';
-import { request } from '../../globalLib';
+import {request} from '../../globalLib';
 import PropTypes from 'prop-types';
 
 const FormItem = Form.Item;

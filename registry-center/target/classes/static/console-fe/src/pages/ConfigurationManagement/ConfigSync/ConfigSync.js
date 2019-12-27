@@ -13,9 +13,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Checkbox, ConfigProvider, Dialog, Field, Form, Input, Loading } from '@alifd/next';
+import {Button, Checkbox, ConfigProvider, Dialog, Field, Form, Input, Loading} from '@alifd/next';
 import SuccessDialog from '../../../components/SuccessDialog';
-import { getParams, request } from '../../../globalLib';
+import {getParams, request} from '../../../globalLib';
 
 import './index.scss';
 

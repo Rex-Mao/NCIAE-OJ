@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Message } from '@alifd/next';
+import {Message} from '@alifd/next';
 // import { SUCCESS_RESULT_CODE } from '../constants';
 
 const API_GENERAL_ERROR_MESSAGE = 'Request error, please try again later!';

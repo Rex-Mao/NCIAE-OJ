@@ -12,7 +12,7 @@
  */
 
 import React from 'react';
-import { Button, ConfigProvider, Dialog, Form } from '@alifd/next';
+import {Button, ConfigProvider, Dialog, Form} from '@alifd/next';
 
 import './index.scss';
 

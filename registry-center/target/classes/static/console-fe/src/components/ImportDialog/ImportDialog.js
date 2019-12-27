@@ -12,8 +12,8 @@
  */
 
 import React from 'react';
-import { isParentEdas } from '@/lib';
-import { Balloon, Button, ConfigProvider, Dialog, Form, Icon, Select, Upload } from '@alifd/next';
+import {isParentEdas} from '@/lib';
+import {Balloon, Button, ConfigProvider, Dialog, Form, Icon, Select, Upload} from '@alifd/next';
 
 import './index.scss';
 

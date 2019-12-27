@@ -13,7 +13,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, ConfigProvider, Dialog, Grid } from '@alifd/next';
+import {Button, ConfigProvider, Dialog, Grid} from '@alifd/next';
 
 import './index.scss';
 

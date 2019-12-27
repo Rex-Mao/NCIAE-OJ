@@ -7,14 +7,18 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="registry-center" />
+        <module name="test" />
+        <module name="gateway" />
         <module name="content-center" />
         <module name="user-center" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="content-center" target="1.5" />
+      <module name="gateway" target="1.5" />
       <module name="NCIAE-OJ" target="1.5" />
       <module name="registry-center" target="1.5" />
+      <module name="test" target="1.8" />
       <module name="user-center" target="1.5" />
     </bytecodeTargetLevel>
   </component>
@@ -23,6 +27,7 @@
       <module name="NCIAE-OJ" options="" />
       <module name="content-center" options="" />
       <module name="registry-center" options="" />
+      <module name="test" options="-parameters" />
       <module name="user-center" options="" />
     </option>
   </component>

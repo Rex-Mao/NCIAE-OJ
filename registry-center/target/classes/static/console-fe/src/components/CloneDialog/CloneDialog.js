@@ -13,8 +13,8 @@
 
 import React from 'react';
 import './index.scss';
-import { getParams, request } from '../../globalLib';
-import { Button, ConfigProvider, Dialog, Field, Form, Select } from '@alifd/next';
+import {getParams, request} from '../../globalLib';
+import {Button, ConfigProvider, Dialog, Field, Form, Select} from '@alifd/next';
 
 const FormItem = Form.Item;
 const { AutoComplete: Combobox } = Select;

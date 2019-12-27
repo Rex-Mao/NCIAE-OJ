@@ -14,8 +14,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import RegionGroup from 'components/RegionGroup';
-import { ConfigProvider, Input, Field, Form, Message } from '@alifd/next';
-import { getParams, setParams, request } from '../../globalLib';
+import {ConfigProvider, Field, Form, Input, Message} from '@alifd/next';
+import {request} from '../../globalLib';
 
 import './index.scss';
 
