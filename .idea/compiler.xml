@@ -7,10 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="registry-center" />
-        <module name="test" />
+        <module name="user-center" />
         <module name="gateway" />
         <module name="content-center" />
-        <module name="user-center" />
+        <module name="test" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

@@ -1,4 +1,5 @@
-
+server:
+  port: 8826
 spring:
   cloud:
     nacos:
@@ -10,5 +11,11 @@ spring:
       username: root
       password: password
       driver-class-name: com.mysql.cj.jdbc.Driver
-server:
-  port: 8846
+ribbon:
+  eager-load:
+    enabled: true
+    clients: user-center
+user-center:
+  ribbon:
+    NFLoadBalancerRuleClassName: cn.edu.nciae.contentcenter.configuration.NacosWeightedRule
+
