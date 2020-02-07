@@ -1,6 +1,6 @@
 package cn.edu.nciae.contentcenter.service;
 
-import cn.edu.nciae.contentcenter.entity.Record;
+import cn.edu.nciae.contentcenter.common.entity.Record;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

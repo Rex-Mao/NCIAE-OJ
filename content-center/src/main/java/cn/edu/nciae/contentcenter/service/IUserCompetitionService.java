@@ -1,6 +1,6 @@
 package cn.edu.nciae.contentcenter.service;
 
-import cn.edu.nciae.contentcenter.entity.UserCompetition;
+import cn.edu.nciae.contentcenter.common.entity.UserCompetition;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

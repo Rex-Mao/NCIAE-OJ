@@ -1,0 +1,1092 @@
+{
+  "error": null,
+  "data": {
+    "results": [
+      {
+        "id": 4,
+        "tags": [
+          "\u7b80\u5355"
+        ],
+        "created_by": {
+          "id": 1,
+          "username": "root",
+          "real_name": null
+        },
+        "template": {},
+        "_id": "1",
+        "title": "A + B Problem",
+        "description": "<p>\u8bf7\u8ba1\u7b97\u4e24\u4e2a\u6574\u6570\u7684\u548c\u5e76\u8f93\u51fa\u7ed3\u679c\u3002</p><p>\u6ce8\u610f\u4e0d\u8981\u6709\u4e0d\u5fc5\u8981\u7684\u8f93\u51fa\uff0c\u6bd4\u5982&quot;\u8bf7\u8f93\u5165 a \u548c b \u7684\u503c: &quot;\uff0c\u793a\u4f8b\u4ee3\u7801\u89c1\u9690\u85cf\u90e8\u5206\u3002</p>",
+        "input_description": "<p>\u4e24\u4e2a\u7528\u7a7a\u683c\u5206\u5f00\u7684\u6574\u6570.</p>",
+        "output_description": "<p>\u4e24\u6570\u4e4b\u548c</p>",
+        "samples": [
+          {
+            "input": "1 1",
+            "output": "2"
+          }
+        ],
+        "hint": "<p>C \u8bed\u8a00\u5b9e\u73b0:</p><pre><code class=\"lang-c++\">#include &lt;stdio.h&gt;    \nint main(){\n    int a, b;\n    scanf(&quot;%d%d&quot;, &a, &b);\n    printf(&quot;%d\\n&quot;, a+b);\n    return 0;\n}</code></pre><p>Java \u5b9e\u73b0:</p><pre><code class=\"lang-java\">import java.util.Scanner;\npublic class Main{\n    public static void main(String[] args){\n        Scanner in=new Scanner(System.in);\n        int a=in.nextInt();\n        int b=in.nextInt();\n        System.out.println((a+b));  \n    }\n}</code></pre>",
+        "languages": [
+          "C",
+          "C++",
+          "Java",
+          "Python2",
+          "Python3"
+        ],
+        "create_time": "2015-09-02T13:02:26Z",
+        "last_update_time": "2017-07-08T15:19:13.926000Z",
+        "time_limit": 12000,
+        "memory_limit": 32,
+        "io_mode": {
+          "input": "input.txt",
+          "output": "output.txt",
+          "io_mode": "Standard IO"
+        },
+        "spj": false,
+        "spj_language": null,
+        "rule_type": "OI",
+        "difficulty": "Mid",
+        "source": "\u7ecf\u5178\u9898\u76ee",
+        "total_score": 100,
+        "submission_number": 3523,
+        "accepted_number": 1901,
+        "statistic_info": {
+          "0": 1901,
+          "1": 52,
+          "2": 3,
+          "3": 2,
+          "4": 98,
+          "-1": 124,
+          "-2": 791
+        },
+        "share_submission": false,
+        "contest": null
+      },
+      {
+        "id": 5,
+        "tags": [
+          "qduoj \u7b2c\u4e00\u6b21\u6708\u8d5b"
+        ],
+        "created_by": {
+          "id": 1,
+          "username": "root",
+          "real_name": null
+        },
+        "template": {},
+        "_id": "2",
+        "title": "GZS\u4e0e\u53e4\u82f1\u6587\u5b57\u5178",
+        "description": "<p>\u6709\u4e00\u5929, GZS\u5f97\u5230\u4e00\u672c\u53e4\u4ee3\u7684\u82f1\u6587\u5b57\u5178, \u5f88\u53ef\u60dc, \u7531\u4e8e\u5e74\u4ee3\u4e45\u8fdc, \u5f88\u591a\u5355\u8bcd\u90fd\u770b\u4e0d\u6e05\u695a\u4e86. \u4f46\u662f, \u8fd9\u600e\u4e48\u80fd\u96be\u5012\u6211\u4eec\u7684G\u795e\u5462, G\u795e\u60f3\u8981\u7528\u8fd9\u672c\u5b57\u5178\u67e5\u8be2\u4e00\u4e9b\u5355\u8bcd, \u4e0b\u9762\u7ed9\u51fa\u5b57\u5178\u4e2d\u7684\u5185\u5bb9. \u5b57\u5178\u4e2d\u7684\u5355\u8bcd\u5168\u90e8\u7531\u5c0f\u5199\u5b57\u6bcd\u7ec4\u6210, \u5b57\u8ff9\u6a21\u7cca\u7684\u90e8\u5206\u7528&#039;?&#039;\u6216\u8005&#039;*&#039;\u6765\u8868\u793a, &#039;?&#039;\u53ef\u4ee5\u5339\u914d\u4e00\u4e2a\u5c0f\u5199\u5b57\u6bcd, &#039;*&#039;\u53ef\u4ee5\u5339\u914d0\u4e2a\u6216\u80051\u4e2a\u6216\u8005\u591a\u4e2a\u5c0f\u5199\u5b57\u6bcd. \u4f8b\u5982, a?b\u53ef\u4ee5\u4ee3\u8868aab, abb......azb, \u800ca*b\u53ef\u4ee5\u4ee3\u8868ab, aab, abb...azb, aaab, aabb......\u7136\u540e\u7ed9\u51fa\u4e00\u90e8\u5206\u5f85\u67e5\u627e\u7684\u5355\u8bcd, \u5168\u90e8\u7531\u5c0f\u5199\u5b57\u6bcd\u7ec4\u6210. \u5982\u679c\u80fd\u5728\u5b57\u5178\u4e2d\u627e\u5230\u8fd9\u4e2a\u5355\u8bcd, \u8bf7\u8f93\u51fa1, \u5426\u5219, \u8f93\u51fa0.\u5bf9\u4e8e\u8fd9\u79cd\u5c0f\u4e8bGZS\u89c9\u5f97\u5f88\u662f\u65e0\u804a, \u4f60\u5feb\u6765\u5199\u4e2a\u7a0b\u5e8f\u5e2e\u5e2e\u4ed6\u5427.<br /></p>",
+        "input_description": "<p>\u7b2c\u4e00\u884c\u5305\u542b\u4e00\u4e2a\u6574\u6570T(T &lt;= 1000), \u8868\u793a\u6d4b\u8bd5\u6570\u636e\u7684\u7ec4\u6570.\u6bcf\u7ec4\u6d4b\u8bd5\u6570\u636e\u7684\u7b2c\u4e00\u884c\u6709\u4e24\u4e2a\u6574\u6570n(0 &lt; n &lt; 1000) \u548cm (0 &lt; m &lt; 1000), \u5206\u522b\u8868\u793a\u5b57\u5178\u4e2d\u5355\u8bcd\u7684\u6570\u76ee\u548c\u5f85\u67e5\u627e\u7684\u5355\u8bcd\u7684\u6570\u76ee\u63a5\u4e0b\u6765n\u884c, \u4ee3\u8868\u5b57\u5178\u4e2d\u7684\u5355\u8bcd, \u6bcf\u4e2a\u5355\u8bcd\u7531\u5c0f\u5199\u5b57\u6bcd\u548c&#039;?&#039;\u4ee5\u53ca&#039;*&#039;\u7ec4\u6210, \u5355\u8bcd\u957f\u5ea6\u4e0d\u8d85\u8fc76.\u63a5\u4e0b\u6765m\u884c, \u4ee3\u8868\u5f85\u67e5\u627e\u7684\u5355\u8bcd, \u6bcf\u4e2a\u5355\u8bcd\u7531\u5c0f\u5199\u5b57\u6bcd\u7ec4\u6210, \u5355\u8bcd\u957f\u5ea6\u4e0d\u8d85\u8fc720.</p>",
+        "output_description": "<p>\u6bcf\u7ec4\u6570\u636e\u8f93\u51fa\u4e24\u884c\u7b2c\u4e00\u884c Case #x:, x\u8868\u793a\u7ec4\u6570\u7f16\u53f7\uff0c\u4ece1\u5f00\u59cb.\u7b2c\u4e8c\u884c \u5bf9\u4e8e\u6bcf\u4e2a\u5f85\u67e5\u627e\u7684\u5355\u8bcd, \u5982\u679c\u5b58\u5728\u4e8e\u5b57\u5178\u4e2d, \u5219\u8f93\u51fa1, \u5426\u5219, \u8f93\u51fa0.</p>",
+        "samples": [
+          {
+            "input": "2\n2 3\n*\n?\nabj\nab\na\n3 4\nab?d\na*e\nabc\nabcd\nabcde\nax\nae",
+            "output": "Case #1:\n111\nCase #2:\n1101"
+          }
+        ],
+        "hint": "",
+        "languages": [
+          "C",
+          "C++"
+        ],
+        "create_time": "2015-09-06T07:13:26Z",
+        "last_update_time": null,
+        "time_limit": 1000,
+        "memory_limit": 256,
+        "io_mode": {
+          "input": "input.txt",
+          "output": "output.txt",
+          "io_mode": "Standard IO"
+        },
+        "spj": false,
+        "spj_language": null,
+        "rule_type": "ACM",
+        "difficulty": "Mid",
+        "source": "qduoj \u7b2c\u4e00\u6b21\u6708\u8d5b for 2014\u7ea7",
+        "total_score": 0,
+        "submission_number": 292,
+        "accepted_number": 28,
+        "statistic_info": {
+          "0": 28,
+          "1": 16,
+          "3": 1,
+          "4": 49,
+          "-1": 95,
+          "-2": 103
+        },
+        "share_submission": false,
+        "contest": null
+      },
+      {
+        "id": 6,
+        "tags": [
+          "\u7d20\u6570",
+          "qduoj \u7b2c\u4e00\u6b21\u6708\u8d5b"
+        ],
+        "created_by": {
+          "id": 1697,
+          "username": "15admin",
+          "real_name": null
+        },
+        "template": {},
+        "_id": "3",
+        "title": "GZS\u4e0e\u7d20\u6570\u5927\u6cd5",
+        "description": "<p>\u81ea\u4eceGZS\u6210\u4e3aG\u795e\u4e4b\u540e\uff0c\u8ffd\u968f\u8005\u4e0d\u8ba1\u5176\u6570\uff0c\u66f4\u662f\u6709\u4e86\u5927\u540d\u9f0e\u9f0e\u7684\u62dc\u795e\u8bba\uff1a</p><p>&quot;\u543e\u5c1d\u7ec8\u65e5\u7f16\u7a0b\u4e5f\uff0c\u4e0d\u5982\u987b\u81fe\u4e4b\u62dc\u62dcG\u795e\u4e5f\uff1b\u543e\u5c1d\u6253\u5b57\u5237\u9898\u4e5f\uff0c\u4e0d\u5982\u4e00\u65e5\u4e09\u62dcG\u795e\u4e5f\uff1b</p><p>\u62dc\u62dcG\u795e\uff0c\u7a0b\u5e8f\u975e\u957f\u4e5f\uff0c\u800c\u51fa\u7ed3\u679c\uff1b\u4e09\u62dcG\u795e\uff0c\u6253\u5b57\u975e\u5feb\u4e5f\uff0c\u800c\u80fdAC\u3002</p><p>\u543e\u65e5\u4e09\u62dcG\u795e\u4e5f\uff01\uff01\uff01\u201c</p><p>\u4f5c\u4e3a\u83dc\u9e1f\uff0c\u7ecf\u5e38\u9047\u5230\u4e00\u4e9b\u96be\u9898\uff0c\u4e8e\u662f\u5c31\u53bb\u62dc\u89c1G\u795e\u4e86\u3002G\u795e\u4e00\u770b\u9898\u76ee\uff0c\u5fae\u5fae\u4e00\u7b11\u8bf4\u9053\uff1a\u201c\u8fd9\u79cd\u6c34\u9898\u4e5f\u7b97\u96be\u9898\uff1f\u6211\u95ed\u7740\u773c\u90fd\u80fd\u4e00\u5206\u949f\u5237\u5341\u9053\uff01\u201d\u6bd5\u7adf\u662fG\u795e\uff0c\u6211\u7b49\u83dc\u9e1f\u8fd8\u662f\u5f97\u865a\u5fc3\u5411G\u795e\u5b66\u4e60\u3002\u5404\u4f4d\u5927\u795e\u4eec\uff0c\u76f8\u4fe1\u8fd9\u9053\u6c34\u9898\u4f60\u4eec\u4e5f\u80fd\u5f88\u5feb\u5c31AC\u5427\u3002\u9898\u76ee\u662f\u8fd9\u6837\u7684\uff1a</p><p></p><p>\u7ed9\u5b9a\u4e00\u4e2a\u8303\u56f4<b>[l,r]</b>\uff0c\u6c42<b>[l, r]</b>\u4e2d\u7684\u8ddd\u79bb\u6700\u8fd1\u7684\u4e24\u4e2a\u76f8\u90bb\u7d20\u6570\u548c\u8ddd\u79bb\u6700\u8fdc\u7684\u4e24\u4e2a\u76f8\u90bb\u7d20\u6570\u3002</p>",
+        "input_description": "<p>\u591a\u7ec4\u6d4b\u8bd5\u6570\u636e\uff0c\u6bcf\u7ec4\u6570\u636e\u4e00\u884c\uff0c\u5305\u542b\u4e24\u4e2a\u6570\u5b57l\u548cr\u30021&lt;=l&lt;=r&lt;=5*10^6\u3002</p>",
+        "output_description": "<p>\u5982\u679c\u5b58\u5728\uff0c\u5219\u6309\u6837\u4f8b\u683c\u5f0f\u8f93\u51fa\u6700\u8fd1\u7684\u4e24\u4e2a\u7d20\u6570\u548c\u6700\u8fdc\u7684\u4e24\u4e2a\u7d20\u6570\uff08\u5982\u679c\u6709\u591a\u4e2a\uff0c\u8f93\u51fa\u6700\u5c0f\u7684\uff09\uff1b\u5982\u679c\u4e0d\u5b58\u5728\uff0c\u8f93\u51fa\u4e00\u884c\uff1aThere are no adjacent primes.</p>",
+        "samples": [
+          {
+            "input": "2 17\n14 17",
+            "output": "2,3 are closest, 7,11 are most distant.\nThere are no adjacent primes."
+          }
+        ],
+        "hint": "",
+        "languages": [
+          "C",
+          "C++"
+        ],
+        "create_time": "2015-09-06T07:15:32Z",
+        "last_update_time": null,
+        "time_limit": 1000,
+        "memory_limit": 256,
+        "io_mode": {
+          "input": "input.txt",
+          "output": "output.txt",
+          "io_mode": "Standard IO"
+        },
+        "spj": false,
+        "spj_language": null,
+        "rule_type": "ACM",
+        "difficulty": "Mid",
+        "source": "qduoj \u7b2c\u4e00\u6b21\u6708\u8d5b for 2014\u7ea7",
+        "total_score": 0,
+        "submission_number": 301,
+        "accepted_number": 24,
+        "statistic_info": {
+          "0": 24,
+          "1": 24,
+          "4": 63,
+          "-1": 141,
+          "-2": 49
+        },
+        "share_submission": false,
+        "contest": null
+      },
+      {
+        "id": 7,
+        "tags": [
+          "qduoj \u7b2c\u4e00\u6b21\u6708\u8d5b"
+        ],
+        "created_by": {
+          "id": 1697,
+          "username": "15admin",
+          "real_name": null
+        },
+        "template": {},
+        "_id": "4",
+        "title": "GZS\u9001\u6e29\u6696",
+        "description": "<p>\t\t\t</p><p>\u00a0 \u00a0 \u4f17\u6240\u5468\u77e5\uff0cGZS\u662f\u4e00\u4e2a\u603b\u662f\u8003\u7b2c\u4e00\u7684\u5927\u5b66\u9738\uff0c\u4e3a\u4ec0\u4e48\u5462\uff1f\u56e0\u4e3aGZS\u559c\u6b22\u601d\u8003\uff01(\u9003\u2026</p><p>\u5f53\u7136\uff0cGZS\u4e5f\u6709\u4e0d\u613f\u610f\u52a8\u8111\u7684\u65f6\u5019\uff0c\u7ed9\u4f60N\u4e2a\u6b63\u6574\u6570(\u53ef\u4ee5\u91cd\u590d)\uff0cGZS\u5e0c\u671b\u8ba9\u4f60\u544a\u8bc9\u4ed6\u8fd9\u4e9b\u6b63\u6574\u6570\u91cc\u9762\u7b2cK\u5c0f\u7684\u6570\u662f\u591a\u5c11\u3002\u7b80\u5355\u5417\uff0cACCEPT it\uff01</p>",
+        "input_description": "<p>\u7b2c\u4e00\u884c\u4e3a\u4e00\u4e2a\u6574\u6570N ( N &lt;= 100000) \u4ee3\u8868\u6574\u6570\u4e2a\u6570\uff1b\u7b2c\u4e8c\u884c\u4e3aN\u4e2a\u6574\u6570\uff0c\u5e76\u4e14\u6bcf\u4e2a\u6b63\u6574\u6570\u7684\u503c\u90fd\u4e0d\u5927\u4e8e10^6\uff1b\u7b2c\u4e09\u884c\u4e3a\u4e00\u4e2a\u6574\u6570K ( K &lt;= N );</p>",
+        "output_description": "<p>\u8f93\u51fa\u4e00\u884c\uff0c\u5305\u542b\u4e00\u4e2a\u6574\u6570\u3002\u8fd9\u4e2a\u6574\u6570\u5c31\u662f\u8fd9\u4e2a\u5e8f\u5217\u91cc\u9762\u6392\u7b2cK\u5c0f\u7684\u6570\u3002</p>",
+        "samples": [
+          {
+            "input": "5\n1 2 2 4 5\n3",
+            "output": "2"
+          }
+        ],
+        "hint": "",
+        "languages": [
+          "C++",
+          "C"
+        ],
+        "create_time": "2015-09-06T07:18:38Z",
+        "last_update_time": "2016-06-30T13:54:57Z",
+        "time_limit": 1000,
+        "memory_limit": 256,
+        "io_mode": {
+          "input": "input.txt",
+          "output": "output.txt",
+          "io_mode": "Standard IO"
+        },
+        "spj": false,
+        "spj_language": null,
+        "rule_type": "ACM",
+        "difficulty": "Mid",
+        "source": "qduoj \u7b2c\u4e00\u6b21\u6708\u8d5b for 2014\u7ea7",
+        "total_score": 0,
+        "submission_number": 321,
+        "accepted_number": 73,
+        "statistic_info": {
+          "0": 73,
+          "1": 45,
+          "4": 35,
+          "-1": 110,
+          "-2": 58
+        },
+        "share_submission": false,
+        "contest": null
+      },
+      {
+        "id": 8,
+        "tags": [
+          "qduoj \u7b2c\u4e00\u6b21\u6708\u8d5b",
+          "\u6570\u5b66\u89c4\u5f8b"
+        ],
+        "created_by": {
+          "id": 1,
+          "username": "root",
+          "real_name": null
+        },
+        "template": {},
+        "_id": "5",
+        "title": "GZS\u7684\u4e09\u89d2\u5f62",
+        "description": "<p>\u673a\u667a\u65e0\u6bd4\u7684G\u795e\u4eca\u5929\u5b8c\u6210\u4e86\u4e00\u5929\u7684\u4efb\u52a1\uff0c\u5b9e\u5728\u662f\u65e0\u804a\u7684\u7d27\uff0c\u62ff\u8d77\u4e00\u652f\u7b14\u5728\u7eb8\u4e0a\u753b\u8d77\u4e86\u4e09\u89d2\u5f62\uff0c\u8fb9\u957f\u4e3a1\uff0c 2\uff0c 3\uff0c.........</p><p>\u00a0<img src=\"http://acm.hdu.edu.cn/data/images/C424-1001-1.jpg\" /></p><p>\u5373\u4f7f\u662f\u65e0\u804a\u5230\u8fd9\u79cd\u7a0b\u5ea6\uff0cG\u795e\u53d1\u8fbe\u7684\u5927\u8111\u4e5f\u5728\u4e0d\u505c\u7684\u601d\u8003\uff0c\u4ece\u9876\u90e8\u7684\u70b9\u5230\u6cbf\u7740\u6240\u753b\u51fa\u7684\u8fb9\u5230\u8fbe\u5e95\u8fb9\u7684\u65b9\u6848\u6709\u591a\u5c11\u79cd\u5462\u3002</p><p>\u7ed3\u679c\u53ef\u80fd\u6bd4\u8f83\u5927\uff0c \u7ed3\u679c\u5bf91000003\u53d6\u4f59\u3002</p><p>\u4f8b\u5982\uff0c\u8fb9\u957f\u4e3a2\u7684\u60c5\u51b5\u5982\u4e0b\u6240\u793a\uff1a</p><p><img src=\"http://acm.hdu.edu.cn/data/images/C424-1001-2.jpg\" /></p>",
+        "input_description": "<p>\u7b2c\u4e00\u884c\u6709\u4e00\u4e2a\u6574\u6570 T (1 &lt;= T &lt;= 1000) \uff0c\u662f\u4e09\u89d2\u5f62\u7684\u4e2a\u6570\u3002\u63a5\u4e0b\u6765T\u884c\uff0c\u6bcf\u884c\u4e00\u4e2a\u6574\u6570 N (1 &lt;= N &lt;= 10^18)\uff0c\u4ee3\u8868\u4e09\u89d2\u5f62\u8fb9\u957f\u3002</p>",
+        "output_description": "<p>\u8f93\u51faT\u884c\uff0c\u6bcf\u884c\u4ee3\u8868\u65b9\u6848\u6570\uff0c\u7ed3\u679c\u5bf91000003\u53d6\u4f59\u3002</p>",
+        "samples": [
+          {
+            "input": "3\n1\n2\n3",
+            "output": "2\n8\n48"
+          }
+        ],
+        "hint": "",
+        "languages": [
+          "C++",
+          "C"
+        ],
+        "create_time": "2015-09-06T07:18:46Z",
+        "last_update_time": "2016-06-26T04:10:42Z",
+        "time_limit": 1000,
+        "memory_limit": 256,
+        "io_mode": {
+          "input": "input.txt",
+          "output": "output.txt",
+          "io_mode": "Standard IO"
+        },
+        "spj": false,
+        "spj_language": null,
+        "rule_type": "ACM",
+        "difficulty": "Mid",
+        "source": "qduoj \u7b2c\u4e00\u6b21\u6708\u8d5b for 2014\u7ea7",
+        "total_score": 0,
+        "submission_number": 153,
+        "accepted_number": 28,
+        "statistic_info": {
+          "0": 28,
+          "1": 8,
+          "4": 16,
+          "-1": 80,
+          "-2": 21
+        },
+        "share_submission": false,
+        "contest": null
+      },
+      {
+        "id": 9,
+        "tags": [
+          "\u5b57\u7b26\u4e32",
+          "qduoj \u7b2c\u4e00\u6b21\u6708\u8d5b"
+        ],
+        "created_by": {
+          "id": 1,
+          "username": "root",
+          "real_name": null
+        },
+        "template": {},
+        "_id": "6",
+        "title": "GZS and String",
+        "description": "<p>GZS has two strings\u00a0s\u00a0and\u00a0t.</p><p>In each step, GZS can select arbitrary character\u00a0c\u00a0of\u00a0s\u00a0and insert any character\u00a0d\u00a0(d\u00a0\u2260\u00a0c) just after it.</p><p>GZS wants to convert\u00a0s\u00a0to\u00a0t. But is it possible?</p>",
+        "input_description": "There are multiple test cases. The first line of input contains an integer T, indicating the number of test cases. For each test case there are two strings s and t, one per line.\n1 \u2264 T \u2264 10^5\n1 \u2264 |s| \u2264 |t| \u2264 10^5\nAll strings consist only of lowercase English letters.\nThe size of each input file will be less than 5MB.",
+        "output_description": "For each test case, output &quot;Yes&quot; if GZS can convert s to t, otherwise output &quot;No&quot;.",
+        "samples": [
+          {
+            "input": "4\na\nb\ncat\ncats\ndo\ndo\napple\naapple",
+            "output": "No\nYes\nYes\nNo"
+          }
+        ],
+        "hint": "",
+        "languages": [
+          "C",
+          "C++"
+        ],
+        "create_time": "2015-09-06T07:18:53Z",
+        "last_update_time": null,
+        "time_limit": 1000,
+        "memory_limit": 256,
+        "io_mode": {
+          "input": "input.txt",
+          "output": "output.txt",
+          "io_mode": "Standard IO"
+        },
+        "spj": false,
+        "spj_language": null,
+        "rule_type": "ACM",
+        "difficulty": "Mid",
+        "source": "qduoj \u7b2c\u4e00\u6b21\u6708\u8d5b for 2014\u7ea7",
+        "total_score": 0,
+        "submission_number": 44,
+        "accepted_number": 12,
+        "statistic_info": {
+          "0": 12,
+          "4": 2,
+          "-1": 25,
+          "-2": 5
+        },
+        "share_submission": false,
+        "contest": null
+      },
+      {
+        "id": 10,
+        "tags": [
+          "\u641c\u7d22",
+          "qduoj \u7b2c\u4e00\u6b21\u6708\u8d5b"
+        ],
+        "created_by": {
+          "id": 1,
+          "username": "root",
+          "real_name": null
+        },
+        "template": {},
+        "_id": "7",
+        "title": "GZS\u4e0e\u5c0f\u516c\u56ed",
+        "description": "<p>\u67d0\u5929GZS\u6f2b\u6b65\u5728\u5b66\u6821\u65b0\u5efa\u7684\u5c0f\u516c\u56ed\uff0c\u4ed6\u53d1\u73b0\u90a3\u91cc\u5efa\u6210\u4e86\u4e00\u4e9b\u6c34\u6c60\u548c\u5c0f\u6cb3\u9053\u3002\u6211\u4eec\u6682\u4e14\u628a\u5b83\u4eec\u7edf\u4e00\u770b\u6210\u6c34\u6c60\u3002\u5047\u8bbe\u516c\u56ed\u65c1\u6709\u4e00\u5f20\u5c0f\u516c\u56ed\u7684\u5730\u56fe\uff0c\u4e0a\u9762\u4ec5\u6807\u8bc6\u4e86\u6b64\u5904\u662f\u5426\u662f\u6c34\u6c60\uff0c\u4f60\u80fd\u5e2eGZS\u8ba1\u7b97\u51fa\u8be5\u5730\u56fe\u4e2d\u4e00\u5171\u6709\u51e0\u4e2a\u6c34\u6c60\u5417\u3002<br /></p>",
+        "input_description": "\u7b2c\u4e00\u884c\u8f93\u5165\u4e00\u4e2a\u6574\u6570N\uff0c\u8868\u793a\u5171\u6709N\u7ec4\u6d4b\u8bd5\u6570\u636e\n\u6bcf\u4e00\u7ec4\u6570\u636e\u90fd\u662f\u5148\u8f93\u5165\u8be5\u5730\u56fe\u7684\u884c\u6570m(0&lt;m&lt;100)\u4e0e\u5217\u6570n(0&lt;n&lt;100)\uff0c\u7136\u540e\uff0c\u8f93\u5165\u63a5\u4e0b\u6765\u7684m\u884c\u6bcf\u884c\u8f93\u5165n\u4e2a\u6570\uff0c\u8868\u793a\u6b64\u5904\u6709\u6c34\u8fd8\u662f\u6ca1\u6c34\uff081\u8868\u793a\u6b64\u5904\u662f\u6c34\u6c60\uff0c0\u8868\u793a\u6b64\u5904\u662f\u5730\u9762\uff09",
+        "output_description": "\u8f93\u51fa\u8be5\u5730\u56fe\u4e2d\u6c34\u6c60\u7684\u4e2a\u6570\u3002",
+        "samples": [
+          {
+            "input": "2\n3 4\n1 0 0 0 \n0 0 1 1\n1 1 1 0\n5 5\n1 1 1 1 0\n0 0 1 0 1\n0 0 0 0 0\n1 1 1 0 0\n0 0 1 1 1\n",
+            "output": "2\n3"
+          }
+        ],
+        "hint": "<p>\u8981\u6ce8\u610f\uff0c\u6bcf\u4e2a\u6c34\u6c60\u7684\u65c1\u8fb9\uff08\u4e0a\u4e0b\u5de6\u53f3\u56db\u4e2a\u4f4d\u7f6e\uff09\u5982\u679c\u8fd8\u662f\u6c34\u6c60\u7684\u8bdd\u7684\u8bdd\uff0c\u5b83\u4eec\u53ef\u4ee5\u770b\u505a\u662f\u540c\u4e00\u4e2a\u6c34\u6c60\u3002<br /></p>",
+        "languages": [
+          "C",
+          "C++"
+        ],
+        "create_time": "2015-09-06T07:18:59Z",
+        "last_update_time": "2016-06-30T13:57:35Z",
+        "time_limit": 3000,
+        "memory_limit": 256,
+        "io_mode": {
+          "input": "input.txt",
+          "output": "output.txt",
+          "io_mode": "Standard IO"
+        },
+        "spj": false,
+        "spj_language": null,
+        "rule_type": "ACM",
+        "difficulty": "Mid",
+        "source": "qduoj \u7b2c\u4e00\u6b21\u6708\u8d5b for 2014\u7ea7",
+        "total_score": 0,
+        "submission_number": 109,
+        "accepted_number": 31,
+        "statistic_info": {
+          "0": 31,
+          "4": 5,
+          "-1": 43,
+          "-2": 30
+        },
+        "share_submission": false,
+        "contest": null
+      },
+      {
+        "id": 11,
+        "tags": [
+          "dp",
+          "qduoj \u7b2c\u4e00\u6b21\u6708\u8d5b"
+        ],
+        "created_by": {
+          "id": 1,
+          "username": "root",
+          "real_name": null
+        },
+        "template": {},
+        "_id": "8",
+        "title": "GZS\u91c7\u8611\u83c7",
+        "description": "<p>\t\t\t</p><p>\u4e3a\u4e86\u63d0\u9ad8\u9752\u5927\u9910\u5385\u7684\u81b3\u98df\u8425\u517b\uff0c<font>GZS</font>\u51b3\u5b9a\u53bb\u91ce\u5916\u91c7\u8611\u83c7\uff0c\u4f46\u4e0d\u5e78\u7684\u662f\uff0c\u7531\u4e8e\u53bb\u7684\u6bd4\u8f83\u665a\uff0c\u91ce\u6797\u91cc\u7684\u8611\u83c7\u6240\u5269\u65e0\u51e0\uff0c\u53ea\u5269\u4e00\u957f\u6392\u4e86\uff0c\u8fd9\u4e00\u957f\u6392\u6709<font>n</font>\u4e2a\u683c\u5b50\uff0c\u800c\u4e14\u8fd9<font>n</font>\u4e2a\u683c\u5b50\u5f53\u4e2d\u7684\u4e00\u4e9b\u8611\u83c7\u8fd8\u6709\u7684\u88ab\u522b\u4eba\u91c7\u53bb\u4e86\uff0c\u6240\u4ee5\u7559\u4e0b\u4e86\u4e00\u4e9b\u5751\u3002\u4e3a\u4e86\u8d70\u8fc7\u53bb\u8fd9\u4e2a\u5751\uff0c\u5fc5\u987b\u62ff\u8611\u83c7\u6765\u586b\u3002\u81f3\u5c11\u586b\u5e73\u624d\u80fd\u901a\u8fc7\u3002\u8611\u83c7\u548c\u5751\u90fd\u6709\u5927\u5c0f\uff0c\u6bcf\u5355\u4f4d\u8611\u83c7\u53ef\u4ee5\u586b\u6bcf\u5355\u4f4d\u7684\u5751\u3002<font>GZS</font>\u6709\u4e24\u4e2a\u795e\u6280\uff0c\u795e\u6280A:\u53ef\u4ee5\u4ece\u91ce\u5916\u8df3\u5230\u4efb\u610f\u4e00\u4e2a\u683c\u5b50\uff0c\u8df3\u8fdb\u683c\u5b50\u4e4b\u540e\uff0c\u53ea\u80fd\u5f80\u53f3\u91c7\uff1b\u795e\u6280B:\u5982\u679c\u5f53\u524d\u5728\u683c\u5b50\u4e2d\uff0c\u53ef\u4ee5\u4ece\u683c\u5b50\u8df3\u51fa\u5230\u91ce\u5916\uff0c\u4e00\u65e6\u8df3\u51fa\u6765\u5c31\u4e0d\u80fd\u518d\u56de\u53bb\uff0c\u8fd9\u4e24\u4e2a\u795e\u6280\u5404\u80fd\u4f7f\u7528\u4e00\u6b21\u3002\u4f46\u662f\u5982\u679c\u90fd\u662f\u5751\u7684\u8bdd\uff0c\u53ef\u4ee5\u9009\u62e9\u4e0d\u91c7\u4efb\u4f55\u8611\u83c7\u56de\u5bb6\u3002</p>",
+        "input_description": "\u4e00\u4e2a\u6574\u6570T(T&lt;=100)\u4ee3\u8868\u6d4b\u8bd5\u6570\u636e\u7ec4\u6570\uff0c\u63a5\u4e0b\u6765\u4e00\u884c\u4e00\u4e2a\u6574\u6570n(1&lt;=n&lt;=1000000)\u8868\u793a\u4e00\u5171\u6709\u591a\u5c11\u4e2a\u683c\u5b50\uff0c\u63a5\u4e0b\u6765\u4e00\u884cn\u4e2a\u7a7a\u683c\u9694\u5f00\u7684\u6574\u6570bi(-1e9&lt;bi&lt;1e9)\uff0c\u5176\u4e2d\uff0c\u5927\u4e8e\u7b49\u4e8e0\u8868\u793a\u8611\u83c7\u7684\u5927\u5c0f\uff0c\u5c0f\u4e8e0\u8868\u793a\u5751\u7684\u5927\u5c0f\u3002",
+        "output_description": "\u6bcf\u7ec4\u6570\u636e\u8f93\u51fa\u4e00\u4e2a\u6574\u6570\u8868\u793aGZS\u6700\u591a\u80fd\u91c7\u7684\u8611\u83c7\u603b\u91cf\u3002",
+        "samples": [
+          {
+            "input": "2\n5\n1 -2 3 4 -5\n5\n1 -2 4 -3 5",
+            "output": "7\n6"
+          }
+        ],
+        "hint": "<p>\t\t\t</p><p>\u7b2c\u4e00\u7ec4\u6837\u4f8b\uff1a\u53ef\u4ee5\u76f4\u63a5\u8df3\u5230\u4f4d\u7f6e3\uff0c\u7136\u540e\u7ee7\u7eed\u91c7\u4f4d\u7f6e4\u7684\u8611\u83c7\uff0c\u7136\u540e\u4ece\u4f4d\u7f6e4\u8df3\u51fa\u53bb\uff0c\u6240\u4ee5\u603b\u91cf\u5c31\u662f7\u3002</p><p>\u8611\u83c7\u7684\u5927\u5c0f\u53ef\u4ee5\u5206\u5272\uff1a\u4f8b\u5982\u7b2c\u4e8c\u4e2a\u6837\u4f8b\u4ece\u7b2c\u4e09\u4e2a\u8611\u83c7\u5f00\u59cb\u91c7\uff0c\u8fd9\u65f6\u83b7\u53d6\u8611\u83c7\u603b\u91cf\u4e3a<font>4</font>\uff0c\u7531\u4e8e\u53ea\u80fd\u5f80\u53f3\u91c7\uff0c\u6240\u4ee5\u91c7\u5230\u7b2c\u56db\u4e2a\u683c\u5b50\u7684\u65f6\u5019\u9700\u8981\u586b\u5927\u5c0f\u4e3a<font>3</font>\u7684\u5751\uff0c\u6240\u4ee5\u8fd8\u52691\uff0c\u6700\u540e\u518d\u91c7\u683c\u5b50\u4e3a<font>5</font>\u7684\u8611\u83c7\uff0c\u6240\u4ee5\u6700\u540e\u603b\u5927\u5c0f\u4e3a<font>6.</font></p><p><font>90%\u7684\u6570\u636en&lt;1000</font></p><p><font>100%\u7684\u6570\u636en&lt;=1000000</font></p>",
+        "languages": [
+          "C",
+          "C++"
+        ],
+        "create_time": "2015-09-06T07:19:05Z",
+        "last_update_time": "2016-06-30T13:57:14Z",
+        "time_limit": 1000,
+        "memory_limit": 32,
+        "io_mode": {
+          "input": "input.txt",
+          "output": "output.txt",
+          "io_mode": "Standard IO"
+        },
+        "spj": false,
+        "spj_language": null,
+        "rule_type": "ACM",
+        "difficulty": "Mid",
+        "source": "qduoj \u7b2c\u4e00\u6b21\u6708\u8d5b for 2014\u7ea7",
+        "total_score": 0,
+        "submission_number": 37,
+        "accepted_number": 8,
+        "statistic_info": {
+          "0": 8,
+          "1": 13,
+          "-1": 11,
+          "-2": 5
+        },
+        "share_submission": false,
+        "contest": null
+      },
+      {
+        "id": 12,
+        "tags": [
+          "\u6c34\u9898"
+        ],
+        "created_by": {
+          "id": 1,
+          "username": "root",
+          "real_name": null
+        },
+        "template": {},
+        "_id": "9",
+        "title": "LC and Prime",
+        "description": "<p>\t\t\t</p><p>Given a number n, please count how many tuple(p1, p2, p3) satisfied that p1&lt;=p2&lt;=p3, p1,p2,p3 are primes and p1 + p2 + p3 = n.</p>",
+        "input_description": "Multiple test cases(less than 100), for each test case, the only line indicates the positive integer n(n\u226410000).",
+        "output_description": "For each test case, print the number of ways.",
+        "samples": [
+          {
+            "input": "3\n9",
+            "output": "0\n2"
+          }
+        ],
+        "hint": "",
+        "languages": [
+          "C",
+          "C++"
+        ],
+        "create_time": "2015-09-19T13:42:16Z",
+        "last_update_time": null,
+        "time_limit": 1000,
+        "memory_limit": 32,
+        "io_mode": {
+          "input": "input.txt",
+          "output": "output.txt",
+          "io_mode": "Standard IO"
+        },
+        "spj": false,
+        "spj_language": null,
+        "rule_type": "ACM",
+        "difficulty": "Mid",
+        "source": "2014\u7ea7\u5b9e\u9a8c\u5ba4\u7eb3\u65b0\u8003\u8bd5",
+        "total_score": 0,
+        "submission_number": 47,
+        "accepted_number": 4,
+        "statistic_info": {
+          "0": 4,
+          "1": 11,
+          "4": 4,
+          "-1": 14,
+          "-2": 14
+        },
+        "share_submission": false,
+        "contest": null
+      },
+      {
+        "id": 13,
+        "tags": [
+          "manacher"
+        ],
+        "created_by": {
+          "id": 1,
+          "username": "root",
+          "real_name": null
+        },
+        "template": {},
+        "_id": "10",
+        "title": "LC\u548c\u52a0\u739b\u5e1d\u56fd\u7684\u516c\u4e3b",
+        "description": "<p>\u6709\u4e00\u5929, \u6211\u4eec\u5e05\u6c14\u7684LC\u6765\u5230\u52a0\u739b\u5e1d\u56fd. \u6709\u65f6\u5019, \u7f18\u5206\u5c31\u662f\u8fd9\u4e48\u5947\u602a, LC\u548c\u52a0\u739b\u5e1d\u56fd\u7684\u516c\u4e3b\u4e00\u89c1\u949f\u60c5, \u5948\u4f55\u516c\u4e3b\u7684\u7236\u738b\u4e0d\u540c\u610f, \u56e0\u4e3a\u4ed6\u89c9\u5f97LC\u9664\u4e86\u957f\u5f97\u7279\u522b\u5e05\u4e4b\u5916, \u5e76\u6ca1\u6709\u4e00\u6280\u4e4b\u957f.</p><p>LC\u5bf9\u6b64\u5475\u5475\u4e00\u7b11, \u4ed6\u8bf4, \u6211\u53ef\u662f\u521b\u65b0\u5b9e\u9a8c\u5ba4\u8d70\u51fa\u6765\u7684\u5b66\u751f, \u6211\u4f1a\u7684\u6280\u80fd\u53ef\u591a\u7740\u5462, \u5148\u8bf4\u4e2a\u7b80\u5355\u7684\u5427, \u53ea\u8981\u4f60\u7ed9\u6211\u4efb\u610f\u4e00\u4e32\u5b57\u7b26\u4e32, \u6211\u5c31\u80fd\u7acb\u9a6c\u7b97\u51fa\u8fd9\u4e32\u5b57\u7b26\u4e32\u5f53\u4e2d\u6700\u957f\u56de\u6587\u4e32\u7684\u957f\u5ea6. \u56fd\u738b\u5f88\u662f\u5403\u60ca, \u8bf4\u8981\u8003\u4e00\u8003LC.</p><p>\u4e8e\u662f\u56fd\u738b\u60f3\u8ba9\u4f60\u5e2e\u5fd9\u5199\u4e00\u4e2a\u7a0b\u5e8f, \u7528\u6765\u6bd4\u5bf9LC\u7684\u7b54\u6848, \u5feb\u6765\u5e2e\u5e2e\u56fd\u738b\u5427!</p>",
+        "input_description": "\u7b2c\u4e00\u884c\u8f93\u5165\u4e00\u4e2aT(T &lt;= 50), \u8868\u793a\u4e00\u5171\u6709T\u7ec4\u6d4b\u8bd5\u6570\u636e.\n\u63a5\u4e0b\u6765T\u884c, \u6bcf\u884c\u4e3a\u4e00\u7ec4\u7531\u5c0f\u5199\u5b57\u6bcd\u7ec4\u6210, \u957f\u5ea6\u4e0d\u8d85\u8fc710^5\u7684\u5b57\u7b26\u4e32.",
+        "output_description": "\u6bcf\u884c\u4e00\u4e2a\u6574\u6570X, \u8868\u793a\u8be5\u7ec4\u5b57\u7b26\u4e32\u4e2d\u6240\u5305\u542b\u7684\u6700\u957f\u56de\u6587\u957f\u5ea6.",
+        "samples": [
+          {
+            "input": "3\naba\nabc\naabaa",
+            "output": "3\n1\n5"
+          }
+        ],
+        "hint": "",
+        "languages": [
+          "C",
+          "C++"
+        ],
+        "create_time": "2015-09-19T13:42:19Z",
+        "last_update_time": null,
+        "time_limit": 1000,
+        "memory_limit": 256,
+        "io_mode": {
+          "input": "input.txt",
+          "output": "output.txt",
+          "io_mode": "Standard IO"
+        },
+        "spj": false,
+        "spj_language": null,
+        "rule_type": "ACM",
+        "difficulty": "Mid",
+        "source": "2014\u7ea7\u5b9e\u9a8c\u5ba4\u7eb3\u65b0\u8003\u8bd5",
+        "total_score": 0,
+        "submission_number": 21,
+        "accepted_number": 5,
+        "statistic_info": {
+          "0": 5,
+          "1": 2,
+          "4": 2,
+          "-1": 5,
+          "-2": 7
+        },
+        "share_submission": false,
+        "contest": null
+      },
+      {
+        "id": 14,
+        "tags": [
+          "\u6c34\u9898"
+        ],
+        "created_by": {
+          "id": 1,
+          "username": "root",
+          "real_name": null
+        },
+        "template": {},
+        "_id": "11",
+        "title": "LC\u7684\u70e6\u607c",
+        "description": "<p style=\"margin-top: 1em; margin-bottom: 1em; padding: 0px; color: rgb(70, 70, 70); font-family: Tahoma, Arial, sans-serif, simsun; font-size: 14px; line-height: 21px;\">LC\u7ecf\u5e38\u62b1\u6028\uff1a\u201cC\u8bed\u8a00\u4e2d\u7684\u683c\u5f0f\u8f93\u51fa\u4e2d\u6709\u5341\u516d\u3001\u5341\u3001\u516b\u8fdb\u5236\u8f93\u51fa\uff0c\u7136\u800c\u5374\u6ca1\u6709\u4e8c\u8fdb\u5236\u8f93\u51fa\uff0c\u54ce\uff0c\u771f\u9057\u61be\uff01\u8c01\u80fd\u5e2e\u6211\u5199\u4e00\u4e2a\u7a0b\u5e8f\u5b9e\u73b0\u8f93\u5165\u4e00\u4e2a\u5341\u8fdb\u5236\u6570n\uff0c\u8f93\u51fa\u5b83\u7684\u4e8c\u8fdb\u5236\u6570\u5440\uff1f\u201d</p><p style=\"margin-top: 1em; margin-bottom: 1em; padding: 0px; color: rgb(70, 70, 70); font-family: Tahoma, Arial, sans-serif, simsun; font-size: 14px; line-height: 21px;\">\u96be\u9053\u4f60\u4e0d\u60f3\u5e2e\u5e2e\u5979\u5417\uff1f</p>",
+        "input_description": "\u8f93\u5165\u6709\u591a\u4e2a\u6570\u636e\uff0c\u6570\u636e\u4ee5EOF\u7ed3\u675f\uff1b\u6bcf\u4e2a\u6570\u636eni\uff080&lt;=ni&lt;=1000010000\uff09\u7528\u7a7a\u683c\u9694\u5f00\uff1b",
+        "output_description": "\u8f93\u51fa\u6709\u591a\u884c\uff0c\u6bcf\u884c\u5bf9\u5e94\u4e00\u4e2a\u5341\u8fdb\u5236\u6570ni\u7684\u4e8c\u8fdb\u5236\u6570\uff1b\n\u6ce8\u610f\uff1a\u8f93\u51fa\u7684\u4e8c\u8fdb\u5236\u53bb\u6389\u4efb\u4f55\u4e00\u4e2a\u591a\u4f59\u7684\u524d\u5bfc0\uff1b",
+        "samples": [
+          {
+            "input": "0 \n1 \n2 \n10",
+            "output": "0\n1\n10\n1010"
+          }
+        ],
+        "hint": "<p>EOF\u5373\u662f\u4e00\u4e2a\u6587\u4ef6\u7684\u7ed3\u675f\u6807\u5fd7\uff1bwhile(scanf(&quot;%d&quot;,&n)!=EOF){}<br /></p>",
+        "languages": [
+          "C",
+          "C++"
+        ],
+        "create_time": "2015-09-19T13:42:20Z",
+        "last_update_time": null,
+        "time_limit": 3000,
+        "memory_limit": 256,
+        "io_mode": {
+          "input": "input.txt",
+          "output": "output.txt",
+          "io_mode": "Standard IO"
+        },
+        "spj": false,
+        "spj_language": null,
+        "rule_type": "ACM",
+        "difficulty": "Mid",
+        "source": "2014\u7ea7\u5b9e\u9a8c\u5ba4\u7eb3\u65b0\u8003\u8bd5",
+        "total_score": 0,
+        "submission_number": 32,
+        "accepted_number": 8,
+        "statistic_info": {
+          "0": 8,
+          "4": 7,
+          "-1": 11,
+          "-2": 6
+        },
+        "share_submission": false,
+        "contest": null
+      },
+      {
+        "id": 15,
+        "tags": [
+          "\u6c34\u9898"
+        ],
+        "created_by": {
+          "id": 1,
+          "username": "root",
+          "real_name": null
+        },
+        "template": {},
+        "_id": "12",
+        "title": "LC\u7684\u6d82\u8272\u6e38\u620f",
+        "description": "<p>LC\u662f\u5b9e\u9a8c\u5ba4\u4f20\u8bf4\u7ea7\u7684\u5927\u795e\uff0c\u6700\u8fd1\u559c\u6b22\u4e0a\u4e86\u6d82\u8272\u6e38\u620f\uff0c\u73b0\u5728\u7eb8\u4e0a\u6709n\u5757\u7a7a\u767d\u533a\u57df\uff0clc\u624b\u4e2d\u6709m\u79cd\u989c\u8272\uff0c\u4ed6\u7a81\u7136\u60f3\u77e5\u9053\uff0c\u7528\u624b\u4e2d\u6240\u6709\u989c\u8272\uff0c\u5c06\u7a7a\u767d\u6d82\u6ee1\u6709\u591a\u5c11\u79cd\u65b9\u6848\uff08\u6bcf\u4e2a\u7a7a\u767d\u53ea\u80fd\u6d82\u4e00\u79cd\u989c\u8272\uff09\uff0clc\u5f53\u7136\u53ef\u4ee5\u5feb\u901f\u7b97\u51fa\u6765\u4e86\uff0c\u4e0d\u8fc7\u4ed6\u73b0\u5728\u5fd9\u7740\u6d82\u8272\uff0c\u4f60\u80fd\u5f88\u5feb\u7684\u7b97\u51fa\u6765\u5417\uff1f<br /></p>",
+        "input_description": "\u8f93\u5165 \n\u4e00\u4e2a\u6574\u6570T\uff0c\u540e\u9762T\u884c\uff0c T&lt;= 20, \u6bcf\u884c\u4e24\u4e2a\u6574\u6570n\u548cm\u3002\n0 &lt;= n &lt;= 10 ^ 8;\n0 &lt;= m &lt;= 100",
+        "output_description": "\u4e00\u5171T\u884c\uff0c\u6bcf\u884c\u4e00\u4e2a\u6574\u6570,\u7ed3\u679c\u53ef\u80fd\u5f88\u5927\uff0c\u6700\u7ec8\u7ed3\u679c\u5bf91000007\u53d6\u4f59\u3002",
+        "samples": [
+          {
+            "input": "4\n1 2\n2 4\n5 3\n10 5",
+            "output": "2\n16\n243\n765562\n"
+          }
+        ],
+        "hint": "",
+        "languages": [
+          "C",
+          "C++"
+        ],
+        "create_time": "2015-09-19T13:42:22Z",
+        "last_update_time": null,
+        "time_limit": 1000,
+        "memory_limit": 256,
+        "io_mode": {
+          "input": "input.txt",
+          "output": "output.txt",
+          "io_mode": "Standard IO"
+        },
+        "spj": false,
+        "spj_language": null,
+        "rule_type": "ACM",
+        "difficulty": "Mid",
+        "source": "2014\u7ea7\u5b9e\u9a8c\u5ba4\u7eb3\u65b0\u8003\u8bd5",
+        "total_score": 0,
+        "submission_number": 45,
+        "accepted_number": 7,
+        "statistic_info": {
+          "0": 7,
+          "1": 7,
+          "-1": 24,
+          "-2": 7
+        },
+        "share_submission": false,
+        "contest": null
+      },
+      {
+        "id": 16,
+        "tags": [
+          "\u6c34\u9898"
+        ],
+        "created_by": {
+          "id": 1,
+          "username": "root",
+          "real_name": null
+        },
+        "template": {},
+        "_id": "13",
+        "title": "LC\u7684\u8bfe\u540e\u8f85\u5bfc",
+        "description": "<p>\u6709\u4e00\u5929\uff0cLC\u7ed9\u6211\u4eec\u51fa\u4e86\u4e00\u9053\u9898\uff0c\u5982\u56fe\uff1a<br /></p><p><img src=\"https://dn-virusdefender-blog-cdn.qbox.me/oj_pic45660aba95464e61adfbbcc7cea2c44c.gif\" alt=\"45660aba95464e61adfbbcc7cea2c44c.jpg\" /><br /></p><p>\u8fd9\u4e2a\u56fe\u5f62\u4ece\u5de6\u5230\u53f3\u7531\u82e5\u5e72\u4e2a \u5bbd\u4e3a1 \u9ad8\u4e0d\u786e\u5b9a \u7684\u5c0f\u77e9\u5f62\u6784\u6210\uff0c\u6c42\u51fa\u8fd9\u4e2a\u56fe\u5f62\u6240\u5305\u542b\u7684\u6700\u5927\u77e9\u5f62\u9762\u79ef\u3002</p>",
+        "input_description": "\u591a\u7ec4\u6d4b\u8bd5\u6570\u636e\n\u6bcf\u7ec4\u6d4b\u8bd5\u6570\u636e\u7684\u7b2c\u4e00\u884c\u4e3an\uff080 &lt;= n &lt;= 100)\uff0c \u8868\u793a\u56fe\u5f62\u6709n\u4e2a\u5c0f\u77e9\u5f62\u6784\u6210\n\u63a5\u4e0b\u6765\u4e00\u884c\u8f93\u5165n\u4e2a\u6574\u6570h1, h2...hn(0 &lt;= hi &lt;= 1000),  \u8868\u793a\u6bcf\u4e2a\u5c0f\u77e9\u5f62\u7684\u9ad8\u5ea6\nn\u4e3a0\u65f6\u7a0b\u5e8f\u7ed3\u675f",
+        "output_description": "\u4ec5\u8f93\u51fa\u4e00\u884c\u8868\u793a\u9762\u79ef\u7684\u6700\u5927\u503c",
+        "samples": [
+          {
+            "input": "7\n2 1 4 5 1 3 3\n4\n1000 1000 1000 1000\n0",
+            "output": "8\n4000"
+          }
+        ],
+        "hint": "",
+        "languages": [
+          "C",
+          "C++"
+        ],
+        "create_time": "2015-09-19T13:42:24Z",
+        "last_update_time": null,
+        "time_limit": 1000,
+        "memory_limit": 256,
+        "io_mode": {
+          "input": "input.txt",
+          "output": "output.txt",
+          "io_mode": "Standard IO"
+        },
+        "spj": false,
+        "spj_language": null,
+        "rule_type": "ACM",
+        "difficulty": "Mid",
+        "source": "2014\u7ea7\u5b9e\u9a8c\u5ba4\u7eb3\u65b0\u8003\u8bd5",
+        "total_score": 0,
+        "submission_number": 29,
+        "accepted_number": 4,
+        "statistic_info": {
+          "0": 4,
+          "1": 2,
+          "4": 3,
+          "-1": 3,
+          "-2": 17
+        },
+        "share_submission": false,
+        "contest": null
+      },
+      {
+        "id": 17,
+        "tags": [
+          "\u6c34\u9898"
+        ],
+        "created_by": {
+          "id": 1,
+          "username": "root",
+          "real_name": null
+        },
+        "template": {},
+        "_id": "14",
+        "title": "LC\u4e0e\u4e09\u89d2\u5f62",
+        "description": "<p>Luan\u795e\u6700\u8fd1\u5bf9\u4e09\u89d2\u5f62\u6bd4\u8f83\u611f\u5174\u8da3\uff0c\u4e8e\u662f\u4ed6\u51fa\u4e86\u8fd9\u6837\u4e00\u4e2a\u9898\uff1a\u7ed9\u4f60\u4e09\u4e2a\u70b9\uff0c\u8868\u793a\u4e00\u4e2a\u4e09\u89d2\u5f62\u7684\u4e09\u4e2a\u9876\u70b9\uff0c\u73b0\u4f60\u7684\u4efb\u52a1\u662f\u6c42\u51fa\u8be5\u4e09\u89d2\u5f62\u7684\u9762\u79ef<br /></p>",
+        "input_description": "\u6bcf\u884c\u662f\u4e00\u7ec4\u6d4b\u8bd5\u6570\u636e\uff0c\u67096\u4e2a\u6574\u6570x1,y1,x2,y2,x3,y3\u5206\u522b\u8868\u793a\u4e09\u4e2a\u70b9\u7684\u6a2a\u7eb5\u5750\u6807\u3002\uff08\u5750\u6807\u503c\u90fd\u5728-10000\u523010000\u4e4b\u95f4\uff09\nEOF\u8868\u793a\u8f93\u5165\u7ed3\u675f",
+        "output_description": "\u8f93\u51fa\u8fd9\u4e09\u4e2a\u70b9\u6240\u4ee3\u8868\u7684\u4e09\u89d2\u5f62\u7684\u9762\u79ef\uff0c\u7ed3\u679c\u7cbe\u786e\u5230\u5c0f\u6570\u70b9\u540e1\u4f4d\uff08\u5373\u4f7f\u662f\u6574\u6570\u4e5f\u8981\u8f93\u51fa\u4e00\u4f4d\u5c0f\u6570\u4f4d\uff09",
+        "samples": [
+          {
+            "input": "0 0 1 1 1 3\n0 -1 -1 0 0 0\n",
+            "output": "1.0\n0.5\n"
+          }
+        ],
+        "hint": "",
+        "languages": [
+          "C",
+          "C++"
+        ],
+        "create_time": "2015-09-19T13:42:28Z",
+        "last_update_time": null,
+        "time_limit": 1000,
+        "memory_limit": 256,
+        "io_mode": {
+          "input": "input.txt",
+          "output": "output.txt",
+          "io_mode": "Standard IO"
+        },
+        "spj": false,
+        "spj_language": null,
+        "rule_type": "ACM",
+        "difficulty": "Mid",
+        "source": "2014\u7ea7\u5b9e\u9a8c\u5ba4\u7eb3\u65b0\u8003\u8bd5",
+        "total_score": 0,
+        "submission_number": 50,
+        "accepted_number": 6,
+        "statistic_info": {
+          "0": 6,
+          "-1": 40,
+          "-2": 4
+        },
+        "share_submission": false,
+        "contest": null
+      },
+      {
+        "id": 18,
+        "tags": [
+          "\u6c34\u9898"
+        ],
+        "created_by": {
+          "id": 1,
+          "username": "root",
+          "real_name": null
+        },
+        "template": {},
+        "_id": "15",
+        "title": "LC\u7684\u7591\u60d1",
+        "description": "<p style=\"margin-left: 40px;\">\u9898\u610f\u5f88\u7b80\u5355\uff1a \u00a0 \u00a0 \u00a0 \u00a0\u00a0</p><p style=\"margin-left: 80px;\">LC\u73b0\u5728\u5f97\u5230\u4e86\u4e00\u4e32\u4e0d\u76f8\u540c\u7684\u6570\u5b57\uff0c \u73b0\u5728\u8ba9\u4f60\u627e\u51fa\u8fd9\u4e32\u6570\u5b57\u4e2d\u6700\u5c0f\u7684\u6570\u548c\u6b21\u5c0f\u7684\u6570\u3002</p>",
+        "input_description": "\u7b2c\u4e00\u884c\u8f93\u5165\u4e00\u4e2a\u6574\u6570n \u4e14 2&lt;=n&lt;=1000;\n\u7b2c\u4e8c\u884c\u8f93\u5165n\u4e2a\u6570\u5b57(A1, A2, A3 .... An)   \u5bf9\u4efb\u610f\u7684Ai, 0&lt;=Ai &lt;= 100000;\u4e14\u5404\u4e2a\u6570\u5b57\u5404\u4e0d\u76f8\u540c",
+        "output_description": "\u7b2c\u4e00\u884c\u8f93\u51fa\u4e24\u4e2a\u6570a,b    (a\u4ee3\u8868\u6700\u5c0f\u7684\u6570\uff0c b\u4ee3\u8868\u6b21\u5c0f\u7684\u6570) \u4e2d\u95f4\u4ee5\u7a7a\u683c\u9694\u5f00\u3002",
+        "samples": [
+          {
+            "input": "3\n3 1 2",
+            "output": "1 2"
+          }
+        ],
+        "hint": "",
+        "languages": [
+          "C",
+          "C++"
+        ],
+        "create_time": "2015-09-19T13:42:30Z",
+        "last_update_time": null,
+        "time_limit": 1000,
+        "memory_limit": 256,
+        "io_mode": {
+          "input": "input.txt",
+          "output": "output.txt",
+          "io_mode": "Standard IO"
+        },
+        "spj": false,
+        "spj_language": null,
+        "rule_type": "ACM",
+        "difficulty": "Mid",
+        "source": "2014\u7ea7\u5b9e\u9a8c\u5ba4\u7eb3\u65b0\u8003\u8bd5",
+        "total_score": 0,
+        "submission_number": 138,
+        "accepted_number": 71,
+        "statistic_info": {
+          "0": 71,
+          "4": 9,
+          "-1": 45,
+          "-2": 13
+        },
+        "share_submission": false,
+        "contest": null
+      },
+      {
+        "id": 19,
+        "tags": [
+          "\u6808",
+          "\u6570\u636e\u7ed3\u6784"
+        ],
+        "created_by": {
+          "id": 1,
+          "username": "root",
+          "real_name": null
+        },
+        "template": {},
+        "_id": "16",
+        "title": "LRU Cache",
+        "description": "<p>Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and set.</p><ul><li>get(key) - Get the value of the key if the key exists in the cache, otherwise return -1.</li></ul><ul><li>set(key, value) - Set or insert the value if the key is not already present. When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.</li></ul>",
+        "input_description": "\u7b2c\u4e00\u884c\u8f93\u5165\u4e00\u4e2a\u6574\u6570n(n &lt;= 3000)\uff0c\u8868\u793a\u8fd9\u4e2a Cache \u7684\u5bb9\u91cf\u3002\n\u4e4b\u540e\u6bcf\u4e00\u884c\u90fd\u662f get \u6216\u8005 set \u5f00\u5934\uff0c\u8868\u793a\u8bfb\u53d6\u6216\u8005\u8bbe\u7f6e\u7f13\u5b58\uff0c\u5982\u679c\u662f  get \u64cd\u4f5c\uff0c\u540e\u9762\u4e3a key \uff0c\u5982\u679c\u662f set \u64cd\u4f5c\uff0c\u540e\u9762\u662f key \u548c value \u3002\nkey \u548c value \u90fd\u662f\u6574\u6570\uff0cint \u8303\u56f4\u5185\uff0c\u5176\u4e2d value \u662f\u6b63\u6570\u3002",
+        "output_description": "\u5bf9\u4e8e\u6bcf\u4e00\u4e2a get \u64cd\u4f5c\uff0c\u5982\u679c key \u5728\u7f13\u5b58\u4e2d\u5c31\u8f93\u51fa\u8fd9\u4e2a key \u5bf9\u5e94\u7684 value\uff0c\u5426\u5219\u8f93\u51fa-1",
+        "samples": [
+          {
+            "input": "2\nget 1\nset 1 10\nget 1\nset 2 20\nget 2\nset 3 30\nget 3\nget 1",
+            "output": "-1\n10\n20\n30\n-1"
+          }
+        ],
+        "hint": "",
+        "languages": [
+          "C",
+          "C++"
+        ],
+        "create_time": "2015-10-02T05:41:56Z",
+        "last_update_time": null,
+        "time_limit": 600,
+        "memory_limit": 256,
+        "io_mode": {
+          "input": "input.txt",
+          "output": "output.txt",
+          "io_mode": "Standard IO"
+        },
+        "spj": false,
+        "spj_language": null,
+        "rule_type": "ACM",
+        "difficulty": "Mid",
+        "source": "LeetCode http://t.cn/RAyrZ7I",
+        "total_score": 0,
+        "submission_number": 31,
+        "accepted_number": 3,
+        "statistic_info": {
+          "0": 3,
+          "4": 1,
+          "-1": 20,
+          "-2": 7
+        },
+        "share_submission": false,
+        "contest": null
+      },
+      {
+        "id": 20,
+        "tags": [
+          "\u6808",
+          "\u6570\u636e\u7ed3\u6784"
+        ],
+        "created_by": {
+          "id": 1,
+          "username": "root",
+          "real_name": null
+        },
+        "template": {},
+        "_id": "17",
+        "title": "\u62ec\u53f7\u914d\u5bf9",
+        "description": "<p>\u8f93\u5165\u4e00\u6bb5\u5b57\u7b26\u4e32\uff0c\u91cc\u9762\u53ea\u5305\u542b\u4e0b\u5217\u62ec\u53f7\u5b57\u7b26 (\u3001)\u3001[\u3001]\u3001{\u3001}\u3002</p><p>\u62ec\u53f7\u5fc5\u987b\u6309\u7167\u987a\u5e8f\u95ed\u5408\uff0c\u6bd4\u5982 ()\u3001[]\u3001{}\u3001{()}\u90fd\u662f\u7b26\u5408\u8981\u6c42\u7684\uff0c\u800c[)\u3001{{)\u5c31\u662f\u4e0d\u7b26\u5408\u8981\u6c42\u7684\u3002<br /></p>",
+        "input_description": "\u7b2c\u4e00\u884c\u662f\u6d4b\u8bd5\u6570\u636e\u7684\u7ec4\u6570n(n &lt;= 10000)\uff0c\u4e4b\u540e\u6bcf\u4e00\u884c\u90fd\u662f\u6d4b\u8bd5\u6570\u636e\uff0c\u6bcf\u7ec4\u6570\u636e\u957f\u5ea6&lt;=100\u3002",
+        "output_description": "\u5982\u679c\u62ec\u53f7\u662f\u914d\u5bf9\u7684\uff0c\u5c31\u8f93\u51fa True\uff0c\u5426\u5219\u8f93\u51fa False",
+        "samples": [
+          {
+            "input": "4\n()[]\n[[]]\n()[]{}\n{{)]",
+            "output": "True\nTrue\nTrue\nFalse"
+          }
+        ],
+        "hint": "",
+        "languages": [
+          "C",
+          "C++"
+        ],
+        "create_time": "2015-10-02T07:29:29Z",
+        "last_update_time": null,
+        "time_limit": 1000,
+        "memory_limit": 256,
+        "io_mode": {
+          "input": "input.txt",
+          "output": "output.txt",
+          "io_mode": "Standard IO"
+        },
+        "spj": false,
+        "spj_language": null,
+        "rule_type": "ACM",
+        "difficulty": "Mid",
+        "source": "LeetCode http://t.cn/Rw1TWfs",
+        "total_score": 0,
+        "submission_number": 84,
+        "accepted_number": 26,
+        "statistic_info": {
+          "0": 26,
+          "1": 1,
+          "4": 5,
+          "-1": 37,
+          "-2": 15
+        },
+        "share_submission": false,
+        "contest": null
+      },
+      {
+        "id": 21,
+        "tags": [
+          "\u6c34\u9898"
+        ],
+        "created_by": {
+          "id": 1697,
+          "username": "15admin",
+          "real_name": null
+        },
+        "template": {},
+        "_id": "18",
+        "title": "\u53cd\u8f6c\u6570\u5b57",
+        "description": "<p>\u8f93\u5165\u4e00\u4e2a c \u8bed\u8a00 4\u5b57\u8282 int \u8303\u56f4\u5185\u7684\u6570\u5b57\uff0c\u8f93\u51fa\u5b83\u53cd\u8f6c\u540e\u7684\u6570\u5b57\u3002\u6bd4\u598212345\u53cd\u8f6c\u540e\u662f54321\uff0c-12345\u53cd\u8f6c\u540e\u662f-54321\u3002\u5982\u679c\u53cd\u8f6c\u540e\u7684\u6570\u5b57\u4e0d\u5728 int \u8303\u56f4\u5185\u5c31\u8f93\u51fa0\uff1b</p>",
+        "input_description": "<p>\u6bcf\u884c\u4e00\u4e2a int \u8303\u56f4\u5185\u7684\u6570\u5b57\uff0c\u4ee5 EOF \u7ed3\u5c3e\u3002</p>",
+        "output_description": "<p>\u8f93\u51fa\u53cd\u8f6c\u540e\u7684\u6570\u5b57\uff0c\u6bcf\u884c\u4e00\u4e2a</p>",
+        "samples": [
+          {
+            "input": "12345\n-12345",
+            "output": "54321\n-54321"
+          }
+        ],
+        "hint": "<p>\u5982\u679c\u53cd\u8f6c\u540e\u7684\u6570\u5b57\u5f00\u5934\u662f0\uff0c\u5c31\u53bb\u6389\u90a3\u4e9b0\u3002</p>",
+        "languages": [
+          "C",
+          "C++"
+        ],
+        "create_time": "2015-10-03T13:07:43Z",
+        "last_update_time": null,
+        "time_limit": 100,
+        "memory_limit": 256,
+        "io_mode": {
+          "input": "input.txt",
+          "output": "output.txt",
+          "io_mode": "Standard IO"
+        },
+        "spj": false,
+        "spj_language": null,
+        "rule_type": "ACM",
+        "difficulty": "Mid",
+        "source": "LeetCode http://t.cn/RwBr5De",
+        "total_score": 0,
+        "submission_number": 348,
+        "accepted_number": 38,
+        "statistic_info": {
+          "0": 38,
+          "1": 12,
+          "4": 9,
+          "-1": 183,
+          "-2": 106
+        },
+        "share_submission": false,
+        "contest": null
+      },
+      {
+        "id": 22,
+        "tags": [
+          "\u6570\u7ec4"
+        ],
+        "created_by": {
+          "id": 1,
+          "username": "root",
+          "real_name": null
+        },
+        "template": {},
+        "_id": "19",
+        "title": "Move Zeroes",
+        "description": "<p>\u5c06\u6570\u7ec4\u4e2d\u76840\u79fb\u52a8\u7684\u6570\u636e\u7684\u672b\u5c3e\uff0c\u800c\u4e0d\u5f71\u54cd\u5176\u4f59\u975e0\u6570\u5b57\u7684\u987a\u5e8f\u3002</p><p><b><font color=\"#e33737\">\u8bf7\u539f\u5730\u79fb\u52a8\uff0c\u4e0d\u8981\u590d\u5236\u5230\u65b0\u6570\u7ec4\u4e2d\u3002</font></b></p><p><b>\u4f4e\u4e8e100ms \u7684\u7b97\u6cd5\uff0c\u60f3\u60f3\u8fd8\u6709\u6ca1\u6709\u5176\u4ed6\u7684\u66f4\u52a0\u901a\u7528\u7684\u7b97\u6cd5\u3002</b><br /></p>",
+        "input_description": "\u7b2c\u4e00\u884c\u662f\u6570\u636e\u7684\u7ec4\u6570 n, n &lt; 300\u4e07\n\u4e4b\u540e\u6bcf\u4e00\u884c\u90fd\u662f\u4e00\u4e2a[-10, 10]\u7684\u6574\u6570",
+        "output_description": "\u8f93\u51fa\u5c060\u79fb\u52a8\u5230\u672b\u5c3e\u540e\u7684\u6570\u7ec4\u904d\u5386\u7ed3\u679c\uff0c\u6bcf\u884c\u4e00\u4e2a\u5143\u7d20\u3002",
+        "samples": [
+          {
+            "input": "5\n0\n1\n0\n3\n2",
+            "output": "1\n3\n2\n0\n0"
+          }
+        ],
+        "hint": "<p>\u4f4e\u4e8e 100ms \u7684\u4e00\u822c\u90fd\u662f\u7528\u4e86\u5c0f\u6280\u5de7\uff0c\u8fd9\u4e2a\u9898\u5c31\u6ca1\u610f\u601d\u4e86~</p>",
+        "languages": [
+          "C",
+          "C++"
+        ],
+        "create_time": "2015-10-05T11:26:21Z",
+        "last_update_time": null,
+        "time_limit": 800,
+        "memory_limit": 256,
+        "io_mode": {
+          "input": "input.txt",
+          "output": "output.txt",
+          "io_mode": "Standard IO"
+        },
+        "spj": false,
+        "spj_language": null,
+        "rule_type": "ACM",
+        "difficulty": "Mid",
+        "source": "LeetCode http://t.cn/RyMX6AH",
+        "total_score": 0,
+        "submission_number": 85,
+        "accepted_number": 37,
+        "statistic_info": {
+          "0": 37,
+          "1": 8,
+          "4": 13,
+          "-1": 23,
+          "-2": 4
+        },
+        "share_submission": false,
+        "contest": null
+      },
+      {
+        "id": 23,
+        "tags": [
+          "voting"
+        ],
+        "created_by": {
+          "id": 1,
+          "username": "root",
+          "real_name": null
+        },
+        "template": {},
+        "_id": "20",
+        "title": "\u6570\u7ec4\u4e2d\u51fa\u73b0\u6700\u591a\u7684\u5143\u7d20",
+        "description": "<p>\u7ed9\u4f60\u4e00\u4e2a\u6570\u7ec4\uff0c\u8f93\u51fa\u91cc\u9762\u51fa\u73b0\u8d85\u8fc71/2\u7684\u5143\u7d20\u3002\u4fdd\u8bc1\u6709\u4e14\u53ea\u6709\u4e00\u4e2a\u89e3\u3002<br /></p>",
+        "input_description": "<p>\u7b2c\u4e00\u884c\u662f\u4e00\u4e2a\u6574\u6570n(n &lt;=1e7)\uff0c\u8868\u793a\u6d4b\u8bd5\u6570\u636e\u7684\u4e2a\u6570 \uff0c\u4e4b\u540e\u6bcf\u4e00\u884c\u90fd\u662f\u4e00\u4e2a\u6574\u6570\u3002</p>",
+        "output_description": "<p>\u8f93\u51fa\u51fa\u73b0\u8d85\u8fc71/2\u7684\u90a3\u4e2a\u6570\u5b57\u3002</p>",
+        "samples": [
+          {
+            "input": "5\n1\n1\n1\n2\n3",
+            "output": "1"
+          }
+        ],
+        "hint": "<ul><li>\u4e0d\u8981\u4f7f\u7528 cin\uff0c\u6d4b\u8bd5\u6570\u636e\u5f88\u5927\u3002</li></ul><ul><li>\u5c06\u65f6\u95f4\u590d\u6742\u5ea6\u964d\u5230 O(n)</li></ul>",
+        "languages": [
+          "C",
+          "C++"
+        ],
+        "create_time": "2015-10-06T02:35:57Z",
+        "last_update_time": null,
+        "time_limit": 1500,
+        "memory_limit": 256,
+        "io_mode": {
+          "input": "input.txt",
+          "output": "output.txt",
+          "io_mode": "Standard IO"
+        },
+        "spj": false,
+        "spj_language": null,
+        "rule_type": "ACM",
+        "difficulty": "Mid",
+        "source": "LeetCode http://t.cn/RyYQUA7",
+        "total_score": 0,
+        "submission_number": 199,
+        "accepted_number": 47,
+        "statistic_info": {
+          "0": 47,
+          "1": 41,
+          "4": 51,
+          "-1": 18,
+          "-2": 42
+        },
+        "share_submission": false,
+        "contest": null
+      }
+    ],
+    "total": 342
+  }
+}

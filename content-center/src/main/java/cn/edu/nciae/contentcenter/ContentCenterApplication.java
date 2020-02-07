@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-@MapperScan("cn.edu.nciae.contentcenter.mapper")
+@MapperScan("cn.edu.nciae.contentcenter.common.mapper")
 public class ContentCenterApplication {
 
     public static void main(String[] args) {

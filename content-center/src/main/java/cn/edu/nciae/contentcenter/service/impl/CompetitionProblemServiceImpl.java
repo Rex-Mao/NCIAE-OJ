@@ -1,7 +1,7 @@
 package cn.edu.nciae.contentcenter.service.impl;
 
-import cn.edu.nciae.contentcenter.entity.CompetitionProblem;
-import cn.edu.nciae.contentcenter.mapper.CompetitionProblemMapper;
+import cn.edu.nciae.contentcenter.common.entity.CompetitionProblem;
+import cn.edu.nciae.contentcenter.common.mapper.CompetitionProblemMapper;
 import cn.edu.nciae.contentcenter.service.ICompetitionProblemService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;

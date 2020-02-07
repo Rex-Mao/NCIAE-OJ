@@ -1,7 +1,7 @@
 package cn.edu.nciae.contentcenter.service.impl;
 
-import cn.edu.nciae.contentcenter.entity.Record;
-import cn.edu.nciae.contentcenter.mapper.RecordMapper;
+import cn.edu.nciae.contentcenter.common.entity.Record;
+import cn.edu.nciae.contentcenter.common.mapper.RecordMapper;
 import cn.edu.nciae.contentcenter.service.IRecordService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;

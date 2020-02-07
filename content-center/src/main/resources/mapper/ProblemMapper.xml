@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.edu.nciae.contentcenter.mapper.ProblemMapper">
+<mapper namespace="cn.edu.nciae.contentcenter.common.mapper.ProblemMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="cn.edu.nciae.contentcenter.entity.Problem">
+    <resultMap id="BaseResultMap" type="cn.edu.nciae.contentcenter.common.entity.Problem">
         <id column="pid" property="pid" />
         <result column="add_uid" property="addUid" />
         <result column="title" property="title" />
         <result column="description" property="description" />
-        <result column="p_input" property="pInput" />
-        <result column="p_output" property="pOutput" />
+        <result column="f_input" property="sInput" />
+        <result column="f_output" property="sOutput" />
         <result column="s_input" property="sInput" />
         <result column="s_output" property="sOutput" />
         <result column="time_limit" property="timeLimit" />
@@ -21,7 +21,11 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        pid, add_uid, title, description, p_input, p_output, s_input, s_output, time_limit, memory_limit, submit_num, solved_num, author
+        pid, add_uid, title, description, f_input, f_output,s_input, s_output, time_limit, memory_limit, submit_num, solved_num, author
     </sql>
-
+    <select id="selectProblemListPage" resultMap="BaseResultMap">
+        select
+        <include refid="BaseColumn_List"/>
+        from `problem`
+    </select>
 </mapper>

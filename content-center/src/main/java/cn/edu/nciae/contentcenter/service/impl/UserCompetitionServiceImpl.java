@@ -1,7 +1,7 @@
 package cn.edu.nciae.contentcenter.service.impl;
 
-import cn.edu.nciae.contentcenter.entity.UserCompetition;
-import cn.edu.nciae.contentcenter.mapper.UserCompetitionMapper;
+import cn.edu.nciae.contentcenter.common.entity.UserCompetition;
+import cn.edu.nciae.contentcenter.common.mapper.UserCompetitionMapper;
 import cn.edu.nciae.contentcenter.service.IUserCompetitionService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
