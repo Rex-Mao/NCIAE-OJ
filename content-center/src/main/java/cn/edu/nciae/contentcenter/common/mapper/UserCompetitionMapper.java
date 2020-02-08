@@ -2,7 +2,7 @@ package cn.edu.nciae.contentcenter.common.mapper;
 
 import cn.edu.nciae.contentcenter.common.entity.UserCompetition;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
 
 /**
  * <p>
@@ -10,9 +10,9 @@ import org.apache.ibatis.annotations.Mapper;
  * </p>
  *
  * @author RexALun
- * @since 2019-12-26
+ * @since 2020-02-08
  */
-@Mapper
+@Component
 public interface UserCompetitionMapper extends BaseMapper<UserCompetition> {
 
 }

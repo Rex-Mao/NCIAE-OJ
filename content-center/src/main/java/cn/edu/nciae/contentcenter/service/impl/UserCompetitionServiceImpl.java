@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author RexALun
- * @since 2019-12-26
+ * @since 2020-02-08
  */
 @Service
 public class UserCompetitionServiceImpl extends ServiceImpl<UserCompetitionMapper, UserCompetition> implements IUserCompetitionService {

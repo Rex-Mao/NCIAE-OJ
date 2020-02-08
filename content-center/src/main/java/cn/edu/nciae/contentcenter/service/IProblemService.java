@@ -1,6 +1,7 @@
 package cn.edu.nciae.contentcenter.service;
 
 import cn.edu.nciae.contentcenter.common.entity.Problem;
+import cn.edu.nciae.contentcenter.common.vo.ProblemVO;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -11,14 +12,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author RexALun
- * @since 2019-12-26
+ * @since 2020-02-08
  */
 public interface IProblemService extends IService<Problem> {
-
     /**
      * @param page
      * @return IPage<Problem>
      */
-    IPage<Problem> getProblemListPage(Page<Problem> page);
-
+    IPage<ProblemVO> getProblemListPage(Page<ProblemVO> page);
 }

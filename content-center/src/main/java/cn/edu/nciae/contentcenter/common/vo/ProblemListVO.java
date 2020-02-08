@@ -1,6 +1,5 @@
 package cn.edu.nciae.contentcenter.common.vo;
 
-import cn.edu.nciae.contentcenter.common.entity.Problem;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,7 +21,7 @@ public class ProblemListVO {
     /**
      * Result set
      */
-    private List<Problem> results;
+    private List<ProblemVO> results;
 
     /**
      * Total Problem Num

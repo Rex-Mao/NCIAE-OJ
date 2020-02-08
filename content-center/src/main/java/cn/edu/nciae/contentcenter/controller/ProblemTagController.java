@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @since 2020-02-08
  */
 @Controller
-@RequestMapping("/record")
-public class RecordController {
+@RequestMapping("/problemTag")
+public class ProblemTagController {
 
 }

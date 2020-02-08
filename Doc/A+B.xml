@@ -1,23 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>   
+<?xml version="1.0" encoding="UTF-8"?>
 <fps version="1.2" url="https://github.com/zhblue/freeproblemset/">
-	<generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
-	<item>
-<title><![CDATA[送分题-A+B Problem]]></title>
-<time_limit unit="s"><![CDATA[1]]></time_limit>
-<memory_limit unit="mb"><![CDATA[256]]></memory_limit>
-
-<description><![CDATA[<p>Calculate a+b</p>]]></description>
-<input><![CDATA[<p>Two integer a,b (0&lt;=a,b&lt;=10)</p>]]></input> 
-<output><![CDATA[<p>Output a+b</p>]]></output>
-<sample_input><![CDATA[1 2]]></sample_input>
-<sample_output><![CDATA[3]]></sample_output>
-  <test_input><![CDATA[500 17]]></test_input>
-<test_output><![CDATA[517]]></test_output>
-<test_input><![CDATA[2 3
-]]></test_input>
-<test_output><![CDATA[5
-]]></test_output>
-<hint><![CDATA[<p>Q: Where are the input and the output? A: Your program shall always <font color="#ff0000">read input from stdin (Standard Input) and write output to stdout (Standard Output)</font>. For example, you can use 'scanf' in C or 'cin' in C++ to read from stdin, and use 'printf' in C or 'cout' in C++ to write to stdout. You <font color="#ff0000">shall not output any extra data</font> to standard output other than that required by the problem, otherwise you will get a &quot;Wrong Answer&quot;. User programs are not allowed to open and read from/write to files. You will get a &quot;Runtime Error&quot; or a &quot;Wrong Answer&quot; if you try to do so. Here is a sample solution for problem 1000 using C++/G++:</p>
+    <generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
+    <item>
+        <title><![CDATA[送分题-A+B Problem]]></title>
+        <time_limit unit="s"><![CDATA[1]]></time_limit>
+        <memory_limit unit="mb"><![CDATA[256]]></memory_limit>
+        <description><![CDATA[<p>Calculate a+b</p>]]></description>
+        <input><![CDATA[<p>Two integer a,b (0&lt;=a,b&lt;=10)</p>]]></input>
+        <output><![CDATA[<p>Output a+b</p>]]></output>
+        <sample_input><![CDATA[1 2]]></sample_input>
+        <sample_output><![CDATA[3]]></sample_output>
+        <test_input><![CDATA[500 17]]></test_input>
+        <test_output><![CDATA[517]]></test_output>
+        <test_input><![CDATA[2 3]]></test_input>
+        <test_output><![CDATA[5]]></test_output>
+        <hint><![CDATA[<p>Q: Where are the input and the output? A: Your program shall always <font color="#ff0000">read input from stdin (Standard Input) and write output to stdout (Standard Output)</font>. For example, you can use 'scanf' in C or 'cin' in C++ to read from stdin, and use 'printf' in C or 'cout' in C++ to write to stdout. You <font color="#ff0000">shall not output any extra data</font> to standard output other than that required by the problem, otherwise you will get a &quot;Wrong Answer&quot;. User programs are not allowed to open and read from/write to files. You will get a &quot;Runtime Error&quot; or a &quot;Wrong Answer&quot; if you try to do so. Here is a sample solution for problem 1000 using C++/G++:</p>
 <pre>
 #include &lt;iostream&gt;
 using namespace std;
@@ -82,8 +79,8 @@ public class Main
         System.out.println(a+b);
     }
 }</pre>]]></hint>
-<source><![CDATA[系统原理，熟悉OJ]]></source>
-		<solution language="C"><![CDATA[#include <stdio.h>
+        <source><![CDATA[系统原理，熟悉OJ]]></source>
+        <solution language="C"><![CDATA[#include <stdio.h>
 int main()
 {
 	int a,b;
@@ -93,7 +90,7 @@ int main()
 	}
 	return 0;
 }]]></solution>
-			<solution language="C++"><![CDATA[#include <iostream>
+        <solution language="C++"><![CDATA[#include <iostream>
 #include <cstdio>
 using namespace std;
 int main()
@@ -108,14 +105,14 @@ int main()
 	}
 	return 0;
 }]]></solution>
-			<solution language="Pascal"><![CDATA[program abprob;
+        <solution language="Pascal"><![CDATA[program abprob;
 var
   a,b:longint;
 begin
    readln(a,b);
    writeln(a+b);
 end.]]></solution>
-			<solution language="Java"><![CDATA[import java.util.*;
+        <solution language="Java"><![CDATA[import java.util.*;
 public class Main
 {
 	public static void main(String args[])
@@ -131,15 +128,15 @@ public class Main
 		}
 	}
 }]]></solution>
-			<solution language="Bash"><![CDATA[read a b
+        <solution language="Bash"><![CDATA[read a b
 let c=$a+$b
 echo $c]]></solution>
-			<solution language="Python"><![CDATA[#!/usr/bin/python2
+        <solution language="Python"><![CDATA[#!/usr/bin/python2
 a=raw_input() 
 b=a.split(" ") 
 print eval(b[0]+"+"+b[1]) 
 ]]></solution>
-			<solution language="C#"><![CDATA[using System;
+        <solution language="C#"><![CDATA[using System;
 class Program {
     public static void Main() {
         string line;
@@ -152,5 +149,5 @@ class Program {
         }
     }
 }]]></solution>
-	</item>
+    </item>
 </fps>

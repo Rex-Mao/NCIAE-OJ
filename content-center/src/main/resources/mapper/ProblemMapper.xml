@@ -8,24 +8,50 @@
         <result column="add_uid" property="addUid" />
         <result column="title" property="title" />
         <result column="description" property="description" />
-        <result column="f_input" property="sInput" />
-        <result column="f_output" property="sOutput" />
-        <result column="s_input" property="sInput" />
-        <result column="s_output" property="sOutput" />
+        <result column="f_input" property="fInput" />
+        <result column="f_output" property="fOutput" />
         <result column="time_limit" property="timeLimit" />
         <result column="memory_limit" property="memoryLimit" />
         <result column="submit_num" property="submitNum" />
         <result column="solved_num" property="solvedNum" />
         <result column="author" property="author" />
+        <result column="special_judge" property="specialJudge" />
+        <result column="hint" property="hint" />
+    </resultMap>
+
+    <!-- 关联样例输入输出查询映射结果 -->
+    <resultMap id="ProblemViewResultMap" type="cn.edu.nciae.contentcenter.common.vo.ProblemVO">
+        <id column="pid" property="pid" />
+        <result column="add_uid" property="addUid" />
+        <result column="title" property="title" />
+        <result column="description" property="description" />
+        <result column="f_input" property="fInput" />
+        <result column="f_output" property="fOutput" />
+        <result column="time_limit" property="timeLimit" />
+        <result column="memory_limit" property="memoryLimit" />
+        <result column="submit_num" property="submitNum" />
+        <result column="solved_num" property="solvedNum" />
+        <result column="author" property="author" />
+        <result column="special_judge" property="specialJudge" />
+        <result column="hint" property="hint" />
+        <collection column="pid" property="sampleList" ofType="cn.edu.nciae.contentcenter.common.entity.Sample" select="selectSampleListByPid"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        pid, add_uid, title, description, f_input, f_output,s_input, s_output, time_limit, memory_limit, submit_num, solved_num, author
+        pid, add_uid, title, description, f_input, f_output, time_limit, memory_limit, submit_num, solved_num, author, special_judge, hint
     </sql>
-    <select id="selectProblemListPage" resultMap="BaseResultMap">
+
+    <!-- 获取全部problems-->
+    <select id="selectProblemListPage" resultMap="ProblemViewResultMap">
         select
-        <include refid="BaseColumn_List"/>
-        from `problem`
+        *
+        from `problem` p, `sample` s
+        where p.pid = s.pid
+    </select>
+
+    <!-- 一对多关系子查询方法-->
+    <select id="selectSampleListByPid" resultMap="ProblemViewResultMap">
+        select * from `sample` where `sample`.`pid` = #{pid}
     </select>
 </mapper>

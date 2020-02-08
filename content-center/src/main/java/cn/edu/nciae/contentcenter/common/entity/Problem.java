@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
 
@@ -17,13 +16,12 @@ import java.io.Serializable;
  * </p>
  *
  * @author RexALun
- * @since 2019-12-26
+ * @since 2020-02-08
  */
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Repository
 @TableName("problem")
 public class Problem implements Serializable {
 
@@ -61,16 +59,6 @@ public class Problem implements Serializable {
     private String fOutput;
 
     /**
-     * 样例输入
-     */
-    private String sInput;
-
-    /**
-     * 样例输出
-     */
-    private String sOutput;
-
-    /**
      * 时间限制(MS)
      */
     private Double timeLimit;
@@ -94,5 +82,15 @@ public class Problem implements Serializable {
      * 题目作者
      */
     private String author;
+
+    /**
+     * 特殊判题默认否0 是1
+     */
+    private Integer specialJudge;
+
+    /**
+     * 提示
+     */
+    private String hint;
 
 }

@@ -1,6 +1,6 @@
 package cn.edu.nciae.contentcenter.service;
 
-import cn.edu.nciae.contentcenter.common.entity.CompetitionProblem;
+import cn.edu.nciae.contentcenter.common.entity.Tag;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author RexALun
  * @since 2020-02-08
  */
-public interface ICompetitionProblemService extends IService<CompetitionProblem> {
+public interface ITagService extends IService<Tag> {
 
 }

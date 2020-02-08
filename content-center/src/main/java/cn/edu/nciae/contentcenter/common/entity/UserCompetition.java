@@ -7,10 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * <p>
@@ -18,13 +17,12 @@ import java.sql.Date;
  * </p>
  *
  * @author RexALun
- * @since 2019-12-26
+ * @since 2020-02-08
  */
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Repository
 @TableName("user_competition")
 public class UserCompetition implements Serializable {
 
@@ -50,5 +48,4 @@ public class UserCompetition implements Serializable {
      * 参与时间
      */
     private Date joinTime;
-
 }

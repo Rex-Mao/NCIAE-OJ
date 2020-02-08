@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
 
@@ -17,13 +16,12 @@ import java.io.Serializable;
  * </p>
  *
  * @author RexALun
- * @since 2019-12-26
+ * @since 2020-02-08
  */
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Repository
 @TableName("competition_problem")
 public class CompetitionProblem implements Serializable {
 
@@ -49,5 +47,4 @@ public class CompetitionProblem implements Serializable {
      * 问题在竞赛中所占分数
      */
     private Integer score;
-
 }

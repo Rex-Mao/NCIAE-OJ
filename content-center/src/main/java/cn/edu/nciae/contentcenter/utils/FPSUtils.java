@@ -1,6 +1,6 @@
 package cn.edu.nciae.contentcenter.utils;
 
-import cn.edu.nciae.contentcenter.common.entity.Problem;
+import cn.edu.nciae.contentcenter.common.vo.ProblemVO;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -23,63 +23,63 @@ public class FPSUtils {
 
     private static NodeList itemList;
 
-    public static List<Problem> FPS2Problems(Long uid, String filepath) {
+    public static List<ProblemVO> FPS2ProblemVO(Long uid, String filepath) {
         Document doc;
         doc = parseXML(filepath);
-        List<Problem> problems = new ArrayList<Problem>();
+        List<ProblemVO> problems = new ArrayList<ProblemVO>();
         itemList = doc.getElementsByTagName("item");
         for (int i = 0; i < itemList.getLength(); i++) {
-            Problem problem = itemToProblem(itemList.item(i));
-            problem.setAddUid(uid);
-            problems.add(problem);
+            ProblemVO problemVO = itemToProblemVO(itemList.item(i));
+            problemVO.setAddUid(uid);
+            problems.add(problemVO);
         }
         return problems;
     }
 
-    private static Problem itemToProblem(Node item) {
-        Problem problem = new Problem();
+    private static ProblemVO itemToProblemVO(Node item) {
+        ProblemVO problemVO = new ProblemVO();
         NodeList nodeList = item.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
             String name = node.getNodeName();
             String value = node.getTextContent();
             if (name.equalsIgnoreCase("title")) {
-                problem.setTitle(value);
+                problemVO.setTitle(value);
             }
             if (name.equalsIgnoreCase("time_limit")) {
-                problem.setTimeLimit(Double.valueOf(String.valueOf(value.split(" ")[0])));
+                problemVO.setTimeLimit(Double.valueOf(String.valueOf(value.split(" ")[0])));
             }
             if (name.equalsIgnoreCase("memory_limit")) {
-                problem.setMemoryLimit(Double.valueOf(String.valueOf(value.split(" ")[0])));
+                problemVO.setMemoryLimit(Double.valueOf(String.valueOf(value.split(" ")[0])));
             }
             if (name.equalsIgnoreCase("description")) {
-                problem.setDescription(value);
+                problemVO.setDescription(value);
             }
             if (name.equalsIgnoreCase("input")) {
-                problem.setFInput(value);
+                problemVO.setFInput(value);
             }
             if (name.equalsIgnoreCase("output")) {
-                problem.setFOutput(value);
+                problemVO.setFOutput(value);
             }
-            if (name.equalsIgnoreCase("sample_input")) {
-                problem.setSInput(value);
-            }
-            if (name.equalsIgnoreCase("sample_output")) {
-                problem.setSOutput(value);
-            }
+//            if (name.equalsIgnoreCase("sample_input")) {
+//                problem.setSInput(value);
+//            }
+//            if (name.equalsIgnoreCase("sample_output")) {
+//                problem.setSOutput(value);
+//            }
 //            if (name.equalsIgnoreCase("hint")) {
 //                problem.hint = p.setImages(value);
 //            }
             if (name.equalsIgnoreCase("source")) {
-                problem.setAuthor(value);
+                problemVO.setAuthor(value);
             }
 //            if (name.equalsIgnoreCase("img")) {
 //                problem.imageList.add(new freeproblemset.Image(e, p));
 //            }
         }
-        problem.setSubmitNum(0);
-        problem.setSolvedNum(0);
-        return problem;
+        problemVO.setSubmitNum(0);
+        problemVO.setSolvedNum(0);
+        return problemVO;
     }
 
     private static Document parseXML(String filepath) {
