@@ -2,6 +2,7 @@ package cn.edu.nciae.contentcenter.service.impl;
 
 import cn.edu.nciae.contentcenter.common.entity.Problem;
 import cn.edu.nciae.contentcenter.common.mapper.ProblemMapper;
+import cn.edu.nciae.contentcenter.common.vo.ProblemVO;
 import cn.edu.nciae.contentcenter.service.IProblemService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -25,8 +26,16 @@ public class ProblemServiceImpl extends ServiceImpl<ProblemMapper, Problem> impl
      * @param page
      * @return IPage<Problem>
      */
-    public IPage<Problem> getProblemListPage(Page<Problem> page) {
-        return problemMapper.selectProblemListPage(page);
+    public IPage<ProblemVO> getProblemListPage(Page<ProblemVO> page) {
+        return problemMapper.selectProblemVOListPage(page);
+    }
+
+    /**
+     * @param pid
+     * @return
+     */
+    public ProblemVO getProblemVOByPid(Long pid) {
+        return problemMapper.selectProblemVOByPid(pid);
     }
 
 }

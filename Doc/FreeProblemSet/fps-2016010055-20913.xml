@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<fps version="1.2" url="https://github.com/zhblue/freeproblemset/">
+	<generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
+	<item>
+<title><![CDATA[乘积最大]]></title>
+<time_limit unit="s"><![CDATA[1]]></time_limit>
+<memory_limit unit="mb"><![CDATA[125]]></memory_limit>
+
+<description><![CDATA[今年是国际数学联盟确定的“2000——世界数学年”，又恰逢我国著名数学家华罗庚先生诞辰90周年。在华罗庚先生的家乡江苏金坛，组织了一场别开生面的数学智力竞赛的活动，你的一个好朋友XZ也有幸得以参加。活动中，主持人给所有参加活动的选手出了这样一道题目：<br />
+设有一个长度为N的数字串，要求选手使用K个乘号将它分成K+1个部分，找出一种分法，使得这K+1个部分的乘积能够为最大。<br />
+同时，为了帮助选手能够正确理解题意，主持人还举了如下的一个例子：<br />
+有一个数字串：312， 当N=3，K=1时会有以下两种分法：<br />
+<br />
+&nbsp; &nbsp; 1) &nbsp;3*12=36<br />
+&nbsp; &nbsp; 2) &nbsp;31*2=62<br />
+&nbsp; &nbsp;<br />
+这时，符合题目要求的结果是：31*2=62<br />
+<span style="line-height:1.5;">现在，请你帮助你的好朋友XZ设计一个程序，求得正确的答案。</span><br />
+<div>
+	<br />
+</div>]]></description>
+<input><![CDATA[每个测试文件只包含一组测试数据，每组输入有两行：<br />
+第一行输入两个自然数N，K（6≤N≤40，1≤K≤6）。<br />
+第二行输入一个长度为N的数字串。<br />
+<div>
+	<br />
+</div>]]></input> 
+<output><![CDATA[<p>
+	对于每组输入数据，输出所求得的最大乘积（一个自然数）。
+</p>
+<p>
+	<br />
+</p>]]></output>
+<sample_input><![CDATA[4 2
+1231]]></sample_input>
+<sample_output><![CDATA[62]]></sample_output>
+  <test_input><![CDATA[10 5
+7777777777
+]]></test_input>
+<test_output><![CDATA[1722499009
+]]></test_output>
+<test_input><![CDATA[9 4
+321044105
+]]></test_input>
+<test_output><![CDATA[5166000
+]]></test_output>
+<test_input><![CDATA[6 1
+101010
+]]></test_input>
+<test_output><![CDATA[10100
+]]></test_output>
+<test_input><![CDATA[8 3
+22222222
+]]></test_input>
+<test_output><![CDATA[234256
+]]></test_output>
+<hint><![CDATA[]]></hint>
+<source><![CDATA[NOIP全国联赛普及组 2000年NOIP全国联赛普及组]]></source>
+		<solution language="C++"><![CDATA[#include<iostream>
+
+#include<string.h>
+
+#include<algorithm>
+
+using namespace std;
+int  max(int a,long b )
+{
+ 
+  if(a>b)
+	  return a;
+  else
+	  return b;
+}
+
+int main(){
+
+    int n,K,a[45];
+
+    char x;
+
+    long dp[45][45];
+
+    while(cin>>n>>K){
+
+        memset(a,0,sizeof(a));
+
+        memset(dp,0,sizeof(dp));
+
+        for(int i=1;i<=n;i++){
+
+            cin>>x;a[i]=x-'0';
+
+        }
+
+        for(int k=1;k<=K;k++){
+
+                for(int i=k+1;i<=n;i++){
+
+                    for(int j=k;j<i;j++){
+
+                    int index1=1,num1=0,index2=j+1,num2=0;
+
+                    while(index1<=j){
+
+                            num1=num1*10+a[index1];index1++;
+
+                    }
+
+                    while(index2<=i){
+
+                        num2=num2*10+a[index2];index2++;
+
+                    }
+
+                    if(k==1) dp[i][k]=max(dp[i][k],(long)num1*num2);
+
+                    else dp[i][k]=max(dp[i][k],dp[j][k-1]*num2);
+
+                }
+
+            }
+
+        }
+
+        cout<<dp[n][K]<<endl;
+
+    }
+
+    return 0;
+
+}]]></solution>
+			<solution language="Pascal"><![CDATA[const MAXN=40;
+MAXK=6;
+var
+i,j,l:longint;
+n,K:longint;
+s:string;
+f:array[0..MAXN,0..MAXK] of int64;
+a:array[0..MAXN,0..MAXN] of int64;
+begin
+{assign(input,'2000t2.in');reset(input);
+assign(output,'2000t2.out');rewrite(output); }
+readln(N,K);
+readln(s);
+fillchar(f,sizeof(f),0);
+fillchar(a,sizeof(a),0);
+for i:=1 to n do
+begin
+j:=ord(s[i]);
+dec(j,ord('0'));
+a[i,i]:=j;
+end;
+for i:=1 to n do
+for j:=i+1 to n do a[i][j]:=a[i][j-1]*10+a[j][j];
+for i:=1 to n do f[i][0]:=a[1][i];
+for l:=1 to K do
+for i:=l+1 to n do
+begin
+for j:=l-1+1 to i-1 do
+if f[i][l]<f[j][l-1]*a[j+1][i] then f[i][l]:=f[j][l-1]*a[j+1][i];
+end;
+writeln(f[N][K]);
+{close(input);
+close(output);}
+end.]]></solution>
+			<solution language="Java"><![CDATA[import java.math.*;
+import java.util.*;
+public class Main { 
+	public static void main(String[] args) {
+		Scanner cin = new Scanner ( System.in );
+		String str;
+		int n ,k;
+		while(cin.hasNext())
+		{
+		 n=cin.nextInt();
+		 k=cin.nextInt();
+		 str=cin.next();
+		 BigInteger dp[][]=new BigInteger[41][7];
+		 BigInteger num[][]=new BigInteger[41][41];
+		 for(int i=1;i<=n;i++)
+		 {
+			 for(int j=i;j<=n;j++)
+			 {
+				 String s ="";
+				 for(int l=i-1;l<j;l++)
+				 {
+					 s+=str.charAt(l);
+				 }
+				 BigInteger tmp = new BigInteger(s);
+				 num[i][j] = tmp;
+			 }
+		 }
+		 BigInteger t = new BigInteger("0");
+		 for(int i=1;i<=n;i++)
+		 {
+			 for(int j=1;j<=k;j++)
+			 {
+				 dp[i][j]=t;
+			 }
+		 }
+		 String s="";
+		 for(int i=1;i<=n;i++)
+		 {
+			 s+=str.charAt(i-1);
+			 BigInteger tmp = new BigInteger(s);
+			 dp[i][0]=tmp;
+		 }
+		 for(int i=2;i<=n;i++)
+		 {
+			 for(int l=1;l<=k;l++)
+			 {
+				 for(int j=i-1;j>=1;j--)
+				 {
+					 dp[i][l]=dp[i][l].max(dp[j][l-1].multiply(num[j+1][i]));
+				 }
+			 }
+		 }
+		 System.out.println(dp[n][k]);
+		}
+		}
+}]]></solution>
+	</item>
+</fps>

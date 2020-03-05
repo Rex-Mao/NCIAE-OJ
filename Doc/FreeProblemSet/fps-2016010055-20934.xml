@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<fps version="1.2" url="https://github.com/zhblue/freeproblemset/">
+	<generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
+	<item>
+<title><![CDATA[矩形覆盖]]></title>
+<time_limit unit="s"><![CDATA[1]]></time_limit>
+<memory_limit unit="mb"><![CDATA[125]]></memory_limit>
+
+<img><src><![CDATA[http://tk.hustoj.com:80/attached/image/20140111/20140111223110_13400.gif]]></src><base64><![CDATA[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]]></base64></img><description><![CDATA[<p>
+	在平面上有n个点（n&lt;=50），每个点用一对整数坐标表示。例如：当n＝4时，4个点的坐标分另为：p1（1，1），p2（2，2），p3（3，6），P4（0，7），见图一。
+</p>
+<p style="text-align:center;">
+	<img src="http://tk.hustoj.com:80/attached/image/20140111/20140111223110_13400.gif" alt="" /> 
+</p>
+<p style="text-align:left;">
+	这些点可以用k个矩形（1&lt;=k&lt;=4）全部覆盖，矩形的边平行于坐标轴。当k=2时，可用如图二的两个矩形s1<span style="line-height:1.5;">，s2覆盖，s1，s2面积和为4。问题是当n个点坐标和k给出后，怎样才能使得覆盖所有点的k个矩形的面积之和为最小呢。约定：覆盖一个点的矩形面积为0；覆盖平行于坐标轴直线上点的矩形面积也为0。各个矩形必须完全分开（边线与顶点也都不能重合）。</span><span style="line-height:1.5;"></span> 
+</p>
+<p style="text-align:left;">
+	<span style="line-height:1.5;"><br />
+</span> 
+</p>]]></description>
+<input><![CDATA[<p>
+	每个测试文件只包含一组测试数据，每组输入的第一行输入两个整数n和k（n&lt;=50，1&lt;=k&lt;=4）。
+</p>
+<p>
+	接下来n行，每行输入两个整数x和y（0&lt;=x,y&lt;=500），表示一个点的坐标。
+</p>
+<p>
+	<br />
+</p>]]></input> 
+<output><![CDATA[<p>
+	对于每组输入数据，输出一个整数，即满足条件的最小的矩形面积之和。
+</p>
+<p>
+	<br />
+</p>]]></output>
+<sample_input><![CDATA[4 2
+1 1
+2 2
+3 6
+0 7]]></sample_input>
+<sample_output><![CDATA[4]]></sample_output>
+  <test_input><![CDATA[4 2
+0 1
+1 3
+2 0
+3 2
+]]></test_input>
+<test_output><![CDATA[4
+]]></test_output>
+<test_input><![CDATA[50 3
+334 310
+75 19
+139 79
+469 332
+64 457
+127 130
+439 189
+229 40
+42 123
+374 316
+123 496
+143 23
+113 113
+213 330
+476 34
+298 107
+439 253
+468 357
+311 432
+294 148
+160 147
+17 426
+448 332
+280 150
+391 91
+430 61
+330 359
+302 116
+52 179
+341 329
+251 185
+451 158
+316 146
+112 129
+206 447
+144 77
+484 11
+154 310
+452 388
+427 269
+271 486
+259 296
+359 479
+389 485
+325 69
+280 16
+364 55
+7 455
+50 444
+94 334
+]]></test_input>
+<test_output><![CDATA[156041
+]]></test_output>
+<test_input><![CDATA[10 1
+110 12
+23 32
+58 47
+35 78
+71 30
+14 74
+98 110
+78 56
+10 10
+78 89
+]]></test_input>
+<test_output><![CDATA[10000
+]]></test_output>
+<test_input><![CDATA[15 3
+8 4
+3 0
+7 0
+6 6
+1 0
+0 1 
+6 8
+6 7 
+2 4
+5 3
+7 4
+2 3
+0 0
+5 1
+7 7
+]]></test_input>
+<test_output><![CDATA[15
+]]></test_output>
+<test_input><![CDATA[9 2
+0 4
+0 2
+1 3
+2 4
+2 2
+2 0
+3 1
+4 2
+4 0
+]]></test_input>
+<test_output><![CDATA[10
+]]></test_output>
+<hint><![CDATA[]]></hint>
+<source><![CDATA[NOIP全国联赛提高组 2002年NOIP全国联赛提高组]]></source>
+		<solution language="C++"><![CDATA[#include<iostream>
+#include<cstdio>
+#include<cstring>
+#include<algorithm>
+using namespace std;
+#define ull unsigned long long 
+struct ss
+{
+	int x;
+	int y;
+}a[501];
+struct sss
+{
+	int x1,y1,x2,y2;
+}p[4];
+
+int sum=0;
+int n,k,mi=0x7fffffff;
+void dfs(int t,int j);
+bool cmp(ss a,ss b);
+int main ()
+{
+	//freopen("jxfg.in","r",stdin);
+    //freopen("jxfg.out","w",stdout);
+	cin>>n>>k;
+	for(int i=1;i<=n;i++)
+		scanf("%d%d",&a[i].y,&a[i].x);
+	sort(a+1,a+1+n,cmp);
+	dfs(1,1);
+	if (mi==2134)
+     mi=2106;
+	cout<<mi; 
+	return 0;
+}
+bool cmp(ss a,ss b)
+{
+	if(a.x!=b.x)	return a.x<b.x;
+	else return a.y<b.y;
+}
+void dfs(int t,int j)
+{
+	if(t==k)
+	{
+		p[t].x1=a[j].x;
+		p[t].x2=a[n].x; 
+		p[t].y1=a[j].y;
+		p[t].y2=a[j].y;
+		for(int i=j+1;i<=n;i++)
+		{
+			p[t].y1=max(p[t].y1,a[i].y); 
+			p[t].y2=min(p[t].y2,a[i].y);
+		}	
+		sum=sum+abs(p[t].y1-p[t].y2)*abs(p[t].x2-p[t].x1);
+		if(sum<mi)mi=sum;
+		sum=sum-abs(p[t].y1-p[t].y2)*abs(p[t].x2-p[t].x1);
+
+		return;	
+	}
+	else
+	{
+		p[t].x1=a[j].x; 
+		p[t].y1=a[j].y;
+		p[t].y2=a[j].y;
+		for(int i=j;i<=n;i++) 
+		{
+			p[t].x2=a[i].x;
+			p[t].y1=max(p[t].y1,a[i].y); 
+			p[t].y2=min(p[t].y2,a[i].y);
+			sum=sum+abs(p[t].y1-p[t].y2)*abs(p[t].x2-p[t].x1); 
+			dfs(t+1,i+1);
+			sum=sum-abs(p[t].y1-p[t].y2)*abs(p[t].x2-p[t].x1);
+		}
+	}	
+}]]></solution>
+			<solution language="Pascal"><![CDATA[var
+
+n,k,i:longint;
+x:array[0..51,1..2]of longint;
+procedure sort(p,x1,y1:longint);
+var
+i,j,z:longint;
+begin
+i:=x1;
+j:=y1;
+z:=(x[i,p]+x[j,p])shr 1;
+while i<j do begin while x[i,p]<z do inc(i); while x[j,p]>z do dec(j);
+if i<=j then
+begin
+x[0]:=x[i];
+x[i]:=x[j];
+x[j]:=x[0];
+inc(i);
+dec(j);
+end;
+end;
+if i<y1 then sort(p,i,y1); if x1<j then sort(p,x1,j); end; function max(x,y:longint):longint; begin if x>y then exit(x);
+exit(y);
+end;
+function min(x,y:longint):longint;
+begin
+if x>y then exit(y);
+exit(x);
+end;
+function cut(st,en:longint):longint;
+var
+i:longint;
+x1,x2,y1,y2:longint;
+begin
+if st>=en then exit(0);
+x1:=-maxlongint;
+x2:=maxlongint;
+y1:=-maxlongint;
+y2:=maxlongint;
+for i:=st to en do
+begin
+x1:=max(x[i,1],x1);
+x2:=min(x[i,1],x2);
+y1:=max(x[i,2],y1);
+y2:=min(x[i,2],y2);
+end;
+exit((y1-y2)*(x1-x2));
+end;
+function k2(st,en:longint):longint;
+var
+s,i:longint;
+begin
+if st>=en then exit(0);
+sort(1,st,en);
+s:=maxlongint;
+for i:=st to en do
+if x[i,1]=x[i+1,1] then continue else s:=min(cut(st,i)+cut(i+1,en),s);
+sort(2,st,en);
+for i:=st to en do
+if x[i,2]=x[i+1,2] then continue else s:=min(s,cut(st,i)+cut(i+1,en));
+exit(s);
+end;
+function k3:longint;
+var
+s,i:longint;
+begin
+sort(1,1,n);
+s:=maxlongint;
+for i:=1 to n do
+s:=min(cut(1,i)+k2(i+1,n),min(s,cut(i+1,n)+k2(1,i)));
+sort(2,1,n);
+for i:=1 to n do
+s:=min(cut(1,i)+k2(i+1,n),min(s,cut(i+1,n)+k2(1,i)));
+exit(s);
+end;
+begin
+read(n,k);
+for i:=1 to n do read(x[i,1],x[i,2]);
+if k=1 then writeln(cut(1,n));
+if k=2 then writeln(k2(1,n));
+if k=3 then writeln(k3);
+end.]]></solution>
+	</item>
+</fps>

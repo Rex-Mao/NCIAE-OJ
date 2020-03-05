@@ -20,4 +20,5 @@ public class ParametersDTO {
     private String difficulty;
     private String tag;
     private Integer page;
+    private Long contestId;
 }

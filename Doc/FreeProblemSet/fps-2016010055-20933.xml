@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<fps version="1.2" url="https://github.com/zhblue/freeproblemset/">
+	<generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
+	<item>
+<title><![CDATA[自由落体]]></title>
+<time_limit unit="s"><![CDATA[1]]></time_limit>
+<memory_limit unit="mb"><![CDATA[125]]></memory_limit>
+
+<img><src><![CDATA[http://tk.hustoj.com:80/attached/image/20140111/20140111222225_26749.gif]]></src><base64><![CDATA[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]]></base64></img><description><![CDATA[<p>
+	在高为<span style="line-height:1.5;">H的天花板上有n个小球，体积不计，位置分别为0，1，2，... n-1。在地面上有一个小车（长为L，高为K，距原点距离为 S1）。已知小球下落距离计算公式为d＝1/2*g*(t^2)，其中g=10，t为下落时间。地面上的小车以速度V前进。</span> 
+</p>
+<p>
+	<span style="line-height:1.5;">如下图：</span> 
+</p>
+<p style="text-align:center;">
+	<span style="line-height:1.5;"><img src="http://tk.hustoj.com:80/attached/image/20140111/20140111222225_26749.gif" alt="" /><br />
+</span> 
+</p>
+<p style="text-align:left;">
+	<span style="line-height:1.5;">小车与所有小球同时开始运动，当小球距小车的距离&lt;=0.00001时，即认为小球被小车接受（小球落到地面后不能被接受）。<br />
+</span><span style="line-height:1.5;">请你计算出小车能接受到多少个小球。</span><span style="line-height:1.5;"><br />
+<br />
+</span> 
+</p>]]></description>
+<input><![CDATA[<p>
+	每个测试文件只包含一组测试数据，每组输入H，S1，V，L，K，n（<span style="line-height:1.5;">1&lt;=H，S1，V，L，K，n&lt;=100000）。</span> 
+</p>
+<p>
+	<span style="line-height:1.5;"><br />
+</span> 
+</p>]]></input> 
+<output><![CDATA[<p>
+	对于每组输入数据，输出小车能接受到的小球个数。
+</p>
+<p>
+	<br />
+</p>]]></output>
+<sample_input><![CDATA[5.0 9.0 5.0 2.5 1.8 5]]></sample_input>
+<sample_output><![CDATA[1]]></sample_output>
+  <test_input><![CDATA[10 10 10 10 10 10
+]]></test_input>
+<test_output><![CDATA[10
+]]></test_output>
+<test_input><![CDATA[5 9 4.999999 2 1.8 5
+]]></test_input>
+<test_output><![CDATA[1
+]]></test_output>
+<test_input><![CDATA[10 10000 1000 1000 2 9999
+]]></test_input>
+<test_output><![CDATA[1150
+]]></test_output>
+<test_input><![CDATA[100 500 10 10 1 1000
+]]></test_input>
+<test_output><![CDATA[10
+]]></test_output>
+<test_input><![CDATA[10 100 10 10 1 85
+]]></test_input>
+<test_output><![CDATA[0
+]]></test_output>
+<hint><![CDATA[]]></hint>
+<source><![CDATA[NOIP全国联赛提高组 2002年NOIP全国联赛提高组]]></source>
+		<solution language="C++"><![CDATA[/*
+题目大意:
+思路：
+*/
+#include<map>
+#include<set>
+#include<stack>
+#include<queue>
+#include<cmath>
+#include<string>
+#include<cstdio>
+#include <vector>
+#include<cstring>
+#include<sstream>
+#include<cstdlib>
+#include<iostream>
+#include<algorithm>
+using namespace std;
+#define ll long long
+#define ul unsigned long long
+#define inf 0x3f3f3f
+#define esp 1e-8
+#define pp printf("\n");
+#define pn(a) printf("%d\n",a);
+#define bug printf("mmp\n");
+#define mm(a,b) memset(a,b,sizeof(a))
+#define T() int test,q=1;scanf("%d",&test); while(test--)
+const int maxn=2e6+10;
+const double pi=acos(-1.0);
+const int N=1001;
+const int mod=1e9+7;
+int main()
+{
+    double H,s1,v,l,k;
+    int n;
+    while(scanf("%lf%lf%lf%lf%lf%d",&H,&s1,&v,&l,&k,&n)!=EOF)
+    {
+        double tmax=sqrt(H/5);
+        double tmin=sqrt((H-k)/5);
+        int cnt=0;
+        double x1=s1-v*tmax;
+        double x2=s1-v*tmin+l;
+        for(int i=0; i<n; i++)
+        {
+            if(i>=x1-0.00001&&i<=x2+0.00001)
+                cnt++;
+        }
+        printf("%d\n",cnt);
+    }
+    return 0;
+}
+]]></solution>
+			<solution language="Pascal"><![CDATA[var  
+ h,h1,s1,v,l,k,t:real;  
+ n,i,ans:longint;  
+begin  
+readln(h,s1,v,l,k,n);  
+ ans:=0;  
+for i:=0 to n-1 do  
+ begin  
+  if i>s1 then break;  
+  t:=(s1-i)/v;  
+  h1:=5*sqr(t);  
+ if h1>h+0.00001 then continue;  
+  t:=(s1-i+l+0.0001)/v;  
+  h1:=5*sqr(t);  
+  if h1<h-k-0.00001 then continue;  
+  inc(ans);  
+ end;  
+ writeln(ans);  
+end. ]]></solution>
+	</item>
+</fps>

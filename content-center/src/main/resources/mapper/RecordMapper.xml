@@ -5,6 +5,7 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="cn.edu.nciae.contentcenter.common.entity.Record">
         <id column="record_id" property="recordId" />
+        <result column="submission_id" property="submissionID"/>
         <result column="commit_uid" property="commitUid" />
         <result column="pid" property="pid" />
         <result column="cid" property="cid" />
@@ -17,7 +18,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        record_id, commit_uid, pid, cid, source_code, commit_time, status, used_time, used_memory
+        record_id, submission_id, commit_uid, pid, cid, source_code, commit_time, status, used_time, used_memory
     </sql>
 
 </mapper>

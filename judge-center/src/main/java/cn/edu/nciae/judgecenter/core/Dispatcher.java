@@ -1,269 +1,101 @@
-//package cn.edu.nciae.judgecenter.core;
-//
-//import cn.edu.nciae.judgecenter.application.ApplicationDispatcher;
-//import cn.edu.nciae.judgecenter.exception.IllgealSubmissionException;
-//import cn.edu.nciae.judgecenter.mapper.CheckpointMapper;
-//import cn.edu.nciae.judgecenter.mapper.SubmissionMapper;
-//import cn.edu.nciae.judgecenter.model.Checkpoint;
-//import cn.edu.nciae.judgecenter.model.Submission;
-//import cn.edu.nciae.judgecenter.util.DigestUtils;
-//import org.apache.commons.io.FileUtils;
-//import org.apache.logging.log4j.LogManager;
-//import org.apache.logging.log4j.Logger;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.beans.factory.annotation.Value;
-//import org.springframework.stereotype.Component;
-//
-//import java.io.File;
-//import java.io.IOException;
-//import java.util.ArrayList;
-//import java.util.List;
-//import java.util.Map;
-//
-///**
-// * 评测机调度器.
-// * 用于完成评测机的评测流程.
-// * 每个阶段结束后推送消息至消息队列; 评测结束后写入数据库.
-// *
-// * @author RexALun
-// * @since 2019-12-24
-// */
-//@Component
-//public class Dispatcher {
-//	/**
-//	 * 创建新的评测任务.
-//	 * 每次只运行一个评测任务.
-//	 * @param submissionId - 提交记录的唯一标识符
-//	 * @throws cn.edu.nciae.judgecenter.exception.IllgealSubmissionException
-//	 * @throws InterruptedException
-//	 */
-//	public void createNewTask(long submissionId) throws IllgealSubmissionException, InterruptedException {
-//		synchronized(this) {
-//			String baseDirectory = String.format("%s/voj-%s", new Object[] {workBaseDirectory, submissionId});
-//			String baseFileName = DigestUtils.getRandomString(12, DigestUtils.Mode.ALPHA);
-//
-//			// 解决由于未知原因无法获取到数据记录的问题
-//			int tryTimes = 0;
-//			Submission submission = null;
-//			do {
-//				Thread.sleep(1000);
-//				submission = submissionMapper.getSubmission(submissionId);
-//			} while ( submission == null && ++ tryTimes <= 3 );
-//
-//			if ( submission == null ) {
-//				throw new IllgealSubmissionException(
-//						String.format("Illegal submission #%s",
-//								new Object[] { submissionId }));
-//			}
-//			preprocess(submission, baseDirectory, baseFileName);
-//			if ( compile(submission, baseDirectory, baseFileName) ) {
+package cn.edu.nciae.judgecenter.core;
+
+import cn.edu.nciae.judgecenter.common.dto.SubmissionDTO;
+import cn.edu.nciae.judgecenter.utils.DigestUtils;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Map;
+
+/**
+ * @author RexALun
+ * @version 1.0
+ * Annotation :
+ * @date 2020/3/4 11:27 AM
+ */
+@Slf4j
+@Component
+public class Dispatcher {
+
+    /**
+	 * the dir use to store the compile result and output
+	 */
+	@Value("${judge.center.workDir}")
+	private String workBaseDirectory;
+
+	/**
+	 * the dir use to store the checkpoints
+	 */
+	@Value("${judge.center.checkpointDir}")
+	private String checkpointDirectory;
+
+	@Autowired
+	private Preparer preparer;
+
+	@Autowired
+	private Compiler compiler;
+
+	/**
+	 * desc : use to create a new task
+	 * @param submissionDTO - submission info
+	 */
+    public void createNewTask(SubmissionDTO submissionDTO) {
+        synchronized (this) {
+			String baseDirectory = String.format("%s/judge-%s", workBaseDirectory, submissionDTO.getSubmissionID());
+			String baseFileName = DigestUtils.getRandomString(12, DigestUtils.Mode.ALPHA);
+			preprocess(submissionDTO, baseDirectory, baseFileName);
+			if ( compile(submissionDTO, baseDirectory, baseFileName) ) {
 //				runProgram(submission, baseDirectory, baseFileName);
-//			}
-//			cleanUp(baseDirectory);
-//		}
-//	}
-//
-//	/**
-//	 * 完成评测前的预处理工作.
-//	 * 说明: 随机文件名用于防止应用程序自身递归调用.
-//	 *
-//	 * @param submission - 评测记录对象
-//	 * @param workDirectory - 用于产生编译输出的目录
-//	 * @param baseFileName - 随机文件名(不包含后缀)
-//	 */
-//	private void preprocess(Submission submission,
-//							String workDirectory, String baseFileName) {
-//		try {
-//			long problemId = submission.getProblem().getProblemId();
-//			preprocessor.createTestCode(submission, workDirectory, baseFileName);
-//			preprocessor.fetchTestPoints(problemId);
-//		} catch (Exception ex) {
-//			LOGGER.catching(ex);
-//
-//			long submissionId = submission.getSubmissionId();
+			}
+			cleanUp(baseDirectory);
+        }
+    }
+
+	/**
+	 * desc : prepare the test code and the checkpoint
+	 * @param submissionDTO - submission info
+	 * @param workDirectory - work directory
+	 * @param baseFileName - file name without suffix
+	 */
+    private void preprocess(SubmissionDTO submissionDTO,
+							String workDirectory, String baseFileName) {
+		try {
+			preparer.prepareTargetCode(submissionDTO, workDirectory, baseFileName);
+			preparer.getCheckpoints(submissionDTO.getProblemId());
+		} catch (Exception ex) {
+			log.error(ex.getMessage());
+			String submissionId = submissionDTO.getSubmissionID();
 //			applicationDispatcher.onErrorOccurred(submissionId);
-//		}
-//	}
-//
-//	/**
-//	 * 创建编译任务.
-//	 * 说明: 随机文件名用于防止应用程序自身递归调用.
-//	 *
-//	 * @param submission - 评测记录对象
-//	 * @param workDirectory - 用于产生编译输出的目录
-//	 * @param baseFileName - 随机文件名(不包含后缀)
-//	 */
-//	private boolean compile(Submission submission,
-//							String workDirectory, String baseFileName) {
-//		long submissionId = submission.getSubmissionId();
-//		Map<String, Object> result =
-//				compiler.getCompileResult(submission, workDirectory, baseFileName);
-//
+		}
+	}
+
+	private boolean compile(SubmissionDTO submissionDTO,
+							String workDirectory, String baseFileName) {
+		String submissionId = submissionDTO.getSubmissionID();
+		Map<String, Object> result =
+				compiler.getCompileResult(submissionDTO, workDirectory, baseFileName);
+
 //		applicationDispatcher.onCompileFinished(submissionId, result);
-//		return (Boolean)result.get("isSuccessful");
-//	}
-//
-//	/**
-//	 * 执行程序.
-//	 * @param submission - 评测记录对象
-//	 * @param workDirectory - 编译生成结果的目录以及程序输出的目录
-//	 * @param baseFileName - 待执行的应用程序文件名(不包含文件后缀)
-//	 */
-//	private void runProgram(Submission submission,
-//							String workDirectory, String baseFileName) {
-//		List<Map<String, Object>> runtimeResults = new ArrayList<Map<String, Object>>();
-//		long submissionId = submission.getSubmissionId();
-//		long problemId = submission.getProblem().getProblemId();
-//
-//		List<Checkpoint> checkpoints = checkpointMapper.getCheckpointsUsingProblemId(problemId);
-//		for ( Checkpoint checkpoint : checkpoints ) {
-//			int checkpointId = checkpoint.getCheckpointId();
-//			int checkpointScore = checkpoint.getScore();
-//			String inputFilePath = String.format("%s/%s/input#%s.txt",
-//					new Object[] { checkpointDirectory, problemId, checkpointId });
-//			String stdOutputFilePath = String.format("%s/%s/output#%s.txt",
-//					new Object[] { checkpointDirectory, problemId, checkpointId });
-//			String outputFilePath = getOutputFilePath(workDirectory, checkpointId);
-//
-//			Map<String, Object> runtimeResult = getRuntimeResult(
-//					runner.getRuntimeResult(submission, workDirectory, baseFileName, inputFilePath, outputFilePath),
-//					stdOutputFilePath, outputFilePath);
-//			runtimeResult.put("score", checkpointScore);
-//			runtimeResults.add(runtimeResult);
-//			applicationDispatcher.onOneTestPointFinished(submissionId, checkpointId, runtimeResult);
-//		}
-//		applicationDispatcher.onAllTestPointsFinished(submissionId, runtimeResults);
-//	}
-//
-//	/**
-//	 * 获取当前测试点输出路径.
-//	 * @param workDirectory - 编译生成结果的目录以及程序输出的目录
-//	 * @param checkpointId - 当前测试点编号
-//	 * @return 当前测试点输出路径
-//	 */
-//	private String getOutputFilePath(String workDirectory, int checkpointId) {
-//		return String.format("%s/output#%s.txt",
-//				new Object[] {workDirectory, checkpointId});
-//	}
-//
-//	/**
-//	 * 获取程序运行结果(及答案比对结果).
-//	 * @param result - 包含程序运行结果的Map对象
-//	 * @param standardOutputFilePath - 标准输出文件路径
-//	 * @param outputFilePath - 用户输出文件路径
-//	 * @return 包含程序运行结果的Map对象
-//	 */
-//	private Map<String, Object> getRuntimeResult(Map<String, Object> result,
-//		String standardOutputFilePath, String outputFilePath) {
-//		String runtimeResultSlug = (String)result.get("runtimeResult");
-//		int usedTime = (Integer)result.get("usedTime");
-//		int usedMemory = (Integer)result.get("usedMemory");
-//
-//		if ( runtimeResultSlug.equals("AC") &&
-//				!isOutputTheSame(standardOutputFilePath, outputFilePath) ) {
-//			runtimeResultSlug = "WA";
-//			result.put("runtimeResult", runtimeResultSlug);
-//		}
-//		LOGGER.info(String.format("RuntimeResult: [%s, Time: %d ms, Memory: %d KB]",
-//				new Object[] { runtimeResultSlug, usedTime, usedMemory }));
-//
-//		return result;
-//	}
-//
-//	/**
-//	 * 获取用户输出和标准输出的比对结果.
-//	 * @param standardOutputFilePath - 标准输出文件路径
-//	 * @param outputFilePath - 用户输出文件路径
-//	 * @return 用户输出和标准输出是否相同
-//	 */
-//	private boolean isOutputTheSame(String standardOutputFilePath, String outputFilePath) {
-//		try {
-//			return comparator.isOutputTheSame(standardOutputFilePath, outputFilePath);
-//		} catch (IOException ex) {
-//			LOGGER.catching(ex);
-//		}
-//		return false;
-//	}
-//
-//	/**
-//	 * 评测完成后, 清理所生成的文件.
-//	 * @param baseDirectory - 用于产生输出结果目录
-//	 */
-//	private void cleanUp(String baseDirectory) {
-//		File baseDirFile = new File(baseDirectory);
-//		if ( baseDirFile.exists() ) {
-//			try {
-//				FileUtils.deleteDirectory(baseDirFile);
-//			} catch (IOException ex) {
-//				LOGGER.catching(ex);
-//			}
-//		}
-//	}
-//
-//	/**
-//	 * 自动注入的ApplicationDispatcher对象.
-//	 * 完成每个阶段的任务后推送消息至消息队列.
-//	 */
-//	@Autowired
-//	private ApplicationDispatcher applicationDispatcher;
-//
-//	/**
-//	 * 自动注入的Preprocessor对象.
-//	 * 完成编译前的准备工作.
-//	 */
-//	@Autowired
-//	private Preprocessor preprocessor;
-//
-//	/**
-//	 * 自动注入的Compiler对象.
-//	 * 完成编译工作.
-//	 */
-//	@Autowired
-//	private Compiler compiler;
-//
-//	/**
-//	 * 自动注入的Runner对象.
-//	 * 完成程序运行工作.
-//	 */
-//	@Autowired
-//	private Runner runner;
-//
-//	/**
-//	 * 自动注入的Matcher对象.
-//	 * 完成输出结果比对工作.
-//	 */
-//	@Autowired
-//	private Comparator comparator;
-//
-//	/**
-//	 * 自动注入的SubmissionMapper对象.
-//	 */
-//	@Autowired
-//	private SubmissionMapper submissionMapper;
-//
-//	/**
-//	 * 自动注入的CheckpointMapper对象.
-//	 * 用于获取试题的测试点.
-//	 */
-//	@Autowired
-//	private CheckpointMapper checkpointMapper;
-//
-//	/**
-//	 * 评测机的工作目录.
-//	 * 用于存储编译结果以及程序输出结果.
-//	 */
-//	@Value("${judger.workDir}")
-//	private String workBaseDirectory;
-//
-//	/**
-//	 * 测试点的存储目录.
-//	 * 用于存储测试点的输入输出数据.
-//	 */
-//	@Value("${judger.checkpointDir}")
-//	private String checkpointDirectory;
-//
-//	/**
-//	 * 日志记录器.
-//	 */
-//	private static final Logger LOGGER = LogManager.getLogger(Dispatcher.class);
-//}
+		return (Boolean)result.get("isSuccessful");
+	}
+
+	/**
+	 * desc : clean up the directory
+	 * @param baseDirectory - the directory for output the temp
+	 */
+	private void cleanUp(String baseDirectory) {
+		File baseDirFile = new File(baseDirectory);
+		if ( baseDirFile.exists() ) {
+			try {
+				FileUtils.deleteDirectory(baseDirFile);
+			} catch (IOException e) {
+				log.warn(e.getMessage());
+			}
+		}
+	}
+}

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<fps version="1.2" url="https://github.com/zhblue/freeproblemset/">
+	<generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
+	<item>
+<title><![CDATA[装箱问题]]></title>
+<time_limit unit="s"><![CDATA[1]]></time_limit>
+<memory_limit unit="mb"><![CDATA[125]]></memory_limit>
+
+<description><![CDATA[有一个箱子容量为V（正整数，0&lt;=V&lt;=20000），同时有n个物品（0&lt;n&lt;=30），每个物品有一个体积（正整数）。<br />
+<p>
+	要求n个物品中，任取若干个装入箱内，使箱子的剩余空间为最小。
+</p>
+<p>
+	<br />
+</p>]]></description>
+<input><![CDATA[<p>
+	每个测试文件只包含一组测试数据，每组输入的第一行为一个整数V（0&lt;=V&lt;=20000），表示箱子的容量。
+</p>
+<p>
+	第二行输入一个整数n（0&lt;n&lt;=30），表示有n个物品。
+</p>
+<p>
+	接下来n行，每行输入一个正整数，表示每个物品的体积。
+</p>
+<p>
+	<br />
+</p>]]></input> 
+<output><![CDATA[<p>
+	对于每组输入数据，输出一个整数，表示箱子剩余空间。
+</p>
+<p>
+	<br />
+</p>]]></output>
+<sample_input><![CDATA[24
+6
+8
+3
+12
+7
+9
+7]]></sample_input>
+<sample_output><![CDATA[0]]></sample_output>
+  <test_input><![CDATA[90
+12
+3
+7
+4
+5
+13
+2
+8
+4
+7
+6
+5
+7
+]]></test_input>
+<test_output><![CDATA[19
+]]></test_output>
+<test_input><![CDATA[100
+16
+16
+3
+5
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+]]></test_input>
+<test_output><![CDATA[1
+]]></test_output>
+<test_input><![CDATA[10
+3
+4
+8
+5
+]]></test_input>
+<test_output><![CDATA[1
+]]></test_output>
+<test_input><![CDATA[20000
+30
+3536
+4316
+65
+2717
+6474
+4602
+689
+13
+1300
+4147
+6136
+2587
+3068
+5811
+4966
+4810
+52
+5070
+3757
+1703
+3497
+3211
+4719
+1300
+5005
+6188
+3055
+169
+3224
+338
+]]></test_input>
+<test_output><![CDATA[6
+]]></test_output>
+<test_input><![CDATA[10
+20
+15
+15
+15
+15
+15
+15
+15
+15
+15
+15
+15
+15
+15
+15
+7
+2
+15
+15
+15
+15
+]]></test_input>
+<test_output><![CDATA[1
+]]></test_output>
+<hint><![CDATA[]]></hint>
+<source><![CDATA[NOIP全国联赛普及组 2001年NOIP全国联赛普及组]]></source>
+		<solution language="C"><![CDATA[#include<stdio.h>
+void main()
+{
+	int f[20001]={0},o[31],i,j,v,n;
+	scanf("%d%d",&v,&n);
+	for (i=0;i<n;i++) scanf("%d",&o[i]);
+	f[0]=1;
+	for (i=0;i<n;i++) 
+     	for (j=v;j>=0;j--)
+			if (j-o[i]>=0) 
+				if (f[j-o[i]]) f[j]=1;
+    for (j=v;j>=0;j--) if (f[j]) break;
+	printf("%d",v-j);
+}]]></solution>
+			<solution language="C++"><![CDATA[#include<iostream>
+#include<string.h>
+#include<algorithm>
+using namespace std;
+int main(){
+int V,n,w[35],f[20005];
+cin>>V>>n;
+memset(f,0,sizeof(f));
+for(int i=1;i<=n;i++) cin>>w[i];
+for(int i=1;i<=n;i++){
+for(int j=V;j>=w[i];j--){
+f[j]=max(f[j],f[j-w[i]]+w[i]);
+}
+}
+cout<<V-f[V]<<endl;
+return 0;
+}]]></solution>
+			<solution language="Pascal"><![CDATA[var f:array[0..20000]of boolean;
+v,m,i,j,o,max:longint;
+begin
+  readln(v);
+  readln(m);
+  f[0]:=true;
+  for i:=1 to m do begin
+    readln(o);
+    for j:=v downto 0 do if (j+o<=v)and(f[j]) then f[j+o]:=true;
+  end;
+  for j:=0 to v do if f[j] then max:=j;
+  writeln(v-max);
+  
+end.]]></solution>
+			<solution language="Java"><![CDATA[import java.util.*;
+
+public class Main {
+	public static void main(String[] args){
+		int v;
+		int n;
+		int[] a;
+		Scanner sc= new Scanner(System.in);
+		while(sc.hasNext()){
+			v=sc.nextInt();
+			n=sc.nextInt();
+			a=new int[n];
+			for(int i=0;i<n;i++)
+				a[i]=sc.nextInt();
+			int result=inornot(a,0,v);
+			System.out.println(result);
+		}
+		sc.close();
+	}
+	public static int inornot(int[] a,int i,int v){
+		if(i>=a.length)
+			return v;
+		else{
+			if(a[i]>v){
+				return inornot(a,i+1,v);
+			}
+			else{
+				int n=v-a[i];
+				int m=inornot(a,i+1,n);
+				int k=inornot(a,i+1,v);
+				if(m<k)
+					return m;     
+				else
+					return k;
+			}
+		}
+	}
+}]]></solution>
+			<solution language="Python"><![CDATA[# coding=utf-8
+def main():
+    V = int(input())
+    n = int(input())
+    vv = []
+    for _ in range(n):
+        vv.append(int(input()))
+
+    dp = [[0 for _ in range(V+1)] for _ in range(n)]
+    for i in range(n):
+        for j in range(1, V+1):
+            if i == 0:
+                if j - vv[i] >= 0:
+                    dp[i][j] = vv[i]
+            else:
+                if j - vv[i] >= 0:
+                    dp[i][j] = max(dp[i-1][j], dp[i-1][j - vv[i]] + vv[i])
+                else:
+                    dp[i][j] = dp[i-1][j]
+    print(int(V - dp[n-1][V]))
+
+if __name__ == '__main__':
+    main()]]></solution>
+	</item>
+</fps>

@@ -1,0 +1,736 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<fps version="1.2" url="https://github.com/zhblue/freeproblemset/">
+	<generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
+	<item>
+<title><![CDATA[数字]]></title>
+<time_limit unit="s"><![CDATA[2]]></time_limit>
+<memory_limit unit="mb"><![CDATA[256]]></memory_limit>
+
+<description><![CDATA[<p>
+	有一天，Mirko 在一张纸上写了 N 个实数，然后在另一张纸上写下了这些实
+数的所有整数倍中数值在区间 [A, B] 范围内的所有数（经过去重）。
+第二天，Mirko 发现找不到写着 N 个实数的那张纸了，而只剩下另一张纸。
+请你帮助 Mirko 还原原本的 N 个实数。
+</p>
+<p>
+	注意：本题有 Special Judge。
+</p>]]></description>
+<input><![CDATA[<p>
+	第一行是一个整数 K，表示剩下的那张纸上共有 K 个实数。&nbsp;
+</p>
+<p>
+	第二行是两个整数 A 和 B。&nbsp;
+</p>
+<p>
+	接下来 K 行，每行一个实数，表示纸上的 K 个实数。实数已经去重，按递增
+顺序给出。所有实数至多有 5 位小数。
+</p>]]></input> 
+<output><![CDATA[输出 N 行，每行一个实数，表示一组解。数据保证有解。如果有多组解，输
+出 N 最小的；若还是有多组解，输出任意一组均可。]]></output>
+<sample_input><![CDATA[4
+1 2
+1
+1.4
+1.5
+2
+]]></sample_input>
+<sample_output><![CDATA[0.5
+0.7
+]]></sample_output>
+  <test_input><![CDATA[50
+65537 113184
+65709
+67302
+68695
+69024
+70452
+71041
+73010
+74780
+75136
+75456
+76269
+77148
+78280
+78519
+79724
+80311
+82258
+82434
+85997
+86108
+86366
+87612
+89736
+90006
+90972
+91574
+92088
+93318
+93475
+93920
+93936
+94913
+96173
+97214
+99655
+100953
+101692
+101764
+102214
+102864
+103536
+104692
+106182
+108431
+109515
+109592
+109912
+112170
+112704
+113184
+]]></test_input>
+<test_output><![CDATA[3739.0
+7301.0
+7828.0
+12858.0
+13739.0
+18784.0
+19931.0
+25423.0
+30324.0
+30696.0
+31106.0
+34512.0
+37728.0
+43183.0
+45787.0
+53091.0
+]]></test_output>
+<test_input><![CDATA[40
+16385 29144
+16853.88638
+16913.4538
+17125.2486
+17961.63291
+18095.24343
+18266.83224
+18510.01432
+19428.97032
+19752.0606
+20431.59258
+20550.29832
+20986.95596
+21141.81725
+21154.30208
+21799.13781
+22331.76465
+22667.13204
+22833.5403
+23142.32124
+23335.0146
+23798.58984
+23948.84388
+23975.34804
+24126.99124
+24316.85787
+24508.01523
+24690.07575
+25280.82957
+25370.1807
+25905.29376
+25965.04076
+26346.42018
+26442.8776
+27242.12344
+27400.24836
+27400.39776
+28994.63358
+29065.51708
+29087.16536
+29143.45548
+]]></test_input>
+<test_output><![CDATA[2644.28776
+3238.16172
+3425.04972
+4228.36345
+4566.70806
+4938.01515
+5987.21097
+6031.74781
+6810.53086
+7266.37927
+7443.92155
+7714.10708
+7778.3382
+8105.61929
+8169.33841
+8426.94319
+10493.47798
+12982.52038
+13173.21009
+14497.31679
+]]></test_output>
+<test_input><![CDATA[20
+65 92
+65.8437
+67.9875
+68.37615
+68.88675
+70.9086
+73.44105
+73.5336
+74.78625
+75.9735
+77.96264
+78.50595
+79.4439
+81.0384
+81.585
+82.6641
+83.57085
+86.1033
+88.38375
+88.63575
+91.1682
+]]></test_input>
+<test_output><![CDATA[2.53245
+6.79875
+13.77735
+15.88878
+19.49066
+24.5112
+]]></test_output>
+<test_input><![CDATA[22
+257 512
+258
+260
+288
+312
+326
+340
+364
+366
+380
+384
+388
+406
+416
+438
+460
+468
+480
+482
+488
+489
+510
+512
+]]></test_input>
+<test_output><![CDATA[52.0
+96.0
+122.0
+163.0
+170.0
+190.0
+194.0
+203.0
+219.0
+230.0
+241.0
+256.0
+258.0
+]]></test_output>
+<test_input><![CDATA[30
+1025 1224
+1031.07006
+1037.4152
+1037.51685
+1042.92144
+1048.9401
+1054.77282
+1055.19462
+1066.6242
+1078.47558
+1090.32696
+1102.17834
+1102.25365
+1106.7826
+1107.21455
+1114.02972
+1125.8811
+1137.73248
+1138.6764
+1149.58386
+1152.7965
+1161.43524
+1165.489
+1167.0921
+1173.28662
+1181.2033
+1185.138
+1196.98938
+1208.84076
+1220.69214
+1223.76345
+]]></test_input>
+<test_output><![CDATA[11.85138
+58.27445
+64.83845
+113.86764
+115.27965
+158.1118
+175.86577
+236.24066
+]]></test_output>
+<test_input><![CDATA[2
+2 4
+2
+4
+]]></test_input>
+<test_output><![CDATA[2.0
+]]></test_output>
+<test_input><![CDATA[50
+262145 332604
+262455.71916
+264110.58765
+265538.89636
+266244.47802
+268173.82746
+269620.77275
+270200.03688
+272237.06727
+273348.8639
+274058.33603
+276300.30708
+279280.17268
+280363.54689
+280782.8485
+281158.83144
+283650.90198
+284426.7867
+285211.15004
+288490.02651
+288968.79898
+290179.41462
+292553.26632
+296616.50613
+296778.76652
+300222.2632
+300559.4221
+300679.74594
+300838.76625
+303517.21589
+304588.73406
+304742.98575
+306300.49321
+308806.22556
+312398.7016
+312869.46537
+315233.37636
+316932.70518
+320208.66914
+320894.684
+320995.94499
+322255.16944
+322421.5718
+323544.9273
+325059.1848
+328018.63668
+329122.42461
+330244.48952
+330380.75992
+330926.05231
+332603.26856
+]]></test_input>
+<test_output><![CDATA[4063.23981
+7809.96754
+15011.11316
+16121.07859
+20055.91775
+42937.0603
+43359.60227
+47275.15033
+53924.15455
+69820.04317
+80563.79236
+82595.18998
+83150.81714
+87485.23972
+88748.15934
+]]></test_output>
+<test_input><![CDATA[11
+17 34
+18
+20
+22
+24
+25
+26
+28
+30
+32
+33
+34
+]]></test_input>
+<test_output><![CDATA[2.0
+12.5
+16.5
+]]></test_output>
+<test_input><![CDATA[40
+4097 4564
+4102
+4116
+4130
+4144
+4152
+4158
+4172
+4173
+4180
+4186
+4200
+4214
+4228
+4232
+4242
+4256
+4270
+4284
+4298
+4312
+4326
+4340
+4354
+4368
+4382
+4396
+4410
+4424
+4438
+4452
+4466
+4480
+4482
+4494
+4508
+4522
+4536
+4550
+4560
+4564
+]]></test_input>
+<test_output><![CDATA[14.0
+321.0
+380.0
+415.2
+423.2
+448.2
+]]></test_output>
+<test_input><![CDATA[10
+5 8
+5.0309
+5.47129
+5.96868
+6.03708
+6.45888
+6.46607
+6.96346
+7.04326
+7.39602
+7.46085
+]]></test_input>
+<test_output><![CDATA[1.00618
+1.49217
+1.61472
+2.46534
+3.48173
+5.47129
+6.46607
+]]></test_output>
+<hint><![CDATA[<p>
+	【输入样例 2】&nbsp;
+</p>
+<p>
+	5&nbsp;
+</p>
+<p>
+	10&nbsp;
+</p>
+<p>
+	25&nbsp;
+</p>
+<p>
+	12&nbsp;
+</p>
+<p>
+	13.5&nbsp;
+</p>
+<p>
+	18
+</p>
+<p>
+	20.25&nbsp;
+</p>
+<p>
+	24
+</p>
+<p>
+	【输出样例 2】&nbsp;
+</p>
+<p>
+	6.0
+</p>
+<p>
+	6.75&nbsp;
+</p>
+<p>
+	【数据规模和约定】
+</p>
+<p>
+	30%的测试数据：K ≤ 12。&nbsp;
+</p>
+<p>
+	50%的测试数据：输入的 K 个实数都是整数。&nbsp;
+</p>
+<p>
+	100%的测试数据：1 ≤ K ≤ 50，1 ≤ A &lt; B ≤ 10<sup>6</sup>。
+</p>]]></hint>
+<source><![CDATA[BJWC2018 2018北京市信息学冬令营day1 NOIP 高级]]></source>
+		<solution language="C++"><![CDATA[/*
+-----------------------
+Attention!
+-----------------------
+rekons的标程有错。
+正确做法是搜索剪枝（参考solutions.pdf）。
+数据比较弱，但是没有错。
+*/
+#include <cstdio>
+#include <string>
+#include <vector>
+#include <map>
+#include <cstdlib>
+#include <algorithm>
+#include <cstring>
+
+using namespace std;
+
+typedef long long llint;
+typedef pair <int, int> pii;
+
+const int MAXN = 55;
+
+int n;
+llint a, b;
+
+vector<llint> getDivisors (llint x) {
+  vector <llint> ret;
+  for (llint i = 1; i*i <= x; ++i)
+    if (x % i == 0) ret.push_back(i), ret.push_back(x / i);
+  sort(ret.begin(), ret.end());
+  ret.resize(unique(ret.begin(), ret.end()) - ret.begin());
+  return ret;
+}
+
+bool test(llint x, vector <llint> &V) {
+  llint first;
+  if (a % x != 0) first = a - a%x + x;
+  else first = a;
+  while (first <= b) {
+    if (!binary_search(V.begin(), V.end(), first))
+      return 0;
+    first += x;
+  }
+  return 1;
+}
+
+bool uzeo[MAXN];
+int interpret (char *s) {
+  while (strlen(s) != 5)
+    s[strlen(s)] = '0';
+  int ret = 0;
+  for (int i = 0; i < 5; ++i)
+    ret = ret * 10 + s[i] - '0';
+  return ret;
+}
+
+int main (void){
+ // freopen("rekons.in", "r", stdin);
+ // freopen("rekons.out", "w", stdout);
+  scanf("%d", &n);
+  scanf("%lld%lld", &a, &b);
+  a *= 100000;
+  b *= 100000;
+  vector <llint> V;
+  for (int i = 0; i < n; ++i) {
+    int x;
+    char y[10] = {0};
+    int cnt = scanf("%d.%s\n", &x, y);
+    if (cnt == 1) y[0] = 0;
+    llint broj = (llint)x * 100000 + interpret(y);
+    V.push_back(broj);
+  }
+  sort(V.begin(), V.end());
+  vector <llint> ans;
+  for (int i = 0; i < n; ++i) {
+    vector<llint> divisors = getDivisors(V[i]);
+    if (uzeo[i] == 1) continue;
+    for (int k = 0; k < divisors.size(); k ++)
+      if (test(divisors[k], V)) {
+	for (int j = i; j < n; ++j)
+	  if (V[j] % divisors[k] == 0) uzeo[j] = 1;
+	ans.push_back(divisors[k]);
+	break;
+      }
+  }
+  for (int i = 0; i < ans.size(); i ++)
+    printf("%lld.%05lld\n", ans[i] / 100000, ans[i] % 100000);
+  
+  return 0;
+}
+]]></solution>
+	<spj language="C++"><![CDATA[#include<fstream>
+#include<iostream>
+#include<cstring>
+#include<cstdlib>
+#include<cstdio>
+
+using namespace std;
+int ret=0;
+FILE *fin, *fout, *fstd, *fscore, *frep;
+int this_point;
+char str[50];
+
+void getLong(long long &x){
+	x = 0;
+	int l = strlen(str);
+	int w = -1;
+	for (int i = 0; i < l && w < 5; i ++)
+		if (str[i] < '0' || str[i] > '9'){
+			if (str[i] != '.' || w != -1){
+				x = -1; return;
+			}
+			w = 0;
+		} else {
+			x = x * 10 + str[i] - '0';
+			if (w >= 0) w ++;
+		}
+	if (w == -1) w = 0;
+	for (; w < 5; w ++)
+		x *= 10;
+}
+
+void Judge()
+{
+	int K; long long A, B;
+	long long a[51];
+	bool vis[51];
+	fscanf(fin, "%d%lld%lld", &K, &A, &B);
+	if (K < 1 || K > 50 || A >= B || A < 1 || B > 1000000){
+		fprintf(fscore, "%d\n", this_point);
+		fprintf(frep, "输入数据有错。\n");
+		return;
+	}
+	A *= 100000; B *= 100000;
+	for (int i = 0; i < K; i ++){
+		fscanf(fin, "%s", str);
+		getLong(a[i]);
+		if (a[i] < A || a[i] > B){
+			fprintf(fscore, "%d\n", this_point);
+			fprintf(frep, "输入数据有错。%lld %lld %lld\n", A, B, a[i]);
+			return;
+		}
+		vis[i] = false;
+		//fprintf(frep, "%lld\n", a[i]);
+	}
+	int N1 = 0;
+	long long b1[55];
+	while (fscanf(fout, "%s", str) != EOF && N1 < K){
+		getLong(b1[N1 ++]);
+		if (b1[N1-1] <= 0){
+			fprintf(fscore, "0\n");
+			fprintf(frep, "答案错误。b: %lld\n", b1[N1-1]);
+			ret=1;
+			return;
+		}
+		//fprintf(frep, "%lld\n", b1[N1-1]);
+	}
+	int N0 = 0;
+	while (fscanf(fstd, "%s", str) != EOF && N0 < K) N0 ++;
+	if (N1 > N0){
+		fprintf(fscore, "0\n");
+		fprintf(frep, "输出行数比标准输出长。\n");
+		ret=2;
+		return;
+	}
+	if (N1 < N0){
+		fprintf(fscore, "0\n");
+		fprintf(frep, "输出行数比标准输出短。\n");
+		ret=3;
+		return;
+	}
+	for (int i = 0; i < N1; i ++)
+		for (int j = 0; j < K; j ++)
+			if (a[j] % b1[i] == 0)
+				vis[j] = true;
+	for (int j = 0; j < K; j ++)
+		if (!vis[j]){
+			fprintf(fscore, "0\n");
+			fprintf(frep, "答案错误。a: %lld\n", a[j]);
+			ret=1;
+			return;
+		}
+	for (int i = 0; i < N1; i ++){
+		long long w = (B - A + 1) / b1[i];
+		if (w > K){
+			fprintf(fscore, "0\n");
+			fprintf(frep, "答案错误。%lld %lld\n", b1[i], w);
+			ret=1;
+			return;
+		}
+		long long j = A / b1[i] * b1[i];
+		if (j < A) j += b1[i];
+		for (; j <= B; j += b1[i]){
+			bool exist = false;
+			for (int k = 0; k < K; k ++)
+				if (a[k] == j)
+					exist = true;
+			if (!exist){
+				fprintf(fscore, "0\n");
+				fprintf(frep, "答案错误。%lld %lld\n", b1[i], j);
+				ret=1;
+				return;
+			}
+		}
+	}
+	fprintf(fscore, "%d\n", this_point);
+	fprintf(frep, "答案正确：N = %d。\n", N1);
+}
+
+int main(int argc, char *argv[])
+{
+	/*
+	argv[1]:输入文件
+	argv[2]:选手输出文件
+	argv[3]:标准输出文件
+	argv[4]:单个测试点分值
+	argv[5]:输出最终得分的文件
+	argv[6]:输出错误报告的文件
+	*/
+	fin = fopen(argv[1], "r");
+	fout = fopen(argv[3], "r");
+	fstd = fopen(argv[2], "r");
+	fscore = fopen("score.txt", "w");
+	frep = fopen("diff.out", "w");
+	this_point = 10;
+	
+	Judge();
+		
+	fclose(fin);
+	fclose(fout);
+	fclose(fstd);
+	fclose(fscore);
+	fclose(frep);
+	return ret;
+}
+]]></spj></item>
+</fps>

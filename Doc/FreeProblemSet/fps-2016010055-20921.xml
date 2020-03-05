@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<fps version="1.2" url="https://github.com/zhblue/freeproblemset/">
+	<generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
+	<item>
+<title><![CDATA[求先序排列]]></title>
+<time_limit unit="s"><![CDATA[1]]></time_limit>
+<memory_limit unit="mb"><![CDATA[125]]></memory_limit>
+
+<description><![CDATA[<p>
+	给出一棵二叉树的中序与后序排列。求出它的先序排列。（约定树结点用不同的大写字母表示，长度&lt;=8）。
+</p>
+<p>
+	<br />
+</p>]]></description>
+<input><![CDATA[<p>
+	每个测试文件只包含一组测试数据，每组输入包含两行，第一行输入一个字符串表示二叉树的中序排列，第二行输入一个字符串表示二叉树的后序排列。
+</p>
+<p>
+	<br />
+</p>]]></input> 
+<output><![CDATA[<p>
+	对于每组输入数据，输出二叉树的先序排列。
+</p>
+<p>
+	<br />
+</p>]]></output>
+<sample_input><![CDATA[BADC
+BDCA]]></sample_input>
+<sample_output><![CDATA[ABCD]]></sample_output>
+  <test_input><![CDATA[BAC
+BCA
+]]></test_input>
+<test_output><![CDATA[ABC
+]]></test_output>
+<test_input><![CDATA[DEABFCHG
+DEAFHGCB
+]]></test_input>
+<test_output><![CDATA[BAEDCFGH
+]]></test_output>
+<test_input><![CDATA[DCBA
+DCBA
+]]></test_input>
+<test_output><![CDATA[ABCD
+]]></test_output>
+<test_input><![CDATA[CBAFEGD
+CFGEADB
+]]></test_input>
+<test_output><![CDATA[BCDAEFG
+]]></test_output>
+<test_input><![CDATA[ACEB
+AEBC
+]]></test_input>
+<test_output><![CDATA[CABE
+]]></test_output>
+<hint><![CDATA[]]></hint>
+<source><![CDATA[NOIP全国联赛普及组 2001年NOIP全国联赛普及组]]></source>
+		<solution language="C"><![CDATA[#include <stdlib.h>
+void root( char *mid, char *last )
+{
+    char a,*x,*y;
+
+    if(!*mid)
+        return; 
+    x= last+strlen(last)-1;
+    printf("%c",*x);
+
+    y=strchr(mid,*x);    
+    *x=0x0;
+    x=y-mid+last;
+    a=*x;
+    *x=0x0;
+    *y=0x0;
+	root(mid,last);
+    *x=a;
+    root( y+1,x);
+}
+
+
+int main()
+{
+    char mid[50];
+    char last[50];
+	scanf("%s%*c%s%*c",mid,last);
+	root(mid,last);
+    printf( "\n" );
+
+    return 0;
+}]]></solution>
+			<solution language="C++"><![CDATA[#include <iostream>
+#include <string.h>
+using namespace std;
+void build(int n,char* s1,char* s2){
+	if(n<=0)	return;
+	int p=strchr(s2,s1[n-1])-s2;
+	cout<<s1[n-1];
+	build(p,s1,s2);
+	build(n-1-p,s1+p,s2+p+1);
+}
+int main()
+{
+	char s1[100],s2[100];
+	while(cin>>s2>>s1)
+	{
+		int n=strlen(s1);
+		build(n,s1,s2);
+		cout<<endl;
+	}
+	return 0;
+}]]></solution>
+			<solution language="Pascal"><![CDATA[var s1,s2:string;
+procedure dfs(mid,last:string); 
+var root:string;i:longint; 
+begin
+  if (mid='')and(last='') then exit; 
+  root:=last[length(last)]; 
+  write(root); 
+  for i:=1 to length(last) do
+    if mid[i]=root then break; 
+  dfs(copy(mid,1,i-1),copy(last,1,i-1)); 
+  dfs(copy(mid,i+1,length(mid)-i),copy(last,i,length(last)-i));
+end; 
+begin
+  readln(s1); 
+  readln(s2);
+  dfs(s1,s2); 
+  writeln;
+end.
+]]></solution>
+	</item>
+</fps>

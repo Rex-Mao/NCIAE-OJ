@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<fps version="1.2" url="https://github.com/zhblue/freeproblemset/">
+	<generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
+	<item>
+<title><![CDATA[最长上升子序列]]></title>
+<time_limit unit="s"><![CDATA[1]]></time_limit>
+<memory_limit unit="mb"><![CDATA[512]]></memory_limit>
+
+<description><![CDATA[<div class="content">
+	<div>
+		现在有一个长度为n的随机排列，求它的最长上升子序列长度的期望。
+	</div>
+	<div>
+		为了避免精度误差，你只需要输出答案模998244353的余数。
+	</div>
+</div>
+<h2>
+	Input
+</h2>
+<p>
+	<br />
+</p>
+<p>
+	输入只包含一个正整数n。
+</p>
+<p>
+	对于 100%的数据，1≤n≤28。<br />
+共有 25组数据&nbsp; ，对于第 i组数据 （1≤i≤25）， n=i+3。
+</p>
+<p>
+	<br />
+</p>
+<h2>
+	Output
+</h2>
+<div class="content">
+	<div>
+		输出只包含一个非负整数，表示答案模998244353的余数。
+	</div>
+	<div>
+		可以证明，答案一定为有理数，设其为a/b（a、b为互质的整数），你输出的整数为x，
+	</div>
+	<div>
+		则你需要保证0≤x&lt;998244353且a与bx模998244353同余。
+	</div>
+	<div>
+	</div>
+</div>
+<h2>
+	Sample Input
+</h2>
+<div class="content">
+	<span class="sampledata">2</span> 
+</div>
+<h2>
+	Sample Output
+</h2>
+<div class="content">
+	<span class="sampledata">499122178<br />
+【样例说明】<br />
+这是3/2。</span> 
+</div>
+<div class="content">
+</div>]]></description>
+<input><![CDATA[]]></input> 
+<output><![CDATA[]]></output>
+<sample_input><![CDATA[]]></sample_input>
+<sample_output><![CDATA[]]></sample_output>
+  <test_input><![CDATA[24
+]]></test_input>
+<test_output><![CDATA[314644758
+]]></test_output>
+<test_input><![CDATA[22
+]]></test_input>
+<test_output><![CDATA[749077581
+]]></test_output>
+<test_input><![CDATA[15
+]]></test_input>
+<test_output><![CDATA[228644314
+]]></test_output>
+<test_input><![CDATA[14
+]]></test_input>
+<test_output><![CDATA[331522185
+]]></test_output>
+<test_input><![CDATA[28
+]]></test_input>
+<test_output><![CDATA[267588741
+]]></test_output>
+<test_input><![CDATA[10
+]]></test_input>
+<test_output><![CDATA[200489273
+]]></test_output>
+<test_input><![CDATA[20
+]]></test_input>
+<test_output><![CDATA[414835038
+]]></test_output>
+<test_input><![CDATA[9
+]]></test_input>
+<test_output><![CDATA[317868537
+]]></test_output>
+<test_input><![CDATA[5
+]]></test_input>
+<test_output><![CDATA[540715694
+]]></test_output>
+<test_input><![CDATA[27
+]]></test_input>
+<test_output><![CDATA[273498600
+]]></test_output>
+<test_input><![CDATA[23
+]]></test_input>
+<test_output><![CDATA[301075008
+]]></test_output>
+<test_input><![CDATA[18
+]]></test_input>
+<test_output><![CDATA[495111839
+]]></test_output>
+<test_input><![CDATA[7
+]]></test_input>
+<test_output><![CDATA[422867403
+]]></test_output>
+<test_input><![CDATA[26
+]]></test_input>
+<test_output><![CDATA[819818153
+]]></test_output>
+<test_input><![CDATA[6
+]]></test_input>
+<test_output><![CDATA[946945688
+]]></test_output>
+<test_input><![CDATA[25
+]]></test_input>
+<test_output><![CDATA[102117126
+]]></test_output>
+<test_input><![CDATA[17
+]]></test_input>
+<test_output><![CDATA[686801362
+]]></test_output>
+<test_input><![CDATA[4
+]]></test_input>
+<test_output><![CDATA[915057326
+]]></test_output>
+<test_input><![CDATA[16
+]]></test_input>
+<test_output><![CDATA[262819964
+]]></test_output>
+<test_input><![CDATA[13
+]]></test_input>
+<test_output><![CDATA[662845575
+]]></test_output>
+<test_input><![CDATA[19
+]]></test_input>
+<test_output><![CDATA[947040129
+]]></test_output>
+<test_input><![CDATA[8
+]]></test_input>
+<test_output><![CDATA[451091574
+]]></test_output>
+<test_input><![CDATA[12
+]]></test_input>
+<test_output><![CDATA[705376344
+]]></test_output>
+<test_input><![CDATA[11
+]]></test_input>
+<test_output><![CDATA[976705134
+]]></test_output>
+<test_input><![CDATA[21
+]]></test_input>
+<test_output><![CDATA[696340671
+]]></test_output>
+<hint><![CDATA[]]></hint>
+<source><![CDATA[BJWC2018 高级]]></source>
+		<solution language="C++"><![CDATA[#include <stdio.h>
+const int a[] = {0, 1, 499122178, 2, 915057326, 540715694, 946945688, 422867403, 451091574, 317868537, 200489273, 976705134, 705376344, 662845575, 331522185, 228644314, 262819964, 686801362, 495111839, 947040129, 414835038, 696340671, 749077581, 301075008, 314644758, 102117126, 819818153, 273498600, 267588741};
+int n;
+int main()
+{
+	scanf("%d", &n);
+	printf("%d\n", a[n]);
+	return 0;
+}
+]]></solution>
+	</item>
+</fps>

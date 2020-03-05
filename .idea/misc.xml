@@ -7,6 +7,7 @@
         <option value="$PROJECT_DIR$/user-center/pom.xml" />
         <option value="$PROJECT_DIR$/registry/pom.xml" />
         <option value="$PROJECT_DIR$/content-center/pom.xml" />
+        <option value="$PROJECT_DIR$/rocketmq-console/pom.xml" />
       </list>
     </option>
   </component>

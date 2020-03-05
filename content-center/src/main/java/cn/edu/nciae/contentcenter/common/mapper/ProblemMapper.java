@@ -18,9 +18,16 @@ import org.springframework.stereotype.Component;
 @Component
 public interface ProblemMapper extends BaseMapper<Problem> {
     /**
-     * desc : get the problem list by paging
+     * desc : get the problemVO list by paging
      * @param page
      * @return
      */
-    IPage<ProblemVO> selectProblemListPage(Page<ProblemVO> page);
+    IPage<ProblemVO> selectProblemVOListPage(Page<ProblemVO> page);
+
+    /**
+     * desc : get ProblemVO by Pid
+     * @param pid
+     * @return
+     */
+    ProblemVO selectProblemVOByPid(Long pid);
 }

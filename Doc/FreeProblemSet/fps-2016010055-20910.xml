@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<fps version="1.2" url="https://github.com/zhblue/freeproblemset/">
+	<generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
+	<item>
+<title><![CDATA[邮票面值设计]]></title>
+<time_limit unit="s"><![CDATA[1]]></time_limit>
+<memory_limit unit="mb"><![CDATA[125]]></memory_limit>
+
+<description><![CDATA[给定一个信封，最多只允许粘贴N张邮票，计算在给定K（N+K≤40）种邮票的情况下（假定所有的邮票数量都足够），如何设计邮票的面值，能得到最大值MAX，使在1～MAX之间的每一个邮资值都能得到。<br />
+<p>
+	例如，N=3，K=2，如果面值分别为1分、4分，则在1分～6分之间的每一个邮资值都能得到（当然还有8分、9分和12分）；如果面值分别为1分、3分，则在1分～7分之间的每一个邮资值都能得到。可以验证当N=3，K=2时，7分就是可以得到的连续的邮资最大值，所以MAX=7，面值分别为1分、3分。
+</p>
+<p>
+	<br />
+</p>]]></description>
+<input><![CDATA[<p>
+	每个测试文件只包含一组测试数据，每组输入两个整数N和K（N+K<span>≤40</span>）。
+</p>
+<p>
+	<br />
+</p>]]></input> 
+<output><![CDATA[<p>
+	对于每组输入数据，第一行输出每种邮票的面值，面值之间由一个空格分隔，最后一个面值的后面不要输出空格。第二行输出连续最大能到的面值数，具体格式见样例输出。数据保证答案唯一。
+</p>
+<p>
+	<br />
+</p>]]></output>
+<sample_input><![CDATA[3 2]]></sample_input>
+<sample_output><![CDATA[1 3
+MAX=7]]></sample_output>
+  <test_input><![CDATA[5 5
+]]></test_input>
+<test_output><![CDATA[1 4 9 31 51
+MAX=126
+]]></test_output>
+<test_input><![CDATA[7 4
+]]></test_input>
+<test_output><![CDATA[1 5 24 37
+MAX=165
+]]></test_output>
+<test_input><![CDATA[10 3
+]]></test_input>
+<test_output><![CDATA[1 10 26
+MAX=146
+]]></test_output>
+<test_input><![CDATA[7 3
+]]></test_input>
+<test_output><![CDATA[1 8 13
+MAX=69
+]]></test_output>
+<hint><![CDATA[]]></hint>
+<source><![CDATA[NOIP全国联赛提高组 1999年NOIP全国联赛提高组]]></source>
+		<solution language="C++"><![CDATA[#include<cstdio>
+#include<cstring>
+#include<algorithm>
+using namespace std;
+ 
+const int maxn1=40;
+const int maxn2=10000;
+int n,m,ans=0,f[maxn1][maxn2];
+int a[maxn1+20],b[maxn2+20];
+ 
+void dfs(int step,int s,int e)
+{
+  int i,j,k;
+  if(step>m)
+    {
+      if(ans<e-1)for(ans=e-1,i=1;i<=m;i++)b[i]=a[i];
+      return;
+	}
+  for(k=e;k>=s;k--)
+    {
+      j=a[step-1]*n;
+      for(i=0;i<=j;i++)f[step][i]=f[step-1][i];
+      memset(&f[step][j+1],25,sizeof(int)*((n*k+1-j)+10));
+      
+      for(j=n*k,i=k;i<=j;i++)
+        f[step][i]=min(f[step][i],f[step][i-k]+1);
+      for(i=e;i<=j+1;i++)if(f[step][i]>n)
+        {
+          a[step]=k,dfs(step+1,k+1,i);
+          break;
+		}
+	}
+}
+ 
+int main()
+{
+  int i;
+  memset(f[1],25,sizeof(f[1]));
+  scanf("%d%d",&n,&m);
+  for(i=0;i<=n;i++)f[1][i]=i;
+  a[1]=1,dfs(2,2,n+1);
+  for(i=1;i<m;i++)printf("%d ",b[i]);
+  printf("%d\nMAX=%d\n",b[m],ans);
+  return 0;
+}
+]]></solution>
+			<solution language="Pascal"><![CDATA[var ans,a,b:array[1..1000]of longint;
+    m,n,max,i:integer;
+function  conti(p:integer):integer;
+ var time:integer;
+     i,k:integer;
+ begin
+  for i:=1 to 1000 do b[i]:=maxlongint;
+  for i:=1 to p do  b[a[i]]:=1;
+  time:=0;
+  repeat
+   inc(time);
+   for k:=1 to p do
+    if (time>a[k])and(b[time-a[k]]+1<b[time]) then b[time]:=b[time-a[k]]+1;
+  until b[time]>m;
+  conti:=time;
+ end;
+procedure search(i:integer);
+ var j,k:integer;
+ begin
+  if i>n then
+   begin
+    if conti(i-1)-1>max
+     then begin max:=conti(i-1)-1;for i:=1 to 10 do ans[i]:=a[i]; end;
+    exit;
+   end
+   else begin
+         j:=conti(i-1);
+         for k:=j downto a[i-1]+1 do begin a[i]:=k;search(i+1); end;
+        end;
+ end;
+procedure print;
+ var i:integer;
+ begin
+ end;
+begin
+ readln(m,n);
+ a[1]:=1;
+ search(2);
+ for i:=1 to 10 do
+  begin
+   if (ans[i+1]=0)and(ans[i]<>0) then begin writeln(ans[i]);break; end;
+   if ans[i]<>0 then write(ans[i],' ') else break;
+  end;
+ writeln('MAX=',max);
+end.]]></solution>
+	</item>
+</fps>

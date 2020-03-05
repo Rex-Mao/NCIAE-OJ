@@ -1,0 +1,158 @@
+{
+  "error": null,
+  "data": {
+    "results": [
+      {
+        "pid": 1,
+        "addUid": 1,
+        "title": "送分题-A+B Problem",
+        "description": "<p>Calculate a+b</p>",
+        "timeLimit": 1000.0,
+        "memoryLimit": 256.0,
+        "submitNum": 0,
+        "solvedNum": 0,
+        "author": "系统原理，熟悉OJ",
+        "specialJudge": 0,
+        "hint": "<p>Q: Where are the input and the output? A: Your program shall always <font color=\"#ff0000\">read input from stdin (Standard Input) and write output to stdout (Standard Output)</font>. For example, you can use 'scanf' in C or 'cin' in C++ to read from stdin, and use 'printf' in C or 'cout' in C++ to write to stdout. You <font color=\"#ff0000\">shall not output any extra data</font> to standard output other than that required by the problem, otherwise you will get a &quot;Wrong Answer&quot;. User programs are not allowed to open and read from/write to files. You will get a &quot;Runtime Error&quot; or a &quot;Wrong Answer&quot; if you try to do so. Here is a sample solution for problem 1000 using C++/G++:</p>\n<pre>\n#include &lt;iostream&gt;\nusing namespace std;\nint  main()\n{\n    int a,b;\n    cin &gt;&gt; a &gt;&gt; b;\n    cout &lt;&lt; a+b &lt;&lt; endl;\n    return 0;\n}</pre>\n<p>It's important that the return type of main() must be int when you use G++/GCC,or you may get compile error. Here is a sample solution for problem 1000 using C/GCC:</p>\n<pre>\n#include &lt;stdio.h&gt;\n\nint main()\n{\n    int a,b;\n    scanf(&quot;%d %d&quot;,&amp;a, &amp;b);\n    printf(&quot;%d\\n&quot;,a+b);\n    return 0;\n}</pre>\n<p>Here is a sample solution for problem 1000 using PASCAL:</p>\n<pre>\nprogram p1000(Input,Output); \nvar \n  a,b:Integer; \nbegin \n   Readln(a,b); \n   Writeln(a+b); \nend.</pre>\n<p>Here is a sample solution for problem 1000 using JAVA: Now java compiler is jdk 1.5, next is program for 1000</p>\n<pre>\nimport java.io.*;\nimport java.util.*;\npublic class Main\n{\n            public static void main(String args[]) throws Exception\n            {\n                    Scanner cin=new Scanner(System.in);\n                    int a=cin.nextInt();\n                    int b=cin.nextInt();\n                    System.out.println(a+b);\n            }\n}</pre>\n<p>Old program for jdk 1.4</p>\n<pre>\nimport java.io.*;\nimport java.util.*;\n\npublic class Main\n{\n    public static void main (String args[]) throws Exception\n    {\n        BufferedReader stdin = \n            new BufferedReader(\n                new InputStreamReader(System.in));\n\n        String line = stdin.readLine();\n        StringTokenizer st = new StringTokenizer(line);\n        int a = Integer.parseInt(st.nextToken());\n        int b = Integer.parseInt(st.nextToken());\n        System.out.println(a+b);\n    }\n}</pre>",
+        "samples": [
+          {
+            "sid": 1,
+            "pid": 1,
+            "input": "1 2",
+            "output": "3"
+          }
+        ],
+        "tags": [
+          {
+            "tid": 1,
+            "tname": "水题",
+            "tdescription": "水题"
+          }
+        ],
+        "finput": "<p>Two integer a,b (0&lt;=a,b&lt;=10)</p>",
+        "foutput": "<p>Output a+b</p>"
+      },
+      {
+        "pid": 2,
+        "addUid": 1,
+        "title": "Satellite Photographs",
+        "description": "<p>Farmer John purchased satellite photos of W x H pixels of his farm (1  &lt;= W &lt;= 80, 1 &lt;= H &lt;= 1000) and wishes to determine the  largest 'contiguous' (connected) pasture. Pastures are contiguous when  any pair of pixels in a pasture can be connected by traversing adjacent  vertical or horizontal pixels that are part of the pasture.  (It is easy  to create pastures with very strange shapes, even circles that surround  other circles.) <br />\n<br />\nEach photo has been digitally enhanced to show pasture area as an  asterisk ('*') and non-pasture area as a period ('.').  Here is a 10 x 5  sample satellite photo: <br />\n<br />\n<tt>..*.....** <br />\n.**..***** <br />\n.*...*.... <br />\n..****.*** <br />\n..****.***</tt> <br />\n<br />\nThis photo shows three contiguous pastures of 4, 16, and 6 pixels.  Help FJ find the largest contiguous pasture in each of his satellite  photos.</p>",
+        "timeLimit": 1.0,
+        "memoryLimit": 128.0,
+        "submitNum": 0,
+        "solvedNum": 0,
+        "author": "",
+        "specialJudge": 0,
+        "hint": "",
+        "samples": [
+          {
+            "sid": 2,
+            "pid": 2,
+            "input": "10 5\n..*.....**\n.**..*****\n.*...*....\n..****.***\n..****.***\n",
+            "output": "16\n"
+          }
+        ],
+        "tags": [
+          {
+            "tid": 2,
+            "tname": "DFS",
+            "tdescription": "深度优先搜索"
+          }
+        ],
+        "finput": "<p>* Line 1: Two space-separated integers: W and H <br />\n* Lines 2..H+1: Each line contains W &quot;*&quot; or &quot;.&quot; characters  representing one raster line of a satellite photograph.</p>\n<p>&nbsp;</p>",
+        "foutput": "<p>* Line 1: The size of the largest contiguous field in the satellite  photo.</p>"
+      },
+      {
+        "pid": 3,
+        "addUid": 1,
+        "title": "Prime Path",
+        "description": "<p>The ministers of the cabinet were quite upset by the message from the  Chief of Security stating that they would all have to change the  four-digit room numbers on their offices. <br />\n&mdash; It is a matter of security to change such things every now and  then, to keep the enemy in the dark. <br />\n&mdash; But look, I have chosen my number 1033 for good reasons. I am the  Prime minister, you know! <br />\n&mdash; I know, so therefore your new number 8179 is also a prime. You  will just have to paste four new digits over the four old ones on your  office door. <br />\n&mdash; No, it&rsquo;s not that simple. Suppose that I change the first digit to  an 8, then the number will read 8033 which is not a prime! <br />\n&mdash; I see, being the prime minister you cannot stand having a  non-prime number on your door even for a few seconds. <br />\n&mdash; Correct! So I must invent a scheme for going from 1033 to 8179 by a  path of prime numbers where only one digit is changed from one prime to  the next prime. <br />\n<br />\nNow, the minister of finance, who had been eavesdropping,  intervened. <br />\n&mdash; No unnecessary expenditure, please! I happen to know that the  price of a digit is one pound. <br />\n&mdash; Hmm, in that case I need a computer program to minimize the cost.  You don't know some very cheap software gurus, do you? <br />\n&mdash; In fact, I do. You see, there is this programming contest going  on... Help the prime minister to find the cheapest prime path between  any two given four-digit primes! The first digit must be nonzero, of  course. Here is a solution in the case above. </p>\n<blockquote>1033<br />\n1733<br />\n3733<br />\n3739<br />\n3779<br />\n8779<br />\n8179</blockquote>\n<p>The  cost of this solution is 6 pounds. Note that the digit 1 which got  pasted over in step 2 can not be reused in the last step &ndash; a new 1 must  be purchased.</p>",
+        "timeLimit": 1.0,
+        "memoryLimit": 128.0,
+        "submitNum": 0,
+        "solvedNum": 0,
+        "author": "",
+        "specialJudge": 0,
+        "hint": "",
+        "samples": [
+          {
+            "sid": 3,
+            "pid": 3,
+            "input": "3\n1033 8179\n1373 8017\n1033 1033",
+            "output": "6\n7\n0"
+          }
+        ],
+        "tags": [
+          {
+            "tid": 2,
+            "tname": "DFS",
+            "tdescription": "深度优先搜索"
+          }
+        ],
+        "finput": "<p>One line with a positive number: the number of test cases (at most 100).  Then for each test case, one line with two numbers separated by a  blank. Both numbers are four-digit primes (without leading zeros).</p>",
+        "foutput": "<p>One line for each case, either with a number stating the minimal cost or containing the word Impossible.</p>"
+      },
+      {
+        "pid": 4,
+        "addUid": 1,
+        "title": "A Bug",
+        "description": "<p><b>Background</b> <br />\nProfessor Hopper is researching the sexual behavior of a rare  species of bugs. He assumes that they feature two different genders and  that they only interact with bugs of the opposite gender. In his  experiment, individual bugs and their interactions were easy to  identify, because numbers were printed on their backs. <br />\n<b>Problem</b> <br />\nGiven a list of bug interactions, decide whether the experiment  supports his assumption of two genders with no homosexual bugs or if it  contains some bug interactions that falsify it.</p>\n<p>&nbsp;</p>",
+        "timeLimit": 1.0,
+        "memoryLimit": 128.0,
+        "submitNum": 0,
+        "solvedNum": 0,
+        "author": "",
+        "specialJudge": 0,
+        "hint": "",
+        "samples": [
+          {
+            "sid": 4,
+            "pid": 4,
+            "input": "2\n3 3\n1 2\n2 3\n1 3\n4 2\n1 2\n3 4",
+            "output": "Scenario #1:\nSuspicious bugs found!\n\nScenario #2:\nNo suspicious bugs found!\n"
+          }
+        ],
+        "tags": [
+          {
+            "tid": 2,
+            "tname": "DFS",
+            "tdescription": "深度优先搜索"
+          }
+        ],
+        "finput": "<p>The first line of the input contains the number of scenarios. Each  scenario starts with one line giving the number of bugs (at least one,  and up to 2000) and the number of interactions (up to 1000000) separated  by a single space. In the following lines, each interaction is given in  the form of two distinct bug numbers separated by a single space. Bugs  are numbered consecutively starting from one.</p>",
+        "foutput": "<p>The output for every scenario is a line containing &quot;Scenario #i:&quot;, where  i is the number of the scenario starting at 1, followed by one line  saying either &quot;No suspicious bugs found!&quot; if the experiment is  consistent with his assumption about the bugs' sexual behavior, or  &quot;Suspicious bugs found!&quot; if Professor Hopper's assumption is definitely  wrong.</p>"
+      },
+      {
+        "pid": 5,
+        "addUid": 1,
+        "title": "Maze Problem",
+        "description": "<p>Given a maze, find a shortest path from start to goal.</p>",
+        "timeLimit": 1.0,
+        "memoryLimit": 128.0,
+        "submitNum": 0,
+        "solvedNum": 0,
+        "author": "",
+        "specialJudge": 0,
+        "hint": "",
+        "samples": [
+          {
+            "sid": 5,
+            "pid": 5,
+            "input": "1\n5 5\nS-###\n-----\n##---\nE#---\n---##\n",
+            "output": "9\n"
+          }
+        ],
+        "tags": [
+          {
+            "tid": 2,
+            "tname": "DFS",
+            "tdescription": "深度优先搜索"
+          }
+        ],
+        "finput": "<p>Input consists serveral test cases. </p>\n<p>First line of the input contains number of test case T.</p>\n<p>For each test case the first line contains two integers N , M ( 1 &lt;= N, M &lt;= 100 ).</p>\n<p>Each of the following N lines contain M characters. Each character means a cell of the map.</p>\n<p>Here is the definition for chracter.</p>\n<p>&nbsp;</p>\n<p>Constraint:</p>\n<ul>\n    <li>For a character in the map:\n    <ul>\n        <li>'S' : start cell</li>\n        <li>'E' : goal cell</li>\n        <li>'-' : empty cell</li>\n        <li>'#' :  obstacle cell</li>\n    </ul>\n    </li>\n    <li>no two start cell exists.</li>\n    <li>no two goal cell exists.</li>\n</ul>",
+        "foutput": "<p>For each test case print one line containing shortest path. If there exists no path from start to goal, print -1.</p>"
+      }
+    ],
+    "total": 5
+  }
+}

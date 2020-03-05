@@ -9,10 +9,10 @@ import cn.edu.nciae.contentcenter.service.IProblemService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
@@ -22,8 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author RexALun
  * @since 2020-02-08
  */
-@Controller
-@RequestMapping("/api")
+@RestController
 public class ProblemController {
 
     @Autowired
@@ -54,4 +53,37 @@ public class ProblemController {
         return MessageVO.<ProblemListVO>builder().error("No Problem Data Returned...").build();
     }
 
+    @GetMapping("/problem/{problem_id}")
+    public MessageVO<ProblemVO> getProblemByPid(@PathVariable("problem_id") Long pid) {
+        ProblemVO problemVO = problemService.getProblemVOByPid(pid);
+        if (problemVO != null) {
+            return MessageVO.<ProblemVO>builder()
+                    .error(null)
+                    .data(problemVO)
+                    .build();
+        } else {
+            return MessageVO.<ProblemVO>builder().error("No choosed problem find...").build();
+        }
+    }
+
+    @GetMapping("/admin/problem")
+    public MessageVO<ProblemListVO> getAdminProblemList(@RequestParam("offset") Integer offset,
+                                                        @RequestParam("limit") Integer limit,
+                                                        ParametersDTO parametersDTO) {
+        Page<ProblemVO> page;
+        if (parametersDTO.getPage() != null){
+            page = new Page<ProblemVO>(parametersDTO.getPage(), limit);
+        } else {
+            page = new Page<ProblemVO>(1, limit);
+        }
+        IPage<ProblemVO> problems = problemService.getProblemListPage(page);
+        ProblemListVO problemListVO = ProblemListVO.builder()
+                .results(problems.getRecords())
+                .total(problems.getTotal())
+                .build();
+        return MessageVO.<ProblemListVO>builder()
+                .error(null)
+                .data(problemListVO)
+                .build();
+    }
 }

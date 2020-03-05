@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<fps version="1.2" url="https://github.com/zhblue/freeproblemset/">
+	<generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
+	<item>
+<title><![CDATA[乘法运算]]></title>
+<time_limit unit="s"><![CDATA[1]]></time_limit>
+<memory_limit unit="mb"><![CDATA[125]]></memory_limit>
+
+<description><![CDATA[<p>
+	从键盘读入2个100以内的正整数，进行乘法运算并以竖式输出。
+</p>
+<p>
+	<br />
+</p>
+<p class="MsoNormal">
+	例如，输入：<span>89 13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>又如，输入：<span>16 8</span> 
+</p>
+<p class="MsoNormal">
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</p>
+<p class="MsoNormal">
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;输出：<span>&nbsp; &nbsp; &nbsp; &nbsp;89 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>输出：<span>&nbsp; &nbsp; &nbsp;16</span> 
+</p>
+<p class="MsoNormal">
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<u>&nbsp;</u><u>×<span> 13 </span></u>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<u>×<span>&nbsp;&nbsp; 8 </span></u> 
+</p>
+<p class="MsoNormal">
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; 267 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;128
+</p>
+<p class="MsoNormal">
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<u>&nbsp;&nbsp;&nbsp;89&nbsp;</u> 
+</p>
+<p class="MsoNormal">
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;1157
+</p>
+<p>
+	<br />
+</p>]]></description>
+<input><![CDATA[<p>
+	每个测试文件只包含一组测试数据，每组输入数据为两个100以内的正整数，之间由一个空格分隔。
+</p>
+<p>
+	<br />
+</p>]]></input> 
+<output><![CDATA[<p>
+	对于每组输入数据，输出两个整数进行乘法运算的竖式。为了简单起见，只需从上到下输出竖式里面的数即可，具体格式见样例输出。
+</p>
+<p>
+	<br />
+</p>]]></output>
+<sample_input><![CDATA[89 13
+]]></sample_input>
+<sample_output><![CDATA[89
+13
+267
+89
+1157
+]]></sample_output>
+  <test_input><![CDATA[5 2
+
+]]></test_input>
+<test_output><![CDATA[5
+2
+10
+]]></test_output>
+<test_input><![CDATA[3 78
+
+]]></test_input>
+<test_output><![CDATA[3
+78
+24
+21
+234
+]]></test_output>
+<test_input><![CDATA[87 76
+
+]]></test_input>
+<test_output><![CDATA[87
+76
+522
+609
+6612
+]]></test_output>
+<test_input><![CDATA[25 40
+
+]]></test_input>
+<test_output><![CDATA[25
+40
+00
+100
+1000
+]]></test_output>
+<hint><![CDATA[<p>
+	16 8
+</p>
+<p>
+	----------
+</p>
+<p>
+	16<br />
+8<br />
+128<br />
+</p>]]></hint>
+<source><![CDATA[NOIP全国联赛普及组 1996年NOIP全国联赛普及组]]></source>
+		<solution language="C"><![CDATA[#include<stdio.h>
+int main()
+{
+	int a,b,s,count,i,j,k;
+	scanf("%d%d",&a,&b);
+		printf("%d\n%d\n",a,b);
+		count=0;s=1;i=1;j=0;
+		while(b>0)
+		{
+			s=b%10;
+			if(s==0)
+			{
+				k=a;
+				while(k>0)
+				{
+					printf("0");
+					k=k/10;
+				}
+				printf("\n");
+				b=b/10;i=i*10;j++;
+			}
+			else
+			{
+				printf("%d\n",s*a);
+			    count+=s*a*i;
+			    b=b/10;i=i*10;
+			    j++;
+			}
+		}
+		if(j!=1)
+		    printf("%d\n",count);
+		printf("\n");
+	return 0;
+}]]></solution>
+			<solution language="C++"><![CDATA[#include<stdio.h>
+int main()
+{
+	int a,b,s,k,res;
+	int len = 0; 
+	scanf("%d%d",&a,&b);
+	char buf[10];
+	k = a;
+	while(k>0)
+		len++,k/=10;
+	sprintf(buf,"%%0%dd\n",len);
+	k = b;
+	printf("%d\n%d\n",a,b);
+	while(k>0)
+	{
+		s=k%10;
+		printf(buf,s*a);
+		k/=10;
+	}
+	if(b>=10)
+		printf("%d\n",a*b);
+	
+	//printf("%d",5);
+	return 0;
+}]]></solution>
+			<solution language="Pascal"><![CDATA[var a,b,g,s:longint;
+begin
+    readln(a,b);
+    writeln(a);
+    writeln(b);
+    if b<10 then writeln(a*b)
+    else
+    begin
+        g:=b mod 10;
+        s:=b div 10;
+        if g<>0 then
+        begin
+          writeln(a*g);
+          writeln(a*s);
+        end
+        else
+        begin
+          writeln('00');
+          writeln(a*s);
+        end;
+        writeln(a*b);
+   end;
+end.
+]]></solution>
+			<solution language="Java"><![CDATA[import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int a=sc.nextInt(),b=sc.nextInt();
+		int temp1,temp2;
+		if((a+"").length()==2&&(b+"").length()==2){
+			System.out.println(a);
+			System.out.println(b);
+			temp1=Integer.parseInt((b+"").substring(1, 2))*a;
+			temp2=Integer.parseInt((b+"").substring(0, 1))*a;
+			if(temp1==0){
+				System.out.println("00");
+			}else{
+				System.out.println(temp1);
+			}
+			System.out.println(temp2);
+			System.out.println(temp1+temp2*10);
+		}else if((a+"").length()==1&&(b+"").length()==2){
+			System.out.println(a);
+			System.out.println(b);
+			temp1=Integer.parseInt((b+"").substring(1, 2))*a;
+			temp2=Integer.parseInt((b+"").substring(0, 1))*a;
+			if(temp1==0){
+				System.out.println("00");
+			}else{
+				System.out.println(temp1);
+			}
+			System.out.println(temp2);
+			System.out.println(temp1+temp2*10);
+		}else{
+			System.out.println(a);
+			System.out.println(b);
+			System.out.println(a*b);
+		}
+	}
+}]]></solution>
+			<solution language="C#"><![CDATA[using System;
+
+namespace _200811乘法运算
+{
+    class Class1
+    {
+        static void Main()
+        {
+            string[] s = Console.ReadLine().Split(' ');
+            int a, b, c, d;
+            a = int.Parse(s[0]);
+            b = int.Parse(s[1]);
+            Console.WriteLine(a);
+            Console.WriteLine(b);
+
+            if (b < 10)
+                Console.WriteLine(a * b);
+            else
+            {
+                c = b % 10; d = b / 10;
+                if (c != 0) Console.WriteLine(c * a);
+                else Console.WriteLine("0{0}", c * a);
+                Console.WriteLine(d * a);
+                Console.WriteLine(a * b);
+            }
+            Console.ReadLine();
+        }
+    }
+}
+]]></solution>
+	</item>
+</fps>

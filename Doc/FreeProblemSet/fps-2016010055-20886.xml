@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<fps version="1.2" url="https://github.com/zhblue/freeproblemset/">
+	<generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
+	<item>
+<title><![CDATA[字符串编辑]]></title>
+<time_limit unit="s"><![CDATA[1]]></time_limit>
+<memory_limit unit="mb"><![CDATA[125]]></memory_limit>
+
+<description><![CDATA[<p class="MsoNormalIndent" style="text-indent:0cm;">
+	从键盘输入一个字符串（长度<span>&lt;=40</span>个字符），并以字符<span>&nbsp;'.'</span>结束。<span></span> 
+</p>
+<p class="MsoNormal">
+	例如：'<span>This is a
+book.'&nbsp;</span>现对该字符串进行编辑，编辑功能有：<span></span> 
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;">
+	<span>D</span>：删除一个字符，命令的方式为：<span></span> 
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;">
+	<span>&nbsp; &nbsp; &nbsp;D a&nbsp; </span>其中<span>a</span>为被删除的字符<span></span> 
+</p>
+<p class="MsoNormal" style="margin-left:20.7pt;text-indent:.3pt;">
+	<span>&nbsp; &nbsp; &nbsp;</span>例如：<span>D s &nbsp;</span>表示删除字符<span>&nbsp;'s'&nbsp;</span>，若字符串中有多个 '<span>s'</span>，则删除第一次出现的。<span></span> 
+</p>
+<p class="MsoNormal" style="margin-left:20.7pt;text-indent:.3pt;">
+	<span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span>如上例中删除的结果为： '<span>Thi is a book.'</span> 
+</p>
+<p class="MsoNormal" style="margin-left:20.7pt;text-indent:.3pt;">
+	<span><br />
+</span> 
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;">
+	<span>I</span>：插入一个字符，命令的格式为：<span></span> 
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;">
+	<span>&nbsp;&nbsp;&nbsp; I a1 a2&nbsp; </span>其中<span>a1</span>表示插入到指定字符前面，<span>a2</span>表示将要插入的字符。<span></span> 
+</p>
+<p class="MsoNormal" style="margin-left:20.7pt;text-indent:.3pt;">
+	&nbsp; &nbsp; 例如：<span>I s d&nbsp; </span>表示在指定字符<span>&nbsp;'s'&nbsp;</span>的前面插入字符 '<span>d'&nbsp;</span>，若原串中有多个<span>&nbsp;'s'&nbsp;</span>，则插入在最后一个字符的前面。
+</p>
+<p class="MsoNormal" style="margin-left:20.7pt;text-indent:.3pt;">
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;如上例中：<span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>原串：'<span>This is a book.'</span> 
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;">
+	<span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>插入后：'<span>This ids a book.'</span> 
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;">
+	<span>&nbsp;</span> 
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;">
+	<span>R</span>：替换一个字符，命令格式为：<span></span> 
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;">
+	&nbsp; &nbsp; &nbsp;R a1 a2&nbsp; 其中a1为被替换的字符，a2为替换的字符，若在原串中有多个a1则应全部替换。
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;">
+	&nbsp; &nbsp; &nbsp;例如：
+原串： '<span>This is a book.'</span> 
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;">
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;输入命令：<span>R o e</span> 
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;">
+	<span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>替换后的字符串为：<span>'This is a beek.'</span> 
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;">
+	<span><br />
+</span> 
+</p>
+<p>
+	在编辑过程中，若出现被改的字符不存在时，则给出提示信息"Not exist"。
+</p>
+<p>
+	<br />
+</p>]]></description>
+<input><![CDATA[<p>
+	每个测试文件只包含一组测试数据，每组输入数据包含两行：
+</p>
+<p>
+	第一行，输入一个字符串，表示原串；
+</p>
+<p>
+	第二行，输入一个字符串，表示命令。
+</p>
+<p>
+	<br />
+</p>]]></input> 
+<output><![CDATA[<p>
+	对于每组输入数据，输出编辑后的字符串，如果<span>被改的字符不存在，<span>则输出"Not exist"</span>（引号不输出）。</span> 
+</p>
+<p>
+	<span><br />
+</span> 
+</p>]]></output>
+<sample_input><![CDATA[This is a book.
+D s
+]]></sample_input>
+<sample_output><![CDATA[Thi is a book.
+]]></sample_output>
+  <test_input><![CDATA[abcd adc.
+R d c
+
+]]></test_input>
+<test_output><![CDATA[abcc acc.
+]]></test_output>
+<test_input><![CDATA[a123 b12 aa.
+D 2
+
+]]></test_input>
+<test_output><![CDATA[a13 b12 aa.
+]]></test_output>
+<test_input><![CDATA[abababab.
+D b
+
+]]></test_input>
+<test_output><![CDATA[aababab.
+]]></test_output>
+<test_input><![CDATA[ababababab.
+R b a
+
+]]></test_input>
+<test_output><![CDATA[aaaaaaaaaa.
+]]></test_output>
+<test_input><![CDATA[sssssss.
+I s t
+
+]]></test_input>
+<test_output><![CDATA[ssssssts.
+]]></test_output>
+<test_input><![CDATA[abc dc e.
+I c f
+
+]]></test_input>
+<test_output><![CDATA[abc dfc e.
+]]></test_output>
+<test_input><![CDATA[abcd efg.
+R s t
+
+]]></test_input>
+<test_output><![CDATA[Not exist
+]]></test_output>
+<test_input><![CDATA[.
+R . %
+
+]]></test_input>
+<test_output><![CDATA[%
+]]></test_output>
+<test_input><![CDATA[sssssss ss.
+R s t
+
+]]></test_input>
+<test_output><![CDATA[ttttttt tt.
+]]></test_output>
+<test_input><![CDATA[a.
+R . a
+
+]]></test_input>
+<test_output><![CDATA[aa
+]]></test_output>
+<hint><![CDATA[<table style="width:100%;" cellpadding="2" cellspacing="0" border="1" bordercolor="#000000">
+	<tbody>
+		<tr>
+			<td>
+				This is a book.<br />
+I s d<br />
+<br />
+				<div>
+					<br />
+				</div>
+<br />
+			</td>
+			<td>
+				This ids a book.<br />
+<br />
+<br />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<span>This is a book.</span><br />
+<span>R o e</span><br />
+			</td>
+			<td>
+				<span>This is a beek.</span><br />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<br />
+			</td>
+			<td>
+				<br />
+			</td>
+		</tr>
+	</tbody>
+</table>
+<br />]]></hint>
+<source><![CDATA[NOIP全国联赛普及组 1996年NOIP全国联赛普及组]]></source>
+		<solution language="C"><![CDATA[#include<stdio.h>
+#include<string.h>
+#define N 45
+int main()
+{
+	char a[N],b[10];
+	int i,flag=0,len,m=1,j;
+	gets(a);
+	gets(b);
+	len=strlen(a);
+	if(b[0]=='D'){
+		for(i=0;a[i]!='\0';i++){
+			if(a[i]==b[2]) flag=1;
+		}
+		if(flag==1){
+			for(i=0;a[i]!='\0';i++){
+				if(m==1 && a[i]==b[2]){
+					m=0;
+					continue;
+				}
+				else{
+					printf("%c",a[i]);
+				}
+			}
+		}
+		else{
+			printf("Not exist");
+		}
+		printf("\n");
+	}
+	else if(b[0]=='I'){
+		for(i=len-1;i>=0;i--){
+			if(a[i]==b[2]){
+				flag=1;
+				break;
+			}
+		}
+		if(flag==1){		
+			for(j=0;j<i;j++){
+				printf("%c",a[j]);
+			}
+			printf("%c",b[4]);
+			for(j=i;a[j]!='\0';j++){
+				printf("%c",a[j]);
+			}
+		}
+		else printf("Not exist");
+		printf("\n");
+	}
+	else{
+		for(i=0;a[i]!='\0';i++){
+			if(a[i]==b[2]) flag=1;
+		}
+		if(flag==1){
+			for(i=0;a[i]!='\0';i++){
+				if(a[i]==b[2]){
+					printf("%c",b[4]);
+				}
+				else{
+					printf("%c",a[i]);
+				}
+			}
+		}
+		else{
+			printf("Not exist");
+		}
+		printf("\n");
+	}
+} ]]></solution>
+			<solution language="C++"><![CDATA[#include<stdio.h>
+#include<string.h>
+int main()
+{
+	char a[110],b[110],ch,q,p;
+	int i,count,j;
+		for(i=0;;i++)
+		{
+			scanf("%c",&a[i]);
+			if(a[i]=='.')
+				break;
+		}
+		a[i+1]='\0';
+		getchar();
+		scanf("%c",&ch);
+		getchar();
+		if(ch=='D')
+			scanf("%c",&q);
+		else
+			scanf("%c %c",&q,&p);
+		getchar();
+		if(ch=='D')
+		{
+			count=0,j=0;
+			for(i=0;i<strlen(a);i++)
+			{
+				if(a[i]==q&&count==0)
+				{
+					count++;
+				}
+				else
+				{
+					b[j++]=a[i];
+				}
+			}
+			b[j]='\0';
+			if(count==0)
+				printf("Not exist\n");
+			else
+			    printf("%s\n",b);
+		}
+		if(ch=='I')
+		{
+			count=0;j=strlen(a);
+			for(i=strlen(a)-1;i>=0;i--)
+			{
+				if(a[i]==q&&count==0)
+				{
+					count++;
+					b[j--]=a[i];
+					b[j--]=p;
+				}
+				else
+				{
+					b[j--]=a[i];
+				}
+			}
+			b[strlen(a)+1]='\0';
+			if(count==0)
+				printf("Not exist\n");
+			else
+			    printf("%s\n",b);
+		}
+		if(ch=='R')
+		{
+			count=0,j=0;
+			for(i=0;i<strlen(a);i++)
+			{
+				if(a[i]==q)
+				{
+					b[j++]=p;
+					count++;
+				}
+				else
+					b[j++]=a[i];
+			}
+			b[j]='\0';
+			if(count==0)
+				printf("Not exist\n");
+			else
+				printf("%s\n",b);
+		}
+	return 0;
+}]]></solution>
+			<solution language="Pascal"><![CDATA[var
+  s,t,s1:string;
+  i:integer;
+  a,b,c:char;
+begin
+  readln(s);
+  s1:=s;
+  readln(t);
+  if t[1]='D' then begin
+    i:=pos(t[3],s);
+    delete(s,i,1);
+  end else
+    if t[1]='I' then begin
+      for i:=length(s) downto 1 do if s[i]=t[3] then break;
+        insert(t[5],s,i);
+    end else
+      begin
+        for i:=1 to length(s) do if s[i]=t[3] then s[i]:=t[5];
+      end;
+  if s1=s then writeln('Not exist') else writeln(s);
+end.
+]]></solution>
+			<solution language="Java"><![CDATA[
+import java.util.Scanner;
+
+import java.util.Scanner;
+
+public class Main{
+	public static void main(String[] args) {
+		Scanner rd=new Scanner(System.in);
+		int flag = 0;
+		String str=rd.nextLine();
+		String mingling=rd.next();
+		String c=rd.next();
+		StringEditor ed=new StringEditor(str,c);
+		switch (mingling){
+		
+		case "D":
+			ed.Del(str,c);
+			break;
+		case "I":
+			String d = rd.next();
+			ed.Insert(str, c, d);
+			break;
+		case "R":
+			String d1 = rd.next();
+			ed.Replace(str, c, d1);
+			
+			break;
+		}
+	}
+}
+class StringEditor
+{
+	private String fString;
+	private String order;
+	public StringEditor(String fString,String order)
+	{
+		this.fString=fString;
+		this.order=order;
+	}
+	public void Del(String str,String b)
+	{
+		if(str.indexOf(b)!=-1)
+		{
+			str = str.replaceFirst(b,"");
+			System.out.print(str);
+		}
+		else
+			System.out.print("Not exist");
+	}
+	public void Insert(String str,String a1,String a2)
+	{
+		if(str.indexOf(a1)!=-1){
+			
+			int i=str.lastIndexOf(a1);
+			StringBuilder sb=new StringBuilder(str);
+			System.out.print(sb.insert(i, a2));
+		}
+		else
+			System.out.println("Not exist");
+	}
+	public void Replace(String str,String a1,String a2)
+	{
+		if(str.indexOf(a1)!=-1)
+		{
+			String s=str.replaceAll(a1, a2);
+			System.out.print(s);
+		}
+		else
+			System.out.println("Not exist");
+		
+	}
+}
+]]></solution>
+	</item>
+</fps>

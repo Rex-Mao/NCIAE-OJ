@@ -1,7 +1,9 @@
 package cn.edu.nciae.contentcenter.utils;
 
+import cn.edu.nciae.contentcenter.common.entity.Sample;
 import cn.edu.nciae.contentcenter.common.vo.ProblemVO;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -23,7 +25,7 @@ public class FPSUtils {
 
     private static NodeList itemList;
 
-    public static List<ProblemVO> FPS2ProblemVO(Long uid, String filepath) {
+    public static List<ProblemVO> fps2ProblemVO(Long uid, String filepath) {
         Document doc;
         doc = parseXML(filepath);
         List<ProblemVO> problems = new ArrayList<ProblemVO>();
@@ -38,39 +40,56 @@ public class FPSUtils {
 
     private static ProblemVO itemToProblemVO(Node item) {
         ProblemVO problemVO = new ProblemVO();
+        List<Sample> sampleList = new ArrayList<Sample>();
+        NodeList sampleInputTags = ((Element)item).getElementsByTagName("sample_input");
+        NodeList sampleOutputTags = ((Element)item).getElementsByTagName("sample_output");
+        for (int i=0; i < sampleInputTags.getLength(); i++) {
+            Element elementIn = (Element) sampleInputTags.item(i);
+            Element elementOut = (Element) sampleOutputTags.item(i);
+            Sample sample = Sample.builder().input(elementIn.getTextContent())
+                    .output(elementOut.getTextContent())
+                    .build();
+            sampleList.add(sample);
+        }
         NodeList nodeList = item.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
             String name = node.getNodeName();
             String value = node.getTextContent();
-            if (name.equalsIgnoreCase("title")) {
+            if ("title".equalsIgnoreCase(name)) {
                 problemVO.setTitle(value);
             }
-            if (name.equalsIgnoreCase("time_limit")) {
-                problemVO.setTimeLimit(Double.valueOf(String.valueOf(value.split(" ")[0])));
+            if ("time_limit".equalsIgnoreCase(name)) {
+                Element tmp = (Element)node;
+                String unit = tmp.getAttribute("unit");
+                if ("s".equalsIgnoreCase(unit)) {
+                    problemVO.setTimeLimit(Double.parseDouble(String.valueOf(value.split(" ")[0])) * 1000);
+                } else {
+                    problemVO.setTimeLimit(Double.valueOf(String.valueOf(value.split(" ")[0])));
+                }
             }
-            if (name.equalsIgnoreCase("memory_limit")) {
-                problemVO.setMemoryLimit(Double.valueOf(String.valueOf(value.split(" ")[0])));
+            if ("memory_limit".equalsIgnoreCase(name)) {
+                Element tmp = (Element)node;
+                String unit = tmp.getAttribute("unit");
+                if ("kb".equalsIgnoreCase(unit)) {
+                    problemVO.setMemoryLimit(Double.parseDouble(String.valueOf(value.split(" ")[0])) / 1024);
+                } else {
+                    problemVO.setMemoryLimit(Double.valueOf(String.valueOf(value.split(" ")[0])));
+                }
             }
-            if (name.equalsIgnoreCase("description")) {
+            if ("description".equalsIgnoreCase(name)) {
                 problemVO.setDescription(value);
             }
-            if (name.equalsIgnoreCase("input")) {
+            if ("input".equalsIgnoreCase(name)) {
                 problemVO.setFInput(value);
             }
-            if (name.equalsIgnoreCase("output")) {
+            if ("output".equalsIgnoreCase(name)) {
                 problemVO.setFOutput(value);
             }
-//            if (name.equalsIgnoreCase("sample_input")) {
-//                problem.setSInput(value);
-//            }
-//            if (name.equalsIgnoreCase("sample_output")) {
-//                problem.setSOutput(value);
-//            }
-//            if (name.equalsIgnoreCase("hint")) {
-//                problem.hint = p.setImages(value);
-//            }
-            if (name.equalsIgnoreCase("source")) {
+            if ("hint".equalsIgnoreCase(name)) {
+                problemVO.setHint(value);
+            }
+            if ("source".equalsIgnoreCase(name)) {
                 problemVO.setAuthor(value);
             }
 //            if (name.equalsIgnoreCase("img")) {
@@ -79,6 +98,7 @@ public class FPSUtils {
         }
         problemVO.setSubmitNum(0);
         problemVO.setSolvedNum(0);
+        problemVO.setSamples(sampleList);
         return problemVO;
     }
 

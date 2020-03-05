@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<fps version="1.2" url="https://github.com/zhblue/freeproblemset/">
+	<generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
+	<item>
+<title><![CDATA[立体图]]></title>
+<time_limit unit="s"><![CDATA[1]]></time_limit>
+<memory_limit unit="mb"><![CDATA[50]]></memory_limit>
+
+<img><src><![CDATA[http://tk.hustoj.com:80/attached/image/20140116/20140116174340_75410.jpg]]></src><base64><![CDATA[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]]></base64></img><img><src><![CDATA[http://tk.hustoj.com:80/attached/image/20140116/20140116174212_59028.jpg]]></src><base64><![CDATA[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]]></base64></img><img><src><![CDATA[http://tk.hustoj.com:80/attached/image/20140116/20140116174526_60478.jpg]]></src><base64><![CDATA[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]]></base64></img><img><src><![CDATA[http://tk.hustoj.com:80/attached/image/20140117/20140117004229_75003.jpg]]></src><base64><![CDATA[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]]></base64></img><description><![CDATA[<p>
+	小渊是个聪明的孩子，他经常会给周围的小朋友们讲些自己认为有趣的内容。最近，他准备给小朋友们讲解立体图，请你帮他画出立体图。
+</p>
+<p>
+	小渊有一块面积为m*n的矩形区域，上面有m*n个边长为1的格子，每个格子上堆了一些同样大小的吉姆（积木的长宽高都是1），小渊想请你打印出这些格子的立体图。我们定义每个积木为如下格式，并且不会做任何翻转旋转，只会严格以这一种形式摆放：
+</p>
+<p style="text-align:center;">
+	<img src="http://tk.hustoj.com:80/attached/image/20140116/20140116174340_75410.jpg" alt="" /> 
+</p>
+<p>
+	每个顶点用1个加号‘+’表示，长用3个‘-’表示，宽用1个‘/’表示，高用两个‘|’表示。字符‘+’ ‘-’ ‘/’ ‘|’的ASCII码分别为43，45，47，124。字符‘.’（ASCII码46）需要作为背景输出，即立体图里的空白部分需要用‘.’代替。立体图的画法如下面的规则：
+</p>
+<p>
+	若两块积木左右相邻，图示为：
+</p>
+<p style="text-align:center;">
+	<img src="http://tk.hustoj.com:80/attached/image/20140116/20140116174212_59028.jpg" alt="" /> 
+</p>
+<p>
+	若两块积木上下相邻，图示为：
+</p>
+<p style="text-align:center;">
+	<img src="http://tk.hustoj.com:80/attached/image/20140116/20140116174526_60478.jpg" alt="" /> 
+</p>
+<p>
+	若两块积木前后相邻，图示为：
+</p>
+<p style="text-align:center;">
+	<img src="http://tk.hustoj.com:80/attached/image/20140117/20140117004229_75003.jpg" alt="" /> 
+</p>
+<p>
+	立体图中，定义位于第(m, 1)的格子（即第m行第1列的格子）上面自底向上的第一块积木（即最下面的一块积木）的左下角顶点为整张图最左下角的点。
+</p>
+<p>
+	<br />
+</p>]]></description>
+<input><![CDATA[<p>
+	每组输入数据的第一行有用空格隔开的两个整数m和n，表示有m*n个格子（1&lt;=m，n&lt;=50）。
+</p>
+<p>
+	接下来的m行，是一个m*n的矩阵，每行有n个用空格隔开的整数，其中第i行第j列上的整数表示第i行第j列的格子上摞有多少个积木（1&lt;=每个格子上的积木数&lt;=100）。
+</p>
+<p>
+	<br />
+</p>]]></input> 
+<output><![CDATA[<p>
+	每组输出中包含题目要求的立体图，是一个K行L列的字符矩阵，其中K和L表示最少需要K行L列才能按规定输出立体图。
+</p>
+<p>
+	<br />
+</p>]]></output>
+<sample_input><![CDATA[3 4
+2 2 1 2
+2 2 1 1
+3 2 1 2]]></sample_input>
+<sample_output><![CDATA[......+---+---+...+---+
+..+---+   /    /|../   /|
+./    /|-+---+ |.+---+ |
++---+ |/   /| +-|    | +
+|    | +---+ |/+---+ |/|
+|    |/   /| +/    /|-+ |
++---+---+ |/+---+ |/| +
+|    |   | +-|    | + |/.
+|    |   |/  |    |/| +..
++---+---+---+---+ |/...
+|    |   |    |   | +....
+|    |   |    |   |/.....
++---+---+---+---+......]]></sample_output>
+  <test_input><![CDATA[5 6
+6 6 6 6 6 6 
+6 1 1 1 1 6
+6 1 1 1 1 6
+6 1 1 1 1 6
+6 6 6 6 6 6 
+]]></test_input>
+<test_output><![CDATA[..........+---+---+---+---+---+---+
+........./   /   /   /   /   /   /|
+........+---+---+---+---+---+---+ |
+......./   /|   |   |   |  /   /| +
+......+---+ |   |   |   | +---+ |/|
+...../   /| +---+---+---+/   /| + |
+....+---+ |/|   |   |   +---+ |/| +
+.../   /| + |   |   |  /   /| + |/|
+..+---+---+---+---+---+---+ |/| + |
+./   /   /   /   /   /   /| + |/| +
++---+---+---+---+---+---+ |/| + |/|
+|   |   |   |   |   |   | + |/| + |
+|   |   |   |   |   |   |/| + |/| +
++---+---+---+---+---+---+ |/| + |/|
+|   |   |   |   |   |   | + |/| + |
+|   |   |   |   |   |   |/| + |/| +
++---+---+---+---+---+---+ |/| + |/|
+|   |   |   |   |   |   | + |/| + |
+|   |   |   |   |   |   |/| + |/| +
++---+---+---+---+---+---+ |/| + |/.
+|   |   |   |   |   |   | + |/| +..
+|   |   |   |   |   |   |/| + |/...
++---+---+---+---+---+---+ |/| +....
+|   |   |   |   |   |   | + |/.....
+|   |   |   |   |   |   |/| +......
++---+---+---+---+---+---+ |/.......
+|   |   |   |   |   |   | +........
+|   |   |   |   |   |   |/.........
++---+---+---+---+---+---+..........
+]]></test_output>
+<test_input><![CDATA[5 4
+7 1 1 7
+1 1 1 1
+1 1 1 1
+1 1 1 1
+7 1 1 7
+]]></test_input>
+<test_output><![CDATA[..........+---+.......+---+
+........./   /|....../   /|
+........+---+ |.....+---+ |
+........|   | +.....|   | +
+........|   |/|.....|   |/|
+........+---+ |.....+---+ |
+........|   | +.....|   | +
+........|   |/|.....|   |/|
+..+---+.+---+ +---+.+---+ |
+./   /|.|   |/   /|.|   | +
++---+ |.|   +---+ |.|   |/|
+|   | +.+---|   | +.+---+ |
+|   |/|.|   |   |/|.|   | +
++---+ |.|   +---+ |.|   |/|
+|   | +.+---|   | +.+---+ |
+|   |/|.|   |   |/|.|   | +
++---+ |.|   +---+ |.|   |/|
+|   | +.+---|   | +.+---+ |
+|   |/|.|   |   |/|-|   | +
++---+ |.|   +---+ | |   |/|
+|   | +.+---|   | +-+---+ |
+|   |/|/   /|   |/|/   /| +
++---+ |---+-+---+ |---+ |/.
+|   | +  /  |   | +  /| +..
+|   |/|-+---|   |/|-+ |/...
++---+ |/   /+---+ |/| +....
+|   | +---+-|   | + |/.....
+|   |/   /  |   |/| +......
++---+---+---+---+ |/.......
+|   |   |   |   | +........
+|   |   |   |   |/.........
++---+---+---+---+..........
+]]></test_output>
+<test_input><![CDATA[1 1 
+1]]></test_input>
+<test_output><![CDATA[..+---+
+./   /|
++---+ |
+|   | +
+|   |/.
++---+..
+]]></test_output>
+<test_input><![CDATA[3 3
+7 8 1
+6 9 2
+5 4 3]]></test_input>
+<test_output><![CDATA[........+---+......
+......./   /|-+....
+......+---+ |/|....
+......|   | + |....
+......|   |/| +....
+...../+---+ |/|....
+....+-|   | + |....
+....| |   |/| +....
+....| +---+ |/|....
+....+-|   | + |....
+.../  |   |/| +....
+..+---+---+ |/|....
+..|   |   | + |....
+..|   |   |/| +....
+..+---+---+ |/|....
+./   /|   | + |....
++---+ |   |/| +....
+|   | +---+ |/|....
+|   |/   /| + |....
++---+---+ |/| +....
+|   |   | +---+....
+|   |   |/   /|-+..
++---+---+---+ |/|-+
+|   |   |   | + |/|
+|   |   |   |/| + |
++---+---+---+ |/| +
+|   |   |   | + |/.
+|   |   |   |/| +..
++---+---+---+ |/...
+|   |   |   | +....
+|   |   |   |/.....
++---+---+---+......
+]]></test_output>
+<test_input><![CDATA[19 19
+1 2 3 4 5 6 7 8 9 10 9 8 7 6 5 4 3 2 1 
+2 3 4 5 6 7 8 9 10 11 10 9 8 7 6 5 4 3 2 
+3 4 5 6 7 8 9 10 11 12 11 10 9 8 7 6 5 4 3 
+4 5 6 7 8 9 10 11 12 13 12 11 10 9 8 7 6 5 4 
+5 6 7 8 9 10 11 12 13 14 13 12 11 10 9 8 7 6 5 
+6 7 8 9 10 11 12 13 14 15 14 13 12 11 10 9 8 7 6 
+7 8 9 10 11 12 13 14 15 16 15 14 13 12 11 10 9 8 7 
+8 9 10 11 12 13 14 15 16 17 16 15 14 13 12 11 10 9 8 
+9 10 11 12 13 14 15 16 17 18 17 16 15 14 13 12 11 10 9 
+10 11 12 13 14 15 16 17 18 19 18 17 16 15 14 13 12 11 10 
+9 10 11 12 13 14 15 16 17 18 17 16 15 14 13 12 11 10 9 
+8 9 10 11 12 13 14 15 16 17 16 15 14 13 12 11 10 9 8 
+7 8 9 10 11 12 13 14 15 16 15 14 13 12 11 10 9 8 7 
+6 7 8 9 10 11 12 13 14 15 14 13 12 11 10 9 8 7 6 
+5 6 7 8 9 10 11 12 13 14 13 12 11 10 9 8 7 6 5 
+4 5 6 7 8 9 10 11 12 13 12 11 10 9 8 7 6 5 4 
+3 4 5 6 7 8 9 10 11 12 11 10 9 8 7 6 5 4 3 
+2 3 4 5 6 7 8 9 10 11 10 9 8 7 6 5 4 3 2 
+1 2 3 4 5 6 7 8 9 10 9 8 7 6 5 4 3 2 1 
+]]></test_input>
+<test_output><![CDATA[........................................................+---+......................................................
+......................................................./   /|-+....................................................
+......................................................+---+ |/|-+..................................................
+....................................................+-|   | +---+-+................................................
+.................................................../  |   |/   /|-+-+..............................................
+..................................................+---+---+---+ |/|-+-+............................................
+................................................+-|  /   /|   | +---+-+-+..........................................
+.............................................../  | +---+ |   |/   /|-+-+-+........................................
+..............................................+---+-|   | +---+---+ |/|-+-+-+......................................
+............................................+-|  /  |   |/   /|   | +---+-+-+-+....................................
+.........................................../  | +---+---+---+ |   |/   /|-+-+-+....................................
+..........................................+---+-|  /   /|   | +---+---+ |/|-+-+-+..................................
+........................................+-|  /  | +---+ |   |/   /|   | +---+-+-+-+................................
+......................................./  | +---+-|   | +---+---+ |   |/   /|-+-+-+................................
+......................................+---+-|  /  |   |/   /|   | +---+---+ |/|-+-+-+..............................
+....................................+-|  /  | +---+---+---+ |   |/   /|   | +---+-+-+-+............................
+.................................../  | +---+-|  /   /|   | +---+---+ |   |/   /|-+-+-+............................
+..................................+---+-|  /  | +---+ |   |/   /|   | +---+---+ |/|-+-+-+..........................
+................................+-|  /  | +---+-|   | +---+---+ |   |/   /|   | +---+-+-+-+........................
+.............................../  | +---+-|  /  |   |/   /|   | +---+---+ |   |/   /|-+-+-+........................
+..............................+---+-|  /  | +---+---+---+ |   |/   /|   | +---+---+ |/|-+-+-+......................
+............................+-|  /  | +---+-|  /   /|   | +---+---+ |   |/   /|   | +---+-+-+-+....................
+.........................../  | +---+-|  /  | +---+ |   |/   /|   | +---+---+ |   |/   /|-+-+-+....................
+..........................+---+-|  /  | +---+-|   | +---+---+ |   |/   /|   | +---+---+ |/|-+-+-+..................
+........................+-|  /  | +---+-|  /  |   |/   /|   | +---+---+ |   |/   /|   | +---+-+-+-+................
+......................./  | +---+-|  /  | +---+---+---+ |   |/   /|   | +---+---+ |   |/   /|-+-+-+................
+......................+---+-|  /  | +---+-|  /   /|   | +---+---+ |   |/   /|   | +---+---+ |/|-+-+-+..............
+....................+-|  /  | +---+-|  /  | +---+ |   |/   /|   | +---+---+ |   |/   /|   | +---+-+-+-+............
+.................../  | +---+-|  /  | +---+-|   | +---+---+ |   |/   /|   | +---+---+ |   |/   /|-+-+-+............
+..................+---+-|  /  | +---+-|  /  |   |/   /|   | +---+---+ |   |/   /|   | +---+---+ |/|-+-+-+..........
+..................|  /  | +---+-|  /  | +---+---+---+ |   |/   /|   | +---+---+ |   |/   /|   | + |/|-+-+-+........
+..................| +---+-|  /  | +---+-|  /   /|   | +---+---+ |   |/   /|   | +---+---+ |   |/| + |/|-+-+........
+..................+-|  /  | +---+-|  /  | +---+ |   |/   /|   | +---+---+ |   |/   /|   | +---+ |/| + |/|-+-+......
+................./  | +---+-|  /  | +---+-|   | +---+---+ |   |/   /|   | +---+---+ |   |/   /| + |/| + |/|-+-+....
+................+---+-|  /  | +---+-|  /  |   |/   /|   | +---+---+ |   |/   /|   | +---+---+ |/| + |/| + |/|-+....
+................|  /  | +---+-|  /  | +---+---+---+ |   |/   /|   | +---+---+ |   |/   /|   | + |/| + |/| + |/|-+..
+................| +---+-|  /  | +---+-|  /   /|   | +---+---+ |   |/   /|   | +---+---+ |   |/| + |/| + |/| + |/|-+
+................+-|  /  | +---+-|  /  | +---+ |   |/   /|   | +---+---+ |   |/   /|   | +---+ |/| + |/| + |/| + |/|
+.............../  | +---+-|  /  | +---+-|   | +---+---+ |   |/   /|   | +---+---+ |   |/   /| + |/| + |/| + |/| + |
+..............+---+-|  /  | +---+-|  /  |   |/   /|   | +---+---+ |   |/   /|   | +---+---+ |/| + |/| + |/| + |/| +
+..............|  /  | +---+-|  /  | +---+---+---+ |   |/   /|   | +---+---+ |   |/   /|   | + |/| + |/| + |/| + |/.
+..............| +---+-|  /  | +---+-|  /   /|   | +---+---+ |   |/   /|   | +---+---+ |   |/| + |/| + |/| + |/| +..
+..............+-|  /  | +---+-|  /  | +---+ |   |/   /|   | +---+---+ |   |/   /|   | +---+ |/| + |/| + |/| + |/...
+............./  | +---+-|  /  | +---+-|   | +---+---+ |   |/   /|   | +---+---+ |   |/   /| + |/| + |/| + |/| +....
+............+---+-|  /  | +---+-|  /  |   |/   /|   | +---+---+ |   |/   /|   | +---+---+ |/| + |/| + |/| + |/.....
+............|  /  | +---+-|  /  | +---+---+---+ |   |/   /|   | +---+---+ |   |/   /|   | + |/| + |/| + |/| +......
+............| +---+-|  /  | +---+-|  /   /|   | +---+---+ |   |/   /|   | +---+---+ |   |/| + |/| + |/| + |/.......
+............+-|  /  | +---+-|  /  | +---+ |   |/   /|   | +---+---+ |   |/   /|   | +---+ |/| + |/| + |/| +........
+.........../  | +---+-|  /  | +---+-|   | +---+---+ |   |/   /|   | +---+---+ |   |/   /| + |/| + |/| + |/.........
+..........+---+-|  /  | +---+-|  /  |   |/   /|   | +---+---+ |   |/   /|   | +---+---+ |/| + |/| + |/| +..........
+..........|  /  | +---+-|  /  | +---+---+---+ |   |/   /|   | +---+---+ |   |/   /|   | + |/| + |/| + |/...........
+..........| +---+-|  /  | +---+-|   |   |   | +---+---+ |   |/   /|   | +---+---+ |   |/| + |/| + |/| +............
+..........+-|  /  | +---+-|  /  |   |   |   |/   /|   | +---+---+ |   |/   /|   | +---+ |/| + |/| + |/.............
+........./  | +---+-|  /  | +---+---+---+---+---+ |   |/   /|   | +---+---+ |   |/   /| + |/| + |/| +..............
+........+---+-|  /  | +---+-|   |   |   |   |   | +---+---+ |   |/   /|   | +---+---+ |/| + |/| + |/...............
+........|  /  | +---+-|  /  |   |   |   |   |   |/   /|   | +---+---+ |   |/   /|   | + |/| + |/| +................
+........| +---+-|  /  | +---+---+---+---+---+---+---+ |   |/   /|   | +---+---+ |   |/| + |/| + |/.................
+........+-|  /  | +---+-|   |   |   |   |   |   |   | +---+---+ |   |/   /|   | +---+ |/| + |/| +..................
+......./  | +---+-|  /  |   |   |   |   |   |   |   |/   /|   | +---+---+ |   |/   /| + |/| + |/...................
+......+---+-|  /  | +---+---+---+---+---+---+---+---+---+ |   |/   /|   | +---+---+ |/| + |/| +....................
+......|  /  | +---+-|   |   |   |   |   |   |   |   |   | +---+---+ |   |/   /|   | + |/| + |/.....................
+......| +---+-|  /  |   |   |   |   |   |   |   |   |   |/   /|   | +---+---+ |   |/| + |/| +......................
+......+-|  /  | +---+---+---+---+---+---+---+---+---+---+---+ |   |/   /|   | +---+ |/| + |/.......................
+...../  | +---+-|   |   |   |   |   |   |   |   |   |   |   | +---+---+ |   |/   /| + |/| +........................
+....+---+-|  /  |   |   |   |   |   |   |   |   |   |   |   |/   /|   | +---+---+ |/| + |/.........................
+....|  /  | +---+---+---+---+---+---+---+---+---+---+---+---+---+ |   |/   /|   | + |/| +..........................
+....| +---+-|   |   |   |   |   |   |   |   |   |   |   |   |   | +---+---+ |   |/| + |/...........................
+....+-|  /  |   |   |   |   |   |   |   |   |   |   |   |   |   |/   /|   | +---+ |/| +............................
+.../  | +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+ |   |/   /| + |/.............................
+..+---+-|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   | +---+---+ |/| +..............................
+..|  /  |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |/   /|   | + |/...............................
+..| +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+ |   |/| +................................
+..+-|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   | +---+ |/.................................
+./  |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |/   /| +..................................
++---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+ |/...................................
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   | +....................................
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |/.....................................
++---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+......................................
+]]></test_output>
+<test_input><![CDATA[11 11
+2 10 4 4 6 1 6 5 9 8 9 
+8 10 11 8 4 5 5 8 8 6 2
+2 9 1 2 4 9 7 9 10 5 7
+4 4 2 5 9 4 3 5 3 2 8
+8 3 3 9 6 6 1 3 9 3 6
+5 9 11 3 2 5 9 6 4 10 11
+10 8 10 6 4 4 4 1 9 10 10
+2 5 2 2 8 2 5 7 7 6 7
+8 6 5 5 2 6 7 11 3 11 9
+5 6 8 5 9 8 10 11 8 11 2
+9 1 7 7 7 4 5 5 7 7 8 ]]></test_input>
+<test_output><![CDATA[............................+---+..................................
+..........................+/   /|..................................
+........................./+---+ |..................................
+........................+-|   | +..................................
+......................./  |   |/|.....................+---+...+---+
+......................+---+---+ |.................+---+  /|../   /|
+......................|   |   | +................/   /|-+ |.+---+ |
+......................|   |   |/|...............+---+ | | +-|   | +
+....................+---+-+---+ |.....+---+...+-|   +---+/  |   |/|
+.................../   /|/|   | +---+/   /|../  |  /   /|---+---+ |
+..................+---+ | |   |/+---+---+ |.+---+-+---+ |   |   | +
+..................|   | + +---+/   /|   | +.|   +-|   | +   |   |/|
+..................|   |/|/+---+---+ |   |/|.| +/  |   |/|---+---+ |
+..........+---+...+---+ |/   /|   | +---+ |.+/+---+---+ |---+   | +
+........./   /|.+/   /| +---+ |   +---+-+ +---+  /   /| +  /|-+ |/|
+........+---+ |/+---+ |/|   | +--/   /|/|/   /|-+---+ |/|-+ |/|-+ |
+........|   | +-|   | + |   |/| +---+ | +---+ | |   | + | | + | | +
+........|   |/| |   |/| +---+ |/   /| +/   /| + |   |/| + |/| + |/|
+........+---+ | +---+ |/|   | +---+ |/+---+ |/|-+---+ |/|-+ |/|-+ |
+........|   | +-|   | + |   +-|   | + |   | + | |   | + | | + | | +
+........|   |/  |   |/| +--/  |   |/| |   |/| +---+ |/| + |/| + |/|
+........+---+---+---+ |/+-+---+---+ |/+---+ |/   /|-+ |/|-+ |/|-+ |
+........|   |   |   +---+ |   |   | + |   | +---+ | | + |/| + | | +
+......+---+ |   |  /   /|-|   |   |/| |   |/|   | + |/| + |/| + |/|
+..+---+  /|-+---+-+---+ | +---+---+ |/+---+ |   |/|-+ |/| + |/|-+ |
+./   /|-+ | +---+ |   | +-|   |   | +-|   | +---+ |/| + |/| + | | +
++---+ | | +/   /| |   |/  |   |   |/  |   |/|   | + |/| + |/| + |/|
+|   | + |/+---+ |-+---+---+---+---+---+---+---+ |/| + |/| + |/|-+ |
+|   |/|-+ |   | + |   |   |   |   |   |  /   /|-+ |/| + |/| + |/| +
++---+ | | |   |/| |   |   |   |   |   | +---+ | | + |/| + |/| + |/|
+|   | + |/+---+---+---+---+---+---+---+-|   | + |/| + |/| + |/| + |
+|   |/|-+/   /   /   /|   |   |  /   /  |   |/|-+ |/| + |/| + |/| +
++---+ |/+---+---+---+ |   |   | +---+---+---+ | | + |/| + |/| + |/.
+|   | +-|   |   |   | +---+---+-|   |   |   | + |/| + |/| + |/| +..
+|   |/| |   |   |   |/|   |   | |   |   |   |/|-+ |/| + |/| + |/...
++---+ | +---+---+---+ |   |   | +---+---+---+ | | + |/| + |/| +....
+|   | +-|   |   |   | +---+---+-|   |   |   | + |/| + |/| + |/.....
+|   |/| |   |   |   |/|  /   /  |   |   |   |/|-+ |/| + |/| +......
++---+ | +---+---+---+ | +---+---+---+---+---+ | | + |/| + |/.......
+|   | +-|   |   |   | +-|   |   |   |   |   | + |/| + |/| +........
+|   |/| |   |   |   |/  |   |   |   |   |   |/|-+ |/| + |/.........
++---+ | +---+---+---+---+---+---+---+---+---+ | | + |/| +..........
+|   | +-|   |   |   |   |   |   |   |   |   | + |/| + |/...........
+|   |/| |   |   |   |   |   |   |   |   |   |/|-+ |/| +............
++---+ | +---+---+---+---+---+---+---+---+---+ |/| + |/.............
+|   | +-|   |   |   |   |   |   |   |   |   | + |/| +..............
+|   |/| |   |   |   |   |   |   |   |   |   |/| + |/...............
++---+ | +---+---+---+---+---+---+---+---+---+ |/| +................
+|   | +-|   |   |   |   |   |   |   |   |   | + |/.................
+|   |/  |   |   |   |   |   |   |   |   |   |/| +..................
++---+---+---+---+---+---+---+---+---+---+---+ |/...................
+|   |   |   |   |   |   |   |   |   |   |   | +....................
+|   |   |   |   |   |   |   |   |   |   |   |/.....................
++---+---+---+---+---+---+---+---+---+---+---+......................
+]]></test_output>
+<test_input><![CDATA[1 4
+7 1 1 7
+]]></test_input>
+<test_output><![CDATA[..+---+.......+---+
+./   /|....../   /|
++---+ |.....+---+ |
+|   | +.....|   | +
+|   |/|.....|   |/|
++---+ |.....+---+ |
+|   | +.....|   | +
+|   |/|.....|   |/|
++---+ |.....+---+ |
+|   | +.....|   | +
+|   |/|.....|   |/|
++---+ |.....+---+ |
+|   | +.....|   | +
+|   |/|.....|   |/|
++---+ |.....+---+ |
+|   | +.....|   | +
+|   |/|.....|   |/|
++---+ |.....+---+ |
+|   | +---+-|   | +
+|   |/   /  |   |/|
++---+---+---+---+ |
+|   |   |   |   | +
+|   |   |   |   |/.
++---+---+---+---+..
+]]></test_output>
+<test_input><![CDATA[2 2 
+2 2
+2 2 ]]></test_input>
+<test_output><![CDATA[....+---+---+
+.../   /   /|
+..+---+---+ |
+./   /   /| +
++---+---+ |/|
+|   |   | + |
+|   |   |/| +
++---+---+ |/.
+|   |   | +..
+|   |   |/...
++---+---+....
+]]></test_output>
+<test_input><![CDATA[2 2
+3 3
+3 1]]></test_input>
+<test_output><![CDATA[....+---+---+
+.../   /   /|
+..+---+---+ |
+./   /|   | +
++---+ |   |/|
+|   | +---+ |
+|   |/|   | +
++---+ |   |/|
+|   | +---+ |
+|   |/   /| +
++---+---+ |/.
+|   |   | +..
+|   |   |/...
++---+---+....
+]]></test_output>
+<test_input><![CDATA[1 1 
+10]]></test_input>
+<test_output><![CDATA[..+---+
+./   /|
++---+ |
+|   | +
+|   |/|
++---+ |
+|   | +
+|   |/|
++---+ |
+|   | +
+|   |/|
++---+ |
+|   | +
+|   |/|
++---+ |
+|   | +
+|   |/|
++---+ |
+|   | +
+|   |/|
++---+ |
+|   | +
+|   |/|
++---+ |
+|   | +
+|   |/|
++---+ |
+|   | +
+|   |/|
++---+ |
+|   | +
+|   |/.
++---+..
+]]></test_output>
+<hint><![CDATA[]]></hint>
+<source><![CDATA[NOIP全国联赛普及组-2008年NOIP全国联赛普及组]]></source>
+		<solution language="C++"><![CDATA[#include <iostream>
+using namespace std;
+
+const int N = 2007;
+const char* P[] = {
+"  +---+",
+" /   /|",
+"+---+ |",
+"|   | +",
+"|   |/ ",
+"+---+  "};
+int a[507][507];
+char c[N][N];
+
+inline void Draw(int x, int y)
+{
+	int i, j;
+	for (j = 0; j < 5; ++j) c[x - 1][y + j] = P[5][j];
+	for (j = 0; j < 6; ++j) c[x - 2][y + j] = P[4][j];
+	for (i = 2; i < 4; ++i)
+		for (j = 0; j < 7; ++j) c[x - i - 1][y + j] = P[5 - i][j];
+	for (j = 1; j < 7; ++j) c[x - 5][y + j] = P[1][j];
+	for (j = 2; j < 7; ++j) c[x - 6][y + j] = P[0][j];
+}
+
+int main()
+{
+	int n, m, h, w, i, j, k = 0, l = 0;
+	
+	fill(c[0], c[0] + N * N, '.');
+	cin >> n >> m;
+	for (i = 0; i < n; ++i)
+	{
+		for (j = 0; j < m; ++j)
+		{
+			cin >> a[i][j];
+			k = max(k, 3 * a[i][j] + 3);
+		}
+		k += 2;
+	}
+	k -= 2;
+	l = (m << 2) + (n << 1) + 1;
+	for (i = 0; i < n; ++i)
+		for (j = 0; j < m; ++j)
+		{
+			h = k - ((n - i - 1) << 1);
+			w = ((n - i - 1) << 1) + (j << 2);
+			while (a[i][j]--)
+			{
+				Draw(h, w);
+				h -= 3;
+			}
+		}
+	
+	for (i = 0; i < k; ++i)
+	{
+		for (j = 0; j < l; ++j) cout << c[i][j];
+		cout << endl;
+	}
+	
+	return 0;
+}
+]]></solution>
+			<solution language="Pascal"><![CDATA[uses math;
+var
+  c:array[0..1001,0..1001]of char;
+	g:array[0..101,0..101]of longint;
+	i,j,k,m,n,h,w:longint;
+procedure draw(x,y:longint);
+begin
+  c[x,y]:='+';c[x,y+1]:='-';c[x,y+2]:='-';c[x,y+3]:='-';c[x,y+4]:='+';
+  c[x-1,y]:='|';c[x-1,y+1]:=' '; c[x-1,y+2]:=' ';c[x-1,y+3]:=' ';c[x-1,y+4]:='|';c[x-1,y+5]:='/';
+  c[x-2,y]:='|';c[x-2,y+1]:=' '; c[x-2,y+2]:=' ';c[x-2,y+3]:=' ';c[x-2,y+4]:='|';c[x-2,y+5]:=' ';c[x-2,y+6]:='+';
+  c[x-3,y]:='+';c[x-3,y+1]:='-';c[x-3,y+2]:='-';c[x-3,y+3]:='-';c[x-3,y+4]:='+';c[x-3,y+5]:=' ';c[x-3,y+6]:='|';
+	c[x-4,y+1]:='/';c[x-4,y+2]:=' '; c[x-4,y+3]:=' ';c[x-4,y+4]:=' ';c[x-4,y+5]:='/';c[x-4,y+6]:='|';
+	c[x-5,y+2]:='+';c[x-5,y+3]:='-';c[x-5,y+4]:='-';c[x-5,y+5]:='-';c[x-5,y+6]:='+';
+end;
+begin
+  readln(n,m);
+	w:=4*m+2*n+1;
+	h:=0;
+	for i:=1 to n do
+	  for j:=1 to m do
+		  begin
+			  read(g[i,j]);
+				h:=max(h,2*(n-i+1)+g[i,j]*3+1);
+			end;
+	for i:=1 to h do
+	  for j:=1 to w do
+		  c[i,j]:='.';
+	for i:=1 to n do
+	  for j:=1 to m do
+		  for k:=1 to g[i,j] do
+			  draw(h-2*(n-i)-3*(k-1),2*(n-i)+4*(j-1)+1);
+  for i:=1 to h do begin
+	  for j:=1 to w do write(c[i,j]);
+		writeln;
+	end;
+end.]]></solution>
+	</item>
+</fps>

@@ -1,0 +1,1260 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<fps version="1.2" url="https://github.com/zhblue/freeproblemset/">
+	<generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
+	<item>
+<title><![CDATA[树网的核]]></title>
+<time_limit unit="s"><![CDATA[1]]></time_limit>
+<memory_limit unit="mb"><![CDATA[125]]></memory_limit>
+
+<img><src><![CDATA[http://tk.hustoj.com:80/attached/image/20140115/20140115200512_63044.jpg]]></src><base64><![CDATA[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]]></base64></img><description><![CDATA[设T=(V, E, W) 是一个无圈且连通的无向图（也称为无根树），每条边带有正整数的权，我们称T为树网（treenetwork），其中V, E分别表示结点与边的集合，W表示各边长度的集合，并设T 有n个结点。<br />
+<p>
+	<span style="line-height:1.5;"><strong>路径：</strong>树网中任何两结点a,b都存在唯一的一条简单路径，用d(a,b)表示以a,b为端点的</span><span style="line-height:1.5;">路径的长度，它是该路径上各边长度之和。我们称d(a,b)为a,b两结点间的距离。</span>
+</p>
+<p>
+	一点v到一条路径P的距离为该点与P 上的最近的结点的距离：
+</p>
+<p style="text-align:center;">
+	d(v, P)=min{d(v, u), u为路径P上的结点}
+</p>
+<p>
+	<strong>树网的直径：</strong>树网中最长的路径称为树网的直径。对于给定的树网T，直径不一定是唯一的，但可以证明：各直径的中点（不一定恰好是某个结点，可能在某条边的内部）是唯一的，我们称该点为树网的中心。
+</p>
+<p>
+	<strong>偏心距 ECC(F)：</strong>树网T中距路径F最远的结点到路径F的距离，即
+</p>
+<p style="text-align:center;">
+	ECC(F) = max{d(v, F), v∈V}
+</p>
+<p>
+	<strong>任务：</strong>对于给定的树网T=(V, E, W)和非负整数s，求一个路径F，它是某直径上的一段路径（该路径两端均为树网中的结点），其长度不超过s（可以等于s），使偏心距ECC(F)最小。我们称这个路径为树网T=(V, E, W)的核（Core）。必要时，F可以退化为某个结点。一般来说，在上述定义下，核不一定只有一个，但最小偏心距是唯一的。
+</p>
+<p>
+	下面的图给出了树网的一个实例。图中，A-B与A-C是两条直径，长度均为20。点W是树网的中心，EF边的长度为5。如果指定s=11，则树网的核为路径DEFG（也可以取为路径DEF），偏心距为8。如果指定s=0（或s=1、s=2），则树网的核为结点F，偏心距为12。
+</p>
+<p style="text-align:center;">
+	<img src="http://tk.hustoj.com:80/attached/image/20140115/20140115200512_63044.jpg" alt="" />
+</p>
+<p style="text-align:left;">
+</p>]]></description>
+<input><![CDATA[每组输入数据包含n行：<br />
+<p>
+	<span style="line-height:1.5;">第1行，两个正整数n和s，中间用一个空格隔开。其中n为树网结点的个数，s为树网的核的长度的上界。设结点编号依次为1，2，...，n。</span>
+</p>
+<p>
+	从第2行到第n行，每行给出3个用空格隔开的正整数，依次表示每一条边的两个端点编号和长度。例如，“2 4 7”表示连接结点2与4的边的长度为7。
+</p>
+<p>
+	所给的数据都是正确的，不必检验。
+</p>
+<p>
+	<br />
+</p>
+<p>
+	数据规模：<br />
+<span style="line-height:1.5;">40%的数据满足：5&lt;=n&lt;=15；</span>
+</p>
+<p>
+	<span style="line-height:1.5;">70%的数据满足：5&lt;=n&lt;=80；</span>
+</p>
+<p>
+	<span style="line-height:1.5;">100%的数据满足：5&lt;=n&lt;=300，0&lt;=s&lt;=1000。边长度为不超过1000的正整数。</span>
+</p>
+<p>
+	<span style="line-height:1.5;"><br />
+</span>
+</p>]]></input> 
+<output><![CDATA[<p>
+	每组输出只有一个非负整数，为指定意义下的最小偏心距。
+</p>
+<p>
+	<br />
+</p>]]></output>
+<sample_input><![CDATA[5 2
+1 2 5
+2 3 2
+2 4 4
+2 5 3
+
+8 6
+1 3 2
+2 3 2
+3 4 6
+4 5 3
+4 6 4
+4 7 2
+7 8 3]]></sample_input>
+<sample_output><![CDATA[5
+
+5]]></sample_output>
+  <test_input><![CDATA[25 17
+1 3 2
+2 3 3
+3 4 6
+4 5 8
+4 6 5
+4 7 2
+7 8 4
+9 10 4
+10 11 3
+10 12 3
+12 13 2
+12 14 5
+13 25 1
+14 15 3
+14 19 4
+15 16 3
+15 17 6
+15 18 3
+19 20 3
+19 21 2
+21 22 1
+21 23 3
+21 24 1
+8 9 13
+]]></test_input>
+<test_output><![CDATA[17
+]]></test_output>
+<test_input><![CDATA[281 171
+1 2 4
+2 3 3
+2 4 3
+4 5 2
+4 6 5
+5 17 1
+6 7 3
+6 11 4
+7 8 3
+7 9 6
+7 10 3
+11 12 3
+11 13 2
+13 14 1
+13 15 3
+13 16 15
+18 19 4
+19 20 3
+19 21 3
+21 22 2
+21 23 5
+22 34 1
+23 24 3
+23 28 4
+24 25 3
+24 26 6
+24 27 3
+28 29 3
+28 30 2
+30 31 1
+30 32 3
+30 33 11
+35 36 5
+36 37 3
+36 38 3
+38 39 2
+38 40 5
+39 51 1
+40 41 3
+40 45 4
+41 42 3
+41 43 6
+41 44 3
+45 46 3
+45 47 2
+47 48 1
+47 49 3
+47 50 1
+34 35 13
+17 18 17
+52 53 5
+53 54 3
+53 55 3
+55 56 2
+55 57 5
+56 68 1
+57 58 3
+57 62 4
+58 59 3
+58 60 6
+58 61 3
+62 63 3
+62 64 2
+64 65 12
+64 66 3
+64 67 1
+69 70 4
+70 71 3
+70 72 3
+72 73 2
+72 74 5
+73 85 1
+74 75 3
+74 79 4
+75 76 3
+75 77 6
+75 78 3
+79 80 3
+79 81 2
+81 82 11
+81 83 3
+81 84 1
+86 87 4
+87 88 3
+87 89 3
+89 90 2
+89 91 5
+90 102 17
+91 92 3
+91 96 4
+92 93 3
+92 94 6
+92 95 3
+96 97 3
+96 98 2
+98 99 19
+98 100 3
+98 101 1
+103 104 5
+104 105 3
+104 106 3
+106 107 2
+106 108 5
+107 119 1
+108 109 3
+108 113 4
+109 110 3
+109 111 6
+109 112 3
+113 114 3
+113 115 2
+115 116 13
+115 117 3
+115 118 1
+102 103 13
+85 86 11
+68 69 9
+51 52 13
+120 121 5
+121 122 3
+121 123 6
+121 124 7
+125 127 2
+126 127 3
+127 128 6
+128 129 8
+128 130 5
+128 131 2
+131 132 4
+124 125 13
+133 134 5
+134 135 3
+134 136 3
+136 137 2
+136 138 5
+137 149 15
+138 139 3
+138 143 4
+139 140 3
+139 141 6
+139 142 3
+143 144 3
+143 145 2
+145 146 12
+145 147 3
+145 148 11
+150 151 4
+151 152 3
+151 153 3
+153 154 2
+153 155 5
+154 166 1
+155 156 3
+155 160 4
+156 157 3
+156 158 6
+156 159 3
+160 161 3
+160 162 2
+162 163 10
+162 164 3
+162 165 1
+167 168 4
+168 169 3
+168 170 3
+170 171 2
+170 172 5
+171 183 1
+172 173 3
+172 177 4
+173 174 3
+173 175 6
+173 176 3
+177 178 3
+177 179 2
+179 180 14
+179 181 3
+179 182 17
+184 185 5
+185 186 3
+185 187 3
+187 188 2
+187 189 5
+188 200 1
+189 190 3
+189 194 4
+190 191 3
+190 192 6
+190 193 3
+194 195 3
+194 196 2
+196 197 12
+196 198 3
+196 199 19
+183 184 13
+166 167 11
+149 150 9
+132 133 13
+201 202 5
+202 203 3
+202 204 6
+202 205 7
+206 208 2
+207 208 3
+208 209 6
+209 210 8
+209 211 5
+209 212 2
+212 213 4
+205 206 13
+214 215 5
+215 216 3
+215 217 3
+217 218 2
+217 219 5
+218 230 15
+219 220 3
+219 224 4
+220 221 3
+220 222 6
+220 223 3
+224 225 3
+224 226 2
+226 227 12
+226 228 3
+226 229 11
+231 232 4
+232 233 3
+232 234 3
+234 235 2
+234 236 5
+235 247 1
+236 237 3
+236 241 4
+237 238 3
+237 239 6
+237 240 3
+241 242 3
+241 243 2
+243 244 10
+243 245 3
+243 246 1
+248 249 4
+249 250 3
+249 251 3
+251 252 2
+251 253 5
+252 264 1
+253 254 3
+253 258 4
+254 255 3
+254 256 6
+254 257 3
+258 259 3
+258 260 2
+260 261 14
+260 262 3
+260 263 17
+265 266 5
+266 267 3
+266 268 3
+268 269 2
+268 270 5
+269 281 1
+270 271 3
+270 275 4
+271 272 3
+271 273 6
+271 274 3
+275 276 3
+275 277 2
+277 278 12
+277 279 3
+277 280 19
+264 265 13
+247 248 11
+230 231 9
+213 214 13
+200 201 13
+119 120 13
+]]></test_input>
+<test_output><![CDATA[181
+]]></test_output>
+<test_input><![CDATA[5 41 
+1 2 11
+1 4 9
+2 5 20
+3 5 16
+]]></test_input>
+<test_output><![CDATA[16
+]]></test_output>
+<test_input><![CDATA[5 1
+1 2 5
+2 3 5
+2 4 5
+2 5 5
+
+]]></test_input>
+<test_output><![CDATA[5
+]]></test_output>
+<test_input><![CDATA[17 1
+1 2 5
+2 3 3
+2 4 3
+4 5 2
+4 6 5
+5 17 1
+6 7 3
+6 11 4
+7 8 3
+7 9 6
+7 10 3
+11 12 3
+11 13 2
+13 14 1
+13 15 3
+13 16 1
+]]></test_input>
+<test_output><![CDATA[13
+]]></test_output>
+<test_input><![CDATA[5 46
+1 2 5
+1 3 15
+1 5 6
+2 4 28
+]]></test_input>
+<test_output><![CDATA[15
+]]></test_output>
+<test_input><![CDATA[230 300
+1 2 5
+2 3 3
+2 4 3
+4 5 2
+4 6 5
+5 17 1
+6 7 3
+6 11 4
+7 8 3
+7 9 6
+7 10 3
+11 12 3
+11 13 2
+13 14 12
+13 15 3
+13 16 1
+18 19 4
+19 20 3
+19 21 3
+21 22 2
+21 23 5
+22 34 1
+23 24 3
+23 28 4
+24 25 3
+24 26 6
+24 27 3
+28 29 3
+28 30 2
+30 31 11
+30 32 3
+30 33 1
+35 36 4
+36 37 3
+36 38 3
+38 39 2
+38 40 5
+39 51 17
+40 41 3
+40 45 4
+41 42 3
+41 43 6
+41 44 3
+45 46 3
+45 47 2
+47 48 19
+47 49 3
+47 50 1
+52 53 5
+53 54 3
+53 55 3
+55 56 2
+55 57 5
+56 68 1
+57 58 3
+57 62 4
+58 59 3
+58 60 6
+58 61 3
+62 63 3
+62 64 2
+64 65 13
+64 66 3
+64 67 1
+51 52 13
+34 35 11
+17 18 9
+69 70 5
+70 71 3
+70 72 6
+70 73 7
+74 76 2
+75 76 3
+76 77 6
+77 78 8
+77 79 5
+77 80 2
+80 81 4
+73 74 13
+82 83 5
+83 84 3
+83 85 3
+85 86 2
+85 87 5
+86 98 15
+87 88 3
+87 92 4
+88 89 3
+88 90 6
+88 91 3
+92 93 3
+92 94 2
+94 95 12
+94 96 3
+94 97 11
+99 100 4
+100 101 3
+100 102 3
+102 103 2
+102 104 5
+103 115 1
+104 105 3
+104 109 4
+105 106 3
+105 107 6
+105 108 3
+109 110 3
+109 111 2
+111 112 10
+111 113 3
+111 114 1
+116 117 4
+117 118 3
+117 119 3
+119 120 2
+119 121 5
+120 132 1
+121 122 3
+121 126 4
+122 123 3
+122 124 6
+122 125 3
+126 127 3
+126 128 2
+128 129 14
+128 130 3
+128 131 17
+133 134 5
+134 135 3
+134 136 3
+136 137 2
+136 138 5
+137 149 1
+138 139 3
+138 143 4
+139 140 3
+139 141 6
+139 142 3
+143 144 3
+143 145 2
+145 146 12
+145 147 3
+145 148 19
+132 133 13
+115 116 11
+98 99 9
+81 82 13
+150 151 5
+151 152 3
+151 153 6
+151 154 7
+155 157 2
+156 157 3
+157 158 6
+158 159 8
+158 160 5
+158 161 2
+161 162 4
+154 155 13
+163 164 5
+164 165 3
+164 166 3
+166 167 2
+166 168 5
+167 179 15
+168 169 3
+168 173 4
+169 170 3
+169 171 6
+169 172 3
+173 174 3
+173 175 2
+175 176 12
+175 177 3
+175 178 11
+180 181 4
+181 182 3
+181 183 3
+183 184 2
+183 185 5
+184 196 1
+185 186 3
+185 190 4
+186 187 3
+186 188 6
+186 189 3
+190 191 3
+190 192 2
+192 193 10
+192 194 3
+192 195 1
+197 198 4
+198 199 3
+198 200 3
+200 201 2
+200 202 5
+201 213 1
+202 203 3
+202 207 4
+203 204 3
+203 205 6
+203 206 3
+207 208 3
+207 209 2
+209 210 14
+209 211 3
+209 212 17
+214 215 5
+215 216 3
+215 217 3
+217 218 2
+217 219 5
+218 230 1
+219 220 3
+219 224 4
+220 221 3
+220 222 6
+220 223 3
+224 225 3
+224 226 2
+226 227 12
+226 228 3
+226 229 19
+213 214 13
+196 197 11
+179 180 9
+162 163 13
+149 150 13
+68 69 13
+]]></test_input>
+<test_output><![CDATA[78
+]]></test_output>
+<test_input><![CDATA[300 1
+1 2 1
+1 3 1
+1 4 1
+1 5 1
+1 6 1
+1 7 1
+1 8 1
+1 9 1
+1 10 1
+1 11 1
+1 12 1
+1 13 1
+1 14 1
+1 15 1
+1 16 1
+1 17 1
+1 18 1
+1 19 1
+1 20 1
+1 21 1
+1 22 1
+1 23 1
+1 24 1
+1 25 1
+1 26 1
+1 27 1
+1 28 1
+1 29 1
+1 30 1
+1 31 1
+1 32 1
+1 33 1
+1 34 1
+1 35 1
+1 36 1
+1 37 1
+1 38 1
+1 39 1
+1 40 1
+1 41 1
+1 42 1
+1 43 1
+1 44 1
+1 45 1
+1 46 1
+1 47 1
+1 48 1
+1 49 1
+1 50 1
+1 51 1
+1 52 1
+1 53 1
+1 54 1
+1 55 1
+1 56 1
+1 57 1
+1 58 1
+1 59 1
+1 60 1
+1 61 1
+1 62 1
+1 63 1
+1 64 1
+1 65 1
+1 66 1
+1 67 1
+1 68 1
+1 69 1
+1 70 1
+1 71 1
+1 72 1
+1 73 1
+1 74 1
+1 75 1
+1 76 1
+1 77 1
+1 78 1
+1 79 1
+1 80 1
+1 81 1
+1 82 1
+1 83 1
+1 84 1
+1 85 1
+1 86 1
+1 87 1
+1 88 1
+1 89 1
+1 90 1
+1 91 1
+1 92 1
+1 93 1
+1 94 1
+1 95 1
+1 96 1
+1 97 1
+1 98 1
+1 99 1
+1 100 1
+1 101 1
+1 102 1
+1 103 1
+1 104 1
+1 105 1
+1 106 1
+1 107 1
+1 108 1
+1 109 1
+1 110 1
+1 111 1
+1 112 1
+1 113 1
+1 114 1
+1 115 1
+1 116 1
+1 117 1
+1 118 1
+1 119 1
+1 120 1
+1 121 1
+1 122 1
+1 123 1
+1 124 1
+1 125 1
+1 126 1
+1 127 1
+1 128 1
+1 129 1
+1 130 1
+1 131 1
+1 132 1
+1 133 1
+1 134 1
+1 135 1
+1 136 1
+1 137 1
+1 138 1
+1 139 1
+1 140 1
+1 141 1
+1 142 1
+1 143 1
+1 144 1
+1 145 1
+1 146 1
+1 147 1
+1 148 1
+1 149 1
+1 150 1
+1 151 1
+1 152 1
+1 153 1
+1 154 1
+1 155 1
+1 156 1
+1 157 1
+1 158 1
+1 159 1
+1 160 1
+1 161 1
+1 162 1
+1 163 1
+1 164 1
+1 165 1
+1 166 1
+1 167 1
+1 168 1
+1 169 1
+1 170 1
+1 171 1
+1 172 1
+1 173 1
+1 174 1
+1 175 1
+1 176 1
+1 177 1
+1 178 1
+1 179 1
+1 180 1
+1 181 1
+1 182 1
+1 183 1
+1 184 1
+1 185 1
+1 186 1
+1 187 1
+1 188 1
+1 189 1
+1 190 1
+1 191 1
+1 192 1
+1 193 1
+1 194 1
+1 195 1
+1 196 1
+1 197 1
+1 198 1
+1 199 1
+1 200 1
+1 201 1
+1 202 1
+1 203 1
+1 204 1
+1 205 1
+1 206 1
+1 207 1
+1 208 1
+1 209 1
+1 210 1
+1 211 1
+1 212 1
+1 213 1
+1 214 1
+1 215 1
+1 216 1
+1 217 1
+1 218 1
+1 219 1
+1 220 1
+1 221 1
+1 222 1
+1 223 1
+1 224 1
+1 225 1
+1 226 1
+1 227 1
+1 228 1
+1 229 1
+1 230 1
+1 231 1
+1 232 1
+1 233 1
+1 234 1
+1 235 1
+1 236 1
+1 237 1
+1 238 1
+1 239 1
+1 240 1
+1 241 1
+1 242 1
+1 243 1
+1 244 1
+1 245 1
+1 246 1
+1 247 1
+1 248 1
+1 249 1
+1 250 1
+1 251 1
+1 252 1
+1 253 1
+1 254 1
+1 255 1
+1 256 1
+1 257 1
+1 258 1
+1 259 1
+1 260 1
+1 261 1
+1 262 1
+1 263 1
+1 264 1
+1 265 1
+1 266 1
+1 267 1
+1 268 1
+1 269 1
+1 270 1
+1 271 1
+1 272 1
+1 273 1
+1 274 1
+1 275 1
+1 276 1
+1 277 1
+1 278 1
+1 279 1
+1 280 1
+1 281 1
+1 282 1
+1 283 1
+1 284 1
+1 285 1
+1 286 1
+1 287 1
+1 288 1
+1 289 1
+1 290 1
+1 291 1
+1 292 1
+1 293 1
+1 294 1
+1 295 1
+1 296 1
+1 297 1
+1 298 1
+1 299 1
+1 300 1
+]]></test_input>
+<test_output><![CDATA[1
+]]></test_output>
+<test_input><![CDATA[68 30
+1 2 5
+2 3 3
+2 4 3
+4 5 2
+4 6 5
+5 17 1
+6 7 3
+6 11 4
+7 8 3
+7 9 6
+7 10 3
+11 12 3
+11 13 2
+13 14 12
+13 15 3
+13 16 1
+18 19 4
+19 20 3
+19 21 3
+21 22 2
+21 23 5
+22 34 1
+23 24 3
+23 28 4
+24 25 3
+24 26 6
+24 27 3
+28 29 3
+28 30 2
+30 31 11
+30 32 3
+30 33 1
+35 36 4
+36 37 3
+36 38 3
+38 39 2
+38 40 5
+39 51 17
+40 41 3
+40 45 4
+41 42 3
+41 43 6
+41 44 3
+45 46 3
+45 47 2
+47 48 19
+47 49 3
+47 50 1
+52 53 5
+53 54 3
+53 55 3
+55 56 2
+55 57 5
+56 68 1
+57 58 3
+57 62 4
+58 59 3
+58 60 6
+58 61 3
+62 63 3
+62 64 2
+64 65 13
+64 66 3
+64 67 1
+51 52 13
+34 35 11
+17 18 9
+]]></test_input>
+<test_output><![CDATA[56
+]]></test_output>
+<test_input><![CDATA[8 6
+1 3 2
+2 3 3
+3 4 6
+4 5 8
+4 6 5
+4 7 2
+7 8 4
+]]></test_input>
+<test_output><![CDATA[8
+]]></test_output>
+<hint><![CDATA[]]></hint>
+<source><![CDATA[NOIP全国联赛提高组-2007年NOIP全国联赛提高组]]></source>
+		<solution language="C++"><![CDATA[#include<cstdio>
+#include<cstring>
+#include<algorithm>
+#include<queue>
+using namespace std;
+
+const int N=310,M=N*2;
+
+int head[N],nex[M],en[M],pri[M],tot;
+void addedge(int u,int v,int w) {
+	en[++tot]=v;
+	pri[tot]=w;
+	nex[tot]=head[u];
+	head[u]=tot;
+}
+
+int n,m,s,ans;
+
+queue<int>q;
+int pre[N],d[N],cost[N];
+int bfs(int s) {
+	int res=s;
+	memset(d,-1,sizeof(d));
+	memset(pre,0,sizeof(pre));
+	q.push(s);
+	d[s]=0;
+	while(!q.empty()) {
+		int u=q.front(); q.pop();
+		if(d[res]<d[u])res=u;
+		for(int k=head[u];k;k=nex[k]) {
+			int v=en[k],w=pri[k];
+			if(d[v]!=-1)continue;
+			d[v]=d[u]+w;
+			pre[v]=u;
+			cost[v]=w;
+			q.push(v);
+		}
+	}
+	return res;
+}
+
+bool set[N],inq[N];
+int ECC() {
+	int res=0;
+	memset(d,0x7f,sizeof(d));
+	for(int i=1;i<=n;i++)if(set[i])q.push(i),d[i]=0,inq[i]=1;
+	while(!q.empty()) {
+		int u=q.front(); q.pop();
+		inq[u]=0;
+		for(int k=head[u];k;k=nex[k]) {
+			int v=en[k],w=pri[k];
+			if(d[v]>d[u]+w) {
+				d[v]=d[u]+w;
+				if(inq[v])continue;
+				q.push(v);
+				inq[v]=1;
+			}
+		}
+	}
+	for(int i=1;i<=n;i++)res=max(res,d[i]);
+	return res;
+}
+
+int main() {
+	while(~scanf("%d%d",&n,&s)) {
+		memset(head,0,sizeof(head));
+		tot=0;
+		for(int i=1;i<n;i++) {
+			int u,v,w;
+			scanf("%d%d%d",&u,&v,&w);
+			addedge(u,v,w);
+			addedge(v,u,w);
+		}
+		int a=bfs(1);
+		int b=bfs(a);
+		ans=1<<30;
+		int L,R;
+		L=b;
+		do {
+			R=L;
+			set[R]=1;
+			int use=s;
+			while(use>=cost[R]&&pre[R]) {
+				use-=cost[R];
+				R=pre[R];
+				set[R]=1;
+			}
+			ans=min(ans,ECC());
+			set[L]=0;
+			L=pre[L];
+		}while(R!=a);
+		printf("%d\n",ans);
+	}
+	return 0;
+}]]></solution>
+			<solution language="Pascal"><![CDATA[var map:array[1..300,1..300]of longint;
+    d,road:array[1..300]of longint;
+    hash,use:array[1..300]of boolean;
+    n,maxs,m,r,ans:longint;
+procedure dushu;
+  var u,v,d,i:longint;
+    begin
+      fillchar(map,sizeof(map),$f);
+      readln(n,maxs);
+      for i:=2 to n do
+        begin
+          readln(u,v,d);
+          map[u][v]:=d;
+          map[v][u]:=d;
+        end;
+      for i:=1 to n do map[i][i]:=0;
+    end;
+procedure floyd; 
+  var k,i,j:longint;
+    begin
+      for k:=1 to n do
+        for i:=1 to n do
+          for j:=1 to n do
+            if map[i][k]+map[k][j]<map[i][j] then
+              map[i][j]:=map[i][k]+map[k][j];
+    end;
+procedure getr;               
+  var i,j:longint;
+    begin
+      for i:=1 to n do
+        for j:=1 to n do
+          if map[i][j]>r then r:=map[i][j];
+    end;
+procedure add(s:longint);      
+  begin
+    if hash[s] then exit;
+    inc(m); d[m]:=s;
+    hash[s]:=true;
+  end;
+procedure getd; 
+  var i,j,k:longint;
+    begin
+      for i:=1 to n do
+        for j:=i to n do
+          if map[i][j]=r then
+            begin
+              add(i);
+              add(j); 
+              for k:=1 to n do
+                if map[i][k]+map[k][j]=r then add(k);
+            end;
+    end;
+procedure solve;
+  var i,j,k,u,v,now,min,maxroad,l:longint;
+    begin
+      ans:=1000000;
+      for i:=1 to m do
+        for j:=i to m do
+          begin
+            u:=d[i]; v:=d[j]; now:=0; maxroad:=0;
+            if map[u][v]<=maxs then 
+              begin
+                fillchar(use,sizeof(use),false); 
+                for k:=1 to n do
+                  begin
+                    if map[u][k]+map[k][v]=map[u][v] then 
+                      begin
+                        if not use[k] then 
+                          begin
+                            inc(maxroad);
+                            use[k]:=true;
+                            road[maxroad]:=k; 
+                          end;
+                      end;
+                  end;
+                for k:=1 to n do
+                  begin
+                    min:=100000;
+                    for l:=1 to maxroad do
+                      if map[k][road[l]]<min then min:=map[k][road[l]];
+                    if min>now then now:=min;    
+                  end;
+                if now<ans then ans:=now;
+              end;
+          end;
+    end;
+procedure print;
+  begin
+    writeln(ans);
+  end;
+begin
+  dushu;
+  floyd;
+  getr;
+  getd;
+  solve;
+  print;
+end.]]></solution>
+	</item>
+</fps>

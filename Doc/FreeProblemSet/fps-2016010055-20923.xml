@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<fps version="1.2" url="https://github.com/zhblue/freeproblemset/">
+	<generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
+	<item>
+<title><![CDATA[一元三次方程求解]]></title>
+<time_limit unit="s"><![CDATA[1]]></time_limit>
+<memory_limit unit="mb"><![CDATA[125]]></memory_limit>
+
+<description><![CDATA[<p>
+	有形如：ax<sup>3</sup>+bx<sup>2</sup>+cx+d=0这样的一个一元三次方程。给出该方程中各项的系数（a，b，c，d均为实数），并约定该方程存在三个<span style="line-height:1.5;">不同实根（根的范围在-100至100之间），且根与根之差的绝对值&gt;=1。要求由小到大依次在同一行输出这三个实根（根与根之间</span><span style="line-height:1.5;">留有空格），并精确到小数点后2位。</span> 
+</p>
+<p>
+	<span style="line-height:1.5;">提示：记方程f(x)=0，若存在2个数x1和x2，且x1&lt;x2，f(x1)*f(x2)&lt;0，则在(x1，x2)之间一定有一个根。</span> 
+</p>
+<br />]]></description>
+<input><![CDATA[<p>
+	每个测试文件只包含一组测试数据，每组输入四个实数a，b，c，d，表示一元三次方程中的各项的系数。
+</p>
+<p>
+	<br />
+</p>]]></input> 
+<output><![CDATA[<p>
+	对于每组输入数据，由小到大依次在同一行输出这三个实根（根与根之间留有一个空格），并精确到小数点后2位。
+</p>
+<p>
+	<br />
+</p>
+<p>
+	<br />
+</p>]]></output>
+<sample_input><![CDATA[1 -5 -4 20]]></sample_input>
+<sample_output><![CDATA[-2.00 2.00 5.00]]></sample_output>
+  <test_input><![CDATA[1 -1.8 -8.59 -0.84
+]]></test_input>
+<test_output><![CDATA[-2.10 -0.10 4.00
+]]></test_output>
+<test_input><![CDATA[1 -4.65 2.25 1.4
+]]></test_input>
+<test_output><![CDATA[-0.35 1.00 4.00
+]]></test_output>
+<test_input><![CDATA[1 10 -1 -10
+]]></test_input>
+<test_output><![CDATA[-10.00 -1.00 1.00
+]]></test_output>
+<test_input><![CDATA[1 -2 -1 2
+]]></test_input>
+<test_output><![CDATA[-1.00 1.00 2.00
+]]></test_output>
+<hint><![CDATA[]]></hint>
+<source><![CDATA[NOIP全国联赛提高组 2001年NOIP全国联赛提高组]]></source>
+		<solution language="C++"><![CDATA[#include<cstring>
+#include<cstdio>
+using namespace std;
+ 
+double ans[4];
+double a,b,c,d;
+double f(double xt)
+{
+    double s;
+    s=xt*xt*xt+b*xt*xt+c*xt+d;
+    return s;
+}
+int main()
+{
+    scanf("%lf%lf%lf%lf",&a,&b,&c,&d);
+    b/=a; c/=a; d/=a;
+    double x1,x2; int p=0;
+    for (int x=-10000;x<=10000;x++)
+    {
+        x1=(x-0.05)/100.0; x2=(x+0.05)/100.0;
+        if (f(x/100.0)==0 || f(x1)*f(x2)<0)
+        {
+            p++; ans[p]=x/100.0;
+        }
+        if (p==3) break;
+    }
+    for (int i=1;i<=2;i++)
+        for (int j=2;j<=3;j++)
+            if (ans[i]>ans[j])
+            {
+                double t=ans[i];ans[i]=ans[j];ans[j]=t;
+            }
+    for (int i=1;i<=p-1;i++)
+        printf("%.2lf ",ans[i]);
+    printf("%0.2lf",ans[p]);
+    return 0;
+}]]></solution>
+			<solution language="Pascal"><![CDATA[
+var
+	a,b,c,d,x,tmp:real;  
+	ansx,f:array[1..3] of real;
+	i,j:integer;
+
+	begin
+		readln(a,b,c,d);
+		for i:=1 to 3 do
+		f[i]:=1e12;
+		x:=-100;
+		while(x<=100) do
+		begin
+			tmp:=(d+x*(c+x*(b+x*a)));
+			j:=1;
+			for i:=2 to 3 do
+				if (f[i]>f[j]) then j:=i;
+			if (abs(tmp)<f[j]) then
+			begin
+				f[j]:=abs(tmp);
+				ansx[j]:=x;
+			end;
+			x:=x+0.01;
+		end;
+		for i:=1 to 3 do
+			for j:=i+1 to 3 do
+				if (ansx[i]>ansx[j]) then
+				begin
+					tmp:=ansx[i];
+					ansx[i]:=ansx[j];
+					ansx[j]:=tmp;
+				end;
+		writeln(ansx[1]:0:2,' ',ansx[2]:0:2,' ',ansx[3]:0:2);
+	end.
+]]></solution>
+	</item>
+</fps>

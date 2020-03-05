@@ -5,6 +5,22 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
+    stream:
+      rocketmq:
+        binder:
+          name-server: 127.0.0.1:9876
+        bindings:
+          JudgeSubmissionSource:
+            output:
+              producer:
+                # use to define the distributed transaction
+                transactional: true
+                group: tx-judge-submission-group
+      bindings:
+        JudgeSubmissionSource:
+          # use to figure out the topic
+          destination: Judge-Submission
+
   datasource:
     url: jdbc:mysql://localhost:3306/oj_contentcenter
     hikari:
@@ -18,4 +34,10 @@ ribbon:
 user-center:
   ribbon:
     NFLoadBalancerRuleClassName: cn.edu.nciae.contentcenter.configuration.NacosWeightedRule
-
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    group: SubmissionProducerGroup
+logging:
+  level:
+    com.alibaba.nacos: error

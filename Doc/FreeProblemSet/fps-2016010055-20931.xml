@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<fps version="1.2" url="https://github.com/zhblue/freeproblemset/">
+	<generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
+	<item>
+<title><![CDATA[均分纸牌]]></title>
+<time_limit unit="s"><![CDATA[1]]></time_limit>
+<memory_limit unit="mb"><![CDATA[125]]></memory_limit>
+
+<description><![CDATA[有N堆纸牌，编号分别为1，2，...，N。每堆上有若干张，但纸牌总数必为N的倍数。可以在任一堆上取若干张纸牌，然后移动。<br />
+<p>
+	<span style="line-height:1.5;">移牌规则为：在编号为1的堆上取的纸牌，只能移到编号为2的堆上；在编号为N的堆上取的纸牌，只能移到编号为N-1的堆上；其他堆上取的纸牌，可以移到相邻左边或右边的堆上。</span> 
+</p>
+<p>
+	<span style="line-height:1.5;">现在要求找出一种移动方法，用最少的移动次数使每堆上纸牌数都一样多。</span> 
+</p>
+<p>
+	<span style="line-height:1.5;">例如N=4，4堆纸牌数分别为：</span> 
+</p>
+<p>
+	①　9　②　8　③　17　④　6
+</p>
+<p>
+	&nbsp; &nbsp; &nbsp; 移动3次可达到目的：
+</p>
+<p>
+	从③取4张牌放到④（9 8 13 10）-&gt;从③取3张牌放到②（9 11 10 10）-&gt;从②取1张牌放到①（10 10 10 10）。
+</p>
+<p>
+	<br />
+</p>]]></description>
+<input><![CDATA[<p>
+	每个测试文件只包含一组测试数据，每组输入的第一行输入一个整数N（1&lt;=N&lt;=100），表示有N堆纸牌。
+</p>
+<p>
+	接下来一行输入N个整数A1 A2...An，表示每堆纸牌初始数，1&lt;=Ai&lt;=10000。
+</p>
+<p>
+	<br />
+</p>]]></input> 
+<output><![CDATA[<p>
+	对于每组输入数据，输出所有堆均达到相等时的最少移动次数。
+</p>
+<p>
+	<br />
+</p>]]></output>
+<sample_input><![CDATA[4
+9 8 17 6]]></sample_input>
+<sample_output><![CDATA[3]]></sample_output>
+  <test_input><![CDATA[5
+50 10 30 40 20
+]]></test_input>
+<test_output><![CDATA[2
+]]></test_output>
+<test_input><![CDATA[4
+51 51 51 51
+]]></test_input>
+<test_output><![CDATA[0
+]]></test_output>
+<test_input><![CDATA[10
+14 1 10 11 9 10 13 10 11 11
+]]></test_input>
+<test_output><![CDATA[9
+]]></test_output>
+<test_input><![CDATA[50
+10 10 8 15 2 16 8 5 19 7 4 16 14 5 5 1 18 13 15 1 18 11 4 10 4 13 3 13 16 1 17 16 12 11 9 5 15 2 14 14 2 15 6 10 17 8 17 5 7 13
+]]></test_input>
+<test_output><![CDATA[38
+]]></test_output>
+<test_input><![CDATA[100
+4967 4599 791 9643 5983 4504 8141 1372 5139 4861 5000 189 9774 6054 1139 6749 4372 5800 5923 7929 7005 1227 6570 2269 1518 5153 8329 8339 7934 7001 3060 1516 6911 9119 216 904 9336 7509 305 6882 9210 4864 5241 1965 4712 5408 2688 7363 3981 536 2193 5635 1492 10680 6495 3505 5000 7138 1954 4282 1748 8544 6334 3016 6466 8310 5151 470 6587 4822 1562 5503 2501 1041 5633 1130 3007 8707 16094 3634 1360 10006 2396 5879 2027 9698 8653 4324 2023 6447 1421 7132 1837 5654 7509 8498 1502 2092 5559 7349
+]]></test_input>
+<test_output><![CDATA[78
+]]></test_output>
+<hint><![CDATA[]]></hint>
+<source><![CDATA[NOIP全国联赛提高组 2002年NOIP全国联赛提高组]]></source>
+		<solution language="C"><![CDATA[#include<stdio.h>
+int main()
+{int and1=0,and2=0,ave=0,i,j=0,n,a[1000]={0};
+ scanf("%d",&n);
+ for(i=0;i<n;i++)
+ {scanf("%d",&a[i]);
+ and1+=a[i];}
+ ave=and1/n;
+ for(i=0;i<n;i++)
+ {if(a[i]!=ave)
+  {a[i+1]=a[i+1]+a[i]-ave;
+  j++;}
+}
+printf("%d",j);
+return 0;
+}
+]]></solution>
+			<solution language="C++"><![CDATA[#include<cstdio>
+int main()
+{
+	int n,a=0,s=0,num[101];
+	scanf("%d",&n);
+	for(int i=1;i<=n;i++)
+	{scanf("%d",&num[i]);a+=num[i];}
+	a/=n;
+	for(int i=1;i<=n;i++)
+	num[i]-=a;
+	int i=1,j=n;
+	while(num[i]==0&&i<n)i++;
+	while(num[i]==0&&j>1)j--;
+	while(i<j)
+	{
+		num[i+1]+=num[i];
+		num[i]=0;
+		s++;
+		i++;
+		while(num[i]==0&&i<j)i++;
+	}
+	printf("%d",s);
+	return 0;
+}]]></solution>
+			<solution language="Pascal"><![CDATA[var n,i,sum,v,ans:longint;a:array[1..100]of longint; 
+begin
+  readln(n); 
+  for i:=1 to n do
+    begin
+      read(a[i]); 
+      sum:=sum+a[i]; 
+    end; 
+  v:=sum div n; 
+  for i:=1 to n-1 do
+    if a[i]<>v then
+      begin
+        inc(ans); 
+        a[i+1]:=a[i+1]+a[i]-v; 
+      end; 
+  writeln(ans); 
+end. ]]></solution>
+			<solution language="Java"><![CDATA[import java.util.*;
+public class Main{
+  public static void main(String[] args) {
+    Scanner cin = new Scanner(System.in);
+    int n = cin.nextInt();
+    int dist = 0,cnt = 0,sum = 0;
+    int[] arr = new int[n];
+    for(int i = 0; i < n; i ++){
+      int value = cin.nextInt();
+      sum += value;
+      arr[i] = value;
+    }
+    int average = sum/n;
+    for(int i = 0; i < n; i ++){
+      if(dist != 0){
+        cnt += 1;
+      }
+      arr[i]+=dist;
+      dist = arr[i] - average;
+
+    }
+    System.out.println(cnt);
+  }
+}]]></solution>
+	</item>
+</fps>

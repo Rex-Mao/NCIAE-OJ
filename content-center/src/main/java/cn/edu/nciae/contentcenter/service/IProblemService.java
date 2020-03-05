@@ -20,4 +20,10 @@ public interface IProblemService extends IService<Problem> {
      * @return IPage<Problem>
      */
     IPage<ProblemVO> getProblemListPage(Page<ProblemVO> page);
+
+    /**
+     * @param pid
+     * @return
+     */
+    ProblemVO getProblemVOByPid(Long pid);
 }

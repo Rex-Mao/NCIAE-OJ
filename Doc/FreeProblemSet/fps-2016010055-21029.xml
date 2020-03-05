@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<fps version="1.2" url="https://github.com/zhblue/freeproblemset/">
+	<generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
+	<item>
+<title><![CDATA[记数问题]]></title>
+<time_limit unit="s"><![CDATA[1]]></time_limit>
+<memory_limit unit="mb"><![CDATA[128]]></memory_limit>
+
+<description><![CDATA[<p>
+	试计算在区间1到n的所有整数中，数字x（0≤x≤9）共出现了多少次？例如，在1到11中，即在1、2、3、4、5、6、7、8、9、10、11中，数字1出现了4次。
+</p>
+<p>
+	<br />
+</p>]]></description>
+<input><![CDATA[<p>
+	每组输入数据共1行，包含2个整数n、x，之间用一个空格隔开。
+</p>
+<p>
+	<br />
+</p>
+<p>
+	数据规模：
+</p>
+<p>
+	对于100%的数据，1≤n≤1,000,000，0≤x≤9。
+</p>
+<p>
+	<br />
+</p>]]></input> 
+<output><![CDATA[<p>
+	每组输出共1行，包含一个整数，表示x出现的次数。
+</p>
+<p>
+	<br />
+</p>]]></output>
+<sample_input><![CDATA[11 1]]></sample_input>
+<sample_output><![CDATA[4]]></sample_output>
+  <test_input><![CDATA[1000000 0
+]]></test_input>
+<test_output><![CDATA[488895
+]]></test_output>
+<test_input><![CDATA[10000 0
+]]></test_input>
+<test_output><![CDATA[2893
+]]></test_output>
+<test_input><![CDATA[10 1
+]]></test_input>
+<test_output><![CDATA[2
+]]></test_output>
+<test_input><![CDATA[999999 9
+]]></test_input>
+<test_output><![CDATA[600000
+]]></test_output>
+<test_input><![CDATA[9 0]]></test_input>
+<test_output><![CDATA[0
+]]></test_output>
+<test_input><![CDATA[987654 3
+]]></test_input>
+<test_output><![CDATA[595336
+]]></test_output>
+<test_input><![CDATA[555555 4
+]]></test_input>
+<test_output><![CDATA[382716
+]]></test_output>
+<test_input><![CDATA[97 7
+]]></test_input>
+<test_output><![CDATA[20
+]]></test_output>
+<test_input><![CDATA[765432 2
+]]></test_input>
+<test_output><![CDATA[486694
+]]></test_output>
+<test_input><![CDATA[575455 5
+]]></test_input>
+<test_output><![CDATA[365504
+]]></test_output>
+<hint><![CDATA[]]></hint>
+<source><![CDATA[NOIP全国联赛普及组-2013年NOIP全国联赛普及组]]></source>
+		<solution language="C"><![CDATA[#include<stdio.h>
+
+int main()
+{
+   int n,x;
+   while(scanf("%d%d",&n,&x)!=EOF)
+   {
+	 int count=0;
+     for(int i=1;i<=n;i++)
+	 {
+	    for(int j=i;j>0;)
+		{
+		  int num=j%10;
+		  if(num==x)
+			  count++;
+		  j=j/10;
+		}
+	  }
+	 printf("%d\n",count);
+   }
+   return 0;
+}]]></solution>
+			<solution language="C++"><![CDATA[#include<iostream>
+using namespace std;
+int main()
+{
+	int n,b,i,count,s,x;
+	while(cin>>n>>b)
+	{
+		count=0;
+		for(i=1;i<=n;i++)
+		{
+			x=i;
+			while(x>0)
+			{
+				s=x%10;
+				if(s==b)
+					count++;
+				x=x/10;
+			}
+		}
+		cout<<count<<endl;
+	}
+	return 0;
+}]]></solution>
+			<solution language="Pascal"><![CDATA[var n,x,ans,i,x1:longint;
+begin
+  read(n,x);
+  ans:=0;
+  for i:=1 to n do
+    begin
+      x1:=i;
+      repeat
+        if x1 mod 10=x then inc(ans);
+        x1:=x1 div 10;
+      until x1=0;
+    end;
+  writeln(ans);
+end.]]></solution>
+			<solution language="Java"><![CDATA[
+import java.util.*;
+public class Main {
+	public static void main(String[] args) {
+		Scanner input=new Scanner(System.in);
+		int count=0,b=0;
+	//	System.out.print(l);
+		int n=input.nextInt();
+		int m=input.nextInt();
+		int a[]=new int[n];
+		for(int i=0;i<n;i++) {
+			a[i]=i+1;
+			if(a[i]<10) {
+				if(a[i]==m) {
+					count++;
+				}
+			}else {
+				while(true) {
+				b=a[i]%10;
+				a[i]=a[i]/10;
+				if(b==m) {
+					count++;
+				}
+				if((a[i]+"").length()==1) {
+					if(a[i]==m) {
+						count++;
+					}
+					break;
+				}
+			}
+		}
+			}
+		System.out.print(count);
+	}
+
+}
+]]></solution>
+			<solution language="Python"><![CDATA[def func(x, r):
+	res = 0
+	while (x):
+		if (x % 10 == r):
+			res += 1
+		x //= 10
+	return res
+
+s = raw_input()
+while (s != ""):
+	a = [int(i) for i in s.split()]
+	ans = 0
+	for x in xrange(1, a[0] + 1):
+		ans += func(x, a[1])
+	print ans
+	s = raw_input()]]></solution>
+	</item>
+</fps>

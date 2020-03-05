@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<fps version="1.2" url="https://github.com/zhblue/freeproblemset/">
+	<generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
+	<item>
+<title><![CDATA[数制转换]]></title>
+<time_limit unit="s"><![CDATA[1]]></time_limit>
+<memory_limit unit="mb"><![CDATA[125]]></memory_limit>
+
+<description><![CDATA[<p class="MsoNormal">
+	设有一个字符串<span>A$</span>的结构为：<span>A$='m&lt;n&gt;p'</span> 
+</p>
+<p class="MsoNormal">
+	其中<span>m</span>为数字串（长度<span>&lt;=20</span>），而<span>n,p</span>均为<span>1</span>或<span>2</span>位的数字串（其中所表达的内容在<span>2-10</span>之间）。<span></span> 
+</p>
+<p class="MsoNormal" style="margin-left:72.0pt;text-indent:-72.0pt;">
+	程序要求：
+</p>
+<p class="MsoNormal" style="margin-left:72.0pt;text-indent:-72.0pt;">
+	从键盘上读入<span>A$</span>后（不用正确性检查），将<span>A$</span>中的数字串<span>m（n</span>进制），以<span>p</span>进制的形式输出。<span></span> 
+</p>
+<p class="MsoNormal">
+	例如：<span>A$='48&lt;10&gt;8'</span> 
+</p>
+<p class="MsoNormal">
+	<span style="line-height:1.5;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;其意义为：将</span><span style="line-height:1.5;">10</span><span style="line-height:1.5;">进制数</span><span style="line-height:1.5;">48</span><span style="line-height:1.5;">，转换成</span><span style="line-height:1.5;">8</span><span style="line-height:1.5;">进制数输出。</span> 
+</p>
+<p class="MsoNormal">
+	<span></span> 
+</p>
+<p>
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;输出结果为：48&lt;10&gt;=60&lt;8&gt;
+</p>
+<p>
+	<br />
+</p>]]></description>
+<input><![CDATA[<p>
+	每个测试文件只包含一组测试数据，每组输入一个字符串，形式如m&lt;n&gt;p。
+</p>
+<p>
+	<br />
+</p>]]></input> 
+<output><![CDATA[<p>
+	对于每组输入数据，输出数制转换后的结果，具体格式见样例输出。
+</p>
+<p>
+	<br />
+</p>]]></output>
+<sample_input><![CDATA[48<10>8]]></sample_input>
+<sample_output><![CDATA[48<10>=60<8>]]></sample_output>
+  <test_input><![CDATA[44<7>8
+
+]]></test_input>
+<test_output><![CDATA[44<7>=40<8>
+]]></test_output>
+<test_input><![CDATA[101<2>10
+
+]]></test_input>
+<test_output><![CDATA[101<2>=5<10>
+]]></test_output>
+<test_input><![CDATA[73<10>8
+
+]]></test_input>
+<test_output><![CDATA[73<10>=111<8>
+]]></test_output>
+<test_input><![CDATA[221<9>6
+
+]]></test_input>
+<test_output><![CDATA[221<9>=501<6>
+]]></test_output>
+<test_input><![CDATA[3704<8>10
+
+]]></test_input>
+<test_output><![CDATA[3704<8>=1988<10>
+]]></test_output>
+<test_input><![CDATA[1101<10>2
+
+]]></test_input>
+<test_output><![CDATA[1101<10>=10001001101<2>
+]]></test_output>
+<test_input><![CDATA[62<8>5
+
+]]></test_input>
+<test_output><![CDATA[62<8>=200<5>
+]]></test_output>
+<test_input><![CDATA[61<8>3
+
+]]></test_input>
+<test_output><![CDATA[61<8>=1211<3>
+]]></test_output>
+<test_input><![CDATA[443<5>7
+
+]]></test_input>
+<test_output><![CDATA[443<5>=234<7>
+]]></test_output>
+<test_input><![CDATA[934<10>7
+
+]]></test_input>
+<test_output><![CDATA[934<10>=2503<7>
+]]></test_output>
+<hint><![CDATA[]]></hint>
+<source><![CDATA[NOIP全国联赛提高组 1996年NOIP全国联赛提高组]]></source>
+		<solution language="C"><![CDATA[#include<stdio.h>
+#include<string.h>
+
+
+int main()
+{
+   int n,p,sum=0; 
+   unsigned int i=0,j,k=0,l=0;
+   char m[30],a[2],b[2],res[1000],ch;
+   memset(res,0,sizeof(res));
+   scanf("%s",m);
+   for(i=strlen(m)-1;i>=0;i--)
+   {
+       if(m[i]!='>')
+	   {
+		   a[k]=m[i];
+		   k++;
+	   }
+	   else
+		   break;
+   }
+   a[k]='\0';
+   if(k==1)
+	   p=a[0]-'0';
+   else
+	   p=a[0]-'0'+(a[1]-'0')*10;
+   for(i=strlen(m)-2-k;i>=0;i--)
+   {
+       
+       if(m[i]!='<')
+	   {
+		   b[l]=m[i];
+		   l++;
+	   }
+	   else
+		   break; 
+   }
+   b[l]='\0';
+   if(l==1)
+	   n=b[0]-'0';
+   else
+	   n=b[0]-'0'+(b[1]-'0')*10;
+   m[strlen(m)-k-l-2]='\0';
+   for(i=0;i<strlen(m);i++)
+   {
+       sum=sum*n+m[i]-'0';
+   }
+   while(sum)
+   {
+   
+	   res[i]=sum%p+'0';
+	   sum/=p;
+	   i++;
+   }
+   res[i]='\0';
+   for(j=0,--i;j<i;i--,j++)
+   {
+     ch=res[j];
+	 res[j]=res[i];
+	 res[i]=ch;
+   }
+   if(strlen(m)==0)
+	   strcmp(res,"0");
+   printf("%s<%d>=%s<%d>",m,n,res,p);
+   return 0;
+}]]></solution>
+			<solution language="C++"><![CDATA[#include <iostream>
+#include <string.h>
+#include <stack>
+#include <queue>
+using namespace std;
+int main()
+{
+	char T[30];
+	cin>>T;
+	queue <int> Q;
+	int ans=0,n=0,p=0;
+	stack <int> S;
+	int len=strlen(T);
+	int i=0;
+	while(T[i]>='0'&&T[i]<='9')
+			Q.push(T[i++]-'0');
+	i++;
+	while(T[i]>='0'&&T[i]<='9')
+			n=n*10+T[i++]-'0';
+	i++;
+	while(T[i]>='0'&&T[i]<='9'&&i<len)
+			p=p*10+T[i++]-'0';
+	while(!Q.empty())
+	{
+		ans=ans*n+Q.front();
+		cout<<Q.front();
+		Q.pop();
+	}
+	while(ans)
+	{
+		S.push(ans%p);
+		ans/=p;
+	}
+	cout<<"<"<<n<<">=";
+	while(!S.empty())
+	{
+		cout<<S.top();
+		S.pop();
+	}
+	cout<<"<"<<p<<">"<<endl;
+	return 0;
+}]]></solution>
+			<solution language="Pascal"><![CDATA[var s,strm,strm1,strn:string;x,y,i,j:longint;n,m,m1,w:int64;
+    z:array[1..10000]of integer;
+begin
+  readln(s);
+  x:=pos('<',s);
+  for i:=1 to x-1 do strn:=strn+s[i];
+  y:=pos('>',s);
+  for i:=x+1 to y-1 do strm:=strm+s[i];
+  val(strm,m);
+  for i:=y+1 to length(s) do strm1:=strm1+s[i];
+  val(strm1,m1);
+  w:=1;
+  for i:=length(strn) downto 1 do
+    begin
+      n:=n+(ord(strn[i])-48)*w;
+      w:=w*m;
+    end;
+  i:=0;
+  repeat
+    i:=i+1;
+    z[i]:=n mod m1;
+    n:=n div m1;
+  until n=0;
+  write(strn,'<',strm,'>=');
+  for j:=i downto 1 do write(z[j]);
+  writeln('<',m1,'>');
+end.]]></solution>
+			<solution language="Java"><![CDATA[import java.math.BigDecimal;
+import java.util.Scanner;
+
+public class Main {
+	public static String str;
+	public static int n, m;
+ 
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		str = sc.next();
+		int ids = str.indexOf("<");
+		String tmp = str.substring(ids);
+		char[] tm = tmp.toCharArray();
+		String num = "";
+ 
+		for (int i = 0; i < tm.length; i++) {
+			if (tm[i] >= '0' && tm[i] <= '9') {
+				num += tm[i];
+			}
+			if (tm[i] == '>') {
+				n = Integer.parseInt(num);
+				num = "";
+			}
+		}
+		m = Integer.parseInt(num);
+		// System.out.println(n + " " + m);
+		// 左边的数字
+		str = str.substring(0, ids);
+		BigDecimal result = new BigDecimal("0");
+		// n进制底数
+		BigDecimal ndis = new BigDecimal("" + n);
+		// 假如进制不是10进制，则转化为十进制
+		if (n != 10) {
+			char[] nums = str.toCharArray();
+			for (int i = nums.length - 1; i >= 0; i--) {
+				result = result.add(new BigDecimal(nums[i] + "").multiply(ndis
+						.pow(nums.length - 1 - i)));
+				// System.out.println(result + " ");
+				// result += Math.pow(n, nums.length - 1 - i);
+			}
+		} else { // 进制是10进制
+			result = new BigDecimal(str);
+		}
+		// 转化为m进制
+		if (n == m) {
+			System.out
+					.println(result + "<" + n + ">=" + result + "<" + m + ">");
+		} else {
+			long yus;
+			String mizji = "";
+			// m进制底数
+			BigDecimal mdis = new BigDecimal("" + m);
+			while (result.compareTo(new BigDecimal("0")) > 0) {
+				mizji = result.remainder(mdis) + mizji;
+				result = result.divide(mdis, BigDecimal.ROUND_DOWN);
+			}
+			System.out.println(str + "<" + n + ">=" + mizji + "<" + m + ">");
+		}
+ 
+	}
+}
+]]></solution>
+	</item>
+</fps>

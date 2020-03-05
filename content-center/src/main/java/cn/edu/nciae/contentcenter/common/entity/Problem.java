@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,7 +18,7 @@ import java.io.Serializable;
  * @since 2020-02-08
  */
 @Data
-@Builder
+//@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName("problem")
@@ -64,7 +63,7 @@ public class Problem implements Serializable {
     private Double timeLimit;
 
     /**
-     * 内存限制(MS)
+     * 内存限制(MB)
      */
     private Double memoryLimit;
 

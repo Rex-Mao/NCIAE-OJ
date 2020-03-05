@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<fps version="1.2" url="https://github.com/zhblue/freeproblemset/">
+	<generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
+	<item>
+<title><![CDATA[格子问题]]></title>
+<time_limit unit="s"><![CDATA[1]]></time_limit>
+<memory_limit unit="mb"><![CDATA[125]]></memory_limit>
+
+<img><src><![CDATA[http://tk.hustoj.com:80/attached/image/20140108/20140108154504_62166.jpg]]></src><base64><![CDATA[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]]></base64></img><description><![CDATA[<p>
+	输入三个自然数N，i，j （1&lt;=i&lt;=N，1&lt;=j&lt;=N），输出在一个N*N格的棋盘中，与格子（i，j）同行、同列、同一对角线的所有格子的位置。
+</p>
+<p>
+	<br />
+</p>
+<p>
+	<br />
+</p>
+<p class="MsoNormal">
+	如：<span>n=4</span>，<span>i=2</span>，<span>j=3</span>表示了棋盘中的第二行第三列的格子，如下图：
+</p>
+<p class="MsoNormal" style="text-align:center;">
+	<span style="line-height:1.5;"><img src="http://tk.hustoj.com:80/attached/image/20140108/20140108154504_62166.jpg" alt="" />&nbsp; &nbsp;&nbsp;</span> 
+</p>
+<p class="MsoNormal" style="margin-left:20.7pt;">
+	当<span>n=4</span>，<span>i=2</span>，<span>j=3</span>时，输出的结果是：<span></span> 
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;">
+	<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (2,1) (2,2) (2,3) (2,4) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</span>同一行上格子的位置<span>}</span> 
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;">
+	<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (1,3) (2,3) (3,3) (4,3) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</span>同列列上格子的位置<span>}</span> 
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;">
+	<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (1,2) (2,3) (3,4) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {</span>左上到右下对角线上的格子的位置<span>}</span> 
+</p>
+<p>
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(4,1) (3,2) (2,3) (1,4) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;{左下到右上对角线上的格子的位置}
+</p>
+<p>
+	<br />
+</p>
+<p>
+	<br />
+</p>]]></description>
+<input><![CDATA[<p>
+	每个测试文件只包含一组测试数据，每组输入数据包含三个自然数N，i，j。
+</p>
+<p>
+	<br />
+</p>]]></input> 
+<output><![CDATA[<p>
+	对于每组输入数据，输出四行数据：
+</p>
+<p>
+	第一行：同一行上格子的位置；
+</p>
+<p>
+	第二行：同列列上格子的位置；
+</p>
+<p>
+	第三行：左上到右下对角线上的格子的位置；
+</p>
+<p>
+	第四行：左下到右上对角线上的格子的位置。
+</p>
+<p>
+	具体格式见样例输出。
+</p>
+<p>
+	<br />
+</p>]]></output>
+<sample_input><![CDATA[4 2 3
+]]></sample_input>
+<sample_output><![CDATA[(2,1)(2,2)(2,3)(2,4)
+(1,3)(2,3)(3,3)(4,3)
+(1,2)(2,3)(3,4)
+(4,1)(3,2)(2,3)(1,4)]]></sample_output>
+  <test_input><![CDATA[4 4 1
+
+]]></test_input>
+<test_output><![CDATA[(4,1)(4,2)(4,3)(4,4)
+(1,1)(2,1)(3,1)(4,1)
+(4,1)
+(4,1)(3,2)(2,3)(1,4)
+]]></test_output>
+<test_input><![CDATA[6 4 6
+
+]]></test_input>
+<test_output><![CDATA[(4,1)(4,2)(4,3)(4,4)(4,5)(4,6)
+(1,6)(2,6)(3,6)(4,6)(5,6)(6,6)
+(1,3)(2,4)(3,5)(4,6)
+(6,4)(5,5)(4,6)
+]]></test_output>
+<test_input><![CDATA[5 3 3
+
+]]></test_input>
+<test_output><![CDATA[(3,1)(3,2)(3,3)(3,4)(3,5)
+(1,3)(2,3)(3,3)(4,3)(5,3)
+(1,1)(2,2)(3,3)(4,4)(5,5)
+(5,1)(4,2)(3,3)(2,4)(1,5)
+]]></test_output>
+<test_input><![CDATA[1 1 1
+
+]]></test_input>
+<test_output><![CDATA[(1,1)
+(1,1)
+(1,1)
+(1,1)
+]]></test_output>
+<hint><![CDATA[]]></hint>
+<source><![CDATA[NOIP全国联赛普及组 1996年NOIP全国联赛普及组]]></source>
+		<solution language="C"><![CDATA[#include<stdio.h>
+int main()
+{
+	int a,b,i,j,n;
+	scanf("%d%d%d",&n,&a,&b);
+	for(i=1;i<=n;i++)
+	{
+		for(j=1;j<=n;j++)
+		{
+			if(i==a)
+				printf("(%d,%d)",i,j);
+		}
+	
+	}
+	printf("\n");
+	for(i=1;i<=n;i++)
+	{
+		for(j=1;j<=n;j++)
+		{
+			if(j==b)
+				printf("(%d,%d)",i,j);
+		}
+	}
+	printf("\n");
+	for(i=1;i<=n;i++)
+	{
+		for(j=1;j<=n;j++)
+		{
+			if(j-i==b-a)
+				printf("(%d,%d)",i,j);
+		}
+	}
+	printf("\n");
+		for(i=n;i>0;i--)
+	{
+		for(j=n;j>0;j--)
+		{
+			if(j+i==b+a)
+				printf("(%d,%d)",i,j);
+		}
+	}
+	printf("\n");
+	return 0;
+
+}]]></solution>
+			<solution language="C++"><![CDATA[#include<iostream>
+#include<cmath>
+using namespace std;
+int main()
+{
+	int N,i,j;
+	cin >> N >> i >> j;
+	for(int k=1; k<=N; ++k)
+		cout << "(" << i << "," << k << ")";
+	cout << endl;
+	for(int k=1; k<=N; ++k)
+		cout << "(" << k << "," << j << ")";
+	cout << endl;
+	if(j-i>=0)
+	{
+		for(int k=1; k<=N-(int)fabs(j-i); ++k)
+			cout << "(" << k << "," << (int)fabs(j-i)+k << ")";
+	}
+	else
+	{
+		for(int k=1; k<=N-(int)fabs(j-i); ++k)
+			cout << "(" << (int)fabs(j-i)+k << "," << k << ")";
+	}		 	 
+	cout << endl;
+	if((i+j)-(N+1)>=0)	
+	{
+		for(int k=N-(int)fabs((i+j)-(N+1)); k>=1; --k)
+			cout << "(" << k+(int)fabs((i+j)-(N+1)) << "," << N+1-k << ")";
+	}
+	else
+	{
+		for(int k=N-(int)fabs((i+j)-(N+1)); k>=1; --k)
+			cout << "(" << k << "," << N-(int)fabs((i+j)-(N+1))-k+1 << ")";
+	}
+	cout << endl;
+	return 0;
+}/*
+ 0  1  2  3
+-1  0  1  2
+-2 -1  0  1
+-3 -2 -1  0 */]]></solution>
+			<solution language="Pascal"><![CDATA[var o,u,k,p,n,a,b,l,m,i:longint;
+begin
+ readln(n,a,b);
+ for i:=1 to n do write('(',a,',',i,')');
+ writeln;
+ for i:=1 to n do write('(',i,',',b,')');
+ writeln;
+ i:=0;
+ if b>a then begin l:=b;m:=a;end
+  else begin l:=a;m:=b;end;
+ if a<b then begin
+ for i:=1 to n-l+m do write('(',i,',',i+l-m,')');
+  end
+  else
+  repeat
+   i:=i+1;
+   write('(',i+(l-m),',',i+(l-m)-(l-m),')') ;
+  until i+(l-m)=n;
+ writeln;
+ if l+m-1>n then
+  begin
+  l:=n-l+1;
+  m:=n-m+1;
+  if l>m then
+  begin
+  o:=l;u:=m;
+  end
+  else
+  begin u:=l;o:=m;
+  end;
+  k:=n-l-1-(o-u) div 2;
+  p:=n-m-1-(u-o) div 2;
+  end;
+ for i:=1  to l+m-1  do write('(',l+m-i+k,',',i+p,')');
+end.]]></solution>
+			<solution language="Java"><![CDATA[import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner scanner = new Scanner(System.in);
+		int N = scanner.nextInt(); // N*N格
+		int i = scanner.nextInt(); // 第i行，格子(i，j)
+		int j = scanner.nextInt(); // 第j列，格子(i，j)
+
+		// (i，j)同一行上格子的位置
+		for (int a = 1; a <= N; a++) {
+			System.out.print("(" + i + "," + a + ")");
+		}
+		System.out.println();
+
+		// (i,j)同一列上格子的位置
+		for (int a = 1; a <= N; a++) {
+			System.out.print("(" + a + "," + j + ")");
+		}
+		System.out.println();
+
+		// 左上到右下对角线上的格子的位置
+		// 从上往下，所以小到大，++
+		for (int a = 1; a <= N; a++) {
+			for (int b = 1; b <= N; b++) {
+				if ((a - b) == (i - j)) {
+					System.out.print("(" + a + "," + b + ")");
+				}
+			}
+		}
+		System.out.println();
+
+		// 左下到右上对角线上的格子的位置
+		// 从下往上，所以大到小，--
+		for (int a = N; a >= 1; a--) {
+			for (int b = N; b >= 1; b--) {
+				if ((a + b) == (i + j)) {
+					System.out.print("(" + a + "," + b + ")");
+				}
+			}
+		}
+	}
+}]]></solution>
+	</item>
+</fps>

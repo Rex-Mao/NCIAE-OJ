@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<fps version="1.2" url="https://github.com/zhblue/freeproblemset/">
+	<generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
+	<item>
+<title><![CDATA[高精度阶乘的和]]></title>
+<time_limit unit="s"><![CDATA[1]]></time_limit>
+<memory_limit unit="mb"><![CDATA[125]]></memory_limit>
+
+<description><![CDATA[<p class="MsoList" style="margin-left:15.75pt;text-indent:-15.75pt;">
+	用高精度计算出<span>S=1!</span><span>+2!</span><span>+3!</span><span>+</span>…<span>+N!</span>（<span>N</span>≤<span>50</span>），<span style="line-height:1.5;">其中"!"表示阶乘，例如：</span><span style="line-height:1.5;">5!</span><span style="line-height:1.5;">=5*4*3*2*1</span><span style="line-height:1.5;">。</span> 
+</p>
+<p class="MsoList" style="margin-left:15.75pt;text-indent:-15.75pt;">
+	<span></span> 
+</p>
+<p>
+	输入正整数N，输出计算结果S。
+</p>
+<p>
+	<br />
+</p>]]></description>
+<input><![CDATA[<p>
+	每个测试文件只包含一组测试数据，每组输入一个正整数N。
+</p>
+<p>
+	<br />
+</p>]]></input> 
+<output><![CDATA[<p>
+	对于每组输入数据，输出阶乘和的计算结果。
+</p>
+<p>
+	<br />
+</p>]]></output>
+<sample_input><![CDATA[3]]></sample_input>
+<sample_output><![CDATA[9]]></sample_output>
+  <test_input><![CDATA[48
+]]></test_input>
+<test_output><![CDATA[12678163798554051767172643373255731925167694226950680420940313
+]]></test_output>
+<test_input><![CDATA[10
+]]></test_input>
+<test_output><![CDATA[4037913
+]]></test_output>
+<test_input><![CDATA[22
+]]></test_input>
+<test_output><![CDATA[1177652997443428940313
+]]></test_output>
+<test_input><![CDATA[6
+]]></test_input>
+<test_output><![CDATA[873
+]]></test_output>
+<hint><![CDATA[]]></hint>
+<source><![CDATA[NOIP全国联赛普及组 1998年NOIP全国联赛普及组]]></source>
+		<solution language="C"><![CDATA[#include <stdio.h>
+#include<string.h>
+int jinwei(int *a,int l)
+{
+    int i,flat=0;
+    for(i=0;i<l;i++)
+   {
+        if(a[i]>=10)
+    {
+        a[i+1]+=a[i]/10;
+        a[i]%=10;
+    }
+    if(a[i]) flat=i;
+   }
+   return flat;
+}
+int sum(int *a,int *b)
+{
+    int i;
+    for(i=0;i<70;i++)
+    a[i]+=b[i];
+    int l=jinwei(a,100);
+    return l;
+}
+void jiecheng(int *b,int n)
+{
+     int  j,w;
+       b[0]=1;
+    for(w=n;w>1;w--)
+       {
+            for(j=0;j<70;j++)
+            b[j]*=w;
+            jinwei(b,70);
+       }
+}
+int main()
+{
+    int a[100],b[70],n;
+   scanf("%d",&n);
+   {
+        memset(a,0,sizeof(a));
+{
+    int i;
+    for(;n>=1;n--)
+    {
+        memset(b,0,sizeof(b));
+        jiecheng(b,n);
+       i=sum(a,b);
+    }
+        for(;i>=0;i--)
+        printf("%d",a[i]);
+        printf("\n");
+}
+   }
+
+
+    return 0;
+}
+]]></solution>
+			<solution language="C++"><![CDATA[#include<stdio.h>
+#include<string.h> 
+int f[4000],b[4000];
+int main()
+{
+    int i,j,n;
+    while(scanf("%d",&n)!=EOF)
+    {
+        memset(f,0,sizeof(f));
+		memset(b,0,sizeof(b));
+        f[0]=1,b[0]=1;
+        for(i=2;i<=n;i++)
+        {
+            int c=0;
+            for(j=0;j<4000;j++)
+            {
+                int s=f[j]*i+c;
+                f[j]=s%10;
+                c=s/10;
+            }
+			for(j=0;j<4000;j++)
+			{
+				if(b[j]+f[j]>9)
+				{
+					b[j]=b[j]+f[j]-10;
+					b[j+1]++;
+				}
+				else
+					b[j]=b[j]+f[j];
+			}
+        } 
+        for(j=3999;j>=0;j--) 
+           if(b[j]) break;
+        for(i=j;i>=0;i--)  printf("%d",b[i]);
+        printf("\n");   
+    }    
+    return 0;
+}   ]]></solution>
+			<solution language="Pascal"><![CDATA[const
+  maxn=66;
+var
+  f,s:array[1..maxn] of integer;
+  i,j,k,g,n:integer;
+begin
+  readln(n);
+  fillchar(f,sizeof(f),0);
+  fillchar(s,sizeof(f),0);
+  f[maxn]:=1;
+  for i:=1 to n do
+  begin
+    {f<-f*i}
+    g:=0;
+    for j:=maxn downto 1 do
+    begin
+      k:=f[j]*i+g;
+      f[j]:=k mod 10;
+      g:=k div 10;
+    end;
+    {s<-s+f}
+    g:=0;
+    for j:=maxn downto 1 do
+    begin
+      k:=s[j]+f[j]+g;
+      s[j]:=k mod 10;
+      g:=k div 10;
+    end;
+  end;
+  for j:=1 to maxn do
+    if s[j]<>0 then break;
+  for i:=j to maxn do
+    write(s[i]);
+  writeln;
+end.
+]]></solution>
+			<solution language="Java"><![CDATA[import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Scanner;
+
+
+public class Main {
+public static void main(String[] args) {
+	Scanner in = new Scanner(System.in);
+	while(in.hasNextInt()){
+		int n=in.nextInt();
+		BigInteger ans=BigInteger.ZERO;
+		BigInteger fac=BigInteger.ONE;
+		for(Integer i=1;i<=n;i++){
+			BigInteger t=new BigInteger(i.toString());
+			fac=fac.multiply(t);
+			ans=ans.add(fac);
+		}
+		System.out.println(ans);
+	}
+}
+}
+]]></solution>
+			<solution language="Python"><![CDATA[# coding=utf-8
+n=eval(input())
+s=0
+for i in range(1,n+1):
+    t=1
+    for j in range(1,i+1):
+        t*=j
+    s+=t
+print(s)
+]]></solution>
+	</item>
+</fps>

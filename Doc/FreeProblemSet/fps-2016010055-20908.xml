@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<fps version="1.2" url="https://github.com/zhblue/freeproblemset/">
+	<generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
+	<item>
+<title><![CDATA[回文数]]></title>
+<time_limit unit="s"><![CDATA[1]]></time_limit>
+<memory_limit unit="mb"><![CDATA[125]]></memory_limit>
+
+<description><![CDATA[<span>若一个数（首位不为零）从左向右读与从右向左读都一样，我们就将其称之为回文数。</span><br />
+<span>例如：给定一个10进制数56，将56加56（即把56从右向左读），得到121是一个回文数。</span><br />
+<span>又如：对于10进制数87：</span><br />
+<span>&nbsp; &nbsp; STEP1：87+78 &nbsp;= 165 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;STEP2：165+561 = 726</span><br />
+<span>&nbsp; &nbsp; STEP3：726+627 = 1353 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;STEP4：1353+3531 = 4884</span><br />
+<p>
+	<span>在这里的一步是指进行了一次N进制的加法，上例最少用了4步得到回文数4884。</span> 
+</p>
+<p>
+	<br />
+</p>
+<span></span>]]></description>
+<input><![CDATA[<p>
+	每个测试文件只包含一组测试数据，每组输入一个N（2&lt;=N&lt;=10，N=16）进制数M，每组的第一行输入N，第二行输入M。
+</p>
+<p>
+	<br />
+</p>]]></input> 
+<output><![CDATA[<p>
+	对于每组输入数据，输出最少经过几步可以得到回文数。如果在30步以内（包含30步）不可能得到回文数，则输出"Impossible!"。
+</p>
+<p>
+	<br />
+</p>]]></output>
+<sample_input><![CDATA[9
+87]]></sample_input>
+<sample_output><![CDATA[STEP=6]]></sample_output>
+  <test_input><![CDATA[2
+10011
+]]></test_input>
+<test_output><![CDATA[STEP=4
+]]></test_output>
+<test_input><![CDATA[16
+AC27
+]]></test_input>
+<test_output><![CDATA[STEP=6
+]]></test_output>
+<test_input><![CDATA[10
+89
+]]></test_input>
+<test_output><![CDATA[STEP=24
+]]></test_output>
+<test_input><![CDATA[2
+101111
+]]></test_input>
+<test_output><![CDATA[Impossible!
+]]></test_output>
+<hint><![CDATA[]]></hint>
+<source><![CDATA[NOIP全国联赛提高组 1999年NOIP全国联赛提高组]]></source>
+		<solution language="C"><![CDATA[#include<stdlib.h>
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int n;
+    char m[33];
+    int i=0,a[33],b[33];
+    while(scanf("%d%s",&n,m)!=EOF)
+    {
+       int len=strlen(m);
+       memset(a,0,sizeof(a));
+       memset(b,0,sizeof(b));
+       for(i=0;i<len;i++)
+       {
+          if(m[i]>='0' && m[i]<='9') 
+            a[i]=m[i]-'0';
+          else if(m[i]>='A' && m[i]<='Z') 
+            a[i]=m[i]-55;
+       }
+       int step=0,flag=0;
+       for(i=0;i<(len>>1);i++)
+       {
+          if(a[i]!=a[len-i-1])
+             flag=1;
+       }
+       while(flag==1)
+       {
+          flag=0;
+          step++;
+          for(i=0;i<len;i++)
+             b[i]=a[len-i-1];
+          for(i=0;i<len;i++)
+          {
+              a[i]+=b[i];
+              if(a[i]>=n)
+              {
+                 a[i]-=n;
+                 a[i+1]++;
+               }
+          }
+          if(a[len]>0) 
+            len++;
+          for(i=0;i<(len>>1);i++)
+          {
+              if(a[i]!=a[len-i-1])
+                flag=1;
+          }
+          if(step>30)
+          {
+             printf("Impossible!");
+             return 0;
+          }
+       }
+       printf("STEP=%d",step);
+    }
+    return 0;
+}
+
+]]></solution>
+			<solution language="C++"><![CDATA[#include<cstdio>
+#include<iostream>
+#include<algorithm>
+#include<cstring>
+#define N 10000010
+using namespace std;
+char str[N],str_c[N],ans[N];
+int panduan(char c[])
+{
+    int len=strlen(c);
+    for(int i=0 ; i <=len/2; i++)
+    {
+        if(c[i]!=c[len-i-1])
+            return 0;
+    }
+    return 1;
+}
+int hanshu(char c)
+{
+    if(c>='A'&&c<='F')
+        return (int)(c-'A'+10);
+    else
+        return (int)(c-'0');
+}
+void solve(int n)
+{
+    int len=strlen(str);
+    for(int i=len-1; i>=0; i--)
+        str_c[len-1-i]=str[i];
+    str_c[len]='\0';
+    int x,y,z,jinwei=0,s=0,p=len+1;
+    for(int i=len-1; i>=0; i--)
+    {
+        x=hanshu(str[i]);
+        y=hanshu(str_c[i]);
+        z=(x+y+jinwei)%n;
+        if(z>=10)
+            ans[--p]=(char)('A'+z-10);
+        else
+            ans[--p]=(char)('0'+z);
+        jinwei=(x+y+jinwei)/n;
+    }
+    if(jinwei!=0)
+    {
+        ans[0]='1';
+        for(int i=0; i<len+1; i++)
+            str[i]=ans[i];
+        str[len+1]='\0';
+    }
+    else
+    {
+        for(int i=0; i<len; i++)
+            str[i]=ans[i+1];
+        str[len]='\0';
+    }
+}
+int main()
+{
+    int n;
+    while(cin>>n>>str)
+    {
+        int step=0;
+        while(1)
+        {
+            if(panduan(str)==1)
+            {
+                cout<<"STEP="<<step<<endl;
+                break;
+            }
+            if(step==30)
+            {
+                cout<<"Impossible!"<<endl;
+                break;
+            }
+            step++;
+            solve(n);
+        }
+    }
+    return 0;
+}]]></solution>
+			<solution language="Pascal"><![CDATA[var a:array[1..10000] of integer;l,step,i,n:longint; m:string;
+procedure work;
+var b:array[1..10000] of integer; i:longint;
+begin
+ fillchar(b,sizeof(b),0);
+ for i:=1 to l do
+  b[i]:=a[i]+a[l+1-i];
+ for i:=1 to l do
+  if b[i]>=n then begin dec(b[i],n);inc(b[i+1]); end;
+
+ if b[l+1]>0 then inc(l);
+ for i:=1 to l do a[i]:=b[i];
+end;
+function judge:boolean;
+var i:longint;
+begin
+ for i:=1 to (l div 2) do
+  if a[i]<>a[l+1-i] then begin judge:=false;
+  exit;
+ end;
+ judge:=true;
+end;
+begin
+ readln(n);
+ readln(m);
+ if m[1]=' ' then delete(m,1,1); l:=length(m);i:=1;step:=0;
+ while i<=l do
+  begin
+   if ord(m[i])<ord('A') then
+    a[l+1-i]:=ord(m[i])-ord('0')
+   else
+    a[l+1-i]:=ord(m[i])-ord('A')+10;inc(i);
+End;
+repeat 
+ inc(step);work;
+until (step>=30) or judge;
+if step>=30 then
+ writeln('Impossible!')
+else writeln('STEP=',step);
+end.
+]]></solution>
+			<solution language="Java"><![CDATA[import java.util.Scanner;
+
+public class Main {
+	public static void main(String args[]) throws Exception {
+		// 输入进制
+		Scanner scanner = new Scanner(System.in);
+		Integer num = Integer.parseInt(scanner.nextLine());
+
+		// 输入数值
+		String val = scanner.nextLine();
+
+		// 翻番
+		int count = 0;
+		while (count <= 30) {
+			if (!sym(val)) {
+				String lav = reverse(val);
+				val = plus(num, val, lav);
+				count++;
+			} else {
+				System.out.println("STEP=" + count);
+				break;
+			}
+		}
+		if (count > 30) {
+			System.out.println("Impossible!");
+		}
+	}
+
+	// 翻转
+	public static String reverse(String val) {
+		String strOutput = "";
+		for (int i = val.length(); i > 0; i--) {
+			strOutput += val.substring(i - 1, i);
+		}
+		return strOutput;
+	}
+
+	// 转10进制
+	public static String n2ten(Integer num, String val) {
+		Long output = new Long(0);
+		for (int i = 0; i < val.length(); i++) {
+			if (num == 16) {
+				output += Long.valueOf(translate(val.substring(i, i + 1)))
+						* pow(new Long(16), new Long(val.length() - i - 1));
+			} else {
+				output += Long.valueOf(val.substring(i, i + 1))
+						* pow(new Long(num), new Long(val.length() - i - 1));
+			}
+		}
+		return String.valueOf(output);
+	}
+
+	// 16进制转10进制
+	public static String translate(String str) {
+		if (str.equals("a") || str.equals("A")) {
+			return "10";
+		}
+		if (str.equals("b") || str.equals("B")) {
+			return "11";
+		}
+		if (str.equals("c") || str.equals("C")) {
+			return "12";
+		}
+		if (str.equals("d") || str.equals("D")) {
+			return "13";
+		}
+		if (str.equals("e") || str.equals("E")) {
+			return "14";
+		}
+		if (str.equals("f") || str.equals("F")) {
+			return "15";
+		}
+		if (Long.valueOf(str) < 10) {
+			return str;
+		}
+		return "";
+	}
+
+	// 10转16进制
+	public static String lanstrat(String ten) {
+		if (Long.valueOf(ten) < 10) {
+			return ten;
+		} else {
+			switch (Integer.parseInt(ten)) {
+			case 10:
+				return "A";
+			case 11:
+				return "B";
+			case 12:
+				return "C";
+			case 13:
+				return "D";
+			case 14:
+				return "E";
+			case 15:
+				return "F";
+			default:
+				return "wrong";
+			}
+		}
+	}
+
+	// a的n次方
+	public static Long pow(Long a, Long n) {
+		if (n == 0) {
+			return new Long(1);
+		} else {
+			return a * pow(a, n - 1);
+		}
+	}
+
+	// 转n进制
+	public static String ten2n(Integer num, String val) {
+		if (Long.valueOf(val) < num) {
+			if (num == 16) {
+				return lanstrat(val);
+			} else {
+				return val;
+			}
+
+		} else {
+			if (num == 16) {
+				return ten2n(num, String.valueOf(Long.valueOf(val) / num))
+						+ lanstrat(String.valueOf(Long.valueOf(val) % num));
+			} else {
+				return ten2n(num, String.valueOf(Long.valueOf(val) / num))
+						+ String.valueOf(Long.valueOf(val) % num);
+			}
+		}
+	}
+
+	// 相加
+	public static String plus(Integer num, String val1, String val2) {
+		Long val1ten = Long.valueOf(n2ten(num, val1));
+		Long val2ten = Long.valueOf(n2ten(num, val2));
+		return ten2n(num, String.valueOf(val1ten + val2ten));
+	}
+
+	// 是否回文数
+	public static boolean sym(String str) {
+		if (str.length() == 1) {
+			return true;
+		} else {
+			boolean sym = true;
+			for (int i = 0; i < str.length() / 2; i++) {
+				if (!str.substring(i, i + 1).equals(
+						str.substring(str.length() - i - 1, str.length() - i))) {
+					sym = false;
+					break;
+				}
+			}
+			return sym;
+		}
+	}
+}
+]]></solution>
+	</item>
+</fps>

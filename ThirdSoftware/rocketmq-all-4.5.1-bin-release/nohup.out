@@ -1,0 +1,18 @@
+sh: bin/mqnamsrv: No such file or directory
+sh: bin/namesrv: No such file or directory
+Java HotSpot(TM) 64-Bit Server VM warning: Using the DefNew young collector with the CMS collector is deprecated and will likely be removed in a future release
+Java HotSpot(TM) 64-Bit Server VM warning: UseCMSCompactAtFullCollection is deprecated and will likely be removed in a future release.
+Java HotSpot(TM) 64-Bit Server VM warning: Cannot open file /dev/shm/rmq_srv_gc.log due to No such file or directory
+
+The Name Server boot success. serializeType=JSON
+Java HotSpot(TM) 64-Bit Server VM warning: Cannot open file /dev/shm/mq_gc_pid59849.log due to No such file or directory
+
+The broker[bogon, 192.168.1.101:10911] boot success. serializeType=JSON and name server is localhost:9876
+Java HotSpot(TM) 64-Bit Server VM warning: Using the DefNew young collector with the CMS collector is deprecated and will likely be removed in a future release
+Java HotSpot(TM) 64-Bit Server VM warning: UseCMSCompactAtFullCollection is deprecated and will likely be removed in a future release.
+Java HotSpot(TM) 64-Bit Server VM warning: Cannot open file /dev/shm/rmq_srv_gc.log due to No such file or directory
+
+The Name Server boot success. serializeType=JSON
+Java HotSpot(TM) 64-Bit Server VM warning: Cannot open file /dev/shm/mq_gc_pid20122.log due to No such file or directory
+
+The broker[bogon, 192.168.1.103:10911] boot success. serializeType=JSON and name server is localhost:9876

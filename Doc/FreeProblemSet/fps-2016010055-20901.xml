@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<fps version="1.2" url="https://github.com/zhblue/freeproblemset/">
+	<generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
+	<item>
+<title><![CDATA[上下火车]]></title>
+<time_limit unit="s"><![CDATA[1]]></time_limit>
+<memory_limit unit="mb"><![CDATA[125]]></memory_limit>
+
+<description><![CDATA[火车从始发站（称为第1站）开出，在始发站上车的人数为a，然后到达第2站，在第2站有人上、下车，但上、下车的人数相同，因此在第2站开出时（即在到达第3站之前）车上的人数保持为a人。从第3站起（包括第3站）上、下车的人数有一定规律：上车的人数都是前两站上车人数之和，而下车人数等于上一站上车人数，一直到终点站的前一站（第n-1站），都满足此规律。现给出的条件是：共有N个车站，始发站上车的人数为a，最后一站下车的人数是m（全部下车）。试问x站开出时车上的人数是多少？<br />
+<div>
+	<br />
+</div>]]></description>
+<input><![CDATA[<p>
+	每个测试文件只包含一组测试数据，每组输入四个整数a、n、m和x。
+</p>
+<p>
+	<br />
+</p>]]></input> 
+<output><![CDATA[<p>
+	对于每组输入数据，输出<span>从x站开出时车上的人数。</span> 
+</p>
+<p>
+	<span><br />
+</span> 
+</p>]]></output>
+<sample_input><![CDATA[5 7 32 4]]></sample_input>
+<sample_output><![CDATA[13]]></sample_output>
+  <test_input><![CDATA[0 10 40 6
+]]></test_input>
+<test_output><![CDATA[8
+]]></test_output>
+<test_input><![CDATA[5 7 32 4
+]]></test_input>
+<test_output><![CDATA[13
+]]></test_output>
+<test_input><![CDATA[10 15 2378 8
+]]></test_input>
+<test_output><![CDATA[138
+]]></test_output>
+<hint><![CDATA[]]></hint>
+<source><![CDATA[NOIP全国联赛提高组 1998年NOIP全国联赛提高组]]></source>
+		<solution language="C"><![CDATA[#include<stdio.h>
+void main()
+{
+    int a, n, m, x;
+    scanf("%d%d%d%d",&a,&n,&m,&x);
+    int f[24];
+    f[1] = 1;
+    f[2] = 1;
+    for(int i = 3; i < 24; i++)
+    {
+        f[i] = f[i-1] + f[i-2];
+    }
+    printf("%d\n",(f[x-2]+1)*a+(f[x-1]-1)*(m-(f[n-3]+1)*a)/(f[n-2]-1));
+} 
+]]></solution>
+			<solution language="C++"><![CDATA[#include<stdio.h>
+int main()
+{
+	int a,n,m,x,k,i,b[100],c[100],d[100];
+	while(scanf("%d%d%d%d",&a,&n,&m,&x)!=EOF)
+	{
+		if(n<=3)
+		{
+			printf("%d\n",a);
+			continue;
+		}
+		if(x==n)
+		{
+			printf("0\n");
+			continue;
+		}
+		k=1;
+		b[1]=a,b[2]=a;
+		c[1]=a,d[1]=0;
+		b[n-1]=0;
+		while(b[n-1]!=m)
+		{
+		
+			c[2]=k,d[2]=k;
+			for(i=3;i<=n-1;i++)
+			{
+				c[i]=c[i-1]+c[i-2];
+				d[i]=c[i-1];
+				b[i]=b[i-1]+c[i]-d[i];
+			}
+			k++;
+		}
+		printf("%d\n",b[x]);
+	}
+	return 0;
+}]]></solution>
+			<solution language="Pascal"><![CDATA[var
+ a,n,x,m,s,i:longint;
+ a1:array[1..2,1..20] of longint;
+ a2:array[1..2,1..20] of longint;
+ a3:array[1..2,1..20] of int64;
+begin
+ readln(a,n,m,x);
+ a1[1,1]:=1;a1[1,2]:=0; a1[2,1]:=0;a1[2,2]:=1;
+ a2[1,1]:=0;a2[1,2]:=0; a2[2,1]:=0;a2[2,2]:=1;
+ a3[1,1]:=1;a3[1,2]:=1;
+  for i:=3 to 20 do
+   begin
+   a1[1,i]:=a1[1,i-1]+a1[1,i-2];
+   a1[2,i]:=a1[2,i-1]+a1[2,i-2];
+   a2[1,i]:=a1[1,i-1];
+   a2[2,i]:=a1[2,i-1];
+   a3[1,i]:=a3[1,i-1]+a1[1,i]-a2[1,i];
+   a3[2,i]:=a3[2,i-1]+a1[2,i]-a2[2,i];
+   end;
+  s:=(m-a3[1,n-1]*a) div a3[2,n-1];
+  writeln(a3[1,x]*a+a3[2,x]*s);
+end.
+]]></solution>
+	</item>
+</fps>

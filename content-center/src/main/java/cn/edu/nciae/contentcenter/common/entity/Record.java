@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,7 +19,6 @@ import java.util.Date;
  * @since 2020-02-08
  */
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName("record")
@@ -33,6 +31,11 @@ public class Record implements Serializable {
      */
     @TableId(value = "record_id", type = IdType.AUTO)
     private Long recordId;
+
+    /**
+     * 判题时产生的UUID
+     */
+    private String submissionID;
 
     /**
      * 解题用户ID

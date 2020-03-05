@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<fps version="1.2" url="https://github.com/zhblue/freeproblemset/">
+	<generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
+	<item>
+<title><![CDATA[ [ZJOI2010]数字计数]]></title>
+<time_limit unit="s"><![CDATA[1]]></time_limit>
+<memory_limit unit="mb"><![CDATA[128]]></memory_limit>
+
+<description><![CDATA[<p>
+	给定两个正整数a和b，求在[a,b]中的所有整数中，每个数码(digit)各出现了多少次。
+</p>
+<h2>
+	输入输出格式
+</h2>
+<strong>输入格式：</strong><br />
+<p>
+	<br />
+</p>
+<p>
+	输入文件中仅包含一行两个整数a、b，含义如上所述。
+</p>
+<p>
+	<br />
+</p>
+<strong>输出格式：</strong><br />
+<p>
+	<br />
+</p>
+<p>
+	输出文件中包含一行10个整数，分别表示0-9在[a,b]中出现了多少次。
+</p>
+<p>
+	<br />
+</p>
+<h2>
+	输入输出样例
+</h2>
+<div class="am-g">
+	<div class="am-u-md-6 copy-region">
+		<strong>输入样例#1：</strong> <a class="am-badge am-radius lg-bg-orange sample-copy">复制</a> 
+<pre>1 99
+</pre>
+	</div>
+	<div class="am-u-md-6 copy-region">
+		<strong>输出样例#1：</strong> <a class="am-badge am-radius lg-bg-orange sample-copy">复制</a> 
+<pre>9 20 20 20 20 20 20 20 20 20
+</pre>
+	</div>
+</div>
+<h2>
+	说明
+</h2>
+<p>
+	30%的数据中，a&lt;=b&lt;=10^6；
+</p>
+<p>
+	100%的数据中，a&lt;=b&lt;=10^12。
+</p>
+<div class="lg-article-sub am-g" id="sub">
+</div>]]></description>
+<input><![CDATA[]]></input> 
+<output><![CDATA[]]></output>
+<sample_input><![CDATA[]]></sample_input>
+<sample_output><![CDATA[]]></sample_output>
+  <test_input><![CDATA[271470388960 409578004559
+]]></test_input>
+<test_output><![CDATA[156863131440 147815117760 176815117760 248285517760 157893221880 148363610240 148285605620 156822832260 158284611260 157862621220
+]]></test_output>
+<test_input><![CDATA[500921 873363
+]]></test_input>
+<test_output><![CDATA[187942 189785 189794 189123 188694 287773 288688 282048 252048 178763
+]]></test_output>
+<test_input><![CDATA[457796228179 948508739495
+]]></test_input>
+<test_output><![CDATA[540677193858 540668454383 540668528104 540668563958 581381065775 632781065679 640569326182 640777037500 641177934184 589180966181
+]]></test_output>
+<test_input><![CDATA[218635 261553
+]]></test_input>
+<test_output><![CDATA[17882 18801 69801 26887 26891 26840 18401 16882 17247 17882
+]]></test_output>
+<test_input><![CDATA[127292392749 432951213693
+]]></test_input>
+<test_output><![CDATA[336031318285 408738132924 438697257677 438082429924 368082521979 335122521988 335121308288 335828915496 336121308294 336080136485
+]]></test_output>
+<test_input><![CDATA[796789073671 917394687890
+]]></test_input>
+<test_output><![CDATA[140584331571 137979093133 130584405242 130579093462 130484094133 130483406242 130694320491 134099853120 230584239563 151194533683
+]]></test_output>
+<test_input><![CDATA[30855461861 78875512622
+]]></test_input>
+<test_output><![CDATA[47358568395 48214023019 48214020873 57358558385 58214058385 58218621770 58224028317 57095055402 48109593580 47214030256
+]]></test_output>
+<test_input><![CDATA[266854 485173
+]]></test_input>
+<test_output><![CDATA[107562 107536 140608 207462 192636 106642 109764 117466 112682 107562
+]]></test_output>
+<test_input><![CDATA[79074169129 755913863158
+]]></test_input>
+<test_output><![CDATA[747103579074 847171642263 847167848204 847167710531 847167678084 842995573530 836167841233 793013372104 746177810362 747017442104
+]]></test_output>
+<test_input><![CDATA[724004337355 748570850051
+]]></test_input>
+<test_output><![CDATA[24148030186 24155854740 30151517384 34155920074 33723140181 25127804941 25056954840 49614318234 24617755944 24046855840
+]]></test_output>
+<hint><![CDATA[]]></hint>
+<source><![CDATA[ZJOI2010 ZJOI 省选 高级]]></source>
+		<solution language="C++"><![CDATA[/*
+ * ZJOI 2010 Day 1 Problem 1
+ *
+ * Author: Dong Zhou
+ */
+
+#include <cstdio>
+#include <cstring>
+#include <cstdlib>
+#include <algorithm>
+
+using namespace std;
+
+typedef long long llint;
+
+llint A, B;
+llint p10[20];
+
+llint solve( llint n, llint k )
+{
+	int nD = 0;
+	int D[30];
+	llint suffix[30];
+	
+	for( llint nn = n; nn; nn /= 10 ) 
+		D[nD++] = nn%10;
+	reverse( D, D+nD );
+
+//	printf( "nD = %d\n", nD );
+//	for( int i = 0; i < nD; ++i ) printf( "%d", D[i] );
+//	putchar( '\n' );
+
+	suffix[nD] = 0;
+	for( int i = nD-1; i >= 0; --i )
+		suffix[i] = D[i]*p10[nD-i-1] + suffix[i+1];
+
+	llint answer = 0;
+	llint prefix = 0;
+
+	for( int len = 1; len < nD; ++len )
+		for( int i = (k==0 ? 1 : 0); i < len; ++i ) {
+			llint zz = p10[len-i-1];
+			if( i ) zz *= 9*p10[i-1];
+
+			answer += zz;
+		}
+
+	for( int i = 0; i < nD; prefix = prefix*10 + D[i++] ) {
+		if( i==0 && k==0 ) continue;
+	
+		llint base = (i==0 ? 0 : p10[i-1]);
+
+		answer += (prefix-base) * p10[nD-i-1];
+		if( k < D[i] ) 
+			answer += p10[nD-i-1];
+		else if( k == D[i] )
+			answer += suffix[i+1]+1;
+	}
+	
+	return answer;
+}
+
+int main( void )
+{
+//	freopen( "count.in", "r", stdin );
+//	freopen( "count.out", "w", stdout );
+	
+	p10[0] = 1;
+	for( int i = 1; i < 15; ++i ) p10[i] = p10[i-1]*10;
+	
+	scanf( "%lld %lld", &A, &B );
+	
+	for( int i = 0; i < 10; ++i ) {
+		if( i > 0 ) putchar( ' ' );
+		printf( "%lld", solve(B, i)-solve(A-1, i) );
+//		printf( "%lld %lld\n", solve(A-1, i), solve(B, i) );
+	}
+//	printf( "%lld\n", solve(10, 0) );
+	putchar( '\n' );
+	
+	return 0;
+}
+
+]]></solution>
+	</item>
+</fps>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<fps version="1.2" url="https://github.com/zhblue/freeproblemset/">
+	<generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
+	<item>
+<title><![CDATA[质因数分解]]></title>
+<time_limit unit="s"><![CDATA[1]]></time_limit>
+<memory_limit unit="mb"><![CDATA[128]]></memory_limit>
+
+<description><![CDATA[<p>
+	已知正整数n是两个不同的质数的乘积，试求出较大的那个质数。
+</p>
+<p>
+	<br />
+</p>]]></description>
+<input><![CDATA[<p>
+	每组输入数据只有一行，包含一个正整数n。
+</p>
+<p>
+	<br />
+</p>
+<p>
+	数据规模：
+</p>
+<p>
+	<span style="line-height:1.5;">对于60%的数据，6≤n≤1000。</span>
+</p>
+<p>
+	对于100%的数据，6≤n≤2*10<sup>9</sup>。
+</p>
+<p>
+	<br />
+</p>]]></input> 
+<output><![CDATA[<p>
+	每组输出只有一行，包含一个正整数p，即较大的那个质数。
+</p>
+<p>
+	<br />
+</p>]]></output>
+<sample_input><![CDATA[21]]></sample_input>
+<sample_output><![CDATA[7]]></sample_output>
+  <test_input><![CDATA[6
+]]></test_input>
+<test_output><![CDATA[3
+]]></test_output>
+<test_input><![CDATA[1999410011
+]]></test_input>
+<test_output><![CDATA[49999
+]]></test_output>
+<test_input><![CDATA[1994590027
+]]></test_input>
+<test_output><![CDATA[199999
+]]></test_output>
+<test_input><![CDATA[998
+]]></test_input>
+<test_output><![CDATA[499
+]]></test_output>
+<test_input><![CDATA[161
+]]></test_input>
+<test_output><![CDATA[23
+]]></test_output>
+<test_input><![CDATA[995
+]]></test_input>
+<test_output><![CDATA[199
+]]></test_output>
+<test_input><![CDATA[119
+]]></test_input>
+<test_output><![CDATA[17
+]]></test_output>
+<test_input><![CDATA[1999520027
+]]></test_input>
+<test_output><![CDATA[99991
+]]></test_output>
+<test_input><![CDATA[559
+]]></test_input>
+<test_output><![CDATA[43
+]]></test_output>
+<test_input><![CDATA[1999999874
+]]></test_input>
+<test_output><![CDATA[999999937
+]]></test_output>
+<hint><![CDATA[]]></hint>
+<source><![CDATA[NOIP全国联赛普及组-2012年NOIP全国联赛普及组]]></source>
+		<solution language="C"><![CDATA[#include<stdio.h>
+int main()
+{
+  int num;
+  while (scanf("%d",&num)!=EOF)
+  {
+	  int i;
+	  for (i=2;i*i<=num;i++)
+	  {
+		  if (num%i==0) 
+		  {
+			  printf("%d\n",num/i);
+			  break;
+		  }	 
+	  }
+  }
+  return 0;
+}]]></solution>
+			<solution language="C++"><![CDATA[#include <iostream>
+#include <cmath>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    int m=sqrt(n);
+    int i,k;
+    for(i=2;i<=m;i++)
+        if(n%i==0) {k=i;break;}
+    cout<<n/k;
+    return 0;
+}]]></solution>
+			<solution language="Pascal"><![CDATA[uses math; 
+var n,i:longint; 
+function prime(x:longint):boolean; 
+var i:longint; 
+begin
+  for i:=2 to trunc(sqrt(x)) do if x mod i=0 then exit(false); 
+  exit(true); 
+end; 
+begin
+  read(n); 
+  i:=2; 
+  repeat
+    if (n mod i=0) and prime(i) and prime(n div i) then
+      begin
+        writeln(max(i,n div i)); 
+        halt; 
+      end; 
+    i:=i+1; 
+  until i>(trunc(sqrt(n))); 
+end.]]></solution>
+			<solution language="Java"><![CDATA[import java.util.*;
+public class Main{
+  public static void main(String[] args) {
+    Scanner cin = new Scanner(System.in);
+    long startTime = System.currentTimeMillis();
+    int n = cin.nextInt();
+    for(int i = 2; i <= n/2; i ++){
+      if(n%i==0){
+        System.out.println(n/i);
+        break;
+      }
+    }
+    long endTime = System.currentTimeMillis();
+    long totalTime = endTime - startTime;
+    // System.out.println("\n"+totalTime);
+  }
+
+  public static int isPrime(int n){
+    if(n == 1 || n ==0){
+      return 0;
+    }
+    for(int i = 2; i <= (int)Math.sqrt(n); i ++){
+      if(n%i==0){
+        return 0;
+      }
+    }
+    return 1;
+  }
+}
+]]></solution>
+			<solution language="Python"><![CDATA[# coding=utf-8
+def main():
+    n = int(input())
+
+    v = 0 
+    for i in range(2, n):
+        if n % i == 0:
+            v = max(i, n/i)
+            break
+    
+    print(int(v))
+
+if __name__ == '__main__':
+    main()]]></solution>
+	</item>
+</fps>

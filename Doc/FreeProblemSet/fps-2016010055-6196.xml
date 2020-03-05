@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<fps version="1.2" url="https://github.com/zhblue/freeproblemset/">
+	<generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
+	<item>
+<title><![CDATA[灯的排列问题]]></title>
+<time_limit unit="s"><![CDATA[1]]></time_limit>
+<memory_limit unit="mb"><![CDATA[125]]></memory_limit>
+
+<description><![CDATA[<p class="MsoNormal" style="margin-left:15.75pt;text-indent:-15.75pt;">
+	<span style="font-family:Microsoft YaHei;">设在一排上有</span><span style="font-family:'Microsoft YaHei';">N</span><span style="font-family:Microsoft YaHei;">个格子（</span><span style="font-family:'Microsoft YaHei';">N</span><span style="font-family:Microsoft YaHei;">≤</span><span style="font-family:'Microsoft YaHei';">20</span><span style="font-family:Microsoft YaHei;">），若在格子中放置有不同颜色的灯，每种灯的个数记为</span><span><span style="font-family:Microsoft YaHei;">N</span><sub><span style="font-family:Microsoft YaHei;">1</span></sub></span><span style="font-family:Microsoft YaHei;">，</span><span><span style="font-family:Microsoft YaHei;">N</span><sub><span style="font-family:Microsoft YaHei;">2</span></sub></span><span style="font-family:Microsoft YaHei;">，……</span><span><span style="font-family:Microsoft YaHei;">N</span><sub><span style="font-family:Microsoft YaHei;">k</span></sub></span><span style="font-family:Microsoft YaHei;">（</span><span style="font-family:'Microsoft YaHei';">k</span><span style="font-family:Microsoft YaHei;">表示不同颜色灯的个数）。</span><span></span> 
+</p>
+<p class="MsoNormal">
+	<span style="font-family:'Microsoft YaHei';">&nbsp;&nbsp; </span><b><span style="font-family:Microsoft YaHei;">放灯时要遵守下列规则：</span><span></span></b> 
+</p>
+<p class="MsoNormal" style="margin-left:31.5pt;text-indent:-10.5pt;">
+	<span style="font-family:'Microsoft YaHei';">①</span><span style="font-family:Microsoft YaHei;">同一种颜色的灯不能分开；</span><span></span> 
+</p>
+<p class="MsoNormal" style="margin-left:31.5pt;text-indent:-10.5pt;">
+	<span style="font-family:'Microsoft YaHei';">②</span><span style="font-family:Microsoft YaHei;">不同颜色的灯之间至少要有一个空位置。</span><span></span> 
+</p>
+<p class="MsoNormal">
+	<span style="font-family:'Microsoft YaHei';">&nbsp; &nbsp;</span><span style="font-family:Microsoft YaHei;">例如：</span><span style="font-family:'Microsoft YaHei';">N=8</span><span style="font-family:Microsoft YaHei;">（格子数）</span><span></span> 
+</p>
+<p class="MsoNormal">
+	<span style="font-family:'Microsoft YaHei';">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R=2</span><span style="font-family:Microsoft YaHei;">（红灯数）</span><span></span> 
+</p>
+<p class="MsoNormal">
+	<span style="font-family:'Microsoft YaHei';">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B=3</span><span style="font-family:Microsoft YaHei;">（蓝灯数）</span><span></span> 
+</p>
+<p class="MsoNormal">
+	<span style="font-family:'Microsoft YaHei';">&nbsp; &nbsp;</span><span style="font-family:Microsoft YaHei;">放置的方法有：</span><span></span> 
+</p>
+<p class="MsoNormal">
+	<span style="font-family:'Microsoft YaHei';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+R-B</span><span style="font-family:Microsoft YaHei;">顺序</span><span></span> 
+</p>
+<div align="center">
+	<table class="MsoNormalTable" border="1" cellspacing="0" cellpadding="0" style="border:none;">
+		<tbody>
+			<tr>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">R</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">R</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">R</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">R</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">R</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">R</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">R</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">R</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">R</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">R</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">R</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">R</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<p class="MsoNormal">
+	<span style="font-family:'Microsoft YaHei';">&nbsp;&nbsp;&nbsp; </span> 
+</p>
+<p class="MsoNormal">
+	<span style="font-family:'Microsoft YaHei';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;B-R</span><span style="font-family:Microsoft YaHei;">顺序</span><span></span> 
+</p>
+<div align="center">
+	<table class="MsoNormalTable" border="1" cellspacing="0" cellpadding="0" style="border:none;">
+		<tbody>
+			<tr>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">R</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">R</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">R</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">R</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">R</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">R</span> 
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">R</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">R</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">R</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">R</span> 
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">B</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">&nbsp;</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">R</span> 
+					</p>
+				</td>
+				<td width="36" valign="top" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;">
+						<span style="font-family:'Microsoft YaHei';">R</span> 
+					</p>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<p class="MsoNormal">
+	<span style="font-family:'Microsoft YaHei';">&nbsp;&nbsp;&nbsp; </span><span style="font-family:Microsoft YaHei;">放置的总数为</span><span style="font-family:'Microsoft YaHei';">12</span><span style="font-family:Microsoft YaHei;">种。</span><span></span> 
+</p>
+<p class="MsoNormal">
+	<span style="font-family:'Microsoft YaHei';">&nbsp; &nbsp;</span><span style="line-height:1.5;font-family:'Microsoft YaHei';">&nbsp;</span><b><span style="font-family:Microsoft YaHei;">程序要求：</span></b><span style="line-height:1.5;font-family:'Microsoft YaHei';">求排列总数。</span> 
+</p>]]></description>
+<input><![CDATA[<p class="MsoNormal">
+	<span style="font-family:'Microsoft YaHei';">数据输入的方式为：</span> 
+</p>
+<p class="MsoNormal" style="margin-left:36pt;">
+	<span style="font-family:'Microsoft YaHei';">N</span> 
+</p>
+<p class="MsoNormal" style="margin-left:36pt;">
+	<span style="font-family:'Microsoft YaHei';">P1</span><span style="font-family:'Microsoft YaHei';">（颜色，为一个字母）</span><span style="font-family:'Microsoft YaHei';">&nbsp;N1</span><span style="font-family:'Microsoft YaHei';">（灯的数量）</span> 
+</p>
+<p class="MsoNormal" style="margin-left:36pt;">
+	<span style="font-family:'Microsoft YaHei';">P2&nbsp;N2</span> 
+</p>
+<p class="MsoNormal" style="margin-left:36pt;">
+	<span style="font-family:'Microsoft YaHei';">……</span> 
+</p>
+<p class="MsoNormal" style="margin-left:36pt;">
+	<span style="font-family:'Microsoft YaHei';">Q</span><span style="font-family:'Microsoft YaHei';">（结束标记，</span><span style="font-family:'Microsoft YaHei';">Q</span><span style="font-family:'Microsoft YaHei';">本身不是灯的颜色）</span> 
+</p>
+<p class="MsoNormal">
+	<span style="font-family:'Microsoft YaHei';">&nbsp;颜色和灯的数量之间由一个空格分隔。</span> 
+</p>]]></input> 
+<output><![CDATA[输出排列总数。]]></output>
+<sample_input><![CDATA[8
+R 2
+B 3
+Q]]></sample_input>
+<sample_output><![CDATA[12]]></sample_output>
+  <test_input><![CDATA[6
+R 1
+Q
+
+]]></test_input>
+<test_output><![CDATA[6
+]]></test_output>
+<test_input><![CDATA[12
+R 3
+B 2
+Y 1
+Q
+
+]]></test_input>
+<test_output><![CDATA[210
+]]></test_output>
+<test_input><![CDATA[6
+R 2
+Y 1
+Q
+
+]]></test_input>
+<test_output><![CDATA[12
+]]></test_output>
+<hint><![CDATA[]]></hint>
+<source><![CDATA[NOIP全国联赛普及组 1995年NOIP全国联赛普及组]]></source>
+		<solution language="C++"><![CDATA[#include<iostream>
+
+using namespace std;
+
+int main()
+
+{      
+
+        char x;
+
+        int k=0,t,n,ans=1,i;
+
+        cin>>n;
+
+        while(1)
+
+        {cin>>x;
+
+         if(x=='Q')break;
+
+         cin>>t;
+
+         k++;
+
+         n-=t;
+
+        }
+
+        ans=1;
+
+        for(i=-1;i<k-1;i++)  ans*=(n-i);
+
+        cout<<ans;
+
+}]]></solution>
+			<solution language="Python"><![CDATA[# coding=utf-8
+def main():
+    N = int(input())
+    C = []
+    while True:
+        temp = input()
+        if temp == 'Q':
+            break
+        else:
+            C.append(int(temp.split()[1]))
+
+    N_color = len(C)
+    N_space = N - sum(C)
+
+    cnt_color = 1
+    for i in range(1, N_color+1):
+        cnt_color *= i
+    
+    cnt_space = 1 
+    nn = N_space - N_color + 1 
+    for i in range(nn):
+        cnt_space *= N_space + 1 - i
+    for i in range(1, nn + 1):
+        cnt_space /= i
+
+    print(int(cnt_color*cnt_space))
+    
+
+if __name__ == '__main__':
+    main()]]></solution>
+	</item>
+</fps>

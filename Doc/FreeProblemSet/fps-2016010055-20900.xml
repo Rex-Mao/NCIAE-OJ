@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<fps version="1.2" url="https://github.com/zhblue/freeproblemset/">
+	<generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
+	<item>
+<title><![CDATA[二的幂次方]]></title>
+<time_limit unit="s"><![CDATA[1]]></time_limit>
+<memory_limit unit="mb"><![CDATA[125]]></memory_limit>
+
+<description><![CDATA[<p class="MsoNormal">
+	任何一个正整数都可以用<span>2</span>的幂次方表示。
+</p>
+<p class="MsoNormal">
+	例如：
+</p>
+<p class="MsoNormal">
+	<span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 137=2<sup>7</sup>+2<sup>3</sup>+2<sup>0</sup></span> 
+</p>
+<p class="MsoNormal">
+	<span style="line-height:1.5;">同时约定次方用括号来表示，即</span><span style="line-height:1.5;">a<sup>b</sup> </span><span style="line-height:1.5;">可表示为</span><span style="line-height:1.5;">a</span><span style="line-height:1.5;">（</span><span style="line-height:1.5;">b</span><span style="line-height:1.5;">）。</span> 
+</p>
+<p class="MsoNormal">
+	<span></span> 
+</p>
+<p class="MsoNormal">
+	由此可知，<span>137</span>可表示为：<span></span> 
+</p>
+<p class="MsoNormal">
+	<span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2</span>（<span>7</span>）<span>+2</span>（<span>3</span>）<span>+2</span>（<span>0</span>）<span></span> 
+</p>
+<p class="MsoNormal">
+	进一步：<span>7= 2<sup>2</sup>+2+2<sup>0</sup></span>（<span>2<sup>1</sup></span>用<span>2</span>表示）<span></span> 
+</p>
+<p class="MsoNormal">
+	<span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 3=2+2<sup>0&nbsp;&nbsp; </sup></span> 
+</p>
+<p class="MsoNormal">
+	所以最后<span>137</span>可表示为：<span></span> 
+</p>
+<p class="MsoNormal">
+	<span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2</span>（<span>2</span>（<span>2</span>）<span>+2+2</span>（<span>0</span>））<span>+2</span>（<span>2+2</span>（<span>0</span>））<span>+2</span>（<span>0</span>）<span></span> 
+</p>
+<p class="MsoNormal">
+	又如：<span></span> 
+</p>
+<p class="MsoNormal">
+	<span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1315=2<sup>10</sup> +2<sup>8</sup> +2<sup>5</sup> +2+1</span> 
+</p>
+<p class="MsoNormal">
+	所以<span>1315</span>最后可表示为：<span></span> 
+</p>
+<p class="MsoNormal">
+	<span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;2</span>（<span>2</span>（<span>2+2</span>（<span>0</span>））<span>+2</span>）<span>+2</span>（<span>2</span>（<span>2+2</span>（<span>0</span>）））<span>+2</span>（<span>2</span>（<span>2</span>）<span>+2</span>（<span>0</span>））<span>+2+2</span>（<span>0</span>）<span></span> 
+</p>
+<p class="MsoNormal">
+	<br />
+</p>]]></description>
+<input><![CDATA[<p>
+	每个测试文件只包含一组测试数据，每组输入一个正整数n（n&lt;=20000）。
+</p>
+<p>
+	<br />
+</p>]]></input> 
+<output><![CDATA[<p>
+	对于每组输入数据，输出<span>符合约定的n的0，2表示。（在表示中不能有空格）</span> 
+</p>
+<p>
+	<span><br />
+</span> 
+</p>]]></output>
+<sample_input><![CDATA[137]]></sample_input>
+<sample_output><![CDATA[2(2(2)+2+2(0))+2(2+2(0))+2(0)]]></sample_output>
+  <test_input><![CDATA[73
+]]></test_input>
+<test_output><![CDATA[2(2(2)+2)+2(2+2(0))+2(0)
+]]></test_output>
+<test_input><![CDATA[136
+]]></test_input>
+<test_output><![CDATA[2(2(2)+2+2(0))+2(2+2(0))
+]]></test_output>
+<test_input><![CDATA[1384
+]]></test_input>
+<test_output><![CDATA[2(2(2+2(0))+2)+2(2(2+2(0)))+2(2(2)+2)+2(2(2)+2(0))+2(2+2(0))
+]]></test_output>
+<test_input><![CDATA[255
+]]></test_input>
+<test_output><![CDATA[2(2(2)+2+2(0))+2(2(2)+2)+2(2(2)+2(0))+2(2(2))+2(2+2(0))+2(2)+2+2(0)
+]]></test_output>
+<test_input><![CDATA[16385
+]]></test_input>
+<test_output><![CDATA[2(2(2+2(0))+2(2)+2)+2(0)
+]]></test_output>
+<hint><![CDATA[]]></hint>
+<source><![CDATA[NOIP全国联赛普及组 1998年NOIP全国联赛普及组]]></source>
+		<solution language="C"><![CDATA[#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<math.h>
+ 
+ 
+void work(int n)
+{
+	if(n==1)//初始判断条件，如果n为1或2则直接输出 
+	{
+		printf("2(0)");
+		return;
+	}
+	else if(n==2)
+	{
+		printf("2");
+		return; 
+	} 
+	else
+	{
+		int j=1,i=0;//j每次乘2,如果大于了n就分解结束，i为当前次数 
+		do
+		{
+			j*=2;
+			if(j>n)
+			{
+				j/=2;
+				if(i==1)//这步非常重要，确定是否需要继续 2() 
+					printf("2");
+				else
+				{
+					printf("2(");
+					work(i);
+					printf(")");
+				}	
+				if(n-j!=0)//如果n分解之后还有剩余的数，那么继续分解 
+				{
+					printf("+");
+					work(n-j);
+				}
+				return;
+			}
+			else
+				i++;
+			
+			
+		}while(1);
+	}	
+					
+	
+}
+ 
+int main()
+{
+	int n;
+	scanf("%d",&n);
+	work(n);
+}
+]]></solution>
+			<solution language="C++"><![CDATA[#include<iostream>
+#include<cstdio>
+#include<cmath>
+using namespace std;
+void print(int n)
+{
+    int p=0;
+    while((1<<p)<=n) p++;
+    p--;
+    if(p==0) printf("2(0)");
+    else if(p==1) printf("2");
+    else
+    {
+        printf("2(");
+        print(p);
+        printf(")");
+    }
+    int remain=n-(1<<p);
+    if(remain)
+    {
+        printf("+");
+        print(remain);
+    }
+}
+int main()
+{
+    int n;
+    while(~scanf("%d",&n))
+    {
+        print(n);
+        printf("\n");
+    }
+    return 0;
+}
+]]></solution>
+			<solution language="Pascal"><![CDATA[var
+  n:integer;
+
+procedure bin(k:integer);
+var
+  b:array[0..15] of integer;
+  i,p:integer;
+  first:boolean;
+begin
+  p:=-1;
+  if k=0 then
+    write(0)
+  else begin
+    while k>0 do
+    begin
+      inc(p);
+      b[p]:=k mod 2;
+      k:=k div 2;
+    end;
+    first:=true;
+    for i:=p downto 0 do
+      if b[i]=1 then
+      begin
+        if first then first:=false else write('+');
+        if i=1 then write('2')
+        else begin
+          write('2(');
+          bin(i);
+          write(')');
+        end;
+      end;
+  end;
+end;
+
+begin
+  readln(n);
+  bin(n);
+  writeln;
+end.
+]]></solution>
+			<solution language="Java"><![CDATA[import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		String str = "";
+
+		Scanner scan = new Scanner(System.in);
+		int num = scan.nextInt();
+		scan.close();
+		String res = doWhile(num, str);
+		System.out.println(res);
+	}
+
+	private static String doWhile(int num, String str) {
+		int product = 1, n = 0;
+
+		if (num == 1) {
+			return "2(0)";
+		} else if (num == 2) {
+			return "2";
+		}
+
+		while (product * 2 <= num) {
+			product *= 2;
+			++n;
+		}
+		if (num - product != 0) {
+			int diff = num - product;
+			str = "2(" + doWhile(n, str) + ")+" + doWhile(diff, str);
+		} else {
+			str = "2(" + doWhile(n, str) + ")";
+		}
+		str = str.replace("2(2(0))", "2");
+		return str;
+	}
+}]]></solution>
+	</item>
+</fps>

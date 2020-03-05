@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -12,16 +13,17 @@
         <module name="content-center" />
         <module name="judge-center" />
         <module name="user-center" />
+        <module name="rocketmq-console" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="content-center" target="1.5" />
-      <module name="gateway" target="1.5" />
-      <module name="judge-center" target="1.5" />
-      <module name="NCIAE-OJ" target="1.5" />
+    <bytecodeTargetLevel target="8">
+      <module name="content-center" target="8" />
+      <module name="gateway" target="8" />
+      <module name="judge-center" target="8" />
+      <module name="NCIAE-OJ" target="8" />
       <module name="registry-center" target="1.5" />
-      <module name="test" target="1.8" />
-      <module name="user-center" target="1.5" />
+      <module name="rocketmq-console" target="1.7" />
+      <module name="user-center" target="8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -29,7 +31,6 @@
       <module name="NCIAE-OJ" options="" />
       <module name="content-center" options="" />
       <module name="registry-center" options="" />
-      <module name="test" options="-parameters" />
       <module name="user-center" options="" />
     </option>
   </component>
