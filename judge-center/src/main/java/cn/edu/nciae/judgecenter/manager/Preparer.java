@@ -1,4 +1,4 @@
-package cn.edu.nciae.judgecenter.core;
+package cn.edu.nciae.judgecenter.manager;
 
 import cn.edu.nciae.judgecenter.common.dto.SubmissionDTO;
 import cn.edu.nciae.judgecenter.common.entity.Checkpoint;
@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.attribute.PosixFilePermission;
 import java.util.HashSet;
@@ -55,9 +56,11 @@ public class Preparer {
 		String codeFilePath = String.format("%s/%s.%s", workDirectory, baseFileName, language.getLanguageSuffix());
 		try {
 			FileOutputStream outputStream = new FileOutputStream(new File(codeFilePath));
-			IOUtils.write(code, outputStream, "utf-8");
+			IOUtils.write(code, outputStream, StandardCharsets.UTF_8);
+			outputStream.flush();
+			outputStream.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new IOException("Failed to fill the file...");
 		}
     }
 
@@ -80,7 +83,7 @@ public class Preparer {
 				String filePath = String.format("%s/input#%s.txt", checkpointsFilePath, checkpointId);
 				FileOutputStream outputStream = new FileOutputStream(new File(filePath));
 				String input = checkpoint.getInput();
-				IOUtils.write(input, outputStream, "utf-8");
+				IOUtils.write(input, outputStream, StandardCharsets.UTF_8);
 				outputStream.flush();
 				outputStream.close();
 			}
@@ -89,7 +92,7 @@ public class Preparer {
 				String filePath = String.format("%s/output#%s.txt", checkpointsFilePath, checkpointId);
 				FileOutputStream outputStream = new FileOutputStream(new File(filePath));
 				String output = checkpoint.getOutput();
-				IOUtils.write(output, outputStream, "utf-8");
+				IOUtils.write(output, outputStream, StandardCharsets.UTF_8);
 				outputStream.flush();
 				outputStream.close();
 			}

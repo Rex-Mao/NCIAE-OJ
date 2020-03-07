@@ -17,13 +17,13 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
-      <module name="content-center" target="8" />
-      <module name="gateway" target="8" />
-      <module name="judge-center" target="8" />
-      <module name="NCIAE-OJ" target="8" />
-      <module name="registry-center" target="1.5" />
+      <module name="content-center" target="1.8" />
+      <module name="gateway" target="1.8" />
+      <module name="judge-center" target="1.8" />
+      <module name="NCIAE-OJ" target="1.8" />
+      <module name="registry-center" target="1.8" />
       <module name="rocketmq-console" target="1.7" />
-      <module name="user-center" target="8" />
+      <module name="user-center" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

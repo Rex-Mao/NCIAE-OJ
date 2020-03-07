@@ -1,12 +1,12 @@
 package cn.edu.nciae.judgecenter.rocketmq;
 
 import cn.edu.nciae.judgecenter.common.dto.SubmissionDTO;
-import cn.edu.nciae.judgecenter.core.Dispatcher;
 import cn.edu.nciae.judgecenter.rocketmq.sink.JudgeSubmissionSink;
+import cn.edu.nciae.judgecenter.service.IJudgeSubmissionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.StreamListener;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 /**
  * @author RexALun
@@ -14,15 +14,15 @@ import org.springframework.stereotype.Service;
  * Annotation :
  * @date 2020/2/11 11:09 AM
  */
-@Service
 @Slf4j
+@Component
 public class SubmissionJudgeConsumer {
 
     @Autowired
-    private Dispatcher dispatcher;
+    private IJudgeSubmissionService judgeSubmissionService;
 
     @StreamListener(JudgeSubmissionSink.JUDGE_SUBMISSION_INPUT)
     public void receive(SubmissionDTO submissionDTO) {
-        System.out.println(submissionDTO);
+        judgeSubmissionService.judgeSubmission(submissionDTO);
     }
 }

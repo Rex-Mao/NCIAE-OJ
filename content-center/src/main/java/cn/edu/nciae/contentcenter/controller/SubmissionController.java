@@ -31,16 +31,16 @@ public class SubmissionController {
     private ILanguageService languageService;
 
     @PostMapping("/submission")
-    public MessageVO<String> judgeSubmissionAndReturnSID(SubmissionDTO submissionDTO) throws IOException {
+    public MessageVO<Long> judgeSubmissionAndReturnSID(SubmissionDTO submissionDTO) throws IOException {
 
         Language language = languageService.getOne(Wrappers.<Language>lambdaQuery()
                 .eq(Language::getLanguageName, submissionDTO.getLanguage().getLanguageName()));
         submissionDTO.setLanguage(language);
-        String submissionID = submissionService.createSubmissionAndJudge(submissionDTO);
+        Long submissionId = submissionService.createSubmissionAndJudge(submissionDTO);
         System.out.println(submissionDTO);
-        return MessageVO.<String>builder()
+        return MessageVO.<Long>builder()
                 .error(null)
-                .data(submissionID)
+                .data(submissionId)
                 .build();
     }
 

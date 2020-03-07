@@ -1,4 +1,4 @@
-package cn.edu.nciae.contentcenter.rocketmq;
+package cn.edu.nciae.judgecenter.rocketmq;
 
 import org.apache.rocketmq.spring.annotation.RocketMQTransactionListener;
 import org.apache.rocketmq.spring.core.RocketMQLocalTransactionListener;
@@ -11,8 +11,8 @@ import org.springframework.messaging.Message;
  * Annotation :
  * @date 2020/2/15 12:31 PM
  */
-@RocketMQTransactionListener(txProducerGroup = "tx-judge-submission-group")
-public class JudgeSubmissionTransactionListener implements RocketMQLocalTransactionListener {
+@RocketMQTransactionListener(txProducerGroup = "tx-judge-result-group")
+public class JudgeResultTransactionListener implements RocketMQLocalTransactionListener {
     /**
      * desc : use to execute the transaction
      * @param message -

@@ -1,7 +1,6 @@
-package cn.edu.nciae.contentcenter.common.entity;
+package cn.edu.nciae.judgecenter.common.entity;
 
-import cn.edu.nciae.contentcenter.common.dto.SubmissionDTO;
-import com.baomidou.mybatisplus.annotation.TableId;
+import cn.edu.nciae.judgecenter.common.dto.SubmissionDTO;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,7 +28,6 @@ public class Record implements Serializable {
     /**
      * 解题记录ID
      */
-    @TableId(value = "record_id")
     private Long recordId;
 
     /**

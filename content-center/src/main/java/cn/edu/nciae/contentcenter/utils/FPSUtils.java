@@ -1,5 +1,6 @@
 package cn.edu.nciae.contentcenter.utils;
 
+import cn.edu.nciae.contentcenter.common.entity.Checkpoint;
 import cn.edu.nciae.contentcenter.common.entity.Sample;
 import cn.edu.nciae.contentcenter.common.vo.ProblemVO;
 import org.w3c.dom.Document;
@@ -40,17 +41,8 @@ public class FPSUtils {
 
     private static ProblemVO itemToProblemVO(Node item) {
         ProblemVO problemVO = new ProblemVO();
-        List<Sample> sampleList = new ArrayList<Sample>();
-        NodeList sampleInputTags = ((Element)item).getElementsByTagName("sample_input");
-        NodeList sampleOutputTags = ((Element)item).getElementsByTagName("sample_output");
-        for (int i=0; i < sampleInputTags.getLength(); i++) {
-            Element elementIn = (Element) sampleInputTags.item(i);
-            Element elementOut = (Element) sampleOutputTags.item(i);
-            Sample sample = Sample.builder().input(elementIn.getTextContent())
-                    .output(elementOut.getTextContent())
-                    .build();
-            sampleList.add(sample);
-        }
+        List<Sample> sampleList = getSampleList(item);
+        List<Checkpoint> checkpointList = getCheckpointList(item);
         NodeList nodeList = item.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
@@ -99,6 +91,7 @@ public class FPSUtils {
         problemVO.setSubmitNum(0);
         problemVO.setSolvedNum(0);
         problemVO.setSamples(sampleList);
+        problemVO.setCheckpoints(checkpointList);
         return problemVO;
     }
 
@@ -123,6 +116,35 @@ public class FPSUtils {
         return doc;
     }
 
+    public static List<Sample> getSampleList(Node item) {
+        List<Sample> sampleList = new ArrayList<>(5);
+        NodeList sampleInputTags = ((Element)item).getElementsByTagName("sample_input");
+        NodeList sampleOutputTags = ((Element)item).getElementsByTagName("sample_output");
+        for (int i=0; i < sampleInputTags.getLength(); i++) {
+            Element elementIn = (Element) sampleInputTags.item(i);
+            Element elementOut = (Element) sampleOutputTags.item(i);
+            Sample sample = Sample.builder().input(elementIn.getTextContent())
+                    .output(elementOut.getTextContent())
+                    .build();
+            sampleList.add(sample);
+        }
+        return sampleList;
+    }
+
+    public static List<Checkpoint> getCheckpointList(Node item) {
+        List<Checkpoint> checkpointList = new ArrayList<>(20);
+        NodeList checkpointInputTags = ((Element)item).getElementsByTagName("test_input");
+        NodeList checkpointOutputTags = ((Element)item).getElementsByTagName("test_output");
+        for (int i=0; i < checkpointInputTags.getLength(); i++) {
+            Element elementIn = (Element) checkpointInputTags.item(i);
+            Element elementOut = (Element) checkpointOutputTags.item(i);
+            Checkpoint checkpoint = Checkpoint.builder().input(elementIn.getTextContent())
+                    .output(elementOut.getTextContent())
+                    .build();
+            checkpointList.add(checkpoint);
+        }
+        return checkpointList;
+    }
 //    public static String setImages(String html) {
 //        // TODO Auto-generated method stub
 //        Vector<Image> imageList = new Vector<Image>();

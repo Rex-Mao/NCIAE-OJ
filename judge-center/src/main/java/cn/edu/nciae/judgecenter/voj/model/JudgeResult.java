@@ -119,7 +119,7 @@ public class JudgeResult implements Serializable {
 	@Override
 	public String toString() {
 		return String.format("JudgeResult [Id=%d, Slug=%s, Name=%s]",
-				new Object[] { judgeResultId, judgeResultSlug, judgeResultName });
+				judgeResultId, judgeResultSlug, judgeResultName);
 	}
 
 	/**

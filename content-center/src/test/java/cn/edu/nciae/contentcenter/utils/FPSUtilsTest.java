@@ -44,7 +44,7 @@ public class FPSUtilsTest {
      */
     @Test
     public void testFPS2ProblemVO() throws Exception {
-        List<ProblemVO> problemVOList = FPSUtils.fps2ProblemVO(Long.valueOf("1"), "/Users/rexmao/Documents/RexStudio/NCIAE-OJ/Doc/standard-fps.xml");
+        List<ProblemVO> problemVOList = FPSUtils.fps2ProblemVO(Long.valueOf("1"), "/Users/rexmao/Documents/RexStudio/NCIAE-OJ/Doc/standard-test-fps.xml");
         for (ProblemVO p : problemVOList) {
             System.out.println(p.toString());
             Problem problem = p.unzipProblemVO();

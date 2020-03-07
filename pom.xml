@@ -17,6 +17,8 @@
         <spring-platform.version>Cairo-SR8</spring-platform.version>
         <lombok.version>1.18.10</lombok.version>
         <mybatis-plus.version>3.3.0</mybatis-plus.version>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
     </properties>
 
     <modules>

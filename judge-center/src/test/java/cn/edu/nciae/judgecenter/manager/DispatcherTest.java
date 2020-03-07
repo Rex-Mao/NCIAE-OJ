@@ -1,4 +1,4 @@
-package cn.edu.nciae.judgecenter.core;
+package cn.edu.nciae.judgecenter.manager;
 
 import cn.edu.nciae.judgecenter.common.dto.SubmissionDTO;
 import org.junit.After;

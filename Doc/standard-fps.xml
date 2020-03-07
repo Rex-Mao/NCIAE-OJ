@@ -3,8 +3,8 @@
 	<generator name="HUSTOJ" url="http://code.google.com/p/hustoj/"/>
 	<item>
 <title><![CDATA[Satellite Photographs]]></title>
-<time_limit><![CDATA[1]]></time_limit>
-<memory_limit><![CDATA[128]]></memory_limit>
+<time_limit unit="ms"><![CDATA[1000]]></time_limit>
+<memory_limit unit="mb"><![CDATA[128]]></memory_limit>
 <description><![CDATA[<p>Farmer John purchased satellite photos of W x H pixels of his farm (1  &lt;= W &lt;= 80, 1 &lt;= H &lt;= 1000) and wishes to determine the  largest 'contiguous' (connected) pasture. Pastures are contiguous when  any pair of pixels in a pasture can be connected by traversing adjacent  vertical or horizontal pixels that are part of the pasture.  (It is easy  to create pastures with very strange shapes, even circles that surround  other circles.) <br />
 <br />
 Each photo has been digitally enhanced to show pasture area as an  asterisk ('*') and non-pasture area as a period ('.').  Here is a 10 x 5  sample satellite photo: <br />
@@ -87,8 +87,8 @@ int main(void) {
 </item>
 <item>
 <title><![CDATA[Prime Path]]></title>
-<time_limit><![CDATA[1]]></time_limit>
-<memory_limit><![CDATA[128]]></memory_limit>
+<time_limit unit="ms"><![CDATA[1000]]></time_limit>
+<memory_limit unit="mb"><![CDATA[128]]></memory_limit>
 <description><![CDATA[<p>The ministers of the cabinet were quite upset by the message from the  Chief of Security stating that they would all have to change the  four-digit room numbers on their offices. <br />
 &mdash; It is a matter of security to change such things every now and  then, to keep the enemy in the dark. <br />
 &mdash; But look, I have chosen my number 1033 for good reasons. I am the  Prime minister, you know! <br />
@@ -207,8 +207,8 @@ int main(void) {
 </item>
 <item>
 <title><![CDATA[A Bug]]></title>
-<time_limit><![CDATA[1]]></time_limit>
-<memory_limit><![CDATA[128]]></memory_limit>
+<time_limit unit="ms"><![CDATA[1000]]></time_limit>
+<memory_limit unit="mb"><![CDATA[128]]></memory_limit>
 <description><![CDATA[<p><b>Background</b> <br />
 Professor Hopper is researching the sexual behavior of a rare  species of bugs. He assumes that they feature two different genders and  that they only interact with bugs of the opposite gender. In his  experiment, individual bugs and their interactions were easy to  identify, because numbers were printed on their backs. <br />
 <b>Problem</b> <br />
@@ -322,8 +322,8 @@ int main()
 </item>
 <item>
 <title><![CDATA[Maze Problem]]></title>
-<time_limit><![CDATA[1]]></time_limit>
-<memory_limit><![CDATA[128]]></memory_limit>
+<time_limit unit="ms"><![CDATA[1000]]></time_limit>
+<memory_limit unit="mb"><![CDATA[128]]></memory_limit>
 <description><![CDATA[<p>Given a maze, find a shortest path from start to goal.</p>]]></description>
 <input><![CDATA[<p>Input consists serveral test cases. </p>
 <p>First line of the input contains number of test case T.</p>

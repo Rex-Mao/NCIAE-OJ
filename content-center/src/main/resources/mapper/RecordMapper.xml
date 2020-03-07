@@ -5,7 +5,6 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="cn.edu.nciae.contentcenter.common.entity.Record">
         <id column="record_id" property="recordId" />
-        <result column="submission_id" property="submissionID"/>
         <result column="commit_uid" property="commitUid" />
         <result column="pid" property="pid" />
         <result column="cid" property="cid" />
@@ -14,11 +13,27 @@
         <result column="status" property="status" />
         <result column="used_time" property="usedTime" />
         <result column="used_memory" property="usedMemory" />
+        <association column="language_id" property="language" resultMap="LanguageResultMap" select="getLanguageById"/>
+    </resultMap>
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="LanguageResultMap" type="cn.edu.nciae.contentcenter.common.entity.Language">
+        <id column="language_id" property="languageId" />
+        <result column="language_slug" property="languageSlug" />
+        <result column="language_name" property="languageName" />
+        <result column="language_compile_command" property="languageCompileCommand" />
+        <result column="language_run_command" property="languageRunCommand" />
+        <result column="language_suffix" property="languageSuffix" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        record_id, submission_id, commit_uid, pid, cid, source_code, commit_time, status, used_time, used_memory
+        record_id, commit_uid, pid, cid, language_id, source_code, commit_time, status, used_time, used_memory
     </sql>
+
+    <!-- get Language data by language_id-->
+    <select id="getLanguageById" parameterType="java.lang.Integer" resultMap="LanguageResultMap">
+        select * from `languages` where `language`.`language_id` = #{language_id}
+    </select>
 
 </mapper>

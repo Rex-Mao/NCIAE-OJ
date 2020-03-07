@@ -13,5 +13,5 @@ public interface ISubmissionService {
      * desc : Create the submission and take the submission to the Message Queue
      * @return The UUID of the submissionID
      */
-    String createSubmissionAndJudge(SubmissionDTO submissionDTO);
+    Long createSubmissionAndJudge(SubmissionDTO submissionDTO);
 }

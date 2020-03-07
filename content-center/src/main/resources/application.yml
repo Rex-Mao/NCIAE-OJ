@@ -17,10 +17,12 @@ spring:
                 transactional: true
                 group: tx-judge-submission-group
       bindings:
+        JUDGE_RESULT_INPUT:
+          destination: JUDGE_RESULT_OUTPUT
+          group: tx-judge-result-group
         JudgeSubmissionSource:
           # use to figure out the topic
           destination: Judge-Submission
-
   datasource:
     url: jdbc:mysql://localhost:3306/oj_contentcenter
     hikari:

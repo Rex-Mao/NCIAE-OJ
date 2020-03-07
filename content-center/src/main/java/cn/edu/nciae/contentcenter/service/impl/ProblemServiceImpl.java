@@ -23,17 +23,19 @@ public class ProblemServiceImpl extends ServiceImpl<ProblemMapper, Problem> impl
     @Autowired
     public ProblemMapper problemMapper;
     /**
-     * @param page
+     * @param page - page object
      * @return IPage<Problem>
      */
+    @Override
     public IPage<ProblemVO> getProblemListPage(Page<ProblemVO> page) {
         return problemMapper.selectProblemVOListPage(page);
     }
 
     /**
-     * @param pid
-     * @return
+     * @param pid - problem id
+     * @return ProblemVO
      */
+    @Override
     public ProblemVO getProblemVOByPid(Long pid) {
         return problemMapper.selectProblemVOByPid(pid);
     }

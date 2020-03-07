@@ -36,7 +36,7 @@
         <result column="hint" property="hint" />
         <collection column="pid" property="samples" ofType="cn.edu.nciae.contentcenter.common.entity.Sample" select="selectSampleListByPid"/>
         <collection column="pid" property="tags" ofType="cn.edu.nciae.contentcenter.common.entity.Tag" select="selectTagListByPid"/>
-        <collection property="languages" ofType="java.lang.String" select="selectNameOfAllLanguages"/>
+        <collection column="pid" property="languages" ofType="java.lang.String" select="selectNameOfAllLanguages"/>
     </resultMap>
 
     <!-- Sample输入输出查询映射结果 -->

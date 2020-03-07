@@ -3,7 +3,7 @@
     <generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
     <item>
         <title><![CDATA[送分题-A+B Problem]]></title>
-        <time_limit unit="s"><![CDATA[1]]></time_limit>
+        <time_limit unit="ms"><![CDATA[1000]]></time_limit>
         <memory_limit unit="mb"><![CDATA[256]]></memory_limit>
         <description><![CDATA[<p>Calculate a+b</p>]]></description>
         <input><![CDATA[<p>Two integer a,b (0&lt;=a,b&lt;=10)</p>]]></input>

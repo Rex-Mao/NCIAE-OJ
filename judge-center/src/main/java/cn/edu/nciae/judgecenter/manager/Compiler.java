@@ -1,4 +1,4 @@
-package cn.edu.nciae.judgecenter.core;
+package cn.edu.nciae.judgecenter.manager;
 
 import cn.edu.nciae.judgecenter.common.dto.SubmissionDTO;
 import lombok.extern.slf4j.Slf4j;
@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.FileInputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -76,12 +77,17 @@ public class Compiler {
 		return result;
 	}
 
+	/**
+	 * get the compile log from file
+	 * @param compileLogPath -
+	 * @return String of Log info
+	 */
 	private String getCompileOutput(String compileLogPath) {
 		FileInputStream inputStream = null;
 		String compileLog = "";
 		try {
 			inputStream = new FileInputStream(compileLogPath);
-			compileLog = IOUtils.toString(inputStream, "utf-8");
+			compileLog = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
 			inputStream.close();
 		} catch (Exception ex) {
 			// Do nothing

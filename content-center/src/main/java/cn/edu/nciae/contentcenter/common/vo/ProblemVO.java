@@ -1,5 +1,6 @@
 package cn.edu.nciae.contentcenter.common.vo;
 
+import cn.edu.nciae.contentcenter.common.entity.Checkpoint;
 import cn.edu.nciae.contentcenter.common.entity.Problem;
 import cn.edu.nciae.contentcenter.common.entity.Sample;
 import cn.edu.nciae.contentcenter.common.entity.Tag;
@@ -37,6 +38,11 @@ public class ProblemVO extends Problem {
      * Languages of the problem
      */
     private List<String> languages;
+
+    /**
+     * Checkpoints of the problem
+     */
+    private List<Checkpoint> checkpoints;
 
     /**
      * desc : get Problem instance from VO

@@ -9,20 +9,37 @@ spring:
       rocketmq:
         binder:
           name-server: 127.0.0.1:9876
+        bindings:
+          JudgeResultSource:
+            output:
+              producer:
+                # use to define the distributed transaction
+                transactional: true
+                group: tx-judge-result-group
       bindings:
         JUDGE_SUBMISSION_INPUT:
           destination: JUDGE_SUBMISSION_OUTPUT
           group: tx_judge_submission_group
+        JudgeResultSource:
+          destination: Judge-Result
   datasource:
     url: jdbc:mysql://localhost:3306/oj_judgecenter
     hikari:
       username: root
       password: password
       driver-class-name: com.mysql.cj.jdbc.Driver
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    group: ResultProducerGroup
 logging:
   level:
     com.alibaba.nacos: error
 judge:
+  system:
+    #  A user with lower permission for security
+    username: judger
+    password: judger
   center:
     #  the dir use to store the compile result and output
     #  workDir: /data/judgecenter/workDir

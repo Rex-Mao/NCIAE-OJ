@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 /**
  * @author RexALun
  * @version 1.0
@@ -19,9 +21,12 @@ import lombok.NoArgsConstructor;
 public class SubmissionDTO {
     private Long userId;
     private Long problemId;
-    private String submissionID;
+    private Long submissionId;
     private Language language;
+    private Double timeLimit;
+    private Double memoryLimit;
     private String code;
+    private Date commitTime;
     private Long contestId;
     private String captcha;
 }
