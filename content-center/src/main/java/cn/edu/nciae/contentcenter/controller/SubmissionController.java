@@ -7,6 +7,7 @@ import cn.edu.nciae.contentcenter.common.vo.SubmissionVO;
 import cn.edu.nciae.contentcenter.service.ILanguageService;
 import cn.edu.nciae.contentcenter.service.ISubmissionService;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +22,7 @@ import java.io.IOException;
  * Annotation : Use to accept the submission
  * @date 2020/2/10 5:11 PM
  */
+@Slf4j
 @RestController
 public class SubmissionController {
 
@@ -32,7 +34,6 @@ public class SubmissionController {
 
     @PostMapping("/submission")
     public MessageVO<Long> judgeSubmissionAndReturnSID(SubmissionDTO submissionDTO) throws IOException {
-
         Language language = languageService.getOne(Wrappers.<Language>lambdaQuery()
                 .eq(Language::getLanguageName, submissionDTO.getLanguage().getLanguageName()));
         submissionDTO.setLanguage(language);

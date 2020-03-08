@@ -30,7 +30,7 @@ import java.util.Set;
 @Component
 public class Preparer {
 
-	@Value("${judger.checkpointDir}")
+	@Value("${judge.center.checkpointDir}")
 	private String checkpointDirectory;
 
 	@Autowired

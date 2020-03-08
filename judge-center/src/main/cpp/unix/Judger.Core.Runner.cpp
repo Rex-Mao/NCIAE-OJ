@@ -1,8 +1,8 @@
 #pragma GCC diagnostic ignored "-Wwrite-strings"
 
-#include "../jni_hashmap.h"
-#include "../jni_library.h"
-#include "../judger_core_Runner.h"
+#include "../cn_edu_nciae_judgecenter_manager_jni_hashmap.h"
+#include "../cn_edu_nciae_judgecenter_manager_jni_library.h"
+#include "../cn_edu_nciae_judgecenter_manager_Runner.h"
 
 #include <algorithm>
 #include <cmath>
@@ -61,7 +61,7 @@ int killProcess(pid_t&);
  * @param  memoryLimit     - 程序执行内存限制(KB, 0为不限制)
  * @return 一个包含运行结果的Map<String, Object>对象
  */
-JNIEXPORT jobject JNICALL Java_org_verwandlung_voj_judger_core_Runner_getRuntimeResult(
+JNIEXPORT jobject JNICALL Java_cn_edu_nciae_judgecenter_manager__Runner_getRuntimeResult(
     JNIEnv* jniEnv, jobject selfReference, jstring jCommandLine, jstring jUsername,
     jstring jPassword, jstring jInputFilePath, jstring jOutputFilePath, jint timeLimit, 
     jint memoryLimit) {

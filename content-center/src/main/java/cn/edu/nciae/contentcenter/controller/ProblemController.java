@@ -6,13 +6,13 @@ import cn.edu.nciae.contentcenter.common.vo.MessageVO;
 import cn.edu.nciae.contentcenter.common.vo.ProblemListVO;
 import cn.edu.nciae.contentcenter.common.vo.ProblemVO;
 import cn.edu.nciae.contentcenter.service.IProblemService;
+import cn.edu.nciae.contentcenter.utils.FPSUtils;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -84,6 +84,20 @@ public class ProblemController {
         return MessageVO.<ProblemListVO>builder()
                 .error(null)
                 .data(problemListVO)
+                .build();
+    }
+
+    @PutMapping("/admin/problem")
+    public MessageVO<ProblemListVO> addProblems() {
+        List<ProblemVO> problemVOList = FPSUtils.fps2ProblemVO(Long.valueOf("1"), "/Users/rexmao/Documents/RexStudio/NCIAE-OJ/Doc/standard-test-fps.xml");
+        for (ProblemVO problemVO : problemVOList) {
+            problemService.insertOneProblemVO(problemVO);
+        }
+        return MessageVO.<ProblemListVO>builder().error(null)
+                .data(ProblemListVO.builder()
+                        .results(problemVOList)
+                        .total((long)problemVOList.size())
+                        .build())
                 .build();
     }
 }

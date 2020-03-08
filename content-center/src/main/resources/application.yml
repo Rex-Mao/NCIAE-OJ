@@ -16,6 +16,11 @@ spring:
                 # use to define the distributed transaction
                 transactional: true
                 group: tx-judge-submission-group
+          CheckpointSource:
+            output:
+              producer:
+                transactional: true
+                group: tx-add-checkpoint-group
       bindings:
         JUDGE_RESULT_INPUT:
           destination: JUDGE_RESULT_OUTPUT
@@ -23,6 +28,8 @@ spring:
         JudgeSubmissionSource:
           # use to figure out the topic
           destination: Judge-Submission
+        CheckpointSource:
+          destination: Add-Checkpoint
   datasource:
     url: jdbc:mysql://localhost:3306/oj_contentcenter
     hikari:
@@ -39,7 +46,7 @@ user-center:
 rocketmq:
   name-server: 127.0.0.1:9876
   producer:
-    group: SubmissionProducerGroup
+    group: ContentCenterProducerGroup
 logging:
   level:
     com.alibaba.nacos: error

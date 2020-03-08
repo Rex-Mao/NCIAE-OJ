@@ -1,5 +1,6 @@
 package cn.edu.nciae.contentcenter.utils;
 
+import cn.edu.nciae.contentcenter.common.entity.Checkpoint;
 import cn.edu.nciae.contentcenter.common.entity.Problem;
 import cn.edu.nciae.contentcenter.common.entity.Sample;
 import cn.edu.nciae.contentcenter.common.mapper.ProblemMapper;
@@ -48,11 +49,14 @@ public class FPSUtilsTest {
         for (ProblemVO p : problemVOList) {
             System.out.println(p.toString());
             Problem problem = p.unzipProblemVO();
-            problemMapper.insert(problem);
+//            problemMapper.insert(problem);
             for (Sample sample : p.getSamples()) {
                 sample.setPid(problem.getPid());
-                sampleMapper.insert(sample);
+//                sampleMapper.insert(sample);
                 System.out.println(sample.getSid());
+            }
+            for (Checkpoint checkpoint : p.getCheckpoints()) {
+                System.out.println(checkpoint);
             }
             System.out.println(problem.getPid());
         }

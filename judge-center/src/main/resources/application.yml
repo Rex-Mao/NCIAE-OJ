@@ -19,7 +19,10 @@ spring:
       bindings:
         JUDGE_SUBMISSION_INPUT:
           destination: JUDGE_SUBMISSION_OUTPUT
-          group: tx_judge_submission_group
+          group: tx-judge-submission-group
+        CHECKPOINT_INPUT:
+          destination: CHECKPOINT_INPUT
+          group: tx-add-checkpoint-group
         JudgeResultSource:
           destination: Judge-Result
   datasource:
@@ -31,7 +34,7 @@ spring:
 rocketmq:
   name-server: 127.0.0.1:9876
   producer:
-    group: ResultProducerGroup
+    group: JudgeCenterProducerGroup
 logging:
   level:
     com.alibaba.nacos: error

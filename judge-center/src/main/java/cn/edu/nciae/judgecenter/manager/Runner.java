@@ -189,3 +189,16 @@ public class Runner {
 		return "RE";
 	}
 }
+//public class Runner {
+//	public native Map<String, Object> getRuntimeResult(String commandLine,
+//													   String systemUsername, String systemPassword, String inputFilePath,
+//													   String outputFilePath, int timeLimit, int memoryLimit);
+//	static {
+//		try {
+//			NativeLibraryLoader.loadLibrary("JudgecenterManager");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			log.warn(e.getMessage());
+//		}
+//	}
+//}

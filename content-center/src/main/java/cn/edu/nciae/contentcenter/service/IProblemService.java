@@ -26,4 +26,11 @@ public interface IProblemService extends IService<Problem> {
      * @return
      */
     ProblemVO getProblemVOByPid(Long pid);
+
+    /**
+     * desc : insert a new problem view object to database
+     * @param problemVO
+     * @return
+     */
+    ProblemVO insertOneProblemVO(ProblemVO problemVO);
 }
