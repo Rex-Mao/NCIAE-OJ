@@ -1,5 +1,7 @@
 package cn.edu.nciae.judgecenter.utils;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.*;
 
 /**
@@ -7,6 +9,7 @@ import java.io.*;
  * 
  * @author gkubisa
  */
+@Slf4j
 public class NativeLibraryLoader {
 	/**
 	 * Utility classes should not have a public constructor.
@@ -22,12 +25,11 @@ public class NativeLibraryLoader {
 	 * @throws IOException if the library cannot be extracted from a jar file
 	 * into a temporary file
 	 */
-	public static void loadLibrary(String libraryName) throws IOException {
+	public static void loadLibrary(String libraryName) throws Exception {
 		try {
 			System.loadLibrary(libraryName);
 		} catch (UnsatisfiedLinkError e) {
 			String fileName = System.mapLibraryName(libraryName);
-
 			int dotPosition = fileName.lastIndexOf('.');
 			File file = File.createTempFile(fileName.substring(0, dotPosition), fileName.substring(dotPosition));
 			file.deleteOnExit();
@@ -35,7 +37,7 @@ public class NativeLibraryLoader {
 			byte[] buffer = new byte[4096];
 			InputStream inputStream = NativeLibraryLoader.class.getClassLoader().getResourceAsStream(fileName);
 			OutputStream outputStream = new FileOutputStream(file);
-			
+
 			try {
 				while ( inputStream.available() > 0 ) {
 					int StreamLength = inputStream.read(buffer);
@@ -47,8 +49,14 @@ public class NativeLibraryLoader {
 				outputStream.close();
 				inputStream.close();
 			}
-			
-			System.load(file.getAbsolutePath());
+			log.info("Starting to load core library...");
+			try {
+				System.load(file.getAbsolutePath());
+			} catch (Error er) {
+				er.getCause();
+				er.printStackTrace();
+			}
+			log.info("Finishing load core library...");
 		}
 	}
 }

@@ -14,8 +14,8 @@
 #include <psapi.h>
 #include <tlhelp32.h>
 
-#include "../jni_hashmap.h"
-#include "../jni_library.h"
+#include "../cn_edu_nciae_judgecenter_manager_jni_hashmap.h"
+#include "../cn_edu_nciae_judgecenter_manager_jni_library.h"
 #include "../cn_edu_nciae_judgecenter_manager_Runner.h"
 
 /**

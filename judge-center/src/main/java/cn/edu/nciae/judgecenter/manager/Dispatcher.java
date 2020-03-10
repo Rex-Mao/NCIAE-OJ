@@ -72,7 +72,7 @@ public class Dispatcher {
 				logInfo.put("RuntimeSlug", "CE");
 				runtimeResults.add(0, logInfo);
 			}
-			cleanUp(baseDirectory);
+//			cleanUp(baseDirectory);
 			return runtimeResults;
         }
     }
