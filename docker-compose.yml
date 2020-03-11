@@ -1,0 +1,9 @@
+version: '3'
+services:
+  judgecenter:
+    build:
+      context: .
+      dockerfile: ./Docker/judgecenter
+    ports:
+      - "8818:8818"
+    container_name: Judge-Center

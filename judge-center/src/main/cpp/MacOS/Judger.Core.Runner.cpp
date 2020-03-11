@@ -15,7 +15,6 @@
 #include <sstream>
 #include <string>
 #include <vector>
-
 #include <fcntl.h>
 #include <signal.h>
 #include <sys/mman.h>
@@ -140,19 +139,21 @@ void setupIoRedirection(
         close(outputFileDescriptor);
     }
 }
-
+/**
+  * Remember to change a lower security user
+  */
 void setupRunUser() {
-    while ( setgid(1536) != 0 ) { 
-        std::cout <<  "[WARN] setgid(1536) failed." << std::endl;
+    while ( setgid(20) != 0 ) {
+        std::cout <<  "[WARN] setgid(20) failed." << std::endl;
         sleep(1); 
     }
-    while ( setuid(1536) != 0 ) { 
-        std::cout <<  "[WARN] setuid(1536) failed." << std::endl;
+    while ( setuid(501) != 0 ) {
+        std::cout <<  "[WARN] setuid(501) failed." << std::endl;
         sleep(1); 
     }
 //    while ( setreuid(1536, 1536, 1536) != 0 ) {
-    while ( setreuid(1536, 1536) != 0 ) {
-        std::cout <<  "[WARN] setresuid(1536, 1536, 1536) failed." << std::endl;
+    while ( setreuid(501, 501) != 0 ) {
+        std::cout <<  "[WARN] setreuid(501, 501) failed." << std::endl;
         sleep(1);
     }
 }
@@ -188,8 +189,8 @@ int runProcess(pid_t pid, sigset_t sigset, const std::string& commandLine, int t
 
         startTime       = getMillisecondsNow();
         do {
-//            if ( sigtimedwait(&sigset, NULL, &timeout) < 0 ) {
-            if ( sigwait(&sigset, &timeout.tv_sec) < 0 ) {
+            if ( sigtimedwait(&sigset, NULL, &timeout) < 0 ) {
+//            if ( sigwait(&sigset, NULL) < 0 ) {
                 if ( errno == EINTR ) {
                     /* Interrupted by a signal other than SIGCHLD. */
                     continue;

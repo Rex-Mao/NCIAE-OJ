@@ -4,11 +4,11 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848
+        server-addr: http://host.docker.internal:8848
     stream:
       rocketmq:
         binder:
-          name-server: 127.0.0.1:9876
+          name-server: http://host.docker.internal:9876
         bindings:
           JudgeResultSource:
             output:
@@ -28,11 +28,11 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/oj_judgecenter
     hikari:
-      username: root
-      password: password
+      username: judger
+      password: judger
       driver-class-name: com.mysql.cj.jdbc.Driver
 rocketmq:
-  name-server: 127.0.0.1:9876
+  name-server: http://host.docker.internal:9876
   producer:
     group: JudgeCenterProducerGroup
 logging:
@@ -45,8 +45,8 @@ judge:
     password: judger
   center:
     #  the dir use to store the compile result and output
-    #  workDir: /data/judgecenter/workDir
-    workDir: /Users/rexmao/Documents/RexStudio/NCIAE-OJ-Data/workDir
+    workDir: /data/judgecenter/workDir
+#    workDir: /Users/rexmao/Documents/RexStudio/NCIAE-OJ-Data/workDir
     #  the dir use to store the checkpoints
-    #  checkpointDir: /data/judgecenter/checkpointDir
-    checkpointDir: /Users/rexmao/Documents/RexStudio/NCIAE-OJ-Data/checkpointDir
+    checkpointDir: /data/judgecenter/checkpointDir
+#    checkpointDir: /Users/rexmao/Documents/RexStudio/NCIAE-OJ-Data/checkpointDir

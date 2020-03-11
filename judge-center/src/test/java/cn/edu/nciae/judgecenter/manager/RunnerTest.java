@@ -55,7 +55,7 @@ public class RunnerTest {
         String outputFilePath = "/Users/rexmao/Documents/RexStudio/NCIAE-OJ-Data/workDir/judge-686949447627837440/biEaTJQgyUEq-compile.log";
         Map<String, Object> results = null;
         try {
-             results = runner.getRuntimeResult(commandLine, "root", "lyyh521A", inputFilePath, outputFilePath, 1000, 256);
+             results = runner.getRuntimeResult(commandLine, "RexMao", "lyyh521A", inputFilePath, outputFilePath, 1000, 256);
         } catch (UnsatisfiedLinkError error) {
             error.printStackTrace();
         }

@@ -38,7 +38,6 @@ public class Runner {
 	static {
 		try {
 			NativeLibraryLoader.loadLibrary("JudgerCore");
-//			System.loadLibrary("JudgerCore");
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.warn(e.getMessage());
@@ -98,8 +97,6 @@ public class Runner {
 												int timeLimit, int memoryLimit) {
         Map<String, Object> result = null;
         try {
-        	System.out.println(inputFilePath);
-        	System.out.println(outputFilePath);
             result = getRuntimeResult(commandLine, systemUsername, systemPassword,
                     inputFilePath, outputFilePath, timeLimit, memoryLimit);
         } catch ( Exception ex ) {
