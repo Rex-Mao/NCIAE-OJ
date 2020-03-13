@@ -27,7 +27,7 @@ services:
       - rocketmqsrv
     container_name: rmqbroker
   judgecenter:
-    image: judge-center:stable.0.2
+    image: judge-center:stable.0.4
     ports:
       - "8818:8818"
     links:
