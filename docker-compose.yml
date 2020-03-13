@@ -1,9 +1,56 @@
 version: '3'
 services:
+  registrycenter:
+    image: registry-center:stable.1.0
+    ports:
+      - "8848:8848"
+    container_name: Registry-Center
+  rocketmqsrv:
+    image: foxiswho/rocketmq:server-4.5.1
+    ports:
+      - "9876:9876"
+    container_name: rmqserver
+    depends_on:
+      - registrycenter
+  rocketmqbkr:
+    image: foxiswho/rocketmq:broker-4.5.1
+    ports:
+      - "10911:10911"
+      - "10909:10909"
+    links:
+      - rocketmqsrv:namesrv
+    environment:
+      NAMESRV_ADDR: namesrv:9876
+      JAVA_OPTS: -Duser.home=/opt
+      JAVA_OPT_EXT: -server -Xms128m -Xmx128m
+    depends_on:
+      - rocketmqsrv
+    container_name: rmqbroker
   judgecenter:
-    build:
-      context: .
-      dockerfile: ./Docker/judgecenter
+    image: judge-center:base.1.2
     ports:
       - "8818:8818"
+    links:
+      - registrycenter:registrysrv
+      - rocketmqsrv:namesrv
+    depends_on:
+      - registrycenter
+      - rocketmqsrv
+      - rocketmqbkr
     container_name: Judge-Center
+  rmqconsole:
+    image: styletang/rocketmq-console-ng
+    ports:
+      - "24300:8080"
+    links:
+      - rocketmqsrv:namesrv
+    environment:
+      JAVA_OPTS: -Drocketmq.namesrv.addr=namesrv:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false
+    depends_on:
+      - registrycenter
+      - rocketmqsrv
+    container_name: rmqconsole
+networks:
+  default:
+    external:
+      name: nciae-oj

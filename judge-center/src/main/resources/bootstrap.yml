@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: registrysrv:8848
+  application:
+    name: judge-center

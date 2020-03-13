@@ -22,6 +22,10 @@ spring:
     platform: mysql
   security:
     enabled: true
+#  cloud:
+#    nacos:
+#      discovery:
+#        ip: 172.21.0.2
 
 server:
   tomcat:

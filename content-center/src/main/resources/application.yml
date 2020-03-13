@@ -8,7 +8,7 @@ spring:
     stream:
       rocketmq:
         binder:
-          name-server: 127.0.0.1:9876
+          name-server: localhost:9876
         bindings:
           JudgeSubmissionSource:
             output:
@@ -44,7 +44,7 @@ user-center:
   ribbon:
     NFLoadBalancerRuleClassName: cn.edu.nciae.contentcenter.configuration.NacosWeightedRule
 rocketmq:
-  name-server: 127.0.0.1:9876
+  name-server: localhost:9876
   producer:
     group: ContentCenterProducerGroup
 logging:

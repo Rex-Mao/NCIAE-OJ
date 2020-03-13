@@ -4,11 +4,11 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: http://host.docker.internal:8848
+        server-addr: registrysrv:8848
     stream:
       rocketmq:
         binder:
-          name-server: http://host.docker.internal:9876
+          name-server: namesrv:9876
         bindings:
           JudgeResultSource:
             output:
@@ -32,7 +32,7 @@ spring:
       password: judger
       driver-class-name: com.mysql.cj.jdbc.Driver
 rocketmq:
-  name-server: http://host.docker.internal:9876
+  name-server: namesrv:9876
   producer:
     group: JudgeCenterProducerGroup
 logging:
