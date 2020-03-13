@@ -1,4 +1,4 @@
-FROM judge-center:stable.0.2
+FROM judge-center:base.1.0
 ## Run Judger
 RUN rm -rf ./*
 COPY . .
