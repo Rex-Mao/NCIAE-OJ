@@ -13,7 +13,8 @@
         <result column="status" property="status" />
         <result column="used_time" property="usedTime" />
         <result column="used_memory" property="usedMemory" />
-        <association column="language_id" property="language" select="getLanguageById"/>
+        <result column="language_id" property="languageId" />
+<!--        <association column="language_id" property="language" select="getLanguageById"/>-->
     </resultMap>
 
     <!-- 通用查询映射结果 -->

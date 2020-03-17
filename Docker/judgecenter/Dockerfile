@@ -41,10 +41,12 @@ RUN /etc/init.d/mysql start && \
     mysql oj_judgecenter < ./judge-center/oj_judgecenter.sql &&\
     mysql -e "GRANT SELECT, INSERT, UPDATE, DELETE ON oj_judgecenter.* TO 'judger'@'%' IDENTIFIED BY '${MYSQL_USER_PASS}'"
 RUN mkdir -p judge-center/target/classes
-RUN make clean -C judge-center && make -C judge-center
+RUN make clean -C judge-center && \
+    make -C judge-center && \
+    chmod a+x ./Docker/judgecenter/docker-entrypoint.sh
 RUN $M2_HOME/bin/mvn package -DskipTests -f ./judge-center/pom.xml
 
-# Run Judger
-CMD ["java", "-jar", "judge-center/target/judge-center-0.0.1-SNAPSHOT.jar"]
+# Run MySQL & Judger
+ENTRYPOINT ["./Docker/judgecenter/docker-entrypoint.sh"]
 
 EXPOSE 8818

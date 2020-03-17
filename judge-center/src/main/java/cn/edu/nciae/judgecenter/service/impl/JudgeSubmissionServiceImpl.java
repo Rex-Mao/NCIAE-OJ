@@ -3,9 +3,11 @@ package cn.edu.nciae.judgecenter.service.impl;
 import cn.edu.nciae.judgecenter.common.dto.RecordDTO;
 import cn.edu.nciae.judgecenter.common.dto.SubmissionDTO;
 import cn.edu.nciae.judgecenter.manager.Dispatcher;
+import cn.edu.nciae.judgecenter.rocketmq.source.JudgeResultSouce;
 import cn.edu.nciae.judgecenter.service.IJudgeSubmissionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,13 +26,15 @@ public class JudgeSubmissionServiceImpl implements IJudgeSubmissionService {
     @Autowired
     private Dispatcher dispatcher;
 
+    @Autowired
+    private JudgeResultSouce judgeResultSouce;
+
     /**
      * desc : judge submission as Pure ACM Mode
      * @param submissionDTO - submission info
-     * @return RecordDTO
      */
     @Override
-    public RecordDTO judgeSubmission(SubmissionDTO submissionDTO) {
+    public void judgeSubmission(SubmissionDTO submissionDTO) {
         RecordDTO recordDTO = new RecordDTO();
         recordDTO.initRecordWithSubmissionDTO(submissionDTO);
         List<Map<String, Object>> runtimeResults = dispatcher.createNewTask(submissionDTO);
@@ -40,8 +44,6 @@ public class JudgeSubmissionServiceImpl implements IJudgeSubmissionService {
 
         int totalTime = 0;
 		int maxMemory = 0;
-//		int totalScore = 0;
-//		String log = "System Error.";
 
 		for ( Map<String, Object> runtimeResult : runtimeResults ) {
 			int usedTime = getUsedTime(runtimeResult);
@@ -51,19 +53,11 @@ public class JudgeSubmissionServiceImpl implements IJudgeSubmissionService {
 			if ( usedMemory > maxMemory ) {
 				maxMemory = usedMemory;
 			}
-//			if ( "AC".equals(currentRuntimeResultSlug) ) {
-//				totalScore += score;
-//			}
-//			if ( !"AC".equals(currentRuntimeResultSlug) ) {
-//				runtimeResultSlug = currentRuntimeResultSlug;
-//			}
 		}
-//		log = getJudgeLog(runtimeResults, runtimeResultSlug, totalTime, maxMemory, totalScore);
-//		updateSubmission(submissionId, totalTime, maxMemory, totalScore, runtimeResultSlug, log);
-//
+
         recordDTO.setUsedTime((double)totalTime);
 		recordDTO.setUsedMemory((double)maxMemory);
-        return recordDTO;
+        judgeResultSouce.output().send(MessageBuilder.withPayload(recordDTO).build());
     }
 
     /**
@@ -77,20 +71,20 @@ public class JudgeSubmissionServiceImpl implements IJudgeSubmissionService {
 		if (usedTimeObject == null) {
 			return 0;
 		}
-		return (Integer)usedTimeObject;
+		return ((Double)usedTimeObject).intValue();
 	}
 
 	/**
 	 * desc : get one checkpoint memeory usage info
 	 * @param runtimeResult - runtime result set
-	 * @return int - runtime memory used(MB)
+	 * @return int - runtime memory used(KB)
 	 */
 	private int getUsedMemory(Map<String, Object> runtimeResult) {
 		Object usedMemoryObject = runtimeResult.get("usedMemory");
 
-		if (usedMemoryObject == null || (Integer)usedMemoryObject == 0) {
+		if (usedMemoryObject == null || ((Double)usedMemoryObject) == 0) {
 			return 0;
 		}
-		return (Integer)usedMemoryObject / 1024;
+		return ((Double)usedMemoryObject).intValue();
 	}
 }

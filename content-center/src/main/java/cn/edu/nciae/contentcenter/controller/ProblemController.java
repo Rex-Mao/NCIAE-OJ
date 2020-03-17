@@ -34,20 +34,9 @@ public class ProblemController {
                                                    @RequestParam("limit") Integer limit,
                                                    ParametersDTO parametersDTO) {
         if (paging) {
-            Page<ProblemVO> page;
-            if (parametersDTO.getPage() != null){
-                page = new Page<ProblemVO>(parametersDTO.getPage(), limit);
-            } else {
-                page = new Page<ProblemVO>(1, limit);
-            }
-            IPage<ProblemVO> problems = problemService.getProblemListPage(page);
-            ProblemListVO problemListVO = ProblemListVO.builder()
-                    .results(problems.getRecords())
-                    .total(problems.getTotal())
-                    .build();
             return MessageVO.<ProblemListVO>builder()
                     .error(null)
-                    .data(problemListVO)
+                    .data(getPagingProblemListVO(parametersDTO, limit))
                     .build();
         }
         return MessageVO.<ProblemListVO>builder().error("No Problem Data Returned...").build();
@@ -70,20 +59,9 @@ public class ProblemController {
     public MessageVO<ProblemListVO> getAdminProblemList(@RequestParam("offset") Integer offset,
                                                         @RequestParam("limit") Integer limit,
                                                         ParametersDTO parametersDTO) {
-        Page<ProblemVO> page;
-        if (parametersDTO.getPage() != null){
-            page = new Page<ProblemVO>(parametersDTO.getPage(), limit);
-        } else {
-            page = new Page<ProblemVO>(1, limit);
-        }
-        IPage<ProblemVO> problems = problemService.getProblemListPage(page);
-        ProblemListVO problemListVO = ProblemListVO.builder()
-                .results(problems.getRecords())
-                .total(problems.getTotal())
-                .build();
         return MessageVO.<ProblemListVO>builder()
                 .error(null)
-                .data(problemListVO)
+                .data(getPagingProblemListVO(parametersDTO, limit))
                 .build();
     }
 
@@ -98,6 +76,26 @@ public class ProblemController {
                         .results(problemVOList)
                         .total((long)problemVOList.size())
                         .build())
+                .build();
+    }
+
+    /**
+     * desc : get problem list view object with paging.
+     * @param parametersDTO - parameters
+     * @param limit - limit
+     * @return ProblemListVO
+     */
+    private ProblemListVO getPagingProblemListVO(ParametersDTO parametersDTO, Integer limit) {
+        Page<ProblemVO> page;
+        if (parametersDTO.getPage() != null){
+            page = new Page<ProblemVO>(parametersDTO.getPage(), limit);
+        } else {
+            page = new Page<ProblemVO>(1, limit);
+        }
+        IPage<ProblemVO> problems = problemService.listProblemsByPaging(page);
+        return ProblemListVO.builder()
+                .results(problems.getRecords())
+                .total(problems.getTotal())
                 .build();
     }
 }

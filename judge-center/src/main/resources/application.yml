@@ -21,7 +21,7 @@ spring:
           destination: JUDGE_SUBMISSION_OUTPUT
           group: tx-judge-submission-group
         CHECKPOINT_INPUT:
-          destination: CHECKPOINT_INPUT
+          destination: CHECKPOINT_OUTPUT
           group: tx-add-checkpoint-group
         JudgeResultSource:
           destination: Judge-Result

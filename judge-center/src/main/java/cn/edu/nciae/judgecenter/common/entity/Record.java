@@ -48,7 +48,8 @@ public class Record implements Serializable {
     /**
      * 提交语言
      */
-    private Language language;
+    private Integer languageId;
+//    private Language language;
 
     /**
      * 提交源码
@@ -84,7 +85,7 @@ public class Record implements Serializable {
         this.commitUid = submissionDTO.getUserId();
         this.pid = submissionDTO.getProblemId();
         this.cid = submissionDTO.getContestId();
-        this.language = submissionDTO.getLanguage();
+        this.languageId = submissionDTO.getLanguage().getLanguageId();
         this.sourceCode = submissionDTO.getCode();
         this.commitTime = submissionDTO.getCommitTime();
     }

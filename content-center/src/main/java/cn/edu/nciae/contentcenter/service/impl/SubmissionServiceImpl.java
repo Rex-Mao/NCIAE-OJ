@@ -6,6 +6,7 @@ import cn.edu.nciae.contentcenter.common.mapper.ProblemMapper;
 import cn.edu.nciae.contentcenter.rocketmq.source.JudgeSubmissionSource;
 import cn.edu.nciae.contentcenter.service.ISubmissionService;
 import cn.edu.nciae.contentcenter.utils.SnowflakeUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import java.util.Date;
  * Annotation :
  * @date 2020/2/11 7:47 AM
  */
+@Slf4j
 @Service
 public class SubmissionServiceImpl implements ISubmissionService {
 
@@ -46,6 +48,7 @@ public class SubmissionServiceImpl implements ISubmissionService {
                 //use to transfer some parameter
                 //        .setHeader()
         );
+        log.info(String.format("Submission %s is delivered to the MQ ...", submissionDTO.getSubmissionId()));
         return submissionId;
     }
 }

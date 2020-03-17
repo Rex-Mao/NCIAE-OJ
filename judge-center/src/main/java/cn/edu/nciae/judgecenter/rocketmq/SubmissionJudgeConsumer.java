@@ -23,6 +23,7 @@ public class SubmissionJudgeConsumer {
 
     @StreamListener(JudgeSubmissionSink.JUDGE_SUBMISSION_INPUT)
     public void receive(SubmissionDTO submissionDTO) {
+        log.info(String.format("Submission %s is delivered from the MQ ...", submissionDTO.getSubmissionId()));
         judgeSubmissionService.judgeSubmission(submissionDTO);
     }
 }

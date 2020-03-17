@@ -6,28 +6,33 @@ services:
       - "8848:8848"
     container_name: Registry-Center
   rocketmqsrv:
-    image: foxiswho/rocketmq:server-4.5.1
+    image: apacherocketmq/rocketmq:4.5.1-alpine
+    container_name: rmqserver
     ports:
       - "9876:9876"
-    container_name: rmqserver
-    depends_on:
-      - registrycenter
+    command: sh mqnamesrv
+#    volumes:
+#      - "./Docker/rocketmq/namesrv/logs:/home/rocketmq/logs"
+#    depends_on:
+#      - registrycenter
   rocketmqbkr:
-    image: foxiswho/rocketmq:broker-4.5.1
+    image: apacherocketmq/rocketmq:4.5.1-alpine
+    container_name: rmqbroker
     ports:
       - "10911:10911"
       - "10909:10909"
+      - "10912:10912"
     links:
       - rocketmqsrv:namesrv
-    environment:
-      NAMESRV_ADDR: namesrv:9876
-      JAVA_OPTS: -Duser.home=/opt
-      JAVA_OPT_EXT: -server -Xms128m -Xmx128m
+    volumes:
+      - "./Docker/rocketmq/broker/conf/broker.conf:/home/rocketmq/rocketmq-4.5.1/conf/broker.conf"
+#      - "./Docker/rocketmq/broker/logs:/home/rocketmq/logs"
+#      - "./Docker/rocketmq/broker/store:/home/rocketmq/store"
     depends_on:
       - rocketmqsrv
-    container_name: rmqbroker
+    command: sh mqbroker -n namesrv:9876 -c ../conf/broker.conf
   judgecenter:
-    image: judge-center:stable.0.4
+    image: judge-center:test.0.7
     ports:
       - "8818:8818"
     links:
@@ -47,8 +52,8 @@ services:
     environment:
       JAVA_OPTS: -Drocketmq.namesrv.addr=namesrv:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false
     depends_on:
-      - registrycenter
       - rocketmqsrv
+      - rocketmqbkr
     container_name: rmqconsole
 networks:
   default:

@@ -60,7 +60,7 @@
     </sql>
 
     <!-- 获取全部problems-->
-    <select id="selectProblemVOListPage" resultMap="ProblemViewResultMap">
+    <select id="listProblemVOByPaging" resultMap="ProblemViewResultMap">
         select * from `problem`
     </select>
 

@@ -4,7 +4,7 @@ import cn.edu.nciae.contentcenter.common.entity.Checkpoint;
 import cn.edu.nciae.contentcenter.common.entity.Problem;
 import cn.edu.nciae.contentcenter.common.entity.Sample;
 import cn.edu.nciae.contentcenter.common.entity.Tag;
-import cn.edu.nciae.contentcenter.utils.VOUtils;
+import cn.edu.nciae.contentcenter.utils.ClassUtils;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
 import org.springframework.beans.BeanUtils;
@@ -49,7 +49,7 @@ public class ProblemVO extends Problem {
      * @return Problem
      */
     public Problem unzipProblemVO() {
-        return VOUtils.getSuperObjectFromSubObject(this, Problem.class);
+        return ClassUtils.getSuperObjectFromSubObject(this, Problem.class);
     }
 
     /**

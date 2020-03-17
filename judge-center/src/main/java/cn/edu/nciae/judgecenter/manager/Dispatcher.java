@@ -115,19 +115,18 @@ public class Dispatcher {
 		Map<String, Object> logInfo = new HashMap<String, Object>();
 		logInfo.put("RuntimeSlug", "AC");
 		runtimeResults.add(logInfo);
-//		String submissionId = submissionDTO.getSubmissionId();
 		long problemId = submissionDTO.getProblemId();
 
 		List<Checkpoint> checkpoints = checkpointMapper.selectList(Wrappers.<Checkpoint>lambdaQuery().eq(Checkpoint::getPid, problemId));
 		for ( Checkpoint checkpoint : checkpoints ) {
 			int checkpointId = checkpoint.getCpid();
-//			int checkpointScore = checkpoint.getScore();
 			String inputFilePath = String.format("%s/%s/input#%s.txt",
 					checkpointDirectory, problemId, checkpointId);
 			String stdOutputFilePath = String.format("%s/%s/output#%s.txt",
 					checkpointDirectory, problemId, checkpointId);
 			String outputFilePath = getOutputFilePath(workDirectory, checkpointId);
-
+			log.info(" - Start to run the program - ");
+			log.info(" - Checkpoint ID : " + checkpointId);
 			Map<String, Object> runtimeResult = getRuntimeResult(
 					runner.getRuntimeResult(submissionDTO, workDirectory, baseFileName, inputFilePath, outputFilePath),
 					stdOutputFilePath, outputFilePath);
@@ -136,11 +135,9 @@ public class Dispatcher {
 				logInfo.replace("RuntimeSlug", runtimeResult.get("runtimeResult"));
 				break;
 			}
-//			runtimeResult.put("score", checkpointScore);
-//			applicationDispatcher.onOneTestPointFinished(submissionId, checkpointId, runtimeResult);
+			log.info(" - Checkpoint " + checkpointId + "Judge Done");
 		}
 		return runtimeResults;
-//		applicationDispatcher.onAllTestPointsFinished(submissionId, runtimeResults);
 	}
 
 	/**
@@ -168,8 +165,8 @@ public class Dispatcher {
 	private Map<String, Object> getRuntimeResult(Map<String, Object> result,
 		String standardOutputFilePath, String outputFilePath) {
 		String runtimeResultSlug = (String)result.get("runtimeResult");
-		int usedTime = (Integer)result.get("usedTime");
-		int usedMemory = (Integer)result.get("usedMemory");
+		int usedTime = ((Double)result.get("usedTime")).intValue();
+		int usedMemory = ((Double)result.get("usedMemory")).intValue();
 
 		if ( "AC".equals(runtimeResultSlug) && !isOutputTheSame(standardOutputFilePath, outputFilePath) ) {
 			runtimeResultSlug = "WA";

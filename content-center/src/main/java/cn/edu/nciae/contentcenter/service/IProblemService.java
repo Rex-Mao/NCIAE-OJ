@@ -19,7 +19,7 @@ public interface IProblemService extends IService<Problem> {
      * @param page
      * @return IPage<Problem>
      */
-    IPage<ProblemVO> getProblemListPage(Page<ProblemVO> page);
+    IPage<ProblemVO> listProblemsByPaging(Page<ProblemVO> page);
 
     /**
      * @param pid

@@ -11,6 +11,7 @@ import cn.edu.nciae.contentcenter.service.IProblemService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,7 @@ import org.springframework.stereotype.Service;
  * @author RexALun
  * @since 2020-02-08
  */
+@Slf4j
 @Service
 public class ProblemServiceImpl extends ServiceImpl<ProblemMapper, Problem> implements IProblemService {
 
@@ -40,8 +42,8 @@ public class ProblemServiceImpl extends ServiceImpl<ProblemMapper, Problem> impl
      * @return IPage<Problem>
      */
     @Override
-    public IPage<ProblemVO> getProblemListPage(Page<ProblemVO> page) {
-        return problemMapper.selectProblemVOListPage(page);
+    public IPage<ProblemVO> listProblemsByPaging(Page<ProblemVO> page) {
+        return problemMapper.listProblemVOByPaging(page);
     }
 
     /**
@@ -73,6 +75,7 @@ public class ProblemServiceImpl extends ServiceImpl<ProblemMapper, Problem> impl
                 .withPayload(problemVO.getCheckpoints())
                 .build()
         );
+        log.info(String.format("Checkpoints of Problem %s is delivered to the MQ ...", problem.getPid()));
         System.out.println(problem.getPid());
         problemVO.zipProblem(problem);
         return problemVO;

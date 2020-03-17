@@ -85,8 +85,8 @@ JNIEXPORT jobject JNICALL Java_cn_edu_nciae_judgecenter_manager_Runner_getRuntim
         setupRunUser();
         setupIoRedirection(inputFilePath, outputFilePath);
     }
-    exitCode = runProcess(pid, sigset, commandLine, timeLimit, memoryLimit, usedTime, usedMemory);
-
+//    exitCode = runProcess(pid, sigset, commandLine, timeLimit, memoryLimit, usedTime, usedMemory);
+    exitCode = 0;
     std::cout << "[DEBUG] usedTime: " << usedTime << " ms" << std::endl;
     std::cout << "[DEBUG] usedMemory: " << usedMemory  << " KB" << std::endl;
     std::cout << "[DEBUG] exitCode: " << exitCode << std::endl;
@@ -189,8 +189,8 @@ int runProcess(pid_t pid, sigset_t sigset, const std::string& commandLine, int t
 
         startTime       = getMillisecondsNow();
         do {
-            if ( sigtimedwait(&sigset, NULL, &timeout) < 0 ) {
-//            if ( sigwait(&sigset, NULL) < 0 ) {
+//            if ( sigtimedwait(&sigset, NULL, &timeout) < 0 ) {
+            if ( sigwait(&sigset, NULL) < 0 ) {
                 if ( errno == EINTR ) {
                     /* Interrupted by a signal other than SIGCHLD. */
                     continue;

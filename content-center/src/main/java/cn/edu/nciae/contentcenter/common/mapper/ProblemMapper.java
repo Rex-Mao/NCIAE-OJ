@@ -22,7 +22,7 @@ public interface ProblemMapper extends BaseMapper<Problem> {
      * @param page
      * @return
      */
-    IPage<ProblemVO> selectProblemVOListPage(Page<ProblemVO> page);
+    IPage<ProblemVO> listProblemVOByPaging(Page<ProblemVO> page);
 
     /**
      * desc : get ProblemVO by Pid

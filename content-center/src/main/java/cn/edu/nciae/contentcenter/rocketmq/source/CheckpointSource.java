@@ -11,9 +11,9 @@ import org.springframework.messaging.MessageChannel;
  */
 public interface CheckpointSource {
 
-    String CHICKPOINT_OUTPUT = "CHICKPOINT_OUTPUT";
+    String CHECKPOINT_OUTPUT = "CHECKPOINT_OUTPUT";
 
-    @Output(CHICKPOINT_OUTPUT)
+    @Output(CHECKPOINT_OUTPUT)
     MessageChannel ouput();
 
 }

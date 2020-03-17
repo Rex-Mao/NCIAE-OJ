@@ -3,5 +3,34 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
+    stream:
+      rocketmq:
+        binder:
+          name-server: localhost:9876
+        bindings:
+          JudgeSubmissionSource:
+            output:
+              producer:
+                # use to define the distributed transaction
+                transactional: true
+                group: tx-judge-submission-group
+          CheckpointSource:
+            output:
+              producer:
+                transactional: true
+                group: tx-add-checkpoint-group
+      bindings:
+        JUDGE_RESULT_INPUT:
+          destination: JUDGE_RESULT_OUTPUT
+          group: tx-judge-result-group
+        JudgeSubmissionSource:
+          # use to figure out the topic
+          destination: Judge-Submission
+        CheckpointSource:
+          destination: Add-Checkpoint
   application:
     name: content-center
+rocketmq:
+  name-server: localhost:9876
+  producer:
+    group: ContentCenterProducerGroup

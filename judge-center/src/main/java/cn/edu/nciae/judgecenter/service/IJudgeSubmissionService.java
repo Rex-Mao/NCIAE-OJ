@@ -1,6 +1,5 @@
 package cn.edu.nciae.judgecenter.service;
 
-import cn.edu.nciae.judgecenter.common.dto.RecordDTO;
 import cn.edu.nciae.judgecenter.common.dto.SubmissionDTO;
 
 /**
@@ -11,6 +10,6 @@ import cn.edu.nciae.judgecenter.common.dto.SubmissionDTO;
  */
 public interface IJudgeSubmissionService {
 
-    RecordDTO judgeSubmission(SubmissionDTO submissionDTO);
+    void judgeSubmission(SubmissionDTO submissionDTO);
 
 }

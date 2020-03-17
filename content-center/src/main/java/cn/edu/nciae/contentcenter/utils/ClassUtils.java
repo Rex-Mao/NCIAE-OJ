@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
  * Annotation :
  * @date 2020/2/8 1:03 PM
  */
-public class VOUtils {
+public class ClassUtils {
     public static <S, T> T getSuperObjectFromSubObject(@NotNull S src, Class<T> superClassName) {
         try {
             T target = superClassName.getConstructor().newInstance();

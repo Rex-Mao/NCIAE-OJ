@@ -70,7 +70,7 @@ public class MPGenerator {
         strategy.setNaming(NamingStrategy.underline_to_camel);  // 表名生成策略
 //        strategy.setInclude("competition", "competition_problem", "problem", "record", "user_competition",
 //                "tag", "problem_tag", "sample", "languages");   // 需要生成的表
-        strategy.setInclude("languages");   // 需要生成的表
+        strategy.setInclude("notice");   // 需要生成的表
         // strategy.setExclude(new String[]{"test"}); // 排除生成的表
         // 自定义实体父类
         // strategy.setSuperEntityClass("com.baomidou.demo.TestEntity");
@@ -94,7 +94,7 @@ public class MPGenerator {
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setParent("cn.edu.nciae.contentcenter.common");
+        pc.setParent("cn.edu.nciae.contentcenter");
         pc.setEntity("entity");
 //        pc.setModuleName("test");
         mpg.setPackageInfo(pc);
