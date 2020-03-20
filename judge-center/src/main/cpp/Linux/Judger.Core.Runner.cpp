@@ -203,7 +203,7 @@ JNIEXPORT jobject JNICALL Java_cn_edu_nciae_judgecenter_manager_Runner_getRuntim
         if ( pid == 0 ) {
             _exit(execvp(argv[0], argv));
         }
-
+        std::cout << "[DEBUG] exitCode: " << exitCode << std::endl;
         // Collect information in Parent Process
         waitpid(pid, &exitCode, 0);
         endTime     = getMillisecondsNow();

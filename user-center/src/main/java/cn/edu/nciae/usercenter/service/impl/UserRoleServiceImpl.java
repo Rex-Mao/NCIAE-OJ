@@ -1,7 +1,7 @@
 package cn.edu.nciae.usercenter.service.impl;
 
-import cn.edu.nciae.usercenter.entity.UserRole;
-import cn.edu.nciae.usercenter.mapper.UserRoleMapper;
+import cn.edu.nciae.usercenter.common.entity.UserRole;
+import cn.edu.nciae.usercenter.common.mapper.UserRoleMapper;
 import cn.edu.nciae.usercenter.service.IUserRoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;

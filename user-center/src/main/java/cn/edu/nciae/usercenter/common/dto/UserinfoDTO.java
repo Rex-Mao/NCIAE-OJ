@@ -1,4 +1,4 @@
-package cn.edu.nciae.usercenter.dto;
+package cn.edu.nciae.usercenter.common.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

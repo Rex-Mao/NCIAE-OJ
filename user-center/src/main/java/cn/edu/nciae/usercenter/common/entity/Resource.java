@@ -1,5 +1,7 @@
-package cn.edu.nciae.usercenter.entity;
+package cn.edu.nciae.usercenter.common.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,28 +24,24 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Repository
-@TableName("role_resource")
-public class RoleResource implements Serializable {
+@TableName("resource")
+public class Resource implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 角色资源关系ID
-     */
-    private Long rrid;
-
-    /**
-     * 角色ID
-     */
-    private Long roleId;
-
-    /**
      * 资源ID
      */
+    @TableId(value = "resource_id", type = IdType.AUTO)
     private Long resourceId;
 
     /**
-     * 角色资源关系描述
+     * 资源URI
+     */
+    private String url;
+
+    /**
+     * 资源说明
      */
     private String description;
 

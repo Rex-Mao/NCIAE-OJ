@@ -1,4 +1,4 @@
-package cn.edu.nciae.usercenter.entity;
+package cn.edu.nciae.usercenter.common.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 /**
  * <p>
@@ -24,25 +25,40 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Repository
-@TableName("role")
-public class Role implements Serializable {
+@TableName("userinfo")
+public class Userinfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 角色ID
+     * 用户ID
      */
-    @TableId(value = "role_id", type = IdType.AUTO)
-    private Long roleId;
+    @TableId(value = "uid", type = IdType.AUTO)
+    private Long uid;
 
     /**
-     * 角色名称
+     * 用户名
      */
-    private String rolename;
+    private String nickname;
 
     /**
-     * 角色说明
+     * 用户密码
      */
-    private String description;
+    private String password;
+
+    /**
+     * 用户邮箱
+     */
+    private String email;
+
+    /**
+     * 注册时间
+     */
+    private Date regtime;
+
+    /**
+     * 解题数量
+     */
+    private Integer solvednum;
 
 }

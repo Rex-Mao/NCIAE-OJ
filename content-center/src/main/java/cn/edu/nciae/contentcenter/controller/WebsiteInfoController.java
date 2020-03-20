@@ -28,4 +28,25 @@ public class WebsiteInfoController {
                 .build())
                 .build();
     }
+
+//    @ResponseBody
+//    @GetMapping("/favicon.ico")
+//    public boolean getFavicon(HttpServletResponse httpServletResponse) throws IOException {
+//        File file = new File("./mess/favicon.ico");
+//        if (!file.exists()) {
+//            return false;
+//        }
+//        FileInputStream fileInputStream = new FileInputStream(file);
+//        byte[] data = new byte[(int)file.length()];
+//        fileInputStream.read(data);
+//        fileInputStream.close();
+//
+//        httpServletResponse.setContentType("image/x-icon");
+//        OutputStream outputStream = httpServletResponse.getOutputStream();
+//        outputStream.write(data);
+//        outputStream.flush();
+//        outputStream.close();
+//        return true;
+//    }
+
 }

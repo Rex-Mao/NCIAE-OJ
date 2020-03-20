@@ -6,17 +6,19 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 /**
  * @author RexALun
  * @version 1.0
  * Annotation :
- * @date 2020/2/10 6:21 PM
+ * @date 2020/3/19 12:16 PM
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SubmissionVO {
-    private Record data;
-    private Integer result;
+public class SubmissionListVO {
+    private List<Record> results;
+    private Long total;
 }

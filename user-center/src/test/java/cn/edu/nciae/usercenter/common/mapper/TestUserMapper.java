@@ -1,6 +1,6 @@
-package cn.edu.nciae.usercenter.mapper;
+package cn.edu.nciae.usercenter.common.mapper;
 
-import cn.edu.nciae.usercenter.entity.Userinfo;
+import cn.edu.nciae.usercenter.common.entity.Userinfo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

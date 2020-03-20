@@ -1,8 +1,8 @@
 package cn.edu.nciae.contentcenter.common.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -38,5 +38,7 @@ public class Language implements Serializable {
     private String languageRunCommand;
 
     private String languageSuffix;
+
+    private String languageDescription;
 
 }

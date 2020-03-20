@@ -1,7 +1,7 @@
 package cn.edu.nciae.contentcenter.controller;
 
 
-import cn.edu.nciae.contentcenter.common.dto.ParametersDTO;
+import cn.edu.nciae.contentcenter.common.dto.ProblemParametersDTO;
 import cn.edu.nciae.contentcenter.common.vo.MessageVO;
 import cn.edu.nciae.contentcenter.common.vo.ProblemListVO;
 import cn.edu.nciae.contentcenter.common.vo.ProblemVO;
@@ -32,11 +32,11 @@ public class ProblemController {
     public MessageVO<ProblemListVO> getProblemList(@RequestParam("paging") Boolean paging,
                                                    @RequestParam("offset") Integer offset,
                                                    @RequestParam("limit") Integer limit,
-                                                   ParametersDTO parametersDTO) {
+                                                   ProblemParametersDTO problemParametersDTO) {
         if (paging) {
             return MessageVO.<ProblemListVO>builder()
                     .error(null)
-                    .data(getPagingProblemListVO(parametersDTO, limit))
+                    .data(getPagingProblemListVO(problemParametersDTO, limit))
                     .build();
         }
         return MessageVO.<ProblemListVO>builder().error("No Problem Data Returned...").build();
@@ -58,10 +58,10 @@ public class ProblemController {
     @GetMapping("/admin/problem")
     public MessageVO<ProblemListVO> getAdminProblemList(@RequestParam("offset") Integer offset,
                                                         @RequestParam("limit") Integer limit,
-                                                        ParametersDTO parametersDTO) {
+                                                        ProblemParametersDTO problemParametersDTO) {
         return MessageVO.<ProblemListVO>builder()
                 .error(null)
-                .data(getPagingProblemListVO(parametersDTO, limit))
+                .data(getPagingProblemListVO(problemParametersDTO, limit))
                 .build();
     }
 
@@ -81,18 +81,18 @@ public class ProblemController {
 
     /**
      * desc : get problem list view object with paging.
-     * @param parametersDTO - parameters
+     * @param problemParametersDTO - parameters
      * @param limit - limit
      * @return ProblemListVO
      */
-    private ProblemListVO getPagingProblemListVO(ParametersDTO parametersDTO, Integer limit) {
+    private ProblemListVO getPagingProblemListVO(ProblemParametersDTO problemParametersDTO, Integer limit) {
         Page<ProblemVO> page;
-        if (parametersDTO.getPage() != null){
-            page = new Page<ProblemVO>(parametersDTO.getPage(), limit);
+        if (problemParametersDTO.getPage() != null){
+            page = new Page<ProblemVO>(problemParametersDTO.getPage(), limit);
         } else {
             page = new Page<ProblemVO>(1, limit);
         }
-        IPage<ProblemVO> problems = problemService.listProblemsByPaging(page);
+        IPage<ProblemVO> problems = problemService.listProblemsByPaging(page, problemParametersDTO);
         return ProblemListVO.builder()
                 .results(problems.getRecords())
                 .total(problems.getTotal())

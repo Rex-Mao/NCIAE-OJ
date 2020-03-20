@@ -8,14 +8,14 @@ import lombok.NoArgsConstructor;
 /**
  * @author RexALun
  * @version 1.0
- * Annotation : query parameters
+ * Annotation : query parameters of problems
  * @date 2020/2/7 3:53 PM
  */
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ParametersDTO {
+public class ProblemParametersDTO {
     private String keyword;
     private String difficulty;
     private String tag;

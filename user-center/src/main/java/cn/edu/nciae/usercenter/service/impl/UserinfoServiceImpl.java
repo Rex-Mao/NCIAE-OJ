@@ -1,7 +1,7 @@
 package cn.edu.nciae.usercenter.service.impl;
 
-import cn.edu.nciae.usercenter.entity.Userinfo;
-import cn.edu.nciae.usercenter.mapper.UserinfoMapper;
+import cn.edu.nciae.usercenter.common.entity.Userinfo;
+import cn.edu.nciae.usercenter.common.mapper.UserinfoMapper;
 import cn.edu.nciae.usercenter.service.IUserinfoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;

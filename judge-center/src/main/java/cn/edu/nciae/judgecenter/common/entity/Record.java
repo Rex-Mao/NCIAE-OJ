@@ -1,6 +1,7 @@
 package cn.edu.nciae.judgecenter.common.entity;
 
 import cn.edu.nciae.judgecenter.common.dto.SubmissionDTO;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +12,7 @@ import java.util.Date;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author RexALun
@@ -28,12 +29,18 @@ public class Record implements Serializable {
     /**
      * 解题记录ID
      */
+    @TableId(value = "record_id")
     private Long recordId;
 
     /**
      * 解题用户ID
      */
     private Long commitUid;
+
+    /**
+     * 解题用户名
+     */
+    private String commitNickname;
 
     /**
      * 题目ID
@@ -83,6 +90,7 @@ public class Record implements Serializable {
     public void initRecordWithSubmissionDTO(SubmissionDTO submissionDTO) {
         this.recordId = submissionDTO.getSubmissionId();
         this.commitUid = submissionDTO.getUserId();
+        this.commitNickname = submissionDTO.getUserNickname();
         this.pid = submissionDTO.getProblemId();
         this.cid = submissionDTO.getContestId();
         this.languageId = submissionDTO.getLanguage().getLanguageId();

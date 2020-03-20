@@ -22,6 +22,7 @@ public class SubmissionDTO {
     private Long userId;
     private Long problemId;
     private Long submissionId;
+    private String userNickname;
     private Language language;
     private Double timeLimit;
     private Double memoryLimit;

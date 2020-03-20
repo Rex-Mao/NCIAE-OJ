@@ -3,6 +3,8 @@ package cn.edu.nciae.contentcenter.common.entity;
 import cn.edu.nciae.contentcenter.common.dto.SubmissionDTO;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,6 +31,7 @@ public class Record implements Serializable {
     /**
      * 解题记录ID
      */
+    @JsonSerialize(using = ToStringSerializer.class)
     @TableId(value = "record_id")
     private Long recordId;
 
@@ -36,6 +39,11 @@ public class Record implements Serializable {
      * 解题用户ID
      */
     private Long commitUid;
+
+    /**
+     * 解题用户名
+     */
+    private String commitNickname;
 
     /**
      * 题目ID
@@ -85,6 +93,7 @@ public class Record implements Serializable {
     public void initRecordWithSubmissionDTO(SubmissionDTO submissionDTO) {
         this.recordId = submissionDTO.getSubmissionId();
         this.commitUid = submissionDTO.getUserId();
+        this.commitNickname = submissionDTO.getUserNickname();
         this.pid = submissionDTO.getProblemId();
         this.cid = submissionDTO.getContestId();
         this.languageId = submissionDTO.getLanguage().getLanguageId();

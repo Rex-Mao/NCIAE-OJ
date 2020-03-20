@@ -10,11 +10,12 @@
         <result column="language_compile_command" property="languageCompileCommand" />
         <result column="language_run_command" property="languageRunCommand" />
         <result column="language_suffix" property="languageSuffix" />
+        <result column="language_description" property="languageDescription" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        language_id, language_slug, language_name, language_compile_command, language_run_command, language_suffix
+        language_id, language_slug, language_name, language_compile_command, language_run_command, language_suffix, language_description
     </sql>
 
 </mapper>

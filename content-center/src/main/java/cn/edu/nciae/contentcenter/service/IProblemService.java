@@ -1,5 +1,6 @@
 package cn.edu.nciae.contentcenter.service;
 
+import cn.edu.nciae.contentcenter.common.dto.ProblemParametersDTO;
 import cn.edu.nciae.contentcenter.common.entity.Problem;
 import cn.edu.nciae.contentcenter.common.vo.ProblemVO;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -19,7 +20,7 @@ public interface IProblemService extends IService<Problem> {
      * @param page
      * @return IPage<Problem>
      */
-    IPage<ProblemVO> listProblemsByPaging(Page<ProblemVO> page);
+    IPage<ProblemVO> listProblemsByPaging(Page<ProblemVO> page, ProblemParametersDTO problemParametersDTO);
 
     /**
      * @param pid

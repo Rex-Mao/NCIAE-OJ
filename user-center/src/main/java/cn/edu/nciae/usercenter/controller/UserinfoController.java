@@ -1,16 +1,15 @@
 package cn.edu.nciae.usercenter.controller;
 
 
-import cn.edu.nciae.usercenter.dto.UserinfoDTO;
-import cn.edu.nciae.usercenter.entity.Userinfo;
+import cn.edu.nciae.usercenter.common.dto.UserinfoDTO;
+import cn.edu.nciae.usercenter.common.entity.Userinfo;
+import cn.edu.nciae.usercenter.common.vo.MessageVO;
 import cn.edu.nciae.usercenter.service.IUserinfoService;
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -21,19 +20,16 @@ import org.springframework.web.bind.annotation.RestController;
  * @author RexALun
  * @since 2019-12-26
  */
-@RestController
 @Slf4j
-@RequestMapping("/userinfo")
+@RestController
 public class UserinfoController {
 
     @Autowired
     private IUserinfoService userinfoService;
 
-    QueryWrapper<Userinfo> queryWrapper = new QueryWrapper<Userinfo>();
-
-    @GetMapping("/{userid}")
+    @GetMapping("/userinfo/{userid}")
     public UserinfoDTO getUserinfo(@PathVariable("userid") Long uid) {
-        Userinfo userinfo = userinfoService.getOne((Wrapper<Userinfo>) queryWrapper.gt("uid", uid), false);
+        Userinfo userinfo = userinfoService.getOne(Wrappers.<Userinfo>lambdaQuery().eq(Userinfo::getUid, uid));
         UserinfoDTO userinfoDTO = UserinfoDTO.builder()
                 .userid(userinfo.getUid())
                 .regTime(userinfo.getRegtime())
@@ -43,4 +39,11 @@ public class UserinfoController {
         return userinfoDTO;
     }
 
+    @GetMapping("/profile")
+    public MessageVO<Userinfo> getProfile() {
+        return MessageVO.<Userinfo>builder()
+                .error(null)
+                .data(null)
+                .build();
+    }
 }

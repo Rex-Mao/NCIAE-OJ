@@ -1,6 +1,6 @@
-package cn.edu.nciae.usercenter.mapper;
+package cn.edu.nciae.usercenter.common.mapper;
 
-import cn.edu.nciae.usercenter.entity.Role;
+import cn.edu.nciae.usercenter.common.entity.Role;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

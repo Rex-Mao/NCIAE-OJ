@@ -1,6 +1,6 @@
 package cn.edu.nciae.usercenter.service;
 
-import cn.edu.nciae.usercenter.entity.Role;
+import cn.edu.nciae.usercenter.common.entity.Role;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

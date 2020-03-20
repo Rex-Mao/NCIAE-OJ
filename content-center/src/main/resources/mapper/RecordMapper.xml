@@ -6,6 +6,7 @@
     <resultMap id="BaseResultMap" type="cn.edu.nciae.contentcenter.common.entity.Record">
         <id column="record_id" property="recordId" />
         <result column="commit_uid" property="commitUid" />
+        <result column="commit_nickname" property="commitNickname" />
         <result column="pid" property="pid" />
         <result column="cid" property="cid" />
         <result column="source_code" property="sourceCode" />
@@ -29,7 +30,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        record_id, commit_uid, pid, cid, language_id, source_code, commit_time, status, used_time, used_memory
+        record_id, commit_uid, commit_nickname, pid, cid, language_id, source_code, commit_time, status, used_time, used_memory
     </sql>
 
     <!-- get Language data by language_id-->

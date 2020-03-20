@@ -1,6 +1,6 @@
-package cn.edu.nciae.usercenter.mapper;
+package cn.edu.nciae.usercenter.common.mapper;
 
-import cn.edu.nciae.usercenter.entity.Userinfo;
+import cn.edu.nciae.usercenter.common.entity.Userinfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.springframework.stereotype.Repository;
 

@@ -1,9 +1,11 @@
 package cn.edu.nciae.contentcenter.service.impl;
 
+import cn.edu.nciae.contentcenter.common.dto.ProblemParametersDTO;
 import cn.edu.nciae.contentcenter.common.entity.Checkpoint;
 import cn.edu.nciae.contentcenter.common.entity.Problem;
 import cn.edu.nciae.contentcenter.common.entity.Sample;
 import cn.edu.nciae.contentcenter.common.mapper.ProblemMapper;
+import cn.edu.nciae.contentcenter.common.mapper.ProblemTagMapper;
 import cn.edu.nciae.contentcenter.common.mapper.SampleMapper;
 import cn.edu.nciae.contentcenter.common.vo.ProblemVO;
 import cn.edu.nciae.contentcenter.rocketmq.source.CheckpointSource;
@@ -29,10 +31,13 @@ import org.springframework.stereotype.Service;
 public class ProblemServiceImpl extends ServiceImpl<ProblemMapper, Problem> implements IProblemService {
 
     @Autowired
-    public ProblemMapper problemMapper;
+    private ProblemMapper problemMapper;
 
     @Autowired
-    public SampleMapper sampleMapper;
+    private SampleMapper sampleMapper;
+
+    @Autowired
+    private ProblemTagMapper problemTagMapper;
 
     @Autowired
     public CheckpointSource checkpointSource;
@@ -42,7 +47,10 @@ public class ProblemServiceImpl extends ServiceImpl<ProblemMapper, Problem> impl
      * @return IPage<Problem>
      */
     @Override
-    public IPage<ProblemVO> listProblemsByPaging(Page<ProblemVO> page) {
+    public IPage<ProblemVO> listProblemsByPaging(Page<ProblemVO> page, ProblemParametersDTO problemParametersDTO) {
+        if (problemParametersDTO.getTag() != null) {
+            return problemTagMapper.listProblemVOByTag(page, problemParametersDTO.getTag());
+        }
         return problemMapper.listProblemVOByPaging(page);
     }
 

@@ -58,7 +58,8 @@ public class JudgeSubmissionServiceImpl implements IJudgeSubmissionService {
         recordDTO.setUsedTime((double)totalTime);
 		recordDTO.setUsedMemory((double)maxMemory);
         judgeResultSouce.output().send(MessageBuilder.withPayload(recordDTO).build());
-    }
+		log.info(String.format("Record %s is delivered to the MQ ...", recordDTO.getRecordId()));
+	}
 
     /**
 	 * desc : get one checkpoint time usage info

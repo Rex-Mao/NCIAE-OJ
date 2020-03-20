@@ -39,4 +39,6 @@ public class Language implements Serializable {
 
     private String languageSuffix;
 
+    private String languageDescription;
+
 }
