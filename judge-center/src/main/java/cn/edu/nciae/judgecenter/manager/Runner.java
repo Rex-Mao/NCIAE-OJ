@@ -90,7 +90,7 @@ public class Runner {
      * @param inputFilePath - it's ok to be null when compile
      * @param outputFilePath - it's ok to be null when compile
      * @param timeLimit - 0 means no limit
-     * @param memoryLimit - 0 means no limit
+     * @param memoryLimit - 0 means no limit (MB->KB)
      * @return Map<String, Object> Result
      */
     public Map<String, Object> getRuntimeResult(String commandLine, String inputFilePath, String outputFilePath,
@@ -150,7 +150,7 @@ public class Runner {
 		Language language = submissionDTO.getLanguage();
 		double timeLimit = submissionDTO.getTimeLimit();
 
-		if ( language.getLanguageName().equalsIgnoreCase("Java") ) {
+		if ( "Java".equalsIgnoreCase(language.getLanguageName()) ) {
 			timeLimit *= 2;
 		}
 		return timeLimit;
@@ -178,8 +178,8 @@ public class Runner {
         if ( timeUsed >= timeLimit ) {
             return "TLE";
         }
-        // memory use MB unit
-        if ( memoryUsed >= memoryLimit * 1024 ) {
+        // memory use KB unit
+        if ( memoryUsed >= memoryLimit ) {
             return "MLE";
         }
 	    if ( exitCode == 0 ) {
@@ -189,16 +189,3 @@ public class Runner {
 		return "RE";
 	}
 }
-//public class Runner {
-//	public native Map<String, Object> getRuntimeResult(String commandLine,
-//													   String systemUsername, String systemPassword, String inputFilePath,
-//													   String outputFilePath, int timeLimit, int memoryLimit);
-//	static {
-//		try {
-//			NativeLibraryLoader.loadLibrary("JudgecenterManager");
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			log.warn(e.getMessage());
-//		}
-//	}
-//}

@@ -32,7 +32,7 @@ services:
       - rocketmqsrv
     command: sh mqbroker -n namesrv:9876 -c ../conf/broker.conf
   judgecenter:
-    image: judge-center:test.1.0
+    image: judge-center:test.1.7
     ports:
       - "8818:8818"
     links:
