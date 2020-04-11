@@ -25,8 +25,8 @@ import java.sql.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Repository
-@TableName("userinfo")
-public class Userinfo implements Serializable {
+@TableName("user_info")
+public class UserInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -61,4 +61,33 @@ public class Userinfo implements Serializable {
      */
     private Integer solvednum;
 
+    /**
+     * 界面语言
+     */
+    private String language;
+
+    /**
+     * 座右铭
+     */
+    private String mood;
+
+    /**
+     * 博客
+     */
+    private String blog;
+
+    /**
+     * Github url
+     */
+    private String github;
+
+    /**
+     * Base64头像
+     */
+    private String avatar;
+
+    /**
+     * 头像URL
+     */
+    private String avatarUrl;
 }

@@ -11,6 +11,11 @@ spring:
       discovery:
         locator:
           enabled: true
+#      routes:
+#        - id: testForLogin
+#          uri: lb://user-center
+#          predicates:
+#            - Path=/login
 management:
   endpoints:
     web:

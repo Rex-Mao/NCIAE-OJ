@@ -1,5 +1,6 @@
 package cn.edu.nciae.contentcenter.service;
 
+import cn.edu.nciae.contentcenter.common.dto.ProblemDTO;
 import cn.edu.nciae.contentcenter.common.dto.ProblemParametersDTO;
 import cn.edu.nciae.contentcenter.common.entity.Problem;
 import cn.edu.nciae.contentcenter.common.vo.ProblemVO;
@@ -34,4 +35,18 @@ public interface IProblemService extends IService<Problem> {
      * @return
      */
     ProblemVO insertOneProblemVO(ProblemVO problemVO);
+
+    /**
+     * desc : insert a new problem data transfer object to database
+     * @param problemDTO -
+     * @return Boolean
+     */
+    Boolean insertOneProblemDTO(ProblemDTO problemDTO);
+
+    /**
+     * desc : update a problem
+     * @param problemDTO -
+     * @return Boolean
+     */
+    Boolean updateOneProblemDTO(ProblemDTO problemDTO);
 }

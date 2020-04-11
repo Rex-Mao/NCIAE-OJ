@@ -17,7 +17,7 @@ import java.sql.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserinfoDTO {
+public class UserInfoDTO {
 
     private Long userid;
 

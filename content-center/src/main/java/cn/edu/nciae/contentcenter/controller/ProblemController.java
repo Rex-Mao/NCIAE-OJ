@@ -1,7 +1,9 @@
 package cn.edu.nciae.contentcenter.controller;
 
 
+import cn.edu.nciae.contentcenter.common.dto.ProblemDTO;
 import cn.edu.nciae.contentcenter.common.dto.ProblemParametersDTO;
+import cn.edu.nciae.contentcenter.common.entity.Checkpoint;
 import cn.edu.nciae.contentcenter.common.vo.MessageVO;
 import cn.edu.nciae.contentcenter.common.vo.ProblemListVO;
 import cn.edu.nciae.contentcenter.common.vo.ProblemVO;
@@ -12,6 +14,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,7 +31,7 @@ public class ProblemController {
     @Autowired
     public IProblemService problemService;
 
-    @GetMapping("/problem")
+    @GetMapping("/problems")
     public MessageVO<ProblemListVO> getProblemList(@RequestParam("paging") Boolean paging,
                                                    @RequestParam("offset") Integer offset,
                                                    @RequestParam("limit") Integer limit,
@@ -42,8 +45,13 @@ public class ProblemController {
         return MessageVO.<ProblemListVO>builder().error("No Problem Data Returned...").build();
     }
 
-    @GetMapping("/problem/{problem_id}")
-    public MessageVO<ProblemVO> getProblemByPid(@PathVariable("problem_id") Long pid) {
+    /**
+     * desc : get the problem by pid
+     * @param pid -
+     * @return MessageVO<ProblemVO>
+     */
+    @GetMapping("/problem/{pid}")
+    public MessageVO<ProblemVO> getProblemByPid(@PathVariable("pid") Long pid) {
         ProblemVO problemVO = problemService.getProblemVOByPid(pid);
         if (problemVO != null) {
             return MessageVO.<ProblemVO>builder()
@@ -55,7 +63,32 @@ public class ProblemController {
         }
     }
 
-    @GetMapping("/admin/problem")
+    /**
+     * desc : get the problem by pid with admin role
+     * @param pid -
+     * @return MessageVO<ProblemVO>
+     */
+    @GetMapping("/admin/problem/{pid}")
+    public MessageVO<ProblemVO> getAdminProblemByPid(@PathVariable("pid") Long pid) {
+        ProblemVO problemVO = problemService.getProblemVOByPid(pid);
+        if (problemVO != null) {
+            return MessageVO.<ProblemVO>builder()
+                    .error(null)
+                    .data(problemVO)
+                    .build();
+        } else {
+            return MessageVO.<ProblemVO>builder().error("No choosed problem find...").build();
+        }
+    }
+
+    /**
+     * desc : get problem list by admin
+     * @param offset -
+     * @param limit -
+     * @param problemParametersDTO -
+     * @return MessageVO<ProblemListVO>
+     */
+    @GetMapping("/admin/problems")
     public MessageVO<ProblemListVO> getAdminProblemList(@RequestParam("offset") Integer offset,
                                                         @RequestParam("limit") Integer limit,
                                                         ProblemParametersDTO problemParametersDTO) {
@@ -65,7 +98,39 @@ public class ProblemController {
                 .build();
     }
 
+    /**
+     * desc : create a new problem
+     * @param problemDTO -
+     * @return MessageVO<Boolean>
+     */
+    @PostMapping("/admin/problem")
+    public MessageVO<Boolean> addSingleProblem(@RequestBody ProblemDTO problemDTO) {
+        Boolean result = problemService.insertOneProblemDTO(problemDTO);
+        return MessageVO.<Boolean>builder()
+                .error(null)
+                .data(result)
+                .build();
+    }
+
+    /**
+     * desc : update a new problem
+     * @param problemDTO -
+     * @return MessageVO<Boolean>
+     */
     @PutMapping("/admin/problem")
+    public MessageVO<Boolean> editSingeProblem(@RequestBody ProblemDTO problemDTO) {
+        Boolean result = problemService.updateOneProblemDTO(problemDTO);
+        return MessageVO.<Boolean>builder()
+                .error(null)
+                .data(result)
+                .build();
+    }
+
+    /**
+     * desc : get the problems from free problem set file
+     * @return MessageVO<ProblemListVO>
+     */
+    @PostMapping("/admin/problems")
     public MessageVO<ProblemListVO> addProblems() {
         List<ProblemVO> problemVOList = FPSUtils.fps2ProblemVO(Long.valueOf("1"), "/Users/rexmao/Documents/RexStudio/NCIAE-OJ/Doc/standard-test-fps.xml");
         for (ProblemVO problemVO : problemVOList) {
@@ -93,6 +158,9 @@ public class ProblemController {
             page = new Page<ProblemVO>(1, limit);
         }
         IPage<ProblemVO> problems = problemService.listProblemsByPaging(page, problemParametersDTO);
+        for (ProblemVO problemVO : problems.getRecords()) {
+            problemVO.setCheckpoints(new ArrayList<Checkpoint>());
+        }
         return ProblemListVO.builder()
                 .results(problems.getRecords())
                 .total(problems.getTotal())

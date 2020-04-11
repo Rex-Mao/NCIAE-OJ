@@ -1,16 +1,18 @@
 package cn.edu.nciae.contentcenter.service.impl;
 
+import cn.edu.nciae.contentcenter.common.dto.ProblemDTO;
 import cn.edu.nciae.contentcenter.common.dto.ProblemParametersDTO;
-import cn.edu.nciae.contentcenter.common.entity.Checkpoint;
-import cn.edu.nciae.contentcenter.common.entity.Problem;
-import cn.edu.nciae.contentcenter.common.entity.Sample;
+import cn.edu.nciae.contentcenter.common.entity.*;
 import cn.edu.nciae.contentcenter.common.mapper.ProblemMapper;
 import cn.edu.nciae.contentcenter.common.mapper.ProblemTagMapper;
 import cn.edu.nciae.contentcenter.common.mapper.SampleMapper;
+import cn.edu.nciae.contentcenter.common.mapper.TagMapper;
 import cn.edu.nciae.contentcenter.common.vo.ProblemVO;
 import cn.edu.nciae.contentcenter.rocketmq.source.CheckpointSource;
 import cn.edu.nciae.contentcenter.service.IProblemService;
+import cn.edu.nciae.contentcenter.utils.ClassUtils;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -38,6 +40,9 @@ public class ProblemServiceImpl extends ServiceImpl<ProblemMapper, Problem> impl
 
     @Autowired
     private ProblemTagMapper problemTagMapper;
+
+    @Autowired
+    private TagMapper tagMapper;
 
     @Autowired
     public CheckpointSource checkpointSource;
@@ -87,5 +92,67 @@ public class ProblemServiceImpl extends ServiceImpl<ProblemMapper, Problem> impl
         System.out.println(problem.getPid());
         problemVO.zipProblem(problem);
         return problemVO;
+    }
+
+    /**
+     * desc : insert a problem with samples and checkpoints to database
+     * @param problemDTO -
+     * @return Boolean
+     */
+    @Override
+    public Boolean insertOneProblemDTO(ProblemDTO problemDTO) {
+        Problem problem = ClassUtils.getSuperObjectFromSubObject(problemDTO, Problem.class);
+        problem.setSubmitNum(0);
+        problem.setSolvedNum(0);
+        problemMapper.insert(problem);
+        Boolean result = setThingsWithProblem(problemDTO, problem.getPid());
+        return result;
+    }
+
+    /**
+     * desc : update a problem
+     * @param problemDTO -
+     * @return Boolean
+     */
+    @Override
+    public Boolean updateOneProblemDTO(ProblemDTO problemDTO) {
+        Problem problem = ClassUtils.getSuperObjectFromSubObject(problemDTO, Problem.class);
+        sampleMapper.delete(Wrappers.<Sample>lambdaQuery().eq(Sample::getPid, problem.getPid()));
+        problemTagMapper.delete(Wrappers.<ProblemTag>lambdaQuery().eq(ProblemTag::getPid, problem.getPid()));
+        problemMapper.update(problem, Wrappers.<Problem>lambdaQuery().eq(Problem::getPid, problem.getPid()));
+        Boolean result = setThingsWithProblem(problemDTO, problem.getPid());
+        return result;
+    }
+
+    /**
+     * desc : set the tags ,samples, problemTags with problemDTO
+     * @param problemDTO -
+     * @param pid -
+     * @return Boolean
+     */
+    private Boolean setThingsWithProblem(ProblemDTO problemDTO, Long pid) {
+        for (Sample sample : problemDTO.getSamples()) {
+            sample.setPid(pid);
+            sampleMapper.insert(sample);
+        }
+        for (Tag tag : problemDTO.getTags()) {
+            Tag tmp = tagMapper.selectOne(Wrappers.<Tag>lambdaQuery().eq(Tag::getTName, tag.getTName()));
+            if (tmp == null) {
+                tmp = Tag.builder()
+                        .tName(tag.getTName())
+                        .tDescription(tag.getTName())
+                        .build();
+                tagMapper.insert(tmp);
+            }
+            ProblemTag problemTag = ProblemTag.builder()
+                    .pid(pid)
+                    .tid(tmp.getTid())
+                    .build();
+            problemTagMapper.insert(problemTag);
+        }
+        for (Checkpoint checkpoint : problemDTO.getCheckpoints()) {
+            System.out.println(checkpoint);
+        }
+        return true;
     }
 }

@@ -3,6 +3,7 @@ package cn.edu.nciae.contentcenter.common.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -50,11 +51,13 @@ public class Problem implements Serializable {
     /**
      * 输入格式
      */
+    @JsonProperty("fInput")
     private String fInput;
 
     /**
      * 输出格式
      */
+    @JsonProperty("fOutput")
     private String fOutput;
 
     /**

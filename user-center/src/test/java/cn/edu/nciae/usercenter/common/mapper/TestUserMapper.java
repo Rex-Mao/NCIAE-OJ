@@ -1,6 +1,6 @@
 package cn.edu.nciae.usercenter.common.mapper;
 
-import cn.edu.nciae.usercenter.common.entity.Userinfo;
+import cn.edu.nciae.usercenter.common.entity.UserInfo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,11 +21,11 @@ import java.sql.Date;
 public class TestUserMapper {
 
     @Autowired
-    public UserinfoMapper userinfoMapper;
+    public UserInfoMapper userInfoMapper;
 
     @Test
     public void testUserInsert() {
-        Userinfo userinfo = Userinfo.builder()
+        UserInfo userinfo = UserInfo.builder()
                 .uid(new Long(1))
                 .nickname("Rex")
                 .password("123456")
@@ -33,7 +33,7 @@ public class TestUserMapper {
                 .regtime(new Date(0))
                 .solvednum(0)
                 .build();
-        int rows = userinfoMapper.insert(userinfo);
+        int rows = userInfoMapper.insert(userinfo);
         Assert.assertEquals(rows, 1);
     }
 }

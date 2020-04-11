@@ -67,7 +67,8 @@ public class MPGenerator {
 //        strategy.setCapitalMode(true);    // 全局大写命名 ORACLE
         strategy.setTablePrefix("");   // 表前缀
         strategy.setNaming(NamingStrategy.underline_to_camel);  // 表名生成策略
-        strategy.setInclude("userinfo", "user_role", "role", "resource", "role_resource");   // 需要生成的表
+        strategy.setInclude("user_info");   // 需要生成的表
+//        strategy.setInclude("user_info", "user_role", "role", "resource", "role_resource");   // 需要生成的表
         // strategy.setExclude(new String[]{"test"}); // 排除生成的表
         // 自定义实体父类
         // strategy.setSuperEntityClass("com.baomidou.demo.TestEntity");

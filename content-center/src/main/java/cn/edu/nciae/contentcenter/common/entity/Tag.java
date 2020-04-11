@@ -3,6 +3,7 @@ package cn.edu.nciae.contentcenter.common.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -36,10 +37,12 @@ public class Tag implements Serializable {
     /**
      * 标签名称
      */
+    @JsonProperty("tName")
     private String tName;
 
     /**
      * 标签描述
      */
+    @JsonProperty("tDescription")
     private String tDescription;
 }

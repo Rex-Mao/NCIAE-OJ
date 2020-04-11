@@ -17,7 +17,8 @@ public interface INoticeService extends IService<Notice> {
     /**
      * desc : get the notice list by paging
      * @param page - Page<Notice>
+     * @param role - User or Admin in case sensitive
      * @return IPage
      */
-    IPage<Notice> listNoticesByPaging(Page<Notice> page);
+    IPage<Notice> listNoticesByPaging(Page<Notice> page, String role);
 }
