@@ -1,6 +1,5 @@
 package cn.edu.nciae.usercenter.utils;
 
-
 import cn.edu.nciae.usercenter.common.dto.ClaimsDTO;
 import cn.edu.nciae.usercenter.common.entity.SystemUserDetails;
 import io.jsonwebtoken.*;
@@ -34,7 +33,7 @@ import java.util.stream.Collectors;
 public class JwtTokenUtils {
 
     @Autowired
-    private UrlUtils urlUtils;
+    UrlUtils urlUtils;
 
     private static final String AUTHORITIES_KEY = "auth";
 
@@ -102,8 +101,8 @@ public class JwtTokenUtils {
 
         List<GrantedAuthority> authorities = AuthorityUtils.commaSeparatedStringToAuthorityList((String) claims.get(AUTHORITIES_KEY));
         ClaimsDTO claimsDTO = ClaimsDTO.builder()
-                                    .urlResources((List)((LinkedHashMap) claims.get(RESOURCEES_KEY)).get("urlResources"))
-                                    .build();
+                .urlResources((List)((LinkedHashMap) claims.get(RESOURCEES_KEY)).get("urlResources"))
+                .build();
         SystemUserDetails principal = new SystemUserDetails(claims.getSubject(), "", authorities, claimsDTO);
         return new UsernamePasswordAuthenticationToken(principal, "", authorities);
     }
@@ -120,20 +119,20 @@ public class JwtTokenUtils {
                     .parseClaimsJws(token);
             return true;
         } catch (SignatureException e) {
-            log.debug("Invalid JWT signature.");
-            throw new AuthenticationServiceException("Invalid JWT signature.");
+            log.info("Invalid JWT signature.");
+            throw new AuthenticationServiceException("Please login again... Invalid JWT signature.");
         } catch (MalformedJwtException e) {
-            log.debug("Invalid JWT token.");
-            throw new AuthenticationServiceException("Invalid JWT token.");
+            log.info("Invalid JWT token.");
+            throw new AuthenticationServiceException("Please login again... Invalid JWT token.");
         } catch (ExpiredJwtException e) {
-            log.debug("Expired JWT token.");
-            throw new AuthenticationServiceException("Expired JWT token.");
+            log.info("Expired JWT token.");
+            throw new AuthenticationServiceException("Please login again... Expired JWT token.");
         } catch (UnsupportedJwtException e) {
-            log.debug("Unsupported JWT token.");
-            throw new AuthenticationServiceException("Unsupported JWT token.");
+            log.info("Unsupported JWT token.");
+            throw new AuthenticationServiceException("Please login again... Unsupported JWT token.");
         } catch (IllegalArgumentException e) {
-            log.debug("JWT token compact of handler are invalid.");
-            throw new AuthenticationServiceException("JWT token compact of handler are invalid.\"");
+            log.info("JWT token compact of handler are invalid.");
+            throw new AuthenticationServiceException("Please login again... JWT token compact of handler are invalid.");
         }
     }
 

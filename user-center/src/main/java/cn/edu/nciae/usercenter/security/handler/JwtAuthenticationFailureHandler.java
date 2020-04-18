@@ -20,10 +20,15 @@ import java.io.IOException;
 public class JwtAuthenticationFailureHandler implements AuthenticationFailureHandler {
     @Override
     public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException {
-        String failureJson = JSON.toJSONString(MessageVO.<String>builder()
-                                        .error("401")
-                                        .data(e.getMessage())
-                                        .build());
-        httpServletResponse.getWriter().write(failureJson);
+        httpServletResponse.setContentType("application/json;charset=UTF-8");
+        String errorCode = null;
+        if (e.getMessage() != null) {
+            errorCode = "401";
+        }
+        httpServletResponse.getWriter().write(
+                JSON.toJSONString(MessageVO.<String>builder()
+                        .error(errorCode)
+                        .data(e.getMessage())
+                        .build()));
     }
 }

@@ -69,6 +69,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (StringUtils.hasText(jsonWebToken)) {
             return jsonWebToken;
         }
-        throw new AuthenticationServiceException("Please Login... You can request the resources when it finished !");
+        throw new AuthenticationServiceException(null);
     }
 }

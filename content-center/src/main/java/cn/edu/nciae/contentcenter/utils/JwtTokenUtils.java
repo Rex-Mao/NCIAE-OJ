@@ -7,6 +7,7 @@ import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -111,7 +112,7 @@ public class JwtTokenUtils {
      * @param token token
      * @return whether valid
      */
-    public boolean validateToken(String token) {
+    public boolean validateToken(String token) throws AuthenticationServiceException{
         try {
             Jwts.parserBuilder().setSigningKey(secretKey)
                     .build()
@@ -119,21 +120,20 @@ public class JwtTokenUtils {
             return true;
         } catch (SignatureException e) {
             log.info("Invalid JWT signature.");
-            log.trace("Invalid JWT signature trace: {}", e);
+            throw new AuthenticationServiceException("Please login again... Invalid JWT signature.");
         } catch (MalformedJwtException e) {
             log.info("Invalid JWT token.");
-            log.trace("Invalid JWT token trace: {}", e);
+            throw new AuthenticationServiceException("Please login again... Invalid JWT token.");
         } catch (ExpiredJwtException e) {
             log.info("Expired JWT token.");
-            log.trace("Expired JWT token trace: {}", e);
+            throw new AuthenticationServiceException("Please login again... Expired JWT token.");
         } catch (UnsupportedJwtException e) {
             log.info("Unsupported JWT token.");
-            log.trace("Unsupported JWT token trace: {}", e);
+            throw new AuthenticationServiceException("Please login again... Unsupported JWT token.");
         } catch (IllegalArgumentException e) {
             log.info("JWT token compact of handler are invalid.");
-            log.trace("JWT token compact of handler are invalid trace: {}", e);
+            throw new AuthenticationServiceException("Please login again... JWT token compact of handler are invalid.");
         }
-        return false;
     }
 
     /**

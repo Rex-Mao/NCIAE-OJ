@@ -1,4 +1,4 @@
-package cn.edu.nciae.contentcenter.security.entrypoint;
+package cn.edu.nciae.usercenter.security.entrypoint;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.AuthenticationException;
@@ -23,10 +23,10 @@ public class JwtAuthenticationFailureEntryPoint implements AuthenticationEntryPo
                          AuthenticationException e) throws IOException {
         log.info("Authentication Failure.");
 //        httpServletResponse.setContentType("application/json;charset=UTF-8");
-////        httpServletResponse.getWriter()
-////                .write(JSON.toJSONString(MessageVO.<String>builder()
-////                        .error("401")
-////                        .data("Please Login... Authentication Failed...")
-////                        .build()));
+//        httpServletResponse.getWriter()
+//                .write(JSON.toJSONString(MessageVO.<String>builder()
+//                        .error("401")
+//                        .data("Please Login... Authentication Failed...")
+//                        .build()));
     }
 }

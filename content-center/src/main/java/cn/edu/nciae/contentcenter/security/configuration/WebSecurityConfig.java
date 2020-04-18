@@ -2,10 +2,12 @@ package cn.edu.nciae.contentcenter.security.configuration;
 
 import cn.edu.nciae.contentcenter.security.entrypoint.JwtAuthenticationFailureEntryPoint;
 import cn.edu.nciae.contentcenter.security.filter.JwtAuthenticationFilter;
+import cn.edu.nciae.contentcenter.security.handler.JwtAuthenticationFailureHandler;
 import cn.edu.nciae.contentcenter.utils.JwtTokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -29,14 +31,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private JwtAuthenticationFailureEntryPoint jwtAuthenticationFailureEntryPoint;
 
     @Autowired
+    private JwtAuthenticationFailureHandler jwtAuthenticationFailureHandler;
+
+    @Autowired
     private JwtTokenUtils tokenProvider;
 
     @Override
+    public void configure(WebSecurity web) throws Exception {
+        super.configure(web);
+        web.ignoring().antMatchers("/public/**");
+    }
+
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
-        JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(tokenProvider);
+        JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(tokenProvider, jwtAuthenticationFailureHandler);
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         http.authorizeRequests()
-            .antMatchers("/public/**").permitAll()
             .anyRequest().access("@rbacauthorityservice.hasPermission(httpServletRequest, authentication)")
             .anyRequest().authenticated().and()
             .exceptionHandling().authenticationEntryPoint(jwtAuthenticationFailureEntryPoint).and()

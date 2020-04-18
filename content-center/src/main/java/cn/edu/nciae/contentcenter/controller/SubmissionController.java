@@ -97,11 +97,15 @@ public class SubmissionController {
                                                               SubmissionParametersDTO submissionParametersDTO) {
         Page<Record> page = new Page<>(submissionParametersDTO.getPage(), submissionParametersDTO.getLimit());
         IPage<Record> results = null;
-        if (authentication == null || submissionParametersDTO.getMyself() == 0) {
+        if (authentication == null) {
             results = recordService.listRecordByPaging(page);
         } else {
-            String username = ((UserDetails) authentication.getPrincipal()).getUsername();
-            results = recordService.listRecordByUid(page, username);
+            if (submissionParametersDTO.getMyself() == 0) {
+                results = recordService.listRecordByPaging(page);
+            } else {
+                String username = ((UserDetails) authentication.getPrincipal()).getUsername();
+                results = recordService.listRecordByUid(page, username);
+            }
         }
         return MessageVO.<SubmissionListVO>builder()
                 .error(null)
