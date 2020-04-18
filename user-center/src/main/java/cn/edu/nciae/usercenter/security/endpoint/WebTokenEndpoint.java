@@ -26,8 +26,8 @@ public class WebTokenEndpoint {
      * @param authentication -
      * @return MessageVO<String>
      */
-    @PostMapping("/login")
-    public MessageVO<String> login(Authentication authentication) {
+    @PostMapping("/token/refresh")
+    public MessageVO<String> refreshToken(Authentication authentication) throws Exception {
         return MessageVO.<String>builder()
                 .error(null)
                 .data(jwtTokenUtils.createToken(authentication))

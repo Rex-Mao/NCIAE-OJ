@@ -52,7 +52,7 @@
     <select id="listProblemVOByTag" parameterType="java.lang.String" resultMap="ProblemViewResultMap">
         select *
         from `problem` p,`problem_tag` pt,`tag` t
-        where p.pid=pt.pid and t.tid=pt.tid
+        where t.t_name=#{tagName} and p.pid=pt.pid and t.tid=pt.tid
     </select>
 
     <!-- 问题样例一对多关系子查询方法-->

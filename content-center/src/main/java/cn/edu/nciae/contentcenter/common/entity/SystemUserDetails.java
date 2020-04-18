@@ -1,6 +1,6 @@
-package cn.edu.nciae.usercenter.common.entity;
+package cn.edu.nciae.contentcenter.common.entity;
 
-import cn.edu.nciae.usercenter.common.dto.ClaimsDTO;
+import cn.edu.nciae.contentcenter.common.dto.ClaimsDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -3,6 +3,7 @@ package cn.edu.nciae.usercenter.security.handler;
 import cn.edu.nciae.usercenter.common.vo.MessageVO;
 import cn.edu.nciae.usercenter.utils.JwtTokenUtils;
 import com.alibaba.fastjson.JSON;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -30,12 +31,13 @@ public class JwtLoginSuccessHandler implements AuthenticationSuccessHandler {
     @Autowired
     private JwtTokenUtils tokenProvider;
 
+    @SneakyThrows
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         log.debug("Authentication Success.");
         httpServletResponse.setContentType("application/json;charset=UTF-8");
-        httpServletResponse.getWriter()
-                .write(JSON.toJSONString(MessageVO.<String>builder()
+        httpServletResponse.getWriter().write(
+                JSON.toJSONString(MessageVO.<String>builder()
                         .error(null)
                         .data(tokenProvider.createToken(authentication))
                         .build(), PrettyFormat, WriteMapNullValue));

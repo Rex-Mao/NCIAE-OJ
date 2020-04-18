@@ -33,7 +33,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String password = (String) authentication.getCredentials();
         UserDetails userDetails = null;
         if(username != null) {
-            //调用相应service从数据库获取对应用户信息
+            // get the user information from service
             userDetails = userDetailsService.loadUserByUsername(username);
         }
 

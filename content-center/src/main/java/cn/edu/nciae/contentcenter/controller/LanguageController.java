@@ -7,7 +7,6 @@ import cn.edu.nciae.contentcenter.common.vo.MessageVO;
 import cn.edu.nciae.contentcenter.service.ILanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -26,7 +25,7 @@ public class LanguageController {
     @Autowired
     private ILanguageService languageService;
 
-    @GetMapping("/languages")
+    @GetMapping("/public/languages")
     public MessageVO<LanguageListVO> getLanguageList() {
         List<Language> languages = languageService.list();
         return MessageVO.<LanguageListVO>builder().error(null)

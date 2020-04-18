@@ -5,6 +5,7 @@ import cn.edu.nciae.contentcenter.common.vo.ProblemVO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 /**
@@ -22,5 +23,5 @@ public interface ProblemTagMapper extends BaseMapper<ProblemTag> {
      * @param page
      * @return
      */
-    IPage<ProblemVO> listProblemVOByTag(Page<ProblemVO> page, String tagName);
+    IPage<ProblemVO> listProblemVOByTag(Page<ProblemVO> page, @Param("tagName") String tagName);
 }

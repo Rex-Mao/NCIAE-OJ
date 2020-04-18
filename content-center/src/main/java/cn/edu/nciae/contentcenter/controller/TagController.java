@@ -24,7 +24,7 @@ public class TagController {
     @Autowired
     private ITagService tagService;
 
-    @GetMapping("/problem/tags")
+    @GetMapping("/public/tags")
     public MessageVO<List<Tag>> getTagList() {
         return MessageVO.<List<Tag>>builder()
                 .error(null)

@@ -4,18 +4,26 @@ package cn.edu.nciae.contentcenter.controller;
 import cn.edu.nciae.contentcenter.common.dto.ProblemDTO;
 import cn.edu.nciae.contentcenter.common.dto.ProblemParametersDTO;
 import cn.edu.nciae.contentcenter.common.entity.Checkpoint;
+import cn.edu.nciae.contentcenter.common.entity.Record;
 import cn.edu.nciae.contentcenter.common.vo.MessageVO;
 import cn.edu.nciae.contentcenter.common.vo.ProblemListVO;
 import cn.edu.nciae.contentcenter.common.vo.ProblemVO;
+import cn.edu.nciae.contentcenter.common.vo.SolvedProblemListVO;
 import cn.edu.nciae.contentcenter.service.IProblemService;
+import cn.edu.nciae.contentcenter.service.IRecordService;
 import cn.edu.nciae.contentcenter.utils.FPSUtils;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
@@ -31,7 +39,18 @@ public class ProblemController {
     @Autowired
     public IProblemService problemService;
 
-    @GetMapping("/problems")
+    @Autowired
+    private IRecordService recordService;
+
+    /**
+     * desc : get all problems by user
+     * @param paging -
+     * @param offset -
+     * @param limit -
+     * @param problemParametersDTO -
+     * @return MessageVO<ProblemListVO>
+     */
+    @GetMapping("/public/problems")
     public MessageVO<ProblemListVO> getProblemList(@RequestParam("paging") Boolean paging,
                                                    @RequestParam("offset") Integer offset,
                                                    @RequestParam("limit") Integer limit,
@@ -50,7 +69,7 @@ public class ProblemController {
      * @param pid -
      * @return MessageVO<ProblemVO>
      */
-    @GetMapping("/problem/{pid}")
+    @GetMapping("/public/problem/{pid}")
     public MessageVO<ProblemVO> getProblemByPid(@PathVariable("pid") Long pid) {
         ProblemVO problemVO = problemService.getProblemVOByPid(pid);
         if (problemVO != null) {
@@ -61,6 +80,29 @@ public class ProblemController {
         } else {
             return MessageVO.<ProblemVO>builder().error("No choosed problem find...").build();
         }
+    }
+
+    /**
+     * desc : get all the problem the user has solved
+     * @param authentication -
+     * @return MessageVO<ProblemListVO>
+     */
+    @GetMapping("/problem/solved")
+    public MessageVO<SolvedProblemListVO> getSovledProblem(Authentication authentication) {
+        String username = ((UserDetails) authentication.getPrincipal()).getUsername();
+        List<Record> records = recordService.list(Wrappers.<Record>lambdaQuery().eq(Record::getCommitNickname, username));
+        Set<Long> problemSetIds = new HashSet<>();
+        for (Record record : records) {
+            problemSetIds.add(record.getPid());
+        }
+        List<Long> problemIds = new ArrayList<>(problemSetIds);
+        return MessageVO.<SolvedProblemListVO>builder()
+                .error(null)
+                .data(SolvedProblemListVO.builder()
+                        .total((long) problemIds.size())
+                        .results(problemIds)
+                        .build())
+                .build();
     }
 
     /**

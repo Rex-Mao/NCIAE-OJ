@@ -1,13 +1,12 @@
-package cn.edu.nciae.usercenter.security.entrypoint;
+package cn.edu.nciae.contentcenter.security.entrypoint;
 
-import cn.edu.nciae.usercenter.common.vo.MessageVO;
+import cn.edu.nciae.contentcenter.common.vo.MessageVO;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -23,7 +22,7 @@ import java.io.IOException;
 public class JwtAuthenticationFailureEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
-                         AuthenticationException e) throws IOException, ServletException {
+                         AuthenticationException e) throws IOException {
         log.info("Authentication Failure.");
         httpServletResponse.setContentType("application/json;charset=UTF-8");
         httpServletResponse.getWriter()

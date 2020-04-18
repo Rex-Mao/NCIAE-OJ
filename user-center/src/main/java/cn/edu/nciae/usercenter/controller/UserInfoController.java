@@ -11,7 +11,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -51,8 +51,8 @@ public class UserInfoController {
      */
     @GetMapping("/profile")
     public MessageVO<UserVO> getProfile(Authentication authentication) {
-        User user = (User) authentication.getPrincipal();
-        UserInfo userInfo = userInfoService.getOne(Wrappers.<UserInfo>lambdaQuery().eq(UserInfo::getNickname, user.getUsername()));
+        String username = ((UserDetails) authentication.getPrincipal()).getUsername();
+        UserInfo userInfo = userInfoService.getOne(Wrappers.<UserInfo>lambdaQuery().eq(UserInfo::getNickname, username));
         userInfo.setPassword(null);
         return MessageVO.<UserVO>builder()
                 .error(null)
@@ -68,13 +68,15 @@ public class UserInfoController {
      * @return MessageVO<String>
      */
     @PutMapping("/profile")
-    public MessageVO<UserInfo> updateProfile(Authentication authentication,
+    public MessageVO<UserVO> updateProfile(Authentication authentication,
                                            UserInfo changedInfo) {
-        User user = (User) authentication.getPrincipal();
-        UserInfo changed = userInfoService.updateUserProfile(changedInfo, user.getUsername());
-        return MessageVO.<UserInfo>builder()
+        String username = ((UserDetails) authentication.getPrincipal()).getUsername();
+        UserInfo changed = userInfoService.updateUserProfile(changedInfo, username);
+        return MessageVO.<UserVO>builder()
                 .error(null)
-                .data(changed)
+                .data(UserVO.builder()
+                        .user(changed)
+                        .build())
                 .build();
     }
 
@@ -82,8 +84,8 @@ public class UserInfoController {
     public MessageVO<String> updateProfilePassword(Authentication authentication,
                                                    @RequestParam("old_password") String oldPassword,
                                                    @RequestParam("new_password") String newPassword) {
-        User user = (User) authentication.getPrincipal();
-        UserInfo userInfo = userInfoService.getOne(Wrappers.<UserInfo>lambdaQuery().eq(UserInfo::getNickname, user.getUsername()));
+        String username = ((UserDetails) authentication.getPrincipal()).getUsername();
+        UserInfo userInfo = userInfoService.getOne(Wrappers.<UserInfo>lambdaQuery().eq(UserInfo::getNickname, username));
         if (!passwordUtils.matches(oldPassword.subSequence(0, oldPassword.length()), userInfo.getPassword())) {
             return MessageVO.<String>builder()
                     .error("403")
@@ -104,8 +106,8 @@ public class UserInfoController {
                                                    @RequestParam("password") String password,
                                                    @RequestParam("old_email") String oldEmail,
                                                    @RequestParam("new_email") String newEmail) {
-        User user = (User) authentication.getPrincipal();
-        UserInfo userInfo = userInfoService.getOne(Wrappers.<UserInfo>lambdaQuery().eq(UserInfo::getNickname, user.getUsername()));
+        String username = ((UserDetails) authentication.getPrincipal()).getUsername();
+        UserInfo userInfo = userInfoService.getOne(Wrappers.<UserInfo>lambdaQuery().eq(UserInfo::getNickname, username));
         if (!passwordUtils.matches(password.subSequence(0, password.length()), userInfo.getPassword()) ||
             !oldEmail.equals(userInfo.getEmail())) {
             return MessageVO.<String>builder()

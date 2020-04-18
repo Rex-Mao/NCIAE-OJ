@@ -15,6 +15,8 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -90,14 +92,16 @@ public class SubmissionController {
                 .build();
     }
 
-    @GetMapping("/submissions")
-    public MessageVO<SubmissionListVO> PagingSubmissionListVO(SubmissionParametersDTO submissionParametersDTO) {
+    @GetMapping("/public/submissions")
+    public MessageVO<SubmissionListVO> PagingSubmissionListVO(Authentication authentication,
+                                                              SubmissionParametersDTO submissionParametersDTO) {
         Page<Record> page = new Page<>(submissionParametersDTO.getPage(), submissionParametersDTO.getLimit());
         IPage<Record> results = null;
-        if (submissionParametersDTO.getMyself() == 0) {
+        if (authentication == null || submissionParametersDTO.getMyself() == 0) {
             results = recordService.listRecordByPaging(page);
         } else {
-            results = recordService.listRecordByUid(page, submissionParametersDTO.getUsername());
+            String username = ((UserDetails) authentication.getPrincipal()).getUsername();
+            results = recordService.listRecordByUid(page, username);
         }
         return MessageVO.<SubmissionListVO>builder()
                 .error(null)

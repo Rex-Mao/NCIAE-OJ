@@ -1,8 +1,11 @@
 package cn.edu.nciae.usercenter.security.filter;
 
 import cn.edu.nciae.usercenter.security.configuration.WebSecurityConfig;
+import cn.edu.nciae.usercenter.security.handler.JwtAuthenticationFailureHandler;
 import cn.edu.nciae.usercenter.utils.JwtTokenUtils;
+import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -25,21 +28,29 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private JwtTokenUtils tokenProvider;
 
-    public JwtAuthenticationFilter(JwtTokenUtils jwtTokenUtils) {
+    private JwtAuthenticationFailureHandler jwtAuthenticationFailureHandler;
+
+    public JwtAuthenticationFilter(JwtTokenUtils jwtTokenUtils, JwtAuthenticationFailureHandler jwtAuthenticationFailureHandler) {
         super();
         this.tokenProvider = jwtTokenUtils;
+        this.jwtAuthenticationFailureHandler = jwtAuthenticationFailureHandler;
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
-        String jsonWebToken = resolveToken(httpServletRequest);
-        if (jsonWebToken != null && !"".equals(jsonWebToken.trim()) && SecurityContextHolder.getContext().getAuthentication() == null) {
-            if (this.tokenProvider.validateToken(jsonWebToken)) {
-                 // get auth info
-                Authentication authentication = this.tokenProvider.getAuthentication(jsonWebToken);
-                 // save user info to securityContext
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+    protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws IOException, ServletException {
+        try {
+            String jsonWebToken = resolveToken(httpServletRequest);
+            if (jsonWebToken != null && !"".equals(jsonWebToken.trim()) && SecurityContextHolder.getContext().getAuthentication() == null) {
+                if (this.tokenProvider.validateToken(jsonWebToken)) {
+                    // get auth info
+                    Authentication authentication = this.tokenProvider.getAuthentication(jsonWebToken);
+                    // save user info to securityContext
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                }
             }
+        } catch (AuthenticationServiceException ex) {
+            SecurityContextHolder.clearContext();
+            jwtAuthenticationFailureHandler.onAuthenticationFailure(httpServletRequest, httpServletResponse, ex);
         }
         filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
@@ -49,7 +60,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
      * @param request -
      * @return String jsonWebToken
      */
-    private String resolveToken(HttpServletRequest request) {
+    private String resolveToken(HttpServletRequest request) throws AuthenticationException {
         String bearerToken = request.getHeader(WebSecurityConfig.AUTHORIZATION_HEADER);
         if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(TOKEN_PREFIX)) {
             return bearerToken.substring(7, bearerToken.length());
@@ -58,6 +69,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (StringUtils.hasText(jsonWebToken)) {
             return jsonWebToken;
         }
-        return null;
+        throw new AuthenticationServiceException("Please Login... You can request the resources when it finished !");
     }
 }

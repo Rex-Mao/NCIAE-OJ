@@ -1,17 +1,21 @@
 package cn.edu.nciae.usercenter.security.service;
 
-import cn.edu.nciae.usercenter.common.entity.UserInfo;
+import cn.edu.nciae.usercenter.common.dto.ClaimsDTO;
+import cn.edu.nciae.usercenter.common.entity.*;
+import cn.edu.nciae.usercenter.common.mapper.ResourceMapper;
+import cn.edu.nciae.usercenter.common.mapper.RoleMapper;
 import cn.edu.nciae.usercenter.common.mapper.UserInfoMapper;
-import cn.edu.nciae.usercenter.utils.PasswordUtils;
+import cn.edu.nciae.usercenter.common.mapper.UserRoleMapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author RexALun
@@ -27,14 +31,24 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private UserInfoMapper userInfoMapper;
 
     @Autowired
-    private PasswordUtils passwordUtils;
+    private UserRoleMapper userRoleMapper;
+
+    @Autowired
+    private RoleMapper roleMapper;
+
+    @Autowired
+    private ResourceMapper resourceMapper;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public SystemUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserInfo userInfo = userInfoMapper.selectOne(Wrappers.<UserInfo>lambdaQuery().eq(UserInfo::getNickname, username));
-        log.debug("User : " + username + " is trying to login...");
-        log.debug("Username : " + userInfo.getNickname() + "Password : " + userInfo.getPassword());
-        // @TODO : change the authority when the role on
-        return new User(username, userInfo.getPassword(), AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER"));
+        List<UserRole> userRoles = userRoleMapper.selectList(Wrappers.<UserRole>lambdaQuery().eq(UserRole::getUid, userInfo.getUid()));
+
+        List<Role> roles = roleMapper.selectBatchIds(userRoles.stream().map(UserRole::getRoleId).collect(Collectors.toList()));
+        String mergedRole = roles.stream().map(Role::getRolename).distinct().collect(Collectors.joining(","));
+
+        List<Resource> resources = resourceMapper.selectBatchIds(roles.stream().map(Role::getRoleId).collect(Collectors.toList()));
+        ClaimsDTO claimsDTO = ClaimsDTO.builder().urlResources(resources.stream().map(Resource::getUrl).collect(Collectors.toList())).build();
+        return new SystemUserDetails(username, userInfo.getPassword(), AuthorityUtils.commaSeparatedStringToAuthorityList(mergedRole), claimsDTO);
     }
 }

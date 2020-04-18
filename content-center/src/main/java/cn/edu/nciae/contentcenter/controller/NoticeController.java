@@ -28,7 +28,7 @@ public class NoticeController {
     @Autowired
     private INoticeService noticeService;
 
-    @GetMapping("/announcement")
+    @GetMapping("/public/announcement")
     public MessageVO<NoticeListVO> getNoticeList(@RequestParam("offset") Integer offset,
                                                  @RequestParam("limit") Integer limit) {
         String role = "User";
@@ -43,7 +43,7 @@ public class NoticeController {
     public MessageVO<NoticeListVO> getAdminNoticeListg(@RequestParam("paging") Boolean paging,
                                                        @RequestParam("offset") Integer offset,
                                                        @RequestParam("limit") Integer limit) {
-        String role = "admin";
+        String role = "Admin";
         if (paging) {
             limit = limit <= 0 ? 10 : limit;
             return MessageVO.<NoticeListVO>builder()

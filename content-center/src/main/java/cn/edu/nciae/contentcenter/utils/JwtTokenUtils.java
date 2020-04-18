@@ -1,14 +1,12 @@
-package cn.edu.nciae.usercenter.utils;
+package cn.edu.nciae.contentcenter.utils;
 
-
-import cn.edu.nciae.usercenter.common.dto.ClaimsDTO;
-import cn.edu.nciae.usercenter.common.entity.SystemUserDetails;
+import cn.edu.nciae.contentcenter.common.dto.ClaimsDTO;
+import cn.edu.nciae.contentcenter.common.entity.SystemUserDetails;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -34,7 +32,7 @@ import java.util.stream.Collectors;
 public class JwtTokenUtils {
 
     @Autowired
-    private UrlUtils urlUtils;
+    UrlUtils urlUtils;
 
     private static final String AUTHORITIES_KEY = "auth";
 
@@ -102,8 +100,8 @@ public class JwtTokenUtils {
 
         List<GrantedAuthority> authorities = AuthorityUtils.commaSeparatedStringToAuthorityList((String) claims.get(AUTHORITIES_KEY));
         ClaimsDTO claimsDTO = ClaimsDTO.builder()
-                                    .urlResources((List)((LinkedHashMap) claims.get(RESOURCEES_KEY)).get("urlResources"))
-                                    .build();
+                .urlResources((List)((LinkedHashMap) claims.get(RESOURCEES_KEY)).get("urlResources"))
+                .build();
         SystemUserDetails principal = new SystemUserDetails(claims.getSubject(), "", authorities, claimsDTO);
         return new UsernamePasswordAuthenticationToken(principal, "", authorities);
     }
@@ -113,28 +111,29 @@ public class JwtTokenUtils {
      * @param token token
      * @return whether valid
      */
-    public boolean validateToken(String token) throws AuthenticationServiceException{
+    public boolean validateToken(String token) {
         try {
             Jwts.parserBuilder().setSigningKey(secretKey)
                     .build()
                     .parseClaimsJws(token);
             return true;
         } catch (SignatureException e) {
-            log.debug("Invalid JWT signature.");
-            throw new AuthenticationServiceException("Invalid JWT signature.");
+            log.info("Invalid JWT signature.");
+            log.trace("Invalid JWT signature trace: {}", e);
         } catch (MalformedJwtException e) {
-            log.debug("Invalid JWT token.");
-            throw new AuthenticationServiceException("Invalid JWT token.");
+            log.info("Invalid JWT token.");
+            log.trace("Invalid JWT token trace: {}", e);
         } catch (ExpiredJwtException e) {
-            log.debug("Expired JWT token.");
-            throw new AuthenticationServiceException("Expired JWT token.");
+            log.info("Expired JWT token.");
+            log.trace("Expired JWT token trace: {}", e);
         } catch (UnsupportedJwtException e) {
-            log.debug("Unsupported JWT token.");
-            throw new AuthenticationServiceException("Unsupported JWT token.");
+            log.info("Unsupported JWT token.");
+            log.trace("Unsupported JWT token trace: {}", e);
         } catch (IllegalArgumentException e) {
-            log.debug("JWT token compact of handler are invalid.");
-            throw new AuthenticationServiceException("JWT token compact of handler are invalid.\"");
+            log.info("JWT token compact of handler are invalid.");
+            log.trace("JWT token compact of handler are invalid trace: {}", e);
         }
+        return false;
     }
 
     /**
