@@ -2,6 +2,7 @@ package cn.edu.nciae.usercenter.security.handler;
 
 import cn.edu.nciae.usercenter.common.vo.MessageVO;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
@@ -29,6 +30,6 @@ public class JwtAuthenticationFailureHandler implements AuthenticationFailureHan
                 JSON.toJSONString(MessageVO.<String>builder()
                         .error(errorCode)
                         .data(e.getMessage())
-                        .build()));
+                        .build(), SerializerFeature.WriteMapNullValue));
     }
 }
