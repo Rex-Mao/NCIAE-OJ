@@ -10,9 +10,36 @@
         <result column="description" property="description" />
     </resultMap>
 
+    <resultMap id="RoleResourceVOResultMap" type="cn.edu.nciae.usercenter.common.vo.RoleResourceVO">
+        <id column="rrid" property="rrid" />
+        <result column="role_id" property="roleId" />
+        <result column="resource_id" property="resourceId" />
+        <result column="description" property="description" />
+        <association column="role_id" property="role" select="selectRoleByRoleId"/>
+        <association column="resource_id" property="resource" select="selectResourceByResourceId" />
+    </resultMap>
+
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         rrid, role_id, resource_id, description
     </sql>
+
+    <select id="listRoleResourceVOByRoleId" parameterType="Long" resultMap="RoleResourceVOResultMap">
+        select *
+        from `role_resource` rr
+        where rr.role_id = #{roleId}
+    </select>
+
+    <select id="selectRoleByRoleId" resultMap="cn.edu.nciae.usercenter.common.mapper.RoleMapper.BaseResultMap">
+        select *
+        from `role` r
+        where r.role_id = #{role_id}
+    </select>
+
+    <select id="selectResourceByResourceId" resultMap="cn.edu.nciae.usercenter.common.mapper.ResourceMapper.BaseResultMap">
+        select *
+        from `resource` r
+        where r.resource_id = #{resource_id}
+    </select>
 
 </mapper>

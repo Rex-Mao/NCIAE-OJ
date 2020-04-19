@@ -1,6 +1,9 @@
 package cn.edu.nciae.usercenter.service;
 
 import cn.edu.nciae.usercenter.common.entity.UserInfo;
+import cn.edu.nciae.usercenter.common.vo.UserInfoVO;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -18,4 +21,11 @@ public interface IUserInfoService extends IService<UserInfo> {
      * @return UserInfo
      */
     UserInfo updateUserProfile(UserInfo changed, String username);
+
+    /**
+     * desc : list users by paging
+     * @param page - Page Object
+     * @return IPage<UserInfoVO>
+     */
+    IPage<UserInfoVO> listUsersByPaging(Page<UserInfoVO> page);
 }

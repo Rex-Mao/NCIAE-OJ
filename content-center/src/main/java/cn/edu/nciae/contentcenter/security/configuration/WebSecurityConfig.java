@@ -2,6 +2,7 @@ package cn.edu.nciae.contentcenter.security.configuration;
 
 import cn.edu.nciae.contentcenter.security.entrypoint.JwtAuthenticationFailureEntryPoint;
 import cn.edu.nciae.contentcenter.security.filter.JwtAuthenticationFilter;
+import cn.edu.nciae.contentcenter.security.handler.AuthorityAccessDeniedHandler;
 import cn.edu.nciae.contentcenter.security.handler.JwtAuthenticationFailureHandler;
 import cn.edu.nciae.contentcenter.utils.JwtTokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +29,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public static final String AUTHORIZATION_TOKEN = "access_token";
 
     @Autowired
-    private JwtAuthenticationFailureEntryPoint jwtAuthenticationFailureEntryPoint;
+    private JwtAuthenticationFailureHandler jwtAuthenticationFailureHandler;
 
     @Autowired
-    private JwtAuthenticationFailureHandler jwtAuthenticationFailureHandler;
+    private AuthorityAccessDeniedHandler authorityAccessDeniedHandler;
+
+    @Autowired
+    private JwtAuthenticationFailureEntryPoint jwtAuthenticationFailureEntryPoint;
 
     @Autowired
     private JwtTokenUtils tokenProvider;
@@ -46,11 +50,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(tokenProvider, jwtAuthenticationFailureHandler);
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-        http.authorizeRequests()
-            .anyRequest().access("@rbacauthorityservice.hasPermission(httpServletRequest, authentication)")
-            .anyRequest().authenticated().and()
-            .exceptionHandling().authenticationEntryPoint(jwtAuthenticationFailureEntryPoint).and()
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+        http.sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and()
+            .authorizeRequests()
+                .anyRequest().authenticated()
+                .anyRequest().access("@rbacauthorityservice.hasPermission(request, authentication)")
+            .and()
+            .exceptionHandling()
+                .authenticationEntryPoint(jwtAuthenticationFailureEntryPoint)
+                .accessDeniedHandler(authorityAccessDeniedHandler)
+            .and()
             .csrf().disable();
         // disable cache
         http.headers().cacheControl();

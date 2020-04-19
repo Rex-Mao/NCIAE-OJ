@@ -1,7 +1,5 @@
 package cn.edu.nciae.usercenter.common.vo;
 
-import cn.edu.nciae.usercenter.common.entity.Role;
-import cn.edu.nciae.usercenter.common.entity.UserInfo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,13 +11,13 @@ import java.util.List;
  * @author RexALun
  * @version 1.0
  * Annotation :
- * @date 2020/4/10 1:48 AM
+ * @date 2020/4/19 7:29 PM
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserVO {
-    private UserInfo user;
-    private List<Role> roles;
+public class UserListVO {
+    private List<UserInfoVO> results;
+    private Long total;
 }

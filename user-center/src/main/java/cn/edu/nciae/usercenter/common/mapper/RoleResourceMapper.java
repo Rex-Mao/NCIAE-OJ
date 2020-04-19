@@ -1,8 +1,12 @@
 package cn.edu.nciae.usercenter.common.mapper;
 
 import cn.edu.nciae.usercenter.common.entity.RoleResource;
+import cn.edu.nciae.usercenter.common.vo.RoleResourceVO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * <p>
@@ -14,5 +18,12 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public interface RoleResourceMapper extends BaseMapper<RoleResource> {
+
+    /**
+     * desc : list RoleResourceVO by role id
+     * @param roleId -
+     * @return List<RoleResourceVO>
+     */
+    List<RoleResourceVO> listRoleResourceVOByRoleId(@Param("roleId") Long roleId);
 
 }

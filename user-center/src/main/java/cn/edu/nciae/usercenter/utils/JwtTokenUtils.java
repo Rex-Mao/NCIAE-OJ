@@ -144,7 +144,9 @@ public class JwtTokenUtils {
     private List<String> resourceEncoder(List<String> resources) throws Exception {
         List<String> results = new ArrayList<>();
         for (String resource : resources) {
-            results.add(urlUtils.decrypt(resource));
+            results.add(resource);
+//             TODO: change the encrypt algorithm
+//            results.add(urlUtils.decrypt(resource));
         }
         return results;
     }
@@ -157,7 +159,9 @@ public class JwtTokenUtils {
     private List<String> resourceDecoder(List<String> resources) throws Exception {
         List<String> results = new ArrayList<>();
         for (String resource : resources) {
-            results.add(urlUtils.encrypt(resource));
+            results.add(resource);
+//             TODO: change the encrypt algorithm
+//            results.add(urlUtils.encrypt(resource));
         }
         return results;
     }

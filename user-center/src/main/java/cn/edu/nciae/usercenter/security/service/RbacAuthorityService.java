@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -28,7 +29,7 @@ public class RbacAuthorityService {
             String username = systemUserDetails.getUsername();
 
             //get the resource
-            Set<String> urlResources = (Set<String>) systemUserDetails.getUrlResources().getUrlResources();
+            Set<String> urlResources = new HashSet<>(systemUserDetails.getUrlResources().getUrlResources());
 
             AntPathMatcher antPathMatcher = new AntPathMatcher();
             for (String url : urlResources) {

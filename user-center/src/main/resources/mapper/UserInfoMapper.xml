@@ -18,9 +18,46 @@
         <result column="avatar_url" property="avatarUrl" />
     </resultMap>
 
+    <!-- 通用查询映射结果 -->
+    <resultMap id="RoleResultMap" type="cn.edu.nciae.usercenter.common.entity.Role">
+        <id column="role_id" property="roleId" />
+        <result column="rolename" property="rolename" />
+        <result column="description" property="description" />
+    </resultMap>
+
+    <resultMap id="UserInfoVOResultMap" type="cn.edu.nciae.usercenter.common.vo.UserInfoVO">
+        <id column="uid" property="uid" />
+        <result column="nickname" property="nickname" />
+        <result column="password" property="password" />
+        <result column="email" property="email" />
+        <result column="regtime" property="regtime" />
+        <result column="solvednum" property="solvednum" />
+        <result column="language" property="language" />
+        <result column="mood" property="mood" />
+        <result column="blog" property="blog" />
+        <result column="github" property="github" />
+        <result column="avatar" property="avatar" />
+        <result column="avatar_url" property="avatarUrl" />
+        <collection column="uid" property="roles" ofType="cn.edu.nciae.usercenter.common.entity.Role" select="selectRolesByUid"/>
+    </resultMap>
+
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         uid, nickname, password, email, regtime, solvednum, `language`, mood, blog, github, avatar, avatar_url
     </sql>
+
+    <sql id="Role_Column_List">
+        role_id, rolename, description
+    </sql>
+
+    <select id="listUserRolesByPaging" resultMap="UserInfoVOResultMap">
+        select * from `user_info` u
+    </select>
+    <select id="selectRolesByUid" resultMap="RoleResultMap">
+        select
+        *
+        from `user_role` ur, `role` r
+        where ur.uid = #{uid} and ur.role_id = r.role_id
+    </select>
 
 </mapper>

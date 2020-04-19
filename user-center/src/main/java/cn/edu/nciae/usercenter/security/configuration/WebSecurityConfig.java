@@ -3,6 +3,7 @@ package cn.edu.nciae.usercenter.security.configuration;
 import cn.edu.nciae.usercenter.security.entrypoint.JwtAuthenticationFailureEntryPoint;
 import cn.edu.nciae.usercenter.security.filter.JwtAuthenticationFilter;
 import cn.edu.nciae.usercenter.security.filter.JwtLoginFilter;
+import cn.edu.nciae.usercenter.security.handler.AuthorityAccessDeniedHandler;
 import cn.edu.nciae.usercenter.security.handler.JwtAuthenticationFailureHandler;
 import cn.edu.nciae.usercenter.security.handler.JwtLoginFailureHandler;
 import cn.edu.nciae.usercenter.security.handler.JwtLoginSuccessHandler;
@@ -41,6 +42,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private JwtLoginFailureHandler jwtLoginFailureHandler;
 
     @Autowired
+    private AuthorityAccessDeniedHandler authorityAccessDeniedHandler;
+
+    @Autowired
     private JwtAuthenticationFailureHandler jwtAuthenticationFailureHandler;
 
     @Autowired
@@ -63,11 +67,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(tokenProvider, jwtAuthenticationFailureHandler);
         http.addFilterBefore(jwtLoginFilter, UsernamePasswordAuthenticationFilter.class);
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-        http.authorizeRequests()
-            .anyRequest().access("@rbacauthorityservice.hasPermission(httpServletRequest, authentication)")
-            .anyRequest().authenticated().and()
-            .exceptionHandling().authenticationEntryPoint(jwtAuthenticationFailureEntryPoint).and()
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+        http.sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and()
+            .authorizeRequests()
+                .anyRequest().authenticated()
+                .anyRequest().access("@rbacauthorityservice.hasPermission(request, authentication)")
+            .and()
+            .exceptionHandling()
+                .authenticationEntryPoint(jwtAuthenticationFailureEntryPoint)
+                .accessDeniedHandler(authorityAccessDeniedHandler)
+            .and()
             .csrf().disable();
         // disable cache
         http.headers().cacheControl();

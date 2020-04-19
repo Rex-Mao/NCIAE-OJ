@@ -1,13 +1,18 @@
 package cn.edu.nciae.usercenter.controller;
 
 
+import cn.edu.nciae.usercenter.common.dto.PageParametersDTO;
 import cn.edu.nciae.usercenter.common.dto.UserInfoDTO;
 import cn.edu.nciae.usercenter.common.entity.UserInfo;
 import cn.edu.nciae.usercenter.common.vo.MessageVO;
+import cn.edu.nciae.usercenter.common.vo.UserInfoVO;
+import cn.edu.nciae.usercenter.common.vo.UserListVO;
 import cn.edu.nciae.usercenter.common.vo.UserVO;
 import cn.edu.nciae.usercenter.service.IUserInfoService;
 import cn.edu.nciae.usercenter.utils.PasswordUtils;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -122,5 +127,36 @@ public class UserInfoController {
                     .data("Change email is done.")
                     .build();
         }
+    }
+
+    @GetMapping("/admin/user")
+    public MessageVO<UserListVO> getAdminUserList(PageParametersDTO pageParametersDTO) {
+        UserListVO users = getPagingProblemListVO(pageParametersDTO);
+        return MessageVO.<UserListVO>builder()
+                .error(null)
+                .data(users)
+                .build();
+    }
+
+    /**
+     * desc : get user list view object with paging.
+     * @param pageParametersDTO - parameters
+     * @return ProblemListVO
+     */
+    private UserListVO getPagingProblemListVO(PageParametersDTO pageParametersDTO) {
+        Page<UserInfoVO> page;
+        if (pageParametersDTO.getPage() != null){
+            page = new Page<UserInfoVO>(pageParametersDTO.getPage(), pageParametersDTO.getLimit());
+        } else {
+            page = new Page<UserInfoVO>(1, pageParametersDTO.getLimit());
+        }
+        IPage<UserInfoVO> users = userInfoService.listUsersByPaging(page);
+        users.getRecords().forEach(item -> {
+            item.setPassword(null);
+        });
+        return UserListVO.builder()
+                .results(users.getRecords())
+                .total(users.getTotal())
+                .build();
     }
 }

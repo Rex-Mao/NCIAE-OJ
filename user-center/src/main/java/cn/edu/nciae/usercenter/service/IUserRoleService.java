@@ -13,4 +13,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IUserRoleService extends IService<UserRole> {
 
+//    /**
+//     * desc : list users and roles by paging
+//     * @param page - Page Object
+//     * @return IPage<UserVO>
+//     */
+//    IPage<UserVO> listUserRolesByPaging(Page<UserVO> page);
 }

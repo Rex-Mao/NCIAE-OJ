@@ -1,9 +1,14 @@
 package cn.edu.nciae.usercenter.service.impl;
 
 import cn.edu.nciae.usercenter.common.entity.UserInfo;
+import cn.edu.nciae.usercenter.common.mapper.RoleMapper;
 import cn.edu.nciae.usercenter.common.mapper.UserInfoMapper;
+import cn.edu.nciae.usercenter.common.mapper.UserRoleMapper;
+import cn.edu.nciae.usercenter.common.vo.UserInfoVO;
 import cn.edu.nciae.usercenter.service.IUserInfoService;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +24,12 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 
     @Autowired
     private UserInfoMapper userInfoMapper;
+
+    @Autowired
+    private UserRoleMapper userRoleMapper;
+
+    @Autowired
+    private RoleMapper roleMapper;
 
     /**
      * desc : update the profile by parameters
@@ -43,5 +54,15 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         }
         userInfoMapper.updateById(userInfo);
         return userInfo;
+    }
+
+    /**
+     * desc : list users by paging
+     * @param page - Page Object
+     * @return IPage<UserInfoVO>
+     */
+    @Override
+    public IPage<UserInfoVO> listUsersByPaging(Page<UserInfoVO> page) {
+        return userInfoMapper.listUserRolesByPaging(page);
     }
 }
