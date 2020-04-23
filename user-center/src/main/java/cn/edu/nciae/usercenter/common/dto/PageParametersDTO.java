@@ -14,4 +14,5 @@ public class PageParametersDTO {
     private Integer offset;
     private Integer limit;
     private Integer page;
+    private String keyword;
 }

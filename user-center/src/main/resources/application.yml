@@ -20,3 +20,9 @@ ribbon:
 content-center:
   ribbon:
     NFLoadBalancerRuleClassName: cn.edu.nciae.usercenter.configuration.NacosWeightedRule
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" # 暴露所有端口
+    enabled-by-default: true # 启用所有端口

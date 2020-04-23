@@ -5,6 +5,7 @@ import cn.edu.nciae.usercenter.common.vo.UserInfoVO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 /**
@@ -24,4 +25,12 @@ public interface UserInfoMapper extends BaseMapper<UserInfo> {
      * @return IPage<UserVO>
      */
     IPage<UserInfoVO> listUserRolesByPaging(Page<UserInfoVO> page);
+
+    /**
+     * desc : list users by paging with keyword
+     * @param page -
+     * @param keyword -
+     * @return IPage<UserInfoVO>
+     */
+    IPage<UserInfoVO> listUsersByPagingWithKeyword(Page<UserInfoVO> page, @Param("keyword") String keyword);
 }

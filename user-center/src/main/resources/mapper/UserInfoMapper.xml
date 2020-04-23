@@ -53,11 +53,21 @@
     <select id="listUserRolesByPaging" resultMap="UserInfoVOResultMap">
         select * from `user_info` u
     </select>
+
+    <select id="listUsersByPagingWithKeyword" resultMap="UserInfoVOResultMap">
+        select *
+        from `user_info` u
+        <where>
+            <if test="keyword!=null and keyword!=''">
+                CONCAT(u.uid,u.nickname,u.email) LIKE '%' #{keyword} '%'
+            </if>
+        </where>
+    </select>
+
     <select id="selectRolesByUid" resultMap="RoleResultMap">
         select
         *
         from `user_role` ur, `role` r
         where ur.uid = #{uid} and ur.role_id = r.role_id
     </select>
-
 </mapper>

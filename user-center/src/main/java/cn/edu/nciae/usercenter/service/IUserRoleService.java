@@ -3,6 +3,8 @@ package cn.edu.nciae.usercenter.service;
 import cn.edu.nciae.usercenter.common.entity.UserRole;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.ArrayList;
+
 /**
  * <p>
  *  服务类
@@ -19,4 +21,11 @@ public interface IUserRoleService extends IService<UserRole> {
 //     * @return IPage<UserVO>
 //     */
 //    IPage<UserVO> listUserRolesByPaging(Page<UserVO> page);
+
+    /**
+     * desc : delete all user role by uids
+     * @param uids -
+     * @return Boolean
+     */
+    Boolean removeByUids(ArrayList<Long> uids);
 }

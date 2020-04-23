@@ -2,7 +2,9 @@ package cn.edu.nciae.usercenter.security.service;
 
 import cn.edu.nciae.usercenter.common.dto.ClaimsDTO;
 import cn.edu.nciae.usercenter.common.entity.*;
-import cn.edu.nciae.usercenter.common.mapper.*;
+import cn.edu.nciae.usercenter.common.mapper.RoleResourceMapper;
+import cn.edu.nciae.usercenter.common.mapper.UserInfoMapper;
+import cn.edu.nciae.usercenter.common.mapper.UserRoleMapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +33,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserRoleMapper userRoleMapper;
-
-    @Autowired
-    private RoleMapper roleMapper;
-
-    @Autowired
-    private ResourceMapper resourceMapper;
 
     @Autowired
     private RoleResourceMapper roleResourceMapper;

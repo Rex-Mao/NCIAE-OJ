@@ -65,4 +65,15 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     public IPage<UserInfoVO> listUsersByPaging(Page<UserInfoVO> page) {
         return userInfoMapper.listUserRolesByPaging(page);
     }
+
+    /**
+     * desc : list users by paging with keyword
+     * @param page -
+     * @param keyword -
+     * @return IPage<UserInfoVO>
+     */
+    @Override
+    public IPage<UserInfoVO> listUsersByPagingWithKeyword(Page<UserInfoVO> page, String keyword) {
+        return userInfoMapper.listUsersByPagingWithKeyword(page, keyword);
+    }
 }

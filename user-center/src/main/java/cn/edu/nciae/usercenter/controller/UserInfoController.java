@@ -3,12 +3,16 @@ package cn.edu.nciae.usercenter.controller;
 
 import cn.edu.nciae.usercenter.common.dto.PageParametersDTO;
 import cn.edu.nciae.usercenter.common.dto.UserInfoDTO;
+import cn.edu.nciae.usercenter.common.entity.Role;
 import cn.edu.nciae.usercenter.common.entity.UserInfo;
+import cn.edu.nciae.usercenter.common.entity.UserRole;
 import cn.edu.nciae.usercenter.common.vo.MessageVO;
 import cn.edu.nciae.usercenter.common.vo.UserInfoVO;
 import cn.edu.nciae.usercenter.common.vo.UserListVO;
 import cn.edu.nciae.usercenter.common.vo.UserVO;
+import cn.edu.nciae.usercenter.service.IRoleService;
 import cn.edu.nciae.usercenter.service.IUserInfoService;
+import cn.edu.nciae.usercenter.service.IUserRoleService;
 import cn.edu.nciae.usercenter.utils.PasswordUtils;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -19,9 +23,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 /**
  * <p>
- *  前端控制器
+ *  Controller
  * </p>
  *
  * @author RexALun
@@ -33,6 +41,12 @@ public class UserInfoController {
 
     @Autowired
     private IUserInfoService userInfoService;
+
+    @Autowired
+    private IUserRoleService userRoleService;
+
+    @Autowired
+    private IRoleService roleService;
 
     @Autowired
     private PasswordUtils passwordUtils;
@@ -129,12 +143,43 @@ public class UserInfoController {
         }
     }
 
-    @GetMapping("/admin/user")
+    /**
+     * desc : get user list
+     * @param pageParametersDTO - page
+     * @return MessageVO<UserListVO>
+     */
+    @GetMapping("/admin/users")
     public MessageVO<UserListVO> getAdminUserList(PageParametersDTO pageParametersDTO) {
         UserListVO users = getPagingProblemListVO(pageParametersDTO);
         return MessageVO.<UserListVO>builder()
                 .error(null)
                 .data(users)
+                .build();
+    }
+
+    /**
+     * desc : get user info by admin
+     * @param uid -
+     * @return MessageVO<UserVO>
+     */
+    @GetMapping("/admin/user/{uid}")
+    public MessageVO<UserVO> getAdminUserByUid(@PathVariable("uid") Long uid) {
+        UserInfo userInfo = userInfoService.getById(uid);
+        userInfo.setPassword(null);
+        userInfo.setAvatar(null);
+        userInfo.setAvatarUrl(null);
+        List<UserRole> userRoles = userRoleService.list(Wrappers.<UserRole>lambdaQuery().eq(UserRole::getUid, userInfo.getUid()));
+        Set<Long> roleIds = userRoles.stream().map(UserRole::getRoleId).collect(Collectors.toSet());
+        List<Role> roles = null;
+        if (roleIds.size() != 0) {
+            roles = roleService.listByIds(roleIds);
+        }
+        return MessageVO.<UserVO>builder()
+                .error(null)
+                .data(UserVO.builder()
+                    .user(userInfo)
+                    .roles(roles)
+                    .build())
                 .build();
     }
 
@@ -145,12 +190,17 @@ public class UserInfoController {
      */
     private UserListVO getPagingProblemListVO(PageParametersDTO pageParametersDTO) {
         Page<UserInfoVO> page;
+        IPage<UserInfoVO> users = new Page<>();
         if (pageParametersDTO.getPage() != null){
             page = new Page<UserInfoVO>(pageParametersDTO.getPage(), pageParametersDTO.getLimit());
         } else {
             page = new Page<UserInfoVO>(1, pageParametersDTO.getLimit());
         }
-        IPage<UserInfoVO> users = userInfoService.listUsersByPaging(page);
+        if (pageParametersDTO.getKeyword() != null && !"".equals(pageParametersDTO.getKeyword())) {
+            users = userInfoService.listUsersByPagingWithKeyword(page, pageParametersDTO.getKeyword());
+        } else {
+            users = userInfoService.listUsersByPaging(page);
+        }
         users.getRecords().forEach(item -> {
             item.setPassword(null);
         });

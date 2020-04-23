@@ -28,4 +28,12 @@ public interface IUserInfoService extends IService<UserInfo> {
      * @return IPage<UserInfoVO>
      */
     IPage<UserInfoVO> listUsersByPaging(Page<UserInfoVO> page);
+
+    /**
+     * desc : list users by paging with keyword
+     * @param page -
+     * @param keyword -
+     * @return IPage<UserInfoVO>
+     */
+    IPage<UserInfoVO> listUsersByPagingWithKeyword(Page<UserInfoVO> page, String keyword);
 }
