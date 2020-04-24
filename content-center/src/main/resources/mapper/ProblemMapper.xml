@@ -64,6 +64,16 @@
         select * from `problem`
     </select>
 
+    <select id="listProblemsByPagingWithKeyword" resultMap="ProblemViewResultMap">
+        select *
+        from `problem` p
+        <where>
+            <if test="keyword!=null and keyword!=''">
+                CONCAT(p.pid,p.title) LIKE '%' #{keyword} '%'
+            </if>
+        </where>
+    </select>
+
     <select id="selectProblemVOByPid" parameterType="Long" resultMap="ProblemViewResultMap">
         select * from `problem` where `problem`.pid = #{pid}
     </select>

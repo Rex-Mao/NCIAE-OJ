@@ -3,6 +3,7 @@ package cn.edu.nciae.contentcenter.common.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,9 +36,9 @@ public class Competition implements Serializable {
     private Long cid;
 
     /**
-     * 竞赛创建用户ID
+     * 竞赛创建用户名
      */
-    private Long createUid;
+    private String createUsername;
 
     /**
      * 竞赛标题
@@ -45,9 +46,9 @@ public class Competition implements Serializable {
     private String title;
 
     /**
-     * 竞赛开放属性
+     * 竞赛密码
      */
-    private Integer privite;
+    private String password;
 
     /**
      * 竞赛开始时间
@@ -63,5 +64,17 @@ public class Competition implements Serializable {
      * 竞赛描述
      */
     private String description;
+
+    /**
+     * 竞赛开放属性
+     */
+    @JsonProperty("cPublic")
+    private Boolean cPublic;
+
+    /**
+     * 竞赛状态是否生效
+     */
+    @JsonProperty("cStatus")
+    private Integer cStatus;
 
 }

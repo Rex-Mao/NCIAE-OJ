@@ -14,5 +14,4 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public interface CompetitionProblemMapper extends BaseMapper<CompetitionProblem> {
-
 }

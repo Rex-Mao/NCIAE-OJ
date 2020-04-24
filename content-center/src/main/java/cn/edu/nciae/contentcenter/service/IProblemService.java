@@ -18,21 +18,24 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IProblemService extends IService<Problem> {
     /**
-     * @param page
+     * desc : list the problem by paging
+     * @param page -
      * @return IPage<Problem>
      */
     IPage<ProblemVO> listProblemsByPaging(Page<ProblemVO> page, ProblemParametersDTO problemParametersDTO);
 
+
     /**
-     * @param pid
-     * @return
+     * desc : get problem by pid
+     * @param pid -
+     * @return ProblemVO
      */
     ProblemVO getProblemVOByPid(Long pid);
 
     /**
      * desc : insert a new problem view object to database
-     * @param problemVO
-     * @return
+     * @param problemVO -
+     * @return ProblemVO
      */
     ProblemVO insertOneProblemVO(ProblemVO problemVO);
 

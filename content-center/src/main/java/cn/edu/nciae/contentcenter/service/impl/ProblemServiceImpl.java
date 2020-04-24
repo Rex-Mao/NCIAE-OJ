@@ -56,6 +56,9 @@ public class ProblemServiceImpl extends ServiceImpl<ProblemMapper, Problem> impl
         if (problemParametersDTO.getTag() != null) {
             return problemTagMapper.listProblemVOByTag(page, problemParametersDTO.getTag());
         }
+        if (problemParametersDTO.getKeyword() != null && !"".equals(problemParametersDTO.getKeyword())) {
+            return problemMapper.listProblemsByPagingWithKeyword(page, problemParametersDTO.getKeyword());
+        }
         return problemMapper.listProblemVOByPaging(page);
     }
 
@@ -155,4 +158,5 @@ public class ProblemServiceImpl extends ServiceImpl<ProblemMapper, Problem> impl
         }
         return true;
     }
+
 }

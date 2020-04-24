@@ -5,17 +5,38 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="cn.edu.nciae.contentcenter.common.entity.Competition">
         <id column="cid" property="cid" />
-        <result column="create_uid" property="createUid" />
+        <result column="create_username" property="createUsername" />
         <result column="title" property="title" />
-        <result column="privite" property="privite" />
+        <result column="password" property="password" />
         <result column="start_time" property="startTime" />
         <result column="end_time" property="endTime" />
         <result column="description" property="description" />
+        <result column="c_public" property="cPublic" />
+        <result column="c_status" property="cStatus" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        cid, create_uid, title, privite, start_time, end_time, description
+        cid, create_username, title, password, start_time, end_time, description, c_public, c_status
     </sql>
+
+    <select id="listContestsByPagingWithKeywordAndStatus" resultMap="BaseResultMap">
+        select *
+        from `competition` c
+        where c.c_status = #{status}
+        <if test="keyword!=null and keyword!=''">
+            AND CONCAT(c.cid,c.title,c.create_username) LIKE '%' #{keyword} '%'
+        </if>
+    </select>
+
+    <select id="listContestsByPagingWithKeyword" resultMap="BaseResultMap">
+        select *
+        from `competition` c
+        <where>
+            <if test="keyword!=null and keyword!=''">
+                CONCAT(c.cid,c.title,c.create_username) LIKE '%' #{keyword} '%'
+            </if>
+        </where>
+    </select>
 
 </mapper>

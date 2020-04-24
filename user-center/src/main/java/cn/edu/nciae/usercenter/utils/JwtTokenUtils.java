@@ -53,7 +53,7 @@ public class JwtTokenUtils {
 
     public JwtTokenUtils() {
         this.secretKey = Keys.hmacShaKeyFor(SECRET_STRING.getBytes());
-        this.tokenValidityInMilliseconds = 1000 * 60 * 30L;
+        this.tokenValidityInMilliseconds = 1000 * 60 * 90L;
     }
 
     /**

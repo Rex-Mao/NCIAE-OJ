@@ -3,7 +3,6 @@ package cn.edu.nciae.contentcenter.controller;
 
 import cn.edu.nciae.contentcenter.common.dto.ProblemDTO;
 import cn.edu.nciae.contentcenter.common.dto.ProblemParametersDTO;
-import cn.edu.nciae.contentcenter.common.entity.Checkpoint;
 import cn.edu.nciae.contentcenter.common.entity.Record;
 import cn.edu.nciae.contentcenter.common.vo.MessageVO;
 import cn.edu.nciae.contentcenter.common.vo.ProblemListVO;
@@ -195,13 +194,13 @@ public class ProblemController {
     private ProblemListVO getPagingProblemListVO(ProblemParametersDTO problemParametersDTO, Integer limit) {
         Page<ProblemVO> page;
         if (problemParametersDTO.getPage() != null){
-            page = new Page<ProblemVO>(problemParametersDTO.getPage(), limit);
+            page = new Page<>(problemParametersDTO.getPage(), limit);
         } else {
-            page = new Page<ProblemVO>(1, limit);
+            page = new Page<>(1, limit);
         }
         IPage<ProblemVO> problems = problemService.listProblemsByPaging(page, problemParametersDTO);
         for (ProblemVO problemVO : problems.getRecords()) {
-            problemVO.setCheckpoints(new ArrayList<Checkpoint>());
+            problemVO.setCheckpoints(new ArrayList<>());
         }
         return ProblemListVO.builder()
                 .results(problems.getRecords())
