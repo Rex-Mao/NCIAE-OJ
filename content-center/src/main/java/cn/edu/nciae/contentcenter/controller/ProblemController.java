@@ -1,14 +1,17 @@
 package cn.edu.nciae.contentcenter.controller;
 
-
+import cn.edu.nciae.contentcenter.common.dto.PageParametersDTO;
 import cn.edu.nciae.contentcenter.common.dto.ProblemDTO;
 import cn.edu.nciae.contentcenter.common.dto.ProblemParametersDTO;
+import cn.edu.nciae.contentcenter.common.entity.ProblemTag;
 import cn.edu.nciae.contentcenter.common.entity.Record;
 import cn.edu.nciae.contentcenter.common.vo.MessageVO;
 import cn.edu.nciae.contentcenter.common.vo.ProblemListVO;
 import cn.edu.nciae.contentcenter.common.vo.ProblemVO;
 import cn.edu.nciae.contentcenter.common.vo.SolvedProblemListVO;
+import cn.edu.nciae.contentcenter.service.IFileService;
 import cn.edu.nciae.contentcenter.service.IProblemService;
+import cn.edu.nciae.contentcenter.service.IProblemTagService;
 import cn.edu.nciae.contentcenter.service.IRecordService;
 import cn.edu.nciae.contentcenter.utils.FPSUtils;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -18,11 +21,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -41,23 +46,24 @@ public class ProblemController {
     @Autowired
     private IRecordService recordService;
 
+    @Autowired
+    private IProblemTagService problemTagService;
+
+    @Autowired
+    private IFileService fileService;
+
     /**
      * desc : get all problems by user
-     * @param paging -
-     * @param offset -
-     * @param limit -
-     * @param problemParametersDTO -
+     * @param pageParametersDTO -
      * @return MessageVO<ProblemListVO>
      */
     @GetMapping("/public/problems")
-    public MessageVO<ProblemListVO> getProblemList(@RequestParam("paging") Boolean paging,
-                                                   @RequestParam("offset") Integer offset,
-                                                   @RequestParam("limit") Integer limit,
+    public MessageVO<ProblemListVO> getProblemList(PageParametersDTO pageParametersDTO,
                                                    ProblemParametersDTO problemParametersDTO) {
-        if (paging) {
+        if (pageParametersDTO.getPaging()) {
             return MessageVO.<ProblemListVO>builder()
                     .error(null)
-                    .data(getPagingProblemListVO(problemParametersDTO, limit))
+                    .data(getPagingProblemListVO(problemParametersDTO, pageParametersDTO, 0))
                     .build();
         }
         return MessageVO.<ProblemListVO>builder().error("No Problem Data Returned...").build();
@@ -124,18 +130,16 @@ public class ProblemController {
 
     /**
      * desc : get problem list by admin
-     * @param offset -
-     * @param limit -
+     * @param pageParametersDTO -
      * @param problemParametersDTO -
      * @return MessageVO<ProblemListVO>
      */
     @GetMapping("/admin/problems")
-    public MessageVO<ProblemListVO> getAdminProblemList(@RequestParam("offset") Integer offset,
-                                                        @RequestParam("limit") Integer limit,
+    public MessageVO<ProblemListVO> getAdminProblemList(PageParametersDTO pageParametersDTO,
                                                         ProblemParametersDTO problemParametersDTO) {
         return MessageVO.<ProblemListVO>builder()
                 .error(null)
-                .data(getPagingProblemListVO(problemParametersDTO, limit))
+                .data(getPagingProblemListVO(problemParametersDTO, pageParametersDTO, -1))
                 .build();
     }
 
@@ -145,7 +149,9 @@ public class ProblemController {
      * @return MessageVO<Boolean>
      */
     @PostMapping("/admin/problem")
-    public MessageVO<Boolean> addSingleProblem(@RequestBody ProblemDTO problemDTO) {
+    public MessageVO<Boolean> createProblem(Authentication authentication,
+                                            @RequestBody ProblemDTO problemDTO) {
+        problemDTO.setAddUsername(((UserDetails)authentication.getPrincipal()).getUsername());
         Boolean result = problemService.insertOneProblemDTO(problemDTO);
         return MessageVO.<Boolean>builder()
                 .error(null)
@@ -168,37 +174,73 @@ public class ProblemController {
     }
 
     /**
+     * desc : delete problem by pid
+     * @param pid -
+     * @return MessageVO<Boolean>
+     */
+    @DeleteMapping("/admin/problem/{pid}")
+    public MessageVO<Boolean> deleteProblemByPid(@PathVariable("pid") Long pid) {
+        try {
+            problemTagService.remove(Wrappers.<ProblemTag>lambdaQuery().eq(ProblemTag::getPid, pid));
+            Boolean result = problemService.removeById(pid);
+            return MessageVO.<Boolean>builder()
+                    .error(null)
+                    .data(result)
+                    .build();
+        } catch (Exception e) {
+            return MessageVO.<Boolean>builder()
+                    .error("Sorry, The problem is using by somewhere...")
+                    .data(false)
+                    .build();
+        }
+    }
+
+    /**
      * desc : get the problems from free problem set file
+     * @param authentication -
+     * @param multipartFile -
      * @return MessageVO<ProblemListVO>
      */
-    @PostMapping("/admin/problems")
-    public MessageVO<ProblemListVO> addProblems() {
-        List<ProblemVO> problemVOList = FPSUtils.fps2ProblemVO(Long.valueOf("1"), "/Users/rexmao/Documents/RexStudio/NCIAE-OJ/Doc/standard-test-fps.xml");
-        for (ProblemVO problemVO : problemVOList) {
-            problemService.insertOneProblemVO(problemVO);
+    @PostMapping("/admin/problem/import_from_fps")
+    public MessageVO<Boolean> createBatchProblemsFromFps(Authentication authentication,
+                                                         @RequestParam("file") MultipartFile multipartFile) {
+        String absolutePath = fileService.saveLocalFile(multipartFile, "FreeProblemSet");
+        String addUsername = ((UserDetails) authentication.getPrincipal()).getUsername();
+        List<ProblemDTO> problemDTOList = FPSUtils.fps2ProblemDTO(Long.valueOf("1"), absolutePath);
+        problemDTOList.forEach(item -> {
+            item.setAddUsername(addUsername);
+            item.setAuthor("外部导入");
+        });
+        for (ProblemDTO problemDTO : problemDTOList) {
+            problemService.insertOneProblemDTO(problemDTO);
         }
-        return MessageVO.<ProblemListVO>builder().error(null)
-                .data(ProblemListVO.builder()
-                        .results(problemVOList)
-                        .total((long)problemVOList.size())
-                        .build())
+        return MessageVO.<Boolean>builder()
+                .error(null)
+                .data(true)
                 .build();
     }
 
     /**
      * desc : get problem list view object with paging.
      * @param problemParametersDTO - parameters
-     * @param limit - limit
+     * @param status - means if it is a public problem
      * @return ProblemListVO
      */
-    private ProblemListVO getPagingProblemListVO(ProblemParametersDTO problemParametersDTO, Integer limit) {
+    private ProblemListVO getPagingProblemListVO(ProblemParametersDTO problemParametersDTO, PageParametersDTO pageParametersDTO, Integer status) {
         Page<ProblemVO> page;
-        if (problemParametersDTO.getPage() != null){
-            page = new Page<>(problemParametersDTO.getPage(), limit);
+        if (pageParametersDTO.getPage() != null){
+            page = new Page<>(pageParametersDTO.getPage(), pageParametersDTO.getLimit());
         } else {
-            page = new Page<>(1, limit);
+            page = new Page<>(1, pageParametersDTO.getLimit());
         }
         IPage<ProblemVO> problems = problemService.listProblemsByPaging(page, problemParametersDTO);
+        // set the rule for role user
+        // TODO : decline the level of the filter to the database level
+        List<ProblemVO> tmps = problems.getRecords();
+        if (status == 0) {
+            tmps = tmps.stream().filter(tmp -> tmp.getStatus() == 0).collect(Collectors.toList());
+        }
+        problems.setRecords(tmps);
         for (ProblemVO problemVO : problems.getRecords()) {
             problemVO.setCheckpoints(new ArrayList<>());
         }

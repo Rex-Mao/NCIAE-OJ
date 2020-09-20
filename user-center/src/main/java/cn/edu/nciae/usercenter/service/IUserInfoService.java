@@ -15,6 +15,13 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface IUserInfoService extends IService<UserInfo> {
 
     /**
+     * desc : save a new user
+     * @param userInfo -
+     * @return UserInfo
+     */
+    UserInfo saveRegisterUserInfo(UserInfo userInfo);
+
+    /**
      * desc : update the profile by parameters
      * @param changed - changed profile (Language, Blog, Mood, Github)
      * @param username - username

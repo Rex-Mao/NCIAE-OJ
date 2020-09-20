@@ -19,6 +19,5 @@ public class ProblemParametersDTO {
     private String keyword;
     private String difficulty;
     private String tag;
-    private Integer page;
     private Long contestId;
 }

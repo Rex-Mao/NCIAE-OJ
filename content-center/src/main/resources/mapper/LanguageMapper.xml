@@ -18,4 +18,8 @@
         language_id, language_slug, language_name, language_compile_command, language_run_command, language_suffix, language_description
     </sql>
 
+    <select id="selectNameOfAllLanguages" resultType="java.lang.String">
+        select `language_name` from `languages`
+    </select>
+
 </mapper>

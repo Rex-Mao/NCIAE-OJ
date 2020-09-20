@@ -1,17 +1,22 @@
 package cn.edu.nciae.usercenter.service.impl;
 
+import cn.edu.nciae.usercenter.common.entity.Role;
 import cn.edu.nciae.usercenter.common.entity.UserInfo;
+import cn.edu.nciae.usercenter.common.entity.UserRole;
 import cn.edu.nciae.usercenter.common.mapper.RoleMapper;
 import cn.edu.nciae.usercenter.common.mapper.UserInfoMapper;
 import cn.edu.nciae.usercenter.common.mapper.UserRoleMapper;
 import cn.edu.nciae.usercenter.common.vo.UserInfoVO;
 import cn.edu.nciae.usercenter.service.IUserInfoService;
+import cn.edu.nciae.usercenter.utils.PasswordUtils;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 
 /**
  * @author RexALun
@@ -30,6 +35,35 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 
     @Autowired
     private RoleMapper roleMapper;
+
+    @Autowired
+    private PasswordUtils passwordUtils;
+
+    /**
+     * desc : save a new user
+     * @param userInfo -
+     * @return UserInfo
+     */
+    @Override
+    public UserInfo saveRegisterUserInfo(UserInfo userInfo) {
+        UserInfo registerUser = UserInfo.builder()
+                .nickname(userInfo.getNickname())
+                .password(passwordUtils.encode(userInfo.getPassword()))
+                .email(userInfo.getEmail())
+                .regtime(new Date())
+                .language("en-US")
+                .solvednum(0)
+                .build();
+        userInfoMapper.insert(registerUser);
+        Role role = roleMapper.selectOne(Wrappers.<Role>lambdaQuery().eq(Role::getRolename, "ROLE_USER"));
+        UserRole userRole = UserRole.builder()
+                .uid(registerUser.getUid())
+                .roleId(role.getRoleId())
+                .description("User")
+                .build();
+        userRoleMapper.insert(userRole);
+        return registerUser;
+    }
 
     /**
      * desc : update the profile by parameters

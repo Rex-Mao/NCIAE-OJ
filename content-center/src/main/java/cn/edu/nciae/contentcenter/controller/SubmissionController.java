@@ -15,12 +15,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -93,18 +88,27 @@ public class SubmissionController {
     }
 
     @GetMapping("/public/submissions")
-    public MessageVO<SubmissionListVO> PagingSubmissionListVO(Authentication authentication,
-                                                              SubmissionParametersDTO submissionParametersDTO) {
+    public MessageVO<SubmissionListVO> PagingSubmissionListVO(SubmissionParametersDTO submissionParametersDTO) {
         Page<Record> page = new Page<>(submissionParametersDTO.getPage(), submissionParametersDTO.getLimit());
         IPage<Record> results = null;
-        if (authentication == null) {
-            results = recordService.listRecordByPaging(page);
-        } else {
-            if (submissionParametersDTO.getMyself() == 0) {
-                results = recordService.listRecordByPaging(page);
+        if (submissionParametersDTO.getMyself() != 1) {
+            if (submissionParametersDTO.getResult() != null) {
+                results = recordService.page(page, Wrappers.<Record>lambdaQuery()
+                        .eq(Record::getStatus, submissionParametersDTO.getResult())
+                        .orderByDesc(Record::getCommitTime));
             } else {
-                String username = ((UserDetails) authentication.getPrincipal()).getUsername();
-                results = recordService.listRecordByUid(page, username);
+                results = recordService.listRecordByPaging(page);
+            }
+        } else {
+            if (submissionParametersDTO.getResult() != null) {
+                results = recordService.page(page, Wrappers.<Record>lambdaQuery()
+                        .eq(Record::getCommitNickname, submissionParametersDTO.getUsername())
+                        .eq(Record::getStatus, submissionParametersDTO.getResult())
+                        .orderByDesc(Record::getCommitTime));
+            } else {
+                results = recordService.page(page, Wrappers.<Record>lambdaQuery()
+                        .eq(Record::getCommitNickname, submissionParametersDTO.getUsername())
+                        .orderByDesc(Record::getCommitTime));
             }
         }
         return MessageVO.<SubmissionListVO>builder()
@@ -114,5 +118,45 @@ public class SubmissionController {
                         .total(results.getTotal())
                         .build())
                 .build();
+    }
+
+    @GetMapping("/public/contest_submissions/{cid}")
+    public MessageVO<SubmissionListVO> PagingContestSubmissionListVO(@PathVariable("cid") Long cid,
+                                                                     SubmissionParametersDTO submissionParametersDTO) {
+        Page<Record> page = new Page<>(submissionParametersDTO.getPage(), submissionParametersDTO.getLimit());
+        IPage<Record> results = null;
+        if (submissionParametersDTO.getMyself() != 1) {
+            if (submissionParametersDTO.getResult() != null) {
+                results = recordService.page(page, Wrappers.<Record>lambdaQuery()
+                        .eq(Record::getCid, cid)
+                        .eq(Record::getStatus, submissionParametersDTO.getResult())
+                        .orderByDesc(Record::getCommitTime));
+            } else {
+                results = recordService.page(page, Wrappers.<Record>lambdaQuery()
+                        .eq(Record::getCid, cid)
+                        .orderByDesc(Record::getCommitTime));
+            }
+        } else {
+            if (submissionParametersDTO.getResult() != null) {
+                results = recordService.page(page, Wrappers.<Record>lambdaQuery()
+                        .eq(Record::getCid, cid)
+                        .eq(Record::getCommitNickname, submissionParametersDTO.getUsername())
+                        .eq(Record::getStatus, submissionParametersDTO.getResult())
+                        .orderByDesc(Record::getCommitTime));
+            } else {
+                results = recordService.page(page, Wrappers.<Record>lambdaQuery()
+                        .eq(Record::getCid, cid)
+                        .eq(Record::getCommitNickname, submissionParametersDTO.getUsername())
+                        .orderByDesc(Record::getCommitTime));
+            }
+        }
+        return MessageVO.<SubmissionListVO>builder()
+                .error(null)
+                .data(SubmissionListVO.builder()
+                        .results(results.getRecords())
+                        .total(results.getTotal())
+                        .build())
+                .build();
+
     }
 }

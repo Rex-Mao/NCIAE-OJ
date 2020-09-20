@@ -3,16 +3,63 @@
 <mapper namespace="cn.edu.nciae.contentcenter.common.mapper.CompetitionProblemMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="cn.edu.nciae.contentcenter.common.entity.CompetitionProblem">
+    <resultMap id="BaseViewResultMap" type="cn.edu.nciae.contentcenter.common.entity.CompetitionProblem">
         <id column="cpid" property="cpid" />
         <result column="cid" property="cid" />
         <result column="pid" property="pid" />
+        <result column="display_id" property="displayId" />
         <result column="score" property="score" />
+        <result column="submit_num" property="submitNum" />
+        <result column="solved_num" property="solvedNum" />
+    </resultMap>
+
+    <resultMap id="CompetitionProblemViewResultMap" type="cn.edu.nciae.contentcenter.common.entity.CompetitionProblem">
+        <id column="cpid" property="cpid" />
+        <result column="cid" property="cid" />
+        <result column="pid" property="pid" />
+        <result column="display_id" property="displayId" />
+        <result column="score" property="score" />
+        <result column="submit_num" property="submitNum" />
+        <result column="solved_num" property="solvedNum" />
+        <association column="pid" property="problem" javaType="cn.edu.nciae.contentcenter.common.vo.ProblemVO">
+            <id column="pid" property="pid" />
+            <result column="add_uid" property="addUid" />
+            <result column="add_username" property="addUsername" />
+            <result column="title" property="title" />
+            <result column="description" property="description" />
+            <result column="f_input" property="fInput" />
+            <result column="f_output" property="fOutput" />
+            <result column="time_limit" property="timeLimit" />
+            <result column="memory_limit" property="memoryLimit" />
+            <result column="submit_num" property="submitNum" />
+            <result column="solved_num" property="solvedNum" />
+            <result column="author" property="author" />
+            <result column="special_judge" property="specialJudge" />
+            <result column="hint" property="hint" />
+            <result column="status" property="status"/>
+            <collection column="pid" property="samples" ofType="cn.edu.nciae.contentcenter.common.entity.Sample"
+                        select="cn.edu.nciae.contentcenter.common.mapper.SampleMapper.selectSampleListByPid"/>
+            <collection column="pid" property="tags" ofType="cn.edu.nciae.contentcenter.common.entity.Tag"
+                        select="cn.edu.nciae.contentcenter.common.mapper.TagMapper.selectTagListByPid"/>
+            <collection column="pid" property="languages" ofType="java.lang.String"
+                        select="cn.edu.nciae.contentcenter.common.mapper.LanguageMapper.selectNameOfAllLanguages"/>
+        </association>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        cpid, cid, pid, score
+        cpid, cid, pid, score, display_id, submit_num, solved_num
     </sql>
 
+    <select id="selectCompetitionProblems" parameterType="Long" resultMap="CompetitionProblemViewResultMap">
+        select *
+        from `competition_problem` cp, `problem` p
+        where cp.cid = #{cid} and cp.pid = p.pid
+    </select>
+
+    <select id="selectCompetitionProblemByCpid" resultMap="CompetitionProblemViewResultMap">
+        select *
+        from `competition_problem` cp, `problem` p
+        where cp.cpid = #{cpid} and cp.pid = p.pid
+    </select>
 </mapper>

@@ -14,4 +14,9 @@
         tid, t_name, t_description
     </sql>
 
+    <!-- 问题标签一对多关系子查询方法-->
+    <select id="selectTagListByPid" resultMap="BaseResultMap">
+        select * from `problem_tag` pt, `tag` t where pt.`pid` = #{pid} and pt.`tid` = t.`tid`
+    </select>
+
 </mapper>

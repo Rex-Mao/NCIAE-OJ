@@ -6,6 +6,7 @@
     <resultMap id="BaseResultMap" type="cn.edu.nciae.contentcenter.common.entity.Problem">
         <id column="pid" property="pid" />
         <result column="add_uid" property="addUid" />
+        <result column="add_username" property="addUsername" />
         <result column="title" property="title" />
         <result column="description" property="description" />
         <result column="f_input" property="fInput" />
@@ -17,12 +18,14 @@
         <result column="author" property="author" />
         <result column="special_judge" property="specialJudge" />
         <result column="hint" property="hint" />
+        <result column="status" property="status"/>
     </resultMap>
 
     <!-- 关联样例输入输出查询映射结果 -->
     <resultMap id="ProblemViewResultMap" type="cn.edu.nciae.contentcenter.common.vo.ProblemVO">
         <id column="pid" property="pid" />
         <result column="add_uid" property="addUid" />
+        <result column="add_username" property="addUsername" />
         <result column="title" property="title" />
         <result column="description" property="description" />
         <result column="f_input" property="fInput" />
@@ -34,29 +37,18 @@
         <result column="author" property="author" />
         <result column="special_judge" property="specialJudge" />
         <result column="hint" property="hint" />
-        <collection column="pid" property="samples" ofType="cn.edu.nciae.contentcenter.common.entity.Sample" select="selectSampleListByPid"/>
-        <collection column="pid" property="tags" ofType="cn.edu.nciae.contentcenter.common.entity.Tag" select="selectTagListByPid"/>
-        <collection column="pid" property="languages" ofType="java.lang.String" select="selectNameOfAllLanguages"/>
-    </resultMap>
-
-    <!-- Sample输入输出查询映射结果 -->
-    <resultMap id="SampleResultMap" type="cn.edu.nciae.contentcenter.common.entity.Sample">
-        <id column="sid" property="sid" />
-        <result column="pid" property="pid" />
-        <result column="input" property="input" />
-        <result column="output" property="output" />
-    </resultMap>
-
-    <!-- Tag查询映射结果 -->
-    <resultMap id="TagResultMap" type="cn.edu.nciae.contentcenter.common.entity.Tag">
-        <id column="tid" property="tid" />
-        <result column="t_name" property="tName" />
-        <result column="t_description" property="tDescription" />
+        <result column="status" property="status"/>
+        <collection column="pid" property="samples" ofType="cn.edu.nciae.contentcenter.common.entity.Sample"
+                    select="cn.edu.nciae.contentcenter.common.mapper.SampleMapper.selectSampleListByPid"/>
+        <collection column="pid" property="tags" ofType="cn.edu.nciae.contentcenter.common.entity.Tag"
+                    select="cn.edu.nciae.contentcenter.common.mapper.TagMapper.selectTagListByPid"/>
+        <collection column="pid" property="languages" ofType="java.lang.String"
+                    select="cn.edu.nciae.contentcenter.common.mapper.LanguageMapper.selectNameOfAllLanguages"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        pid, add_uid, title, description, f_input, f_output, time_limit, memory_limit, submit_num, solved_num, author, special_judge, hint
+        pid, add_uid, add_username, title, description, f_input, f_output, time_limit, memory_limit, submit_num, solved_num, author, special_judge, hint, status
     </sql>
 
     <!-- 获取全部problems-->
@@ -78,18 +70,4 @@
         select * from `problem` where `problem`.pid = #{pid}
     </select>
 
-    <!-- 问题样例一对多关系子查询方法-->
-    <select id="selectSampleListByPid" resultMap="SampleResultMap">
-        select * from `sample` where `sample`.`pid` = #{pid}
-    </select>
-
-    <!-- 问题标签一对多关系子查询方法-->
-    <select id="selectTagListByPid" resultMap="TagResultMap">
-        select * from `problem_tag` pt, `tag` t where pt.`pid` = #{pid} and pt.`tid` = t.`tid`
-    </select>
-
-    <!-- -->
-    <select id="selectNameOfAllLanguages" resultType="java.lang.String">
-        select `language_name` from `languages`
-    </select>
 </mapper>

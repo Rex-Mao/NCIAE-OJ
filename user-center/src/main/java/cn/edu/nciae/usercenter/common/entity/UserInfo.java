@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * <p>

@@ -5,6 +5,7 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="cn.edu.nciae.contentcenter.common.entity.Notice">
         <id column="nid" property="nid" />
+        <result column="cid" property="cid" />
         <result column="nickname" property="nickname" />
         <result column="notice_title" property="noticeTitle" />
         <result column="notice_content" property="noticeContent" />
@@ -15,7 +16,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        nid, nickname, notice_title, notice_content, create_time, last_update_time, visible
+        nid, cid, nickname, notice_title, notice_content, create_time, last_update_time, visible
     </sql>
     
     <select id="listNoticesByPaging" resultMap="BaseResultMap">

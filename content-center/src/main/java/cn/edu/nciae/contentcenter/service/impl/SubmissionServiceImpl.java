@@ -41,6 +41,8 @@ public class SubmissionServiceImpl implements ISubmissionService {
         submissionDTO.setSubmissionId(submissionId);
         submissionDTO.setCommitTime(new Date());
         Problem problem = problemMapper.selectById(submissionDTO.getProblemId());
+        problem.setSubmitNum(problem.getSubmitNum() + 1);
+        problemMapper.updateById(problem);
         submissionDTO.setTimeLimit(problem.getTimeLimit());
         submissionDTO.setMemoryLimit(problem.getMemoryLimit());
         judgeSubmissionSource.output().send(

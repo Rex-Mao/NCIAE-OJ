@@ -33,8 +33,8 @@ public class NoticeServiceImpl extends ServiceImpl<NoticeMapper, Notice> impleme
     @Override
     public IPage<Notice> listNoticesByPaging(Page<Notice> page, String role) {
         if ("User".equals(role)) {
-            return noticeMapper.selectPage(page, Wrappers.<Notice>lambdaQuery().eq(Notice::getVisible, 1));
+            return noticeMapper.selectPage(page, Wrappers.<Notice>lambdaQuery().eq(Notice::getVisible, 1).eq(Notice::getCid, 0));
         }
-        return noticeMapper.listNoticesByPaging(page);
+        return noticeMapper.selectPage(page, Wrappers.<Notice>lambdaQuery().eq(Notice::getCid, 0));
     }
 }

@@ -50,3 +50,7 @@ rocketmq:
 logging:
   level:
     com.alibaba.nacos: error
+    cn.edu.nciae.contentcenter.common.mapper: debug
+cn.edu.nciae.contentcenter:
+  file:
+    location: /Users/rexmao/Documents/RexStudio/NCIAE-OJ/Doc/data/file

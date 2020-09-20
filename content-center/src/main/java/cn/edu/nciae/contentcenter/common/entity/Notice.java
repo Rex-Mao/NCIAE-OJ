@@ -33,6 +33,11 @@ public class Notice implements Serializable {
     private Long nid;
 
     /**
+     * 竞赛ID
+     */
+    private Long cid;
+
+    /**
      * 创建用户名
      */
     private String nickname;

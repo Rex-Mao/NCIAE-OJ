@@ -13,6 +13,7 @@
     <resultMap id="ProblemViewResultMap" type="cn.edu.nciae.contentcenter.common.vo.ProblemVO">
         <id column="pid" property="pid" />
         <result column="add_uid" property="addUid" />
+        <result column="add_username" property="addUsername" />
         <result column="title" property="title" />
         <result column="description" property="description" />
         <result column="f_input" property="fInput" />
@@ -24,6 +25,7 @@
         <result column="author" property="author" />
         <result column="special_judge" property="specialJudge" />
         <result column="hint" property="hint" />
+        <result column="status" property="status"/>
         <collection column="pid" property="samples" ofType="cn.edu.nciae.contentcenter.common.entity.Sample" select="selectSampleListByPid"/>
         <collection column="pid" property="tags" ofType="cn.edu.nciae.contentcenter.common.entity.Tag" select="selectTagListByPid"/>
         <collection column="pid" property="languages" ofType="java.lang.String" select="selectNameOfAllLanguages"/>

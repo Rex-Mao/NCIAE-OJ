@@ -1,6 +1,7 @@
 package cn.edu.nciae.contentcenter.common.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
@@ -47,4 +48,25 @@ public class CompetitionProblem implements Serializable {
      * 问题在竞赛中所占分数
      */
     private Integer score;
+
+    /**
+     * 问题在竞赛中显示的ID
+     */
+    private String displayId;
+
+    /**
+     * 问题在竞赛中的提交次数
+     */
+    private Integer submitNum;
+
+    /**
+     * 问题在竞赛中的解决次数
+     */
+    private Integer solvedNum;
+
+    /**
+     * 问题
+     */
+    @TableField(value = "pid", exist = false)
+    private Problem problem;
 }

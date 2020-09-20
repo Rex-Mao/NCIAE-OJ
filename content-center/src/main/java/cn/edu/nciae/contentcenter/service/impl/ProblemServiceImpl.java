@@ -78,7 +78,8 @@ public class ProblemServiceImpl extends ServiceImpl<ProblemMapper, Problem> impl
      */
     @Override
     public ProblemVO insertOneProblemVO(ProblemVO problemVO) {
-        Problem problem = problemVO.unzipProblemVO();
+        Problem problem = problemVO.unzip2Problem();
+        transferProblemOfSystem(problem);
         problemMapper.insert(problem);
         for (Sample sample : problemVO.getSamples()) {
             sample.setPid(problem.getPid());
@@ -105,8 +106,7 @@ public class ProblemServiceImpl extends ServiceImpl<ProblemMapper, Problem> impl
     @Override
     public Boolean insertOneProblemDTO(ProblemDTO problemDTO) {
         Problem problem = ClassUtils.getSuperObjectFromSubObject(problemDTO, Problem.class);
-        problem.setSubmitNum(0);
-        problem.setSolvedNum(0);
+        transferProblemOfSystem(problem);
         problemMapper.insert(problem);
         Boolean result = setThingsWithProblem(problemDTO, problem.getPid());
         return result;
@@ -122,6 +122,7 @@ public class ProblemServiceImpl extends ServiceImpl<ProblemMapper, Problem> impl
         Problem problem = ClassUtils.getSuperObjectFromSubObject(problemDTO, Problem.class);
         sampleMapper.delete(Wrappers.<Sample>lambdaQuery().eq(Sample::getPid, problem.getPid()));
         problemTagMapper.delete(Wrappers.<ProblemTag>lambdaQuery().eq(ProblemTag::getPid, problem.getPid()));
+        // TODO : add the checkpoint opreation when you rebuild the project
         problemMapper.update(problem, Wrappers.<Problem>lambdaQuery().eq(Problem::getPid, problem.getPid()));
         Boolean result = setThingsWithProblem(problemDTO, problem.getPid());
         return result;
@@ -138,25 +139,44 @@ public class ProblemServiceImpl extends ServiceImpl<ProblemMapper, Problem> impl
             sample.setPid(pid);
             sampleMapper.insert(sample);
         }
-        for (Tag tag : problemDTO.getTags()) {
-            Tag tmp = tagMapper.selectOne(Wrappers.<Tag>lambdaQuery().eq(Tag::getTName, tag.getTName()));
-            if (tmp == null) {
-                tmp = Tag.builder()
-                        .tName(tag.getTName())
-                        .tDescription(tag.getTName())
+        if (problemDTO.getTags() != null) {
+            for (Tag tag : problemDTO.getTags()) {
+                Tag tmp = tagMapper.selectOne(Wrappers.<Tag>lambdaQuery().eq(Tag::getTName, tag.getTName()));
+                if (tmp == null) {
+                    tmp = Tag.builder()
+                            .tName(tag.getTName())
+                            .tDescription(tag.getTName())
+                            .build();
+                    tagMapper.insert(tmp);
+                }
+                ProblemTag problemTag = ProblemTag.builder()
+                        .pid(pid)
+                        .tid(tmp.getTid())
                         .build();
-                tagMapper.insert(tmp);
+                problemTagMapper.insert(problemTag);
             }
-            ProblemTag problemTag = ProblemTag.builder()
-                    .pid(pid)
-                    .tid(tmp.getTid())
-                    .build();
-            problemTagMapper.insert(problemTag);
         }
-        for (Checkpoint checkpoint : problemDTO.getCheckpoints()) {
-            System.out.println(checkpoint);
-        }
+
+        problemDTO.getCheckpoints().forEach(item -> {
+            item.setPid(pid);
+        });
+        checkpointSource.ouput().send(MessageBuilder
+                .withPayload(problemDTO.getCheckpoints())
+                .build()
+        );
         return true;
+    }
+
+    /**
+     * desc : transfer problem
+     * @param problem -
+     * @return Problem
+     */
+    private Problem transferProblemOfSystem(Problem problem) {
+        problem.setSubmitNum(0);
+        problem.setSolvedNum(0);
+        problem.setStatus(0);
+        return problem;
     }
 
 }

@@ -15,4 +15,9 @@
         sid, pid, input, output
     </sql>
 
+    <!-- 问题样例一对多关系子查询方法-->
+    <select id="selectSampleListByPid" resultMap="BaseResultMap">
+        select * from `sample` where `sample`.`pid` = #{pid}
+    </select>
+
 </mapper>

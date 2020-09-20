@@ -1,8 +1,8 @@
 package cn.edu.nciae.contentcenter.utils;
 
+import cn.edu.nciae.contentcenter.common.dto.ProblemDTO;
 import cn.edu.nciae.contentcenter.common.entity.Checkpoint;
 import cn.edu.nciae.contentcenter.common.entity.Sample;
-import cn.edu.nciae.contentcenter.common.vo.ProblemVO;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -26,21 +26,21 @@ public class FPSUtils {
 
     private static NodeList itemList;
 
-    public static List<ProblemVO> fps2ProblemVO(Long uid, String filepath) {
+    public static List<ProblemDTO> fps2ProblemDTO(Long uid, String filepath) {
         Document doc;
         doc = parseXML(filepath);
-        List<ProblemVO> problems = new ArrayList<ProblemVO>();
+        List<ProblemDTO> problems = new ArrayList<ProblemDTO>();
         itemList = doc.getElementsByTagName("item");
         for (int i = 0; i < itemList.getLength(); i++) {
-            ProblemVO problemVO = itemToProblemVO(itemList.item(i));
-            problemVO.setAddUid(uid);
-            problems.add(problemVO);
+            ProblemDTO problemDTO = itemToProblemDTO(itemList.item(i));
+            problemDTO.setAddUid(uid);
+            problems.add(problemDTO);
         }
         return problems;
     }
 
-    private static ProblemVO itemToProblemVO(Node item) {
-        ProblemVO problemVO = new ProblemVO();
+    private static ProblemDTO itemToProblemDTO(Node item) {
+        ProblemDTO problemDTO = new ProblemDTO();
         List<Sample> sampleList = getSampleList(item);
         List<Checkpoint> checkpointList = getCheckpointList(item);
         NodeList nodeList = item.getChildNodes();
@@ -49,50 +49,50 @@ public class FPSUtils {
             String name = node.getNodeName();
             String value = node.getTextContent();
             if ("title".equalsIgnoreCase(name)) {
-                problemVO.setTitle(value);
+                problemDTO.setTitle(value);
             }
             if ("time_limit".equalsIgnoreCase(name)) {
                 Element tmp = (Element)node;
                 String unit = tmp.getAttribute("unit");
                 if ("s".equalsIgnoreCase(unit)) {
-                    problemVO.setTimeLimit(Double.parseDouble(String.valueOf(value.split(" ")[0])) * 1000);
+                    problemDTO.setTimeLimit(Double.parseDouble(String.valueOf(value.split(" ")[0])) * 1000);
                 } else {
-                    problemVO.setTimeLimit(Double.valueOf(String.valueOf(value.split(" ")[0])));
+                    problemDTO.setTimeLimit(Double.valueOf(String.valueOf(value.split(" ")[0])));
                 }
             }
             if ("memory_limit".equalsIgnoreCase(name)) {
                 Element tmp = (Element)node;
                 String unit = tmp.getAttribute("unit");
-                if ("kb".equalsIgnoreCase(unit)) {
-                    problemVO.setMemoryLimit(Double.parseDouble(String.valueOf(value.split(" ")[0])) / 1024);
+                if ("mb".equalsIgnoreCase(unit)) {
+                    problemDTO.setMemoryLimit(Double.parseDouble(String.valueOf(value.split(" ")[0])) * 1024);
                 } else {
-                    problemVO.setMemoryLimit(Double.valueOf(String.valueOf(value.split(" ")[0])));
+                    problemDTO.setMemoryLimit(Double.valueOf(String.valueOf(value.split(" ")[0])));
                 }
             }
             if ("description".equalsIgnoreCase(name)) {
-                problemVO.setDescription(value);
+                problemDTO.setDescription(value);
             }
             if ("input".equalsIgnoreCase(name)) {
-                problemVO.setFInput(value);
+                problemDTO.setFInput(value);
             }
             if ("output".equalsIgnoreCase(name)) {
-                problemVO.setFOutput(value);
+                problemDTO.setFOutput(value);
             }
             if ("hint".equalsIgnoreCase(name)) {
-                problemVO.setHint(value);
+                problemDTO.setHint(value);
             }
             if ("source".equalsIgnoreCase(name)) {
-                problemVO.setAuthor(value);
+                problemDTO.setAuthor(value);
             }
 //            if (name.equalsIgnoreCase("img")) {
 //                problem.imageList.add(new freeproblemset.Image(e, p));
 //            }
         }
-        problemVO.setSubmitNum(0);
-        problemVO.setSolvedNum(0);
-        problemVO.setSamples(sampleList);
-        problemVO.setCheckpoints(checkpointList);
-        return problemVO;
+        problemDTO.setSubmitNum(0);
+        problemDTO.setSolvedNum(0);
+        problemDTO.setSamples(sampleList);
+        problemDTO.setCheckpoints(checkpointList);
+        return problemDTO;
     }
 
     private static Document parseXML(String filepath) {

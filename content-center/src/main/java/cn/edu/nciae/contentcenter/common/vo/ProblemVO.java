@@ -48,7 +48,7 @@ public class ProblemVO extends Problem {
      * desc : get Problem instance from VO
      * @return Problem
      */
-    public Problem unzipProblemVO() {
+    public Problem unzip2Problem() {
         return ClassUtils.getSuperObjectFromSubObject(this, Problem.class);
     }
 
@@ -61,7 +61,7 @@ public class ProblemVO extends Problem {
 
     @Override
     public String toString() {
-        String problemString = unzipProblemVO().toString();
+        String problemString = unzip2Problem().toString();
         String sampleString = "";
         for(Sample s : this.samples) {
             sampleString = sampleString.concat(s.toString());

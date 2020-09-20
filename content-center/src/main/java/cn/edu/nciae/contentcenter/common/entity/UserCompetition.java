@@ -40,6 +40,11 @@ public class UserCompetition implements Serializable {
     private Long uid;
 
     /**
+     * 用户名
+     */
+    private String nickname;
+
+    /**
      * 竞赛ID
      */
     private Long cid;

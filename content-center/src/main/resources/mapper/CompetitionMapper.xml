@@ -17,7 +17,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        cid, create_username, title, password, start_time, end_time, description, c_public, c_status
+        cid, create_username, title, `password`, start_time, end_time, `description`, c_public, c_status
     </sql>
 
     <select id="listContestsByPagingWithKeywordAndStatus" resultMap="BaseResultMap">
@@ -27,6 +27,7 @@
         <if test="keyword!=null and keyword!=''">
             AND CONCAT(c.cid,c.title,c.create_username) LIKE '%' #{keyword} '%'
         </if>
+        order by c.start_time desc
     </select>
 
     <select id="listContestsByPagingWithKeyword" resultMap="BaseResultMap">
@@ -37,6 +38,7 @@
                 CONCAT(c.cid,c.title,c.create_username) LIKE '%' #{keyword} '%'
             </if>
         </where>
+        order by c.start_time desc
     </select>
 
 </mapper>

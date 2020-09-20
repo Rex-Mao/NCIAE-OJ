@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SubmissionParametersDTO {
     private Integer myself;
-    private String result;
+    private Integer result;
     private String username;
     private Integer page;
     private Integer limit;

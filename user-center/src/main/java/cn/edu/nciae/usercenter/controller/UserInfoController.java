@@ -6,10 +6,7 @@ import cn.edu.nciae.usercenter.common.dto.UserInfoDTO;
 import cn.edu.nciae.usercenter.common.entity.Role;
 import cn.edu.nciae.usercenter.common.entity.UserInfo;
 import cn.edu.nciae.usercenter.common.entity.UserRole;
-import cn.edu.nciae.usercenter.common.vo.MessageVO;
-import cn.edu.nciae.usercenter.common.vo.UserInfoVO;
-import cn.edu.nciae.usercenter.common.vo.UserListVO;
-import cn.edu.nciae.usercenter.common.vo.UserVO;
+import cn.edu.nciae.usercenter.common.vo.*;
 import cn.edu.nciae.usercenter.service.IRoleService;
 import cn.edu.nciae.usercenter.service.IUserInfoService;
 import cn.edu.nciae.usercenter.service.IUserRoleService;
@@ -51,6 +48,11 @@ public class UserInfoController {
     @Autowired
     private PasswordUtils passwordUtils;
 
+    /**
+     * desc : get user info by inner system
+     * @param uid -
+     * @return UserInfoDTO
+     */
     @GetMapping("/userInfo/{userid}")
     public UserInfoDTO getUserInfo(@PathVariable("userid") Long uid) {
         UserInfo userInfo = userInfoService.getOne(Wrappers.<UserInfo>lambdaQuery().eq(UserInfo::getUid, uid));
@@ -72,7 +74,7 @@ public class UserInfoController {
     public MessageVO<UserVO> getProfile(Authentication authentication) {
         String username = ((UserDetails) authentication.getPrincipal()).getUsername();
         UserInfo userInfo = userInfoService.getOne(Wrappers.<UserInfo>lambdaQuery().eq(UserInfo::getNickname, username));
-        userInfo.setPassword(null);
+        filterSensitiveInformation(userInfo);
         return MessageVO.<UserVO>builder()
                 .error(null)
                 .data(UserVO.builder()
@@ -91,6 +93,7 @@ public class UserInfoController {
                                            UserInfo changedInfo) {
         String username = ((UserDetails) authentication.getPrincipal()).getUsername();
         UserInfo changed = userInfoService.updateUserProfile(changedInfo, username);
+        filterSensitiveInformation(changed);
         return MessageVO.<UserVO>builder()
                 .error(null)
                 .data(UserVO.builder()
@@ -99,6 +102,13 @@ public class UserInfoController {
                 .build();
     }
 
+    /**
+     * desc : update profile password
+     * @param authentication -
+     * @param oldPassword -
+     * @param newPassword -
+     * @return MessageVO<String>
+     */
     @PutMapping("/profile/password")
     public MessageVO<String> updateProfilePassword(Authentication authentication,
                                                    @RequestParam("old_password") String oldPassword,
@@ -120,6 +130,14 @@ public class UserInfoController {
         }
     }
 
+    /**
+     * desc : update profile email
+     * @param authentication -
+     * @param password -
+     * @param oldEmail -
+     * @param newEmail -
+     * @return MessageVO<String>
+     */
     @PutMapping("/profile/email")
     public MessageVO<String> updateProfileEmail(Authentication authentication,
                                                    @RequestParam("password") String password,
@@ -184,6 +202,46 @@ public class UserInfoController {
     }
 
     /**
+     * desc : check username or email exist
+     * @param userInfo -
+     * @return MessageVO<Boolean>
+     */
+    @PostMapping("/public/check_username_or_email")
+    public MessageVO<UsernameEmailValidateVO> checkUsernameOrEmailExist(@RequestBody UserInfo userInfo) {
+        UsernameEmailValidateVO result = UsernameEmailValidateVO.builder().nickname(false).email(false).build();
+        if (userInfo.getNickname() != null) {
+            UserInfo userTemp = userInfoService.getOne(Wrappers.<UserInfo>lambdaQuery().eq(UserInfo::getNickname, userInfo.getNickname()));
+            if (userTemp != null) {
+                result.setNickname(true);
+            }
+        }
+        if (userInfo.getEmail() != null) {
+            UserInfo userTemp = userInfoService.getOne(Wrappers.<UserInfo>lambdaQuery().eq(UserInfo::getEmail, userInfo.getEmail()));
+            if (userTemp != null) {
+                result.setEmail(true);
+            }
+        }
+        return MessageVO.<UsernameEmailValidateVO>builder()
+                .error(null)
+                .data(result)
+                .build();
+    }
+
+    /**
+     * desc : registry
+     * @param userInfo -
+     * @return MessageVO<Boolean>
+     */
+    @PostMapping("/public/register")
+    public MessageVO<Long> register(@RequestBody UserInfo userInfo) {
+        UserInfo registerUser = userInfoService.saveRegisterUserInfo(userInfo);
+        return MessageVO.<Long>builder()
+                .error(null)
+                .data(registerUser.getUid())
+                .build();
+    }
+
+    /**
      * desc : get user list view object with paging.
      * @param pageParametersDTO - parameters
      * @return ProblemListVO
@@ -201,12 +259,21 @@ public class UserInfoController {
         } else {
             users = userInfoService.listUsersByPaging(page);
         }
-        users.getRecords().forEach(item -> {
-            item.setPassword(null);
-        });
+        users.getRecords().forEach(this::filterSensitiveInformation);
         return UserListVO.builder()
                 .results(users.getRecords())
                 .total(users.getTotal())
                 .build();
     }
+
+    /**
+     * desc : filter sensitive information
+     * @param userInfo -
+     * @return UserInfo
+     */
+    private UserInfo filterSensitiveInformation(UserInfo userInfo) {
+        userInfo.setPassword(null);
+        return userInfo;
+    }
+
 }

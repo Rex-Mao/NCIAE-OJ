@@ -1,11 +1,11 @@
 package cn.edu.nciae.contentcenter.utils;
 
+import cn.edu.nciae.contentcenter.common.dto.ProblemDTO;
 import cn.edu.nciae.contentcenter.common.entity.Checkpoint;
 import cn.edu.nciae.contentcenter.common.entity.Problem;
 import cn.edu.nciae.contentcenter.common.entity.Sample;
 import cn.edu.nciae.contentcenter.common.mapper.ProblemMapper;
 import cn.edu.nciae.contentcenter.common.mapper.SampleMapper;
-import cn.edu.nciae.contentcenter.common.vo.ProblemVO;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,11 +44,11 @@ public class FPSUtilsTest {
      * Method: FPS2Problems(Long uid, String filepath)
      */
     @Test
-    public void testFPS2ProblemVO() throws Exception {
-        List<ProblemVO> problemVOList = FPSUtils.fps2ProblemVO(Long.valueOf("1"), "/Users/rexmao/Documents/RexStudio/NCIAE-OJ/Doc/standard-test-fps.xml");
-        for (ProblemVO p : problemVOList) {
+    public void testFPS2ProblemDTO() throws Exception {
+        List<ProblemDTO> problemDTOList = FPSUtils.fps2ProblemDTO(Long.valueOf("1"), "/Users/rexmao/Documents/RexStudio/NCIAE-OJ/Doc/standard-test-fps.xml");
+        for (ProblemDTO p : problemDTOList) {
             System.out.println(p.toString());
-            Problem problem = p.unzipProblemVO();
+            Problem problem = p.unzip2Problem();
 //            problemMapper.insert(problem);
             for (Sample sample : p.getSamples()) {
                 sample.setPid(problem.getPid());

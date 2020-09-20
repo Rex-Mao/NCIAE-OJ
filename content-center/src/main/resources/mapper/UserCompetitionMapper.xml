@@ -6,13 +6,14 @@
     <resultMap id="BaseResultMap" type="cn.edu.nciae.contentcenter.common.entity.UserCompetition">
         <id column="ucid" property="ucid" />
         <result column="uid" property="uid" />
+        <result column="nickname" property="nickname" />
         <result column="cid" property="cid" />
         <result column="join_time" property="joinTime" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        ucid, uid, cid, join_time
+        ucid, uid, nickname, cid, join_time
     </sql>
 
 </mapper>

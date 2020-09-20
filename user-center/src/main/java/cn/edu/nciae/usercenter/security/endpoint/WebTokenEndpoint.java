@@ -5,7 +5,6 @@ import cn.edu.nciae.usercenter.utils.JwtTokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2020/4/9 1:12 AM
  */
 @RestController
-@RequestMapping("/token")
 public class WebTokenEndpoint {
 
     @Autowired

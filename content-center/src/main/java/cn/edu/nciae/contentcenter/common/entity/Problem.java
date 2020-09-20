@@ -39,6 +39,11 @@ public class Problem implements Serializable {
     private Long addUid;
 
     /**
+     * 添加者用户名
+     */
+    private String addUsername;
+
+    /**
      * 题目名称
      */
     private String title;
@@ -95,4 +100,8 @@ public class Problem implements Serializable {
      */
     private String hint;
 
+    /**
+     * 状态0 public， 1 private
+     */
+    private Integer status;
 }

@@ -98,6 +98,24 @@ public class CompetitionController {
     }
 
     /**
+     * desc : get contest by cid
+     * @param cid -
+     * @return MessageVO<Competition>
+     */
+    @GetMapping("/contest/{cid}")
+    public MessageVO<Competition> getContestByCid(@PathVariable("cid") Long cid) {
+        Competition competition = competitionService.getById(cid);
+        competition.setPassword(null);
+        if (competition != null) {
+            setCompetitionStatus(competition);
+        }
+        return MessageVO.<Competition>builder()
+                .error(null)
+                .data(competition)
+                .build();
+    }
+
+    /**
      * desc : update contest by new contest information
      * @param authentication -
      * @param competition - new competition
@@ -123,6 +141,9 @@ public class CompetitionController {
         }
         if (competition.getTitle() != null) {
             BeanUtils.copyProperties(competition, competitionOrigin);
+        }
+        if (competition.getCPublic() == true) {
+            competitionOrigin.setPassword(null);
         }
         setCompetitionStatus(competitionOrigin);
         competitionService.saveOrUpdate(competitionOrigin);
@@ -157,6 +178,7 @@ public class CompetitionController {
         }
         competitions.getRecords().forEach(item -> {
             item.setPassword(null);
+            setCompetitionStatus(item);
         });
         return CompetitionListVO.builder()
                 .results(competitions.getRecords())
@@ -166,7 +188,7 @@ public class CompetitionController {
 
     /**
      * desc : change the date status of competition
-     * (1,not start ; 0,underway ; -1, ended)
+     * (1,not start ; 0,underway ; -1, ended; -2,not online)
      * @param competition -
      */
     private void setCompetitionStatus(Competition competition) {
